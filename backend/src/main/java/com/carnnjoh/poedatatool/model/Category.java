@@ -1,10 +1,10 @@
-package com.carnnjoh.poedatatool.api.model;
+package com.carnnjoh.poedatatool.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class CategoryModel {
+public class Category {
 
 	@JsonProperty("accessories")
 	List<String> accessories;

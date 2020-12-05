@@ -1,23 +1,22 @@
-package com.carnnjoh.poedatatool.api.model;
+package com.carnnjoh.poedatatool.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.lang.reflect.Array;
 import java.util.List;
 
-public class ItemModel {
+public class Item {
 
 	@JsonProperty("abyssJewel")
 	boolean isAbyssalJewel;
 
 	@JsonProperty("additionalProperties")
-	List<PropertyModel> additionalProperties;
+	List<Properties> additionalProperties;
 
 	@JsonProperty("artFileName")
 	boolean artFilename;
 
 	@JsonProperty("category")
-	List<CategoryModel> categories;
+	List<Category> categories;
 
 	@JsonProperty("corrupted")
 	boolean isCorrupted;
@@ -47,10 +46,10 @@ public class ItemModel {
 	List<String> flavourText;
 
 	@JsonProperty("frameType")
-	List<FrameTypeModel> frameTypes;
+	int frameTypes;
 
 	@JsonProperty("h")
-	Integer height;
+	int height;
 
 	@JsonProperty("icon")
 	String icon;
@@ -62,13 +61,13 @@ public class ItemModel {
 	boolean isIdentified;
 
 	@JsonProperty("ilvl")
-	Integer itemLevel;
+	int itemLevel;
 
 	@JsonProperty("implicitMods")
 	List<String> implicitMods;
 
 	@JsonProperty("inventoryId")
-	boolean inventoryId;
+	String inventoryId;
 
 	@JsonProperty("isRelic")
 	boolean isRelic;
@@ -80,7 +79,7 @@ public class ItemModel {
 	boolean isLockedToCharacter;
 
 	@JsonProperty("maxStackSize")
-	String maxStackSize;
+	Integer maxStackSize;
 
 	@JsonProperty("name")
 	String name;
@@ -91,7 +90,7 @@ public class ItemModel {
 	String note;
 
 	@JsonProperty("properties")
-	List<PropertyModel> properties;
+	List<Properties> properties;
 
 	@JsonProperty("prophecyDiffText")
 	String prophecyDiffText;
@@ -100,7 +99,7 @@ public class ItemModel {
 	String prophecyText;
 
 	@JsonProperty("requirements")
-	List<RequirementModel> requirements;
+	List<Requirements> requirements;
 
 	@JsonProperty("secDescrText")
 	String secDescText;
@@ -109,7 +108,7 @@ public class ItemModel {
 	boolean isShaper;
 
 	@JsonProperty("sockets")
-	List<SocketModel> sockets;
+	List<Sockets> sockets;
 
 	@JsonProperty("stackSize")
 	Integer StackSize;
@@ -118,7 +117,7 @@ public class ItemModel {
 	boolean isSupport;
 
 	@JsonProperty("talismanTier")
-	Integer talismanTier;
+	int talismanTier;
 
 	@JsonProperty("typeLine")
 	String typeLine;
@@ -130,18 +129,14 @@ public class ItemModel {
 	boolean isVerified;
 
 	@JsonProperty("w")
-	Integer width;
+	int width;
 
 	@JsonProperty("x")
-	Integer xPos;
+	int xPos;
 
 	@JsonProperty("y")
-	Integer yPos;
+	int yPos;
 
 	@JsonProperty("'^[\\\\s]RaceReward$'")
 	boolean isRaceReward;
-
-
-
-
 }

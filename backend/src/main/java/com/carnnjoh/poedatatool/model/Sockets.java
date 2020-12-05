@@ -1,8 +1,8 @@
-package com.carnnjoh.poedatatool.api.model;
+package com.carnnjoh.poedatatool.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SocketModel {
+public class Sockets {
 
 	@JsonProperty("group")
 	Integer group;

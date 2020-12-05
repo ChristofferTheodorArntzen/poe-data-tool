@@ -1,16 +1,16 @@
-package com.carnnjoh.poedatatool.api.model;
+package com.carnnjoh.poedatatool.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class PropertyModel {
+public class Properties {
 
 	@JsonProperty("name")
 	String name;
 
 	@JsonProperty("values")
-	List<ValueTypeModel> valueTypes;
+	List<Values> valueTypes;
 
 	@JsonProperty("displayMode")
 	Integer displayMode;
