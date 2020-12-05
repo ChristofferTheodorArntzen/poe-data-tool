@@ -11,8 +11,8 @@
 	<groupId>com.carnnjoh</groupId>
 	<artifactId>poedatatool</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>poedatatool</name>
-	<description>A third party path of exile app for showing listnings </description>
+	<name>PoeDataTool</name>
+	<description>A third party path of exile app for showing listings </description>
 
 	<properties>
 		<java.version>1.8</java.version>
