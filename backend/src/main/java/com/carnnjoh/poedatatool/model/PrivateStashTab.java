@@ -4,33 +4,32 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PrivateStashTab {
 
 	@JsonProperty("numTabs")
-	int numberOfTabs;
+	public int numberOfTabs;
 
 	@JsonProperty("currencyLayout")
-	List<Object> currencyLayout;
+	public Map<String, Cell> currencyLayout;
 
 	@JsonProperty("fragmentLayout")
-	List<Object> fragmentLayout;
+	public Map<String, Cell> fragmentLayout;
 
 	@JsonProperty("divinationLayout")
-	List<Object> divinationLayout;
+	public DivinationLayout divinationLayout;
 
 	@JsonProperty("delveLayout")
-	List<Object> delveLayout;
+	public Map<String, Cell> delveLayout;
 
 	@JsonProperty("essenceLayout")
-	List<Object> essenceLayout;
-
+	public Map<String, Cell> essenceLayout;
 
 	@JsonProperty(value = "quadLayout", required = false)
-	Boolean isQuadLayout = null;
+	public Boolean isQuadLayout = null;
 
 	@JsonProperty("items")
-	List<Item> items;
-
+	public List<Item> items;
 }

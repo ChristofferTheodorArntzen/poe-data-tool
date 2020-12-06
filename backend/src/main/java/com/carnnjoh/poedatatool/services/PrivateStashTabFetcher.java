@@ -1,7 +1,7 @@
 package com.carnnjoh.poedatatool.services;
 
+import com.carnnjoh.poedatatool.model.PrivateStashTab;
 import com.carnnjoh.poedatatool.model.PrivateStashTabRequest;
-import com.carnnjoh.poedatatool.model.PrivateTabStash;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -18,7 +18,7 @@ public class PrivateStashTabFetcher {
 
     private final RestTemplate template = new RestTemplate();
 
-    public Optional<PrivateTabStash> fetchStashItems(PrivateStashTabRequest request) {
+    public Optional<PrivateStashTab> fetchStashItems(PrivateStashTabRequest request) {
         HttpEntity<String> entity = new HttpEntity<>(createHeaders(request.poeSessionId));
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/get-stash-items")
             .queryParam("league", request.league)
@@ -27,8 +27,8 @@ public class PrivateStashTabFetcher {
             .queryParam("tabs", request.tabs)
             .queryParam("tabIndex", request.tabIndex);
 
-        ResponseEntity<PrivateTabStash> responseEntity = template
-            .exchange(builder.toUriString(), HttpMethod.GET, entity, PrivateTabStash.class);
+        ResponseEntity<PrivateStashTab> responseEntity = template
+            .exchange(builder.toUriString(), HttpMethod.GET, entity, PrivateStashTab.class);
 
         return (responseEntity.getStatusCode() == HttpStatus.OK)
             ? Optional.of(responseEntity.getBody())

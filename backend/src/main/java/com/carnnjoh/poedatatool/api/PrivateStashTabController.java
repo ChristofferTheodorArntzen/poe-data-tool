@@ -1,8 +1,8 @@
 package com.carnnjoh.poedatatool.api;
 
 import com.carnnjoh.poedatatool.exceptions.StashNotFoundException;
+import com.carnnjoh.poedatatool.model.PrivateStashTab;
 import com.carnnjoh.poedatatool.model.PrivateStashTabRequest;
-import com.carnnjoh.poedatatool.model.PrivateTabStash;
 import com.carnnjoh.poedatatool.services.PrivateStashTabFetcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ public class PrivateStashTabController {
     private PrivateStashTabFetcher fetcher;
 
     @GetMapping("/stash-tab")
-    public PrivateTabStash fetchAllStashes(
+    public PrivateStashTab fetchAllStashes(
         @RequestParam String league,
         @RequestParam String realm,
         @RequestParam String accountName,
