@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class DataFetcher {
+public class PublicStashTabFetcher {
 
     private final String BASE_URL = "https://www.pathofexile.com/api";
     private final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64)";
