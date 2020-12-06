@@ -15,30 +15,17 @@ class ItemView extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/stash')
+        fetch('http://localhost:8080/public/stash-tab')
             .then(response => response.json())
             .then(data => this.setState({stashTabs: data, isLoaded: true}));
     }   
 
     render() {
         const cards = []
-      /*
-        for (const [index, item] of this.state.stashTabs.entries()) {
-            console.log(item);
-            listItems.push(
-                <li key={index}>{item.id}</li>
-            )
-        }*/
-        
-        console.log(this.state.stashTabs);
-        
         if (this.state.isLoaded) {
-
             for (const [index, stashTab] of this.state.stashTabs.entries()) {
                 if (stashTab && stashTab.items.length > 0) {
-
                     var items = []
-                    
                     for (const [index, item] of stashTab.items.entries()) {
                         items.push(
                             <Card key={index} style={{ width: '12rem', backgroundColor: '#999', borderColor: '#FFF'}}>
@@ -58,7 +45,6 @@ class ItemView extends Component {
                             {items}
                         </div>
                     )
- 
                 }
             }
         }
