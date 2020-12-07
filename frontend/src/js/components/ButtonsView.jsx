@@ -7,7 +7,6 @@ class ButtonsView extends React.Component {
     {
         super(props);
         this.state = {isToggleOn: true}
-
         this.handleClick = this.handleClick.bind(this);
       
     }
@@ -19,8 +18,8 @@ class ButtonsView extends React.Component {
     }
 
     render() {
-        //const button = <button onClick={ItemView}> public </button>
-        //const button2 = <button onClick={tabView}> private </button>
+      //  const button = <button onClick={ItemView}> public </button>
+      //  const button2 = <button onClick={tabView}> private </button>
         return (
           <button onClick={this.handleClick}>
             {this.state.isToggleOn  ? 'ON' : 'OFF'}
@@ -29,7 +28,4 @@ class ButtonsView extends React.Component {
     }
   }
 
-  ReactDOM.render(
-    <Toggle/>,
-    document.getElementById('root')
-  );
+export default ButtonsView;
