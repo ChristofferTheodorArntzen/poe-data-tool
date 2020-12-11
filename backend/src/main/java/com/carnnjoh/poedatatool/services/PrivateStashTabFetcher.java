@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -31,8 +32,24 @@ public class PrivateStashTabFetcher {
             .exchange(builder.toUriString(), HttpMethod.GET, entity, PrivateStashTab.class);
 
         return (responseEntity.getStatusCode() == HttpStatus.OK)
-            ? Optional.of(responseEntity.getBody())
+            ? Optional.ofNullable(responseEntity.getBody())
             : Optional.empty();
+    }
+
+    public int fetchNumberOfTabs(PrivateStashTabRequest request){
+        HttpEntity<String> entity = new HttpEntity<>(createHeaders(request.poeSessionId));
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/get-stash-items")
+            .queryParam("league", request.league)
+            .queryParam("realm", request.realm)
+            .queryParam("accountName", request.accountName)
+            .queryParam("tabs", request.tabs);
+
+        ResponseEntity<PrivateStashTab> responseEntity = template
+            .exchange(builder.toUriString(), HttpMethod.GET, entity, PrivateStashTab.class);
+
+        return (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null)
+            ? responseEntity.getBody().numberOfTabs
+            : 0;
     }
 
     private HttpHeaders createHeaders(String poeSessionId) {

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonFormat(shape = JsonFormat.Shape.ARRAY)
 @JsonPropertyOrder(value = {"string", "values"})
-public class Values {
+public class ValueTypes {
 
 	public String modifierValue;
 	public int modifierValueIndex;
