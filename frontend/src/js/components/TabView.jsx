@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import { Card } from 'react-bootstrap';
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-class ItemView extends Component {
+class tabView extends Component {
 
     constructor(props)
     {
         super(props);
         this.state = {
-            stashTabs: [],
+            StashTab: [],
             isLoaded: false
         };
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/public/stash-tab')
+        fetch('localhost:8080/private/stash-tab?league=Heist&realm=pc&accountName=Athzen&tabs=0&tabIndex=2')
             .then(response => response.json())
             .then(data => this.setState({stashTabs: data, isLoaded: true}));
     }   
@@ -28,7 +29,7 @@ class ItemView extends Component {
                     var items = []
                     for (const [index, item] of stashTab.items.entries()) {
                         items.push(
-                            <Card key={index} style={{ width: '12rem', backgroundColor: '#999', borderColor: '#FFF'}}>
+                            <Card key={index} style={{ width: '12rem', backgroundColor: '#ccc', borderColor: '#FFF'}}>
                                 <Card.Img variant="top" src={item.icon}  style={{ width: '4rem', height: '4rem', margin: 'auto'}} />
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>

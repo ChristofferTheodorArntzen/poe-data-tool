@@ -7,17 +7,17 @@ import java.util.List;
 public class Properties {
 
 	@JsonProperty("name")
-	String name;
+	public String name;
 
 	@JsonProperty("values")
-	List<Values> valueTypes;
+	public List<ValueTypes> valueTypes;
 
 	@JsonProperty("displayMode")
-	Integer displayMode;
+	public Integer displayMode;
 
 	@JsonProperty("type")
-	Integer type;
+	public Integer type;
 
 	@JsonProperty("progress")
-	String progress;
+	public String progress;
 }

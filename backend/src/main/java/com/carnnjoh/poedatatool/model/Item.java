@@ -1,142 +1,144 @@
 package com.carnnjoh.poedatatool.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 public class Item {
 
 	@JsonProperty("abyssJewel")
-	boolean isAbyssalJewel;
+	public boolean isAbyssalJewel;
 
 	@JsonProperty("additionalProperties")
-	List<Properties> additionalProperties;
+	public List<Properties> additionalProperties;
 
 	@JsonProperty("artFileName")
-	boolean artFilename;
+	public boolean artFilename;
 
 	@JsonProperty("category")
-	List<Category> categories;
+	public List<Category> categories;
 
 	@JsonProperty("corrupted")
-	boolean isCorrupted;
+	public boolean isCorrupted;
 
 	@JsonProperty("cosmeticMods")
-	List<String> cosmeticMods;
+	public List<String> cosmeticMods;
 
 	@JsonProperty("craftedMods")
-	List<String> craftedMods;
+	public List<String> craftedMods;
 
 	@JsonProperty("descrText")
-	String descText;
+	public String descText;
 
 	@JsonProperty("duplicated")
-	boolean isDuplicated;
+	public boolean isDuplicated;
 
 	@JsonProperty("elder")
-	boolean isElder;
+	public boolean isElder;
 
 	@JsonProperty("enchantMods")
-	List<String> enchantedMods;
+	public List<String> enchantedMods;
 
 	@JsonProperty("explicitMods")
-	List<String> explicitMods;
+	public List<String> explicitMods;
 
 	@JsonProperty("flavourText")
-	List<String> flavourText;
+	public List<String> flavourText;
 
 	@JsonProperty("frameType")
-	int frameTypes;
+	public int frameTypes;
 
 	@JsonProperty("h")
-	int height;
+	public int height;
 
 	@JsonProperty("icon")
-	String icon;
+	public String icon;
 
 	@JsonProperty("id")
-	String itemId;
+	public String itemId;
 
 	@JsonProperty("identified")
-	boolean isIdentified;
+	public boolean isIdentified;
 
 	@JsonProperty("ilvl")
-	int itemLevel;
+	public int itemLevel;
 
 	@JsonProperty("implicitMods")
-	List<String> implicitMods;
+	public List<String> implicitMods;
 
 	@JsonProperty("inventoryId")
-	String inventoryId;
+	public String inventoryId;
 
 	@JsonProperty("isRelic")
-	boolean isRelic;
+	public boolean isRelic;
 
 	@JsonProperty("league")
-	String league;
+	public String league;
 
 	@JsonProperty("lockedToCharacter")
-	boolean isLockedToCharacter;
+	public boolean isLockedToCharacter;
 
 	@JsonProperty("maxStackSize")
-	Integer maxStackSize;
+	public Integer maxStackSize;
 
 	@JsonProperty("name")
-	String name;
+	public String name;
 
 	//@JsonProperty("nextLevelRequirements") TODO: maybe add
 
 	@JsonProperty("note")
-	String note;
+	public String note;
 
 	@JsonProperty("properties")
-	List<Properties> properties;
+	public List<Properties> properties;
 
 	@JsonProperty("prophecyDiffText")
-	String prophecyDiffText;
+	public String prophecyDiffText;
 
 	@JsonProperty("prophecyText")
-	String prophecyText;
+	public String prophecyText;
 
 	@JsonProperty("requirements")
-	List<Requirements> requirements;
+	public List<Requirements> requirements;
 
 	@JsonProperty("secDescrText")
-	String secDescText;
+	public String secDescText;
 
 	@JsonProperty("shaper")
-	boolean isShaper;
+	public boolean isShaper;
 
 	@JsonProperty("sockets")
-	List<Sockets> sockets;
+	public List<Sockets> sockets;
 
 	@JsonProperty("stackSize")
-	Integer StackSize;
+	public Integer StackSize;
 
 	@JsonProperty("support")
-	boolean isSupport;
+	public boolean isSupport;
 
 	@JsonProperty("talismanTier")
-	int talismanTier;
+	public int talismanTier;
 
 	@JsonProperty("typeLine")
-	String typeLine;
+	public String typeLine;
 
 	@JsonProperty("utilityMods")
-	List<String> utilityMods;
+	public List<String> utilityMods;
 
 	@JsonProperty("verified")
-	boolean isVerified;
+	public boolean isVerified;
 
 	@JsonProperty("w")
-	int width;
+	public int width;
 
 	@JsonProperty("x")
-	int xPos;
+	public int xPos;
 
 	@JsonProperty("y")
-	int yPos;
+	public int yPos;
 
 	@JsonProperty("'^[\\\\s]RaceReward$'")
-	boolean isRaceReward;
+	public boolean isRaceReward;
 }

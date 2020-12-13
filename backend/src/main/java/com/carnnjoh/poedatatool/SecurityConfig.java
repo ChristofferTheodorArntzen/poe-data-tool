@@ -14,9 +14,10 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
-    protected void configure(HttpSecurity security) throws Exception
+    protected void configure(HttpSecurity http) throws Exception
     {
-        security.httpBasic().disable();
+        http.httpBasic().disable();
+        http.cors().and().csrf().disable();
     }
 
     @Bean
