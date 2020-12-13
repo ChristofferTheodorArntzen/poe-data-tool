@@ -41,7 +41,7 @@ class ItemView extends Component {
     componentDidMount() {
         const headers = {   'Conent-Type': 'application/json',
                             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)',
-                            'POESESSID': '1902b23f05db3426ad77005e7863d66f'
+                            'POESESSID': ''
                         }
         fetch('http://localhost:8080/private/stash-tab?league=Heist&realm=pc&accountName=Athzen&tabs=0&tabIndex=2', {headers}
             )
