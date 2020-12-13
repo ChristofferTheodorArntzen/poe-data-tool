@@ -1,4 +1,4 @@
-package com.carnnjoh.poedatatool.db.model;
+package com.carnnjoh.poedatatool.db;
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;

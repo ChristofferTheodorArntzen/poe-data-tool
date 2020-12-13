@@ -1,7 +1,3 @@
-create table ValuableItem {
-
-	id VARCHAR(250) NOT NULL,
-	subscriptionId VARCHAR(250) NOT NULL,
-	item JSON NOT NULL
-
-}
+create table ValuableItem (pk INT IDENTITY PRIMARY KEY, id VARCHAR(250) NOT NULL, subscriptionId VARCHAR(250) NOT NULL, item JSON NOT NULL)
+create table Subscription (pk INT IDENTITY PRIMARY KEY, tabIds ARRAY NOT NULL, threshold VARCHAR(250) NOT NULL)
+create table User (pk INT IDENTITY PRIMARY KEY, league VARCHAR(250) NOT NULL, accountName VARCHAR(250) NOT NULL, realm VARCHAR(250) NOT NULL, sessionId VARCHAR(250) NOT NULL)
