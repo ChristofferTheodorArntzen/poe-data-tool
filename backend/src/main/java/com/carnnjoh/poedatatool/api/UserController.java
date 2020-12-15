@@ -5,7 +5,7 @@ import com.carnnjoh.poedatatool.db.model.User;
 import com.carnnjoh.poedatatool.db.utils.CreateSuccessResult;
 import com.carnnjoh.poedatatool.db.utils.Result;
 import com.carnnjoh.poedatatool.db.utils.SuccessResult;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.org.apache.bcel.internal.generic.FSUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,23 +19,21 @@ import java.util.List;
 public class UserController {
 
 	@Autowired
-	ObjectMapper mapper;
-
-	@Autowired
 	private UserDAO userDAO;
-
 
 	private final RestTemplate template  = new RestTemplate();
 
 	@GetMapping("/{pk}")
 	public ResponseEntity<User> get(@PathVariable Integer pk) {
-		if(pk != null && pk > 0) {
-			User user = userDAO.fetch(pk);
+		if(pk < 0)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-			if(user != null) {
-				return new ResponseEntity<>(user, HttpStatus.OK);
-			}
+		User user = userDAO.fetch(pk);
+
+		if(user != null) {
+			return new ResponseEntity<>(user, HttpStatus.OK);
 		}
+
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
@@ -49,34 +47,40 @@ public class UserController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-
 	@DeleteMapping("/{pk}")
 	public ResponseEntity<User> delete(@PathVariable int pk) {
+		if(pk < 0)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
 		Result deleteResult = userDAO.deleteByPk(pk);
 
-		if(deleteResult instanceof SuccessResult) {
+		if(deleteResult instanceof SuccessResult)
 			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping()
 	public ResponseEntity<User> post(@RequestBody User user) {
 
-		if(user != null){
-			Result postResult = userDAO.save(user);
-			if(postResult instanceof CreateSuccessResult){
-				user.setPk(((CreateSuccessResult) postResult).getPk());
-				return new ResponseEntity<>(user, HttpStatus.OK);
-			}
+		if(user == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
+		Result postResult = userDAO.save(user);
+
+		if(postResult instanceof CreateSuccessResult){
+			user.setPk(((CreateSuccessResult) postResult).getPk());
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@PutMapping("/{pk}")
 	public ResponseEntity<User> put(@PathVariable Integer pk, @RequestBody User userDetails) {
+		if(pk < 0)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
 		User user = userDAO.fetch(pk);
 
 		if(user == null){
@@ -88,12 +92,17 @@ public class UserController {
 		user.setRealm(userDetails.getRealm());
 		user.setSessionId(userDetails.getSessionId());
 
-		Result putResult = userDAO.save(user);
+		Result putResult = (user.getPk() == null)
+			? userDAO.save(user)
+			: userDAO.update(user);
 
 		if(putResult instanceof CreateSuccessResult){
 			user.setPk(((CreateSuccessResult) putResult).getPk());
-			return new ResponseEntity<>(user, HttpStatus.OK);
+			return new ResponseEntity<>(user, HttpStatus.CREATED);
 		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		return (putResult instanceof SuccessResult)
+			? new ResponseEntity<>(user, HttpStatus.OK)
+			: new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
