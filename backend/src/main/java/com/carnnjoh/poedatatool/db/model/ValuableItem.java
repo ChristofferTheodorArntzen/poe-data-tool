@@ -12,9 +12,9 @@ import lombok.Setter;
 @Setter
 public class ValuableItem {
 
-	private int pk;
+	private Integer pk;
 	private String id;
-	private String subscriptionId;
+	private Integer subscriptionFk;
 	private Item item;
 
 	@Override
@@ -22,7 +22,7 @@ public class ValuableItem {
 		return "ValuableItem{" +
 			"pk=" + pk +
 			", id='" + id + '\'' +
-			", subscriptionId='" + subscriptionId + '\'' +
+			", subscriptionFk='" + subscriptionFk + '\'' +
 			", item=" + item +
 			'}';
 	}
