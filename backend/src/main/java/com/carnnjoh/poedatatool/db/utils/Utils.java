@@ -2,11 +2,13 @@ package com.carnnjoh.poedatatool.db.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.support.KeyHolder;
 
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
+import java.util.EmptyStackException;
 import java.util.function.Function;
 
 public class Utils {
@@ -22,8 +24,10 @@ public class Utils {
 	}
 
 	public static <T> T tryGet(GetAction<T> block) {
-		try{
+		try {
 			return block.get();
+		} catch (EmptyResultDataAccessException erdae){
+			// do nothing, happens when the application tries to fetch an entity with a PK that does not exist.
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -47,7 +51,6 @@ public class Utils {
 			return new FailedResult();
 		}
 	}
-
 
 	// Was meant to make it easier or more pretty to make if instanceof for the Result class returned by the DAO's,
 	// but ended ut being more code than just casting the class if a field was needed for one of the sub-classes
