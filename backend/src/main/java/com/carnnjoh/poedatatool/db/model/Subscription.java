@@ -1,12 +1,10 @@
 package com.carnnjoh.poedatatool.db.model;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.sql.Array;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,9 +12,9 @@ import java.sql.Array;
 @Setter
 public class Subscription {
 
-	@Ignore
-	private int pk;
-
-	private Array tabIds;
+	private Integer pk;
+	private String[] tabIds = {""};
 	private double threshold = 0;
+	private String thresholdCurrencyType = "";
+
 }
