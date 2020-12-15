@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class User {
 
-	private int pk;
+	private Integer pk;
 	private String league;
 	private String accountName;
 	private String realm;
