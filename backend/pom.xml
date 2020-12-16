@@ -62,6 +62,14 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>info.solidsoft.mockito</groupId>
+			<artifactId>mockito-java8</artifactId>
+			<version>2.5.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

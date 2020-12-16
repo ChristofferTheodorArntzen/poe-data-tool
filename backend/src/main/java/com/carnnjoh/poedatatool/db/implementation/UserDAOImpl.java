@@ -1,9 +1,7 @@
 package com.carnnjoh.poedatatool.db.implementation;
 
 import com.carnnjoh.poedatatool.db.dao.UserDAO;
-import com.carnnjoh.poedatatool.db.utils.Result;
-import com.carnnjoh.poedatatool.db.utils.SuccessResult;
-import com.carnnjoh.poedatatool.db.utils.Utils;
+import com.carnnjoh.poedatatool.db.utils.*;
 import com.carnnjoh.poedatatool.db.model.User;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -47,7 +45,6 @@ public class UserDAOImpl implements UserDAO {
 			KeyHolder keyHolder = new GeneratedKeyHolder();
 
 			template.update("insert into User(league, accountName, realm, sessionId) values( :league, :accountName, :realm, :sessionId)", params, keyHolder);
-			System.out.println("keyHolder for user: " + user.getSessionId() + " key: " + keyHolder.getKey());
 			return Utils.getCreateResult(keyHolder);
 		});
 	}
@@ -64,6 +61,28 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public List<User> fetchAll() {
 		return Utils.tryGet(() -> template.query("Select * from User", rowMapper));
+	}
+
+	@Override
+	public Result update(User user) {
+		return Utils.tryUpdate(() -> {
+
+			if(user.getPk() == null){
+				return new FailedResult();
+			}
+
+			MapSqlParameterSource params = new MapSqlParameterSource()
+				.addValue("pk", user.getPk())
+				.addValue("league", user.getLeague())
+				.addValue("accountName", user.getAccountName())
+				.addValue("realm", user.getRealm())
+				.addValue("sessionId", user.getSessionId());
+
+			int rowUpdate = template.update("update User set league = :league, set accountName = :accountName, set realm = :realm, set sessionId = :sessionId where pk = :pk", params);
+			return (rowUpdate != 0)
+				? new UpdateSuccessResult()
+				: new FailedResult();
+		});
 	}
 
 	private final RowMapper<User> rowMapper = ((rs, rowNum) ->

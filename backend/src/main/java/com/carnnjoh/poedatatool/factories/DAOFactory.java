@@ -36,7 +36,4 @@ public class DAOFactory {
 		return new UserDAOImpl(template);
 	}
 
-
-
-
 }

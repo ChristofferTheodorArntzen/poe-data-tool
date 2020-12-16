@@ -37,14 +37,15 @@ public class TestController {
 		Scanner scanner = new Scanner(getClass().getResourceAsStream("/item.txt"));
 		StringBuilder sb = new StringBuilder();
 
-		while(scanner.hasNext()){
+		while(scanner.hasNext()) {
 			sb.append(scanner.next());
 		}
+
 		itemJson = sb.toString();
 
 		ValuableItem item = new ValuableItem();
 		item.setId("qiowkepqormmprok");
-		item.setSubscriptionId("test22");
+		item.setSubscriptionFk(1);
 
 		Item itemDeserialize = objectMapper.readValue(itemJson, Item.class);
 

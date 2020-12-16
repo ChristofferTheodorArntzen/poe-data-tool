@@ -1,9 +1,7 @@
 package com.carnnjoh.poedatatool.db.implementation;
 
 import com.carnnjoh.poedatatool.db.dao.ValuableItemDAO;
-import com.carnnjoh.poedatatool.db.utils.Result;
-import com.carnnjoh.poedatatool.db.utils.SuccessResult;
-import com.carnnjoh.poedatatool.db.utils.Utils;
+import com.carnnjoh.poedatatool.db.utils.*;
 import com.carnnjoh.poedatatool.db.model.ValuableItem;
 
 import com.carnnjoh.poedatatool.model.Item;
@@ -41,10 +39,10 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 		return Utils.tryUpdate(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("id", item.getId())
-				.addValue("subscriptionId", item.getSubscriptionId())
+				.addValue("subscriptionFk", item.getSubscriptionFk())
 				.addValue("item",  mapper.writeValueAsBytes(item.getItem()));
 			KeyHolder keyHolder = new GeneratedKeyHolder();
-			template.update("insert into ValuableItem(id, subscriptionId, item) values( :id, :subscriptionId, :item)", params, keyHolder);
+			template.update("insert into ValuableItem(id, subscriptionFk, item) values( :id, :subscriptionFk, :item)", params, keyHolder);
 			return Utils.getCreateResult(keyHolder);
 		});
 	}
@@ -63,11 +61,31 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 		return Utils.tryGet(() -> template.query("Select * from ValuableItem", rowMapper));
 	}
 
+	@Override
+	public Result update(ValuableItem item) {
+		return Utils.tryUpdate(() -> {
+
+			if(item.getPk() == null){
+				return new FailedResult();
+			}
+
+			MapSqlParameterSource params = new MapSqlParameterSource()
+				.addValue("pk", item.getPk())
+				.addValue("id", item.getId())
+				.addValue("subscriptionId", item.getSubscriptionFk())
+				.addValue("item",  mapper.writeValueAsBytes(item.getItem()));
+			int rowUpdate = template.update("update ValuableItem set id = :id, set subscriptionId = :subscriptionId, set item = :item where pk = :pk", params);
+			return (rowUpdate != 0)
+				? new UpdateSuccessResult()
+				: new FailedResult();
+		});
+	}
+
 	private final RowMapper<ValuableItem> rowMapper = ((rs, rowNum) ->
 		Utils.tryGet(() -> new ValuableItem(
 			rs.getInt("pk"),
 			rs.getString("id"),
-			rs.getString("subscriptionId"),
+			rs.getInt("subscriptionFk"),
 			mapper.readValue(rs.getBytes("item"), Item.class)
 		)));
 }

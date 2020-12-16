@@ -14,4 +14,5 @@ public interface DAO<T> {
 
 	List<T> fetchAll();
 
+	Result update(T Object);
 }
