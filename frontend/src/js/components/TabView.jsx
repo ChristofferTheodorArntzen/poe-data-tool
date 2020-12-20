@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Card } from 'react-bootstrap';
 
-
-class tabView extends Component {
+class TabView extends Component {
 
     constructor(props)
     {
@@ -58,4 +58,4 @@ class tabView extends Component {
       }
   }
   
-  export default ItemView;
+  export default TabView;
