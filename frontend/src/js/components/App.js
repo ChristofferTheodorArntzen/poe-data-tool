@@ -1,22 +1,44 @@
-import logo from './logo.svg' 
 import './App.css';
-import ItemView from './ItemView';
-import ButtonsView from './ButtonsView';
-
-// remove when we adpat redux to our components
+import LoginView from './ItemView';
 import React from "react";
-import List from "./List";
-import Form from "./Form";
 
-const App = () => (
-  <>
-    <div>
-     <ItemView/>
-    </div>
-  </>
-);
+export default class Home extends Component {
+  constructor(props){
+    super(props);
 
-export default App;
+    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+  }
+
+
+
+    handleSuccessfulAuth(data) {
+      this.props.handleLogin(data);
+      this.props.history.push("/ItemView");
+    }
+
+    render() {
+      return (
+        <div>
+            <h1>Home: </h1>
+            <h1>Test: </h1>
+            <Registration handleSuccessfulAuth = {this.handleSuccessfulAuth} />
+        </div>
+      )
+    }
+
+}
+
+
+
+// const App = () => (
+//   <>
+//     <div>
+//      <ItemView/>
+//     </div>
+//   </>
+// );
+
+// export default App;
 
 
 //function App() {

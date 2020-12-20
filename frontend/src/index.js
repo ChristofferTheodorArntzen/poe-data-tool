@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './js/components/App';
 import reportWebVitals from './reportWebVitals';
-import index from "./js/index";
+
 
 ReactDOM.render(
   <Provider store={store}>
