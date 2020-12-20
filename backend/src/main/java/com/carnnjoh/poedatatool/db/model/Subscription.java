@@ -13,8 +13,8 @@ import lombok.Setter;
 public class Subscription {
 
 	private Integer pk;
-	private String[] tabIds = {""};
-	private double threshold = 0;
-	private String thresholdCurrencyType = "";
+	private String[] tabIds;
+	private double threshold;
+	private String thresholdCurrencyType;
 
 }
