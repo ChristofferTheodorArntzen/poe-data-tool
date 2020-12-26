@@ -1,0 +1,19 @@
+.valuable-item-container {
+
+    background-color: rgb(63, 63, 63);
+    display: table;
+    width: 50%;
+    color: white;
+}
+
+.table-container {
+    width: 80%;
+    margin: auto; 
+}
+
+.item-frame {
+
+    width: 15%;
+    height: auto;
+
+}
