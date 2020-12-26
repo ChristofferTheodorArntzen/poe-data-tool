@@ -1,56 +1,93 @@
+import {React , Component} from 'react';
 import './App.css';
-import LoginView from './ItemView';
-import React from "react";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+//import TabView from './TabView';
+import LoggedInStatus from './LoggedInStatus';
+import axios from 'axios';
+import TabView from './TabView';
 
-export default class Home extends Component {
-  constructor(props){
-    super(props);
+const url = 'http://localhost:3000/logged_in';
 
-    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+export default class Apps extends Component {
+  constructor(){
+    super();
+
+    this.state = {
+      loggedInStatus: 'NOT_LOGGED_IN',
+      user: {}
+    };
+
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
+  checkLoginStatus(){
+    axios
+      .get(url, {withCredentials: true})
+      .then(
+        response => {
+          if( response.data.logged_in && this.state.loggedInStatus === 'NOT_LOGGED_IN' ) {
+            this.setState({
+              loggedInStatus: 'LOGGED_IN',
+              user: response.data.user
+            });
+          } else if (!response.data.logged_in & (this.state.loggedInStatus === 'LOGGED_IN')){
+            this.setState({
+              loggedInStatus: 'NOT_LOGGED_IN',
+              user: {}
+            })
+          } 
+        })
+      .catch(error => {
+        console.log("Check login error", error);
+      });
+  }
+  
+  componentDidMount() {
+    this.checkLoginStatus();
+  }
 
+  handleLogout() {
+    this.setState({
+      loggedInStatus: 'NOT_LOGGED_IN',
+      user: {}
+    });
+  }
 
-    handleSuccessfulAuth(data) {
-      this.props.handleLogin(data);
-      this.props.history.push("/ItemView");
-    }
+  handleLogin(data) {
+    this.setState({
+        loggedInStatus: 'LOGGED_IN',
+        user: data.user
+    });
+  }
 
-    render() {
+  render() {
       return (
-        <div>
+        <div className='app'>
+          <BrowserRouter>
+            <Switch>
+              <Route>
+                <TabView path='/tabView'/>
+              </Route>
+              <Route>
+                exact
+                path{'/LoggedIn'}
+                render={ props => (
+                  <LoggedInStatus
+                   {...props}
+                   loggedInStatus={this.state.loggedInStatus}
+                  />
+                )}
+              </Route>
+            </Switch>
+          </BrowserRouter> 
             <h1>Home: </h1>
             <h1>Test: </h1>
-            <Registration handleSuccessfulAuth = {this.handleSuccessfulAuth} />
         </div>
       )
     }
 
 }
-
-
-
-// const App = () => (
-//   <>
-//     <div>
-//      <ItemView/>
-//     </div>
-//   </>
-// );
-
-// export default App;
-
-
-//function App() {
-
-//  return (
-//    <div className="App" style={{ backgroundColor: '#222' }}>
-//       <ButtonsView/>
-//     </div>
-      
-//   );
-// }
-// export default App;
 
 // https://www.valentinog.com/blog/redux/
 

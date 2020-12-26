@@ -1,5 +1,4 @@
 import React from 'react';
-import ItemView from './ItemView';
 
 class ButtonsView extends React.Component {
 

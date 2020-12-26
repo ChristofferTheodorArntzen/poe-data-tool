@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import { Component } from 'react';
 import { Card } from 'react-bootstrap';
 
 class TabView extends Component {
@@ -16,7 +15,7 @@ class TabView extends Component {
     }
 
     componentDidMount() {
-        fetch('localhost:8080/private/stash-tab?league=Heist&realm=pc&accountName=Athzen&tabs=0&tabIndex=2')
+        fetch('http://pathofexile.com/api/public-stash-tabs')
             .then(response => response.json())
             .then(data => this.setState({stashTabs: data, isLoaded: true}));
     }   

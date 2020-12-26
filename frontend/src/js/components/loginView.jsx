@@ -1,11 +1,10 @@
-import React, {useState, Component } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
+import React, { Component } from 'react';
+import axios from 'axios';
 import './Login.css';
 
-class LoginView extends Component {
+const url_sessions = 'http://localhost:3001/sessions';
 
+class LoginView extends Component {
     constructor(props) {
         super(props);
 
@@ -22,8 +21,7 @@ class LoginView extends Component {
     
     handleChange(event) {
         const target = event.target;
-        const value = target.type === 'select' ? target.option.value :
-        target.value;
+        const value = target.type === 'select' ? target.option.value : target.value;
         
         const name = target.name;
         this.setState({
@@ -31,14 +29,37 @@ class LoginView extends Component {
         });
     }
 
+
     handleSubmit(event) {
-        alert('A user was submitted: ' + this.state.league);
+        const {league, accountName, realm, sessionId } = this.state;
+        
+        axios
+         .post(
+            'http://localhost:3001/sessions',
+              {
+                user: {
+                 league: league,
+                 accountName: accountName,
+                 realm: realm,
+                 sessionId: sessionId
+                }
+              },
+              { withCredentials: true }
+            )
+            .then(response => {
+                if(response.data.logged_in) {
+                    this.props.handleSuccessfulAuth(response.data);
+                }
+            })
+            .catch(error => {
+                console.log("login error", error);
+            });
         event.prventDefault();
     }
 
     render() {
         return (
-            <div class = 'form'>
+            <div className = 'form'>
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label id='label'>
@@ -51,7 +72,9 @@ class LoginView extends Component {
                             name='realm'
                             type='text'
                             value={this.state.realm}
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required
+                            />
                     </div>
                     <br id='breakLine'/>
                     <div>
@@ -65,7 +88,9 @@ class LoginView extends Component {
                             name='accountName'
                             type="text"
                             value={this.state.accountName}
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required
+                            />
                     </div> 
                     <br id="breakLine"/>
                     <div>
@@ -92,7 +117,9 @@ class LoginView extends Component {
                             name="sessionId"
                             type="text"
                             value={this.state.sessionId}
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            required
+                            />
                     </div>
                     <br id="breakLine"/>
                     <input type="Submit" value="submit"/>
