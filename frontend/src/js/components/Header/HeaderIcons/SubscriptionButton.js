@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import Button from "@material-ui/core/Button"
 import AddAlertIcon from '@material-ui/icons/AddAlert'
-import { MemoryRouter as Router } from "react-router"
-import { Link as RouterLink } from "react-router-dom"
+//import { MemoryRouter as Router } from "react-router"
+import { Link } from "react-router-dom"
 
 
 class SubscriptionButton extends Component {
@@ -14,18 +14,19 @@ class SubscriptionButton extends Component {
 
     render() {
         return (
-            <Router>
                 <div className="headerIcon">
                     <Button
                         variant="outlined"
                         size="small"
+                        onClick={() => {}}
                         startIcon={<AddAlertIcon />}
-                        component = {RouterLink} to="/SubscriptionMenu"
+                        component={Link}
+                        to={"/subscription-menu"}
                     >
                         subscription
                     </Button>
                 </div>
-            </Router>
+            
         )
     }
 
