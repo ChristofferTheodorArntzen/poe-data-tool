@@ -5,7 +5,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import ValuableItemContainer from "./valuableItemContainer/ValuableItemContainer"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import SubscriptionMenu from "./SubscriptionMenu/SubscriptionMenu"
 import "./App.css";
 
@@ -20,24 +20,19 @@ export default function Apps() {
 
   return (
     <div className="app">
-      <ThemeProvider theme={darkTheme}>
-        <Header />
-        <Router>
+      <Router>
 
-          <Route path = "/">
-            <main>
-              <ValuableItemContainer />
-            </main>
-          </Route>
 
-          <Route path="/SubscriptionMenu">
-            <main>
-              <SubscriptionMenu />
-            </main>
-          </Route>
+        <ThemeProvider theme={darkTheme}>
+          <Header />
 
-        </Router>
-      </ThemeProvider>
+
+          <Route exact path="/" component= {ValuableItemContainer} />
+
+          <Route path="/subscription-menu" component = {SubscriptionMenu} />
+          
+        </ThemeProvider>
+      </Router>
     </div>
   )
 
