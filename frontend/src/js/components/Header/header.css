@@ -6,6 +6,9 @@ header {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
     margin-bottom: 2vh;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(194, 194, 194);
 }
 
 .header-icon-container {
