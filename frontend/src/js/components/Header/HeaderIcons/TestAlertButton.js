@@ -13,7 +13,7 @@ class TestAlertButton extends Component {
                     size="small"
                     startIcon={<NotificationsActiveIcon />}
                 >
-                    Login
+                    Test Alert
             </Button>
             </div>
         )
