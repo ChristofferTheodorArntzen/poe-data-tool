@@ -24,7 +24,7 @@ class ItemView extends Component {
     }
 
     setIsShown(isShownValue) {
-       this.setState(state => ({
+       this.setState(() => ({
            isShown: isShownValue
        }));
     }

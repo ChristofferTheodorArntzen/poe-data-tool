@@ -1,0 +1,647 @@
+[
+    {
+        "pk": 1,
+        "id": "1",
+        "subscriptionFk": 1,
+        "item": {
+            "abyssJewel": false,
+            "additionalProperties": null,
+            "artFileName": false,
+            "category": null,
+            "corrupted": false,
+            "cosmeticMods": null,
+            "craftedMods": null,
+            "descrText": null,
+            "duplicated": false,
+            "elder": false,
+            "enchantMods": null,
+            "explicitMods": null,
+            "flavourText": null,
+            "frameType": 0,
+            "h": 3,
+            "icon": "https://web.poecdn.com/image/Art/2DItems/Weapons/OneHandWeapons/OneHandSwords/OneHandSword3.png?v=0bf4b174a0c80b2fd80a12026ed04a05&w=1&h=3&scale=1",
+            "id": "9bf049e42d7761cb6aaaabf006d5ff8122e4e87917975ca21a6ab4f6be572c05",
+            "identified": true,
+            "ilvl": 82,
+            "implicitMods": [
+                "40%increasedGlobalAccuracyRating"
+            ],
+            "inventoryId": "Stash1",
+            "isRelic": false,
+            "league": "Heist",
+            "lockedToCharacter": false,
+            "maxStackSize": null,
+            "name": "",
+            "note": null,
+            "properties": [
+                {
+                    "name": "OneHandedSword",
+                    "values": [],
+                    "displayMode": 0,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "PhysicalDamage",
+                    "values": [
+                        [
+                            "20-80",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 9,
+                    "progress": null
+                },
+                {
+                    "name": "CriticalStrikeChance",
+                    "values": [
+                        [
+                            "5.00%",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 12,
+                    "progress": null
+                },
+                {
+                    "name": "AttacksperSecond",
+                    "values": [
+                        [
+                            "1.55",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 13,
+                    "progress": null
+                },
+                {
+                    "name": "WeaponRange",
+                    "values": [
+                        [
+                            "11",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 14,
+                    "progress": null
+                }
+            ],
+            "prophecyDiffText": null,
+            "prophecyText": null,
+            "requirements": [
+                {
+                    "name": "Level",
+                    "values": [
+                        [
+                            "58",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "Str",
+                    "values": [
+                        [
+                            "81",
+                            0
+                        ]
+                    ],
+                    "displayMode": 1,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "Dex",
+                    "values": [
+                        [
+                            "117",
+                            0
+                        ]
+                    ],
+                    "displayMode": 1,
+                    "type": null,
+                    "progress": null
+                }
+            ],
+            "secDescrText": null,
+            "shaper": false,
+            "sockets": [
+                {
+                    "group": 0,
+                    "attr": "I",
+                    "sColour": "B"
+                },
+                {
+                    "group": 0,
+                    "attr": "S",
+                    "sColour": "R"
+                },
+                {
+                    "group": 0,
+                    "attr": "D",
+                    "sColour": "G"
+                }
+            ],
+            "stackSize": null,
+            "support": false,
+            "talismanTier": 0,
+            "typeLine": "CorsairSword",
+            "utilityMods": null,
+            "verified": false,
+            "w": 1,
+            "x": 0,
+            "y": 14,
+            "'^[\\\\s]RaceReward$'": false
+        }
+    },{
+        "pk": 2,
+        "id": "2",
+        "subscriptionFk": 1,
+        "item": {
+            "abyssJewel": false,
+            "additionalProperties": null,
+            "artFileName": false,
+            "category": null,
+            "corrupted": false,
+            "cosmeticMods": null,
+            "craftedMods": null,
+            "descrText": null,
+            "duplicated": false,
+            "elder": false,
+            "enchantMods": null,
+            "explicitMods": null,
+            "flavourText": null,
+            "frameType": 0,
+            "h": 3,
+            "icon": "https://web.poecdn.com/image/Art/2DItems/Weapons/OneHandWeapons/OneHandSwords/OneHandSword3.png?v=0bf4b174a0c80b2fd80a12026ed04a05&w=1&h=3&scale=1",
+            "id": "9bf049e42d7761cb6aaaabf006d5ff8122e4e87917975ca21a6ab4f6be572c05",
+            "identified": true,
+            "ilvl": 82,
+            "implicitMods": [
+                "40%increasedGlobalAccuracyRating"
+            ],
+            "inventoryId": "Stash1",
+            "isRelic": false,
+            "league": "Heist",
+            "lockedToCharacter": false,
+            "maxStackSize": null,
+            "name": "",
+            "note": null,
+            "properties": [
+                {
+                    "name": "OneHandedSword",
+                    "values": [],
+                    "displayMode": 0,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "PhysicalDamage",
+                    "values": [
+                        [
+                            "20-80",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 9,
+                    "progress": null
+                },
+                {
+                    "name": "CriticalStrikeChance",
+                    "values": [
+                        [
+                            "5.00%",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 12,
+                    "progress": null
+                },
+                {
+                    "name": "AttacksperSecond",
+                    "values": [
+                        [
+                            "1.55",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 13,
+                    "progress": null
+                },
+                {
+                    "name": "WeaponRange",
+                    "values": [
+                        [
+                            "11",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 14,
+                    "progress": null
+                }
+            ],
+            "prophecyDiffText": null,
+            "prophecyText": null,
+            "requirements": [
+                {
+                    "name": "Level",
+                    "values": [
+                        [
+                            "58",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "Str",
+                    "values": [
+                        [
+                            "81",
+                            0
+                        ]
+                    ],
+                    "displayMode": 1,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "Dex",
+                    "values": [
+                        [
+                            "117",
+                            0
+                        ]
+                    ],
+                    "displayMode": 1,
+                    "type": null,
+                    "progress": null
+                }
+            ],
+            "secDescrText": null,
+            "shaper": false,
+            "sockets": [
+                {
+                    "group": 0,
+                    "attr": "I",
+                    "sColour": "B"
+                },
+                {
+                    "group": 0,
+                    "attr": "S",
+                    "sColour": "R"
+                },
+                {
+                    "group": 0,
+                    "attr": "D",
+                    "sColour": "G"
+                }
+            ],
+            "stackSize": null,
+            "support": false,
+            "talismanTier": 0,
+            "typeLine": "CorsairSword",
+            "utilityMods": null,
+            "verified": false,
+            "w": 1,
+            "x": 0,
+            "y": 14,
+            "'^[\\\\s]RaceReward$'": false
+        }
+    },{
+        "pk": 3,
+        "id": "3",
+        "subscriptionFk": 1,
+        "item": {
+            "abyssJewel": false,
+            "additionalProperties": null,
+            "artFileName": false,
+            "category": null,
+            "corrupted": false,
+            "cosmeticMods": null,
+            "craftedMods": null,
+            "descrText": null,
+            "duplicated": false,
+            "elder": false,
+            "enchantMods": null,
+            "explicitMods": null,
+            "flavourText": null,
+            "frameType": 0,
+            "h": 3,
+            "icon": "https://web.poecdn.com/image/Art/2DItems/Weapons/OneHandWeapons/OneHandSwords/OneHandSword3.png?v=0bf4b174a0c80b2fd80a12026ed04a05&w=1&h=3&scale=1",
+            "id": "9bf049e42d7761cb6aaaabf006d5ff8122e4e87917975ca21a6ab4f6be572c05",
+            "identified": true,
+            "ilvl": 82,
+            "implicitMods": [
+                "40%increasedGlobalAccuracyRating"
+            ],
+            "inventoryId": "Stash1",
+            "isRelic": false,
+            "league": "Heist",
+            "lockedToCharacter": false,
+            "maxStackSize": null,
+            "name": "",
+            "note": null,
+            "properties": [
+                {
+                    "name": "OneHandedSword",
+                    "values": [],
+                    "displayMode": 0,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "PhysicalDamage",
+                    "values": [
+                        [
+                            "20-80",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 9,
+                    "progress": null
+                },
+                {
+                    "name": "CriticalStrikeChance",
+                    "values": [
+                        [
+                            "5.00%",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 12,
+                    "progress": null
+                },
+                {
+                    "name": "AttacksperSecond",
+                    "values": [
+                        [
+                            "1.55",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 13,
+                    "progress": null
+                },
+                {
+                    "name": "WeaponRange",
+                    "values": [
+                        [
+                            "11",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 14,
+                    "progress": null
+                }
+            ],
+            "prophecyDiffText": null,
+            "prophecyText": null,
+            "requirements": [
+                {
+                    "name": "Level",
+                    "values": [
+                        [
+                            "58",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "Str",
+                    "values": [
+                        [
+                            "81",
+                            0
+                        ]
+                    ],
+                    "displayMode": 1,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "Dex",
+                    "values": [
+                        [
+                            "117",
+                            0
+                        ]
+                    ],
+                    "displayMode": 1,
+                    "type": null,
+                    "progress": null
+                }
+            ],
+            "secDescrText": null,
+            "shaper": false,
+            "sockets": [
+                {
+                    "group": 0,
+                    "attr": "I",
+                    "sColour": "B"
+                },
+                {
+                    "group": 0,
+                    "attr": "S",
+                    "sColour": "R"
+                },
+                {
+                    "group": 0,
+                    "attr": "D",
+                    "sColour": "G"
+                }
+            ],
+            "stackSize": null,
+            "support": false,
+            "talismanTier": 0,
+            "typeLine": "CorsairSword",
+            "utilityMods": null,
+            "verified": false,
+            "w": 1,
+            "x": 0,
+            "y": 14,
+            "'^[\\\\s]RaceReward$'": false
+        }
+    },{
+        "pk": 4,
+        "id": "4",
+        "subscriptionFk": 1,
+        "item": {
+            "abyssJewel": false,
+            "additionalProperties": null,
+            "artFileName": false,
+            "category": null,
+            "corrupted": false,
+            "cosmeticMods": null,
+            "craftedMods": null,
+            "descrText": null,
+            "duplicated": false,
+            "elder": false,
+            "enchantMods": null,
+            "explicitMods": null,
+            "flavourText": null,
+            "frameType": 0,
+            "h": 3,
+            "icon": "https://web.poecdn.com/image/Art/2DItems/Weapons/OneHandWeapons/OneHandSwords/OneHandSword3.png?v=0bf4b174a0c80b2fd80a12026ed04a05&w=1&h=3&scale=1",
+            "id": "9bf049e42d7761cb6aaaabf006d5ff8122e4e87917975ca21a6ab4f6be572c05",
+            "identified": true,
+            "ilvl": 82,
+            "implicitMods": [
+                "40%increasedGlobalAccuracyRating"
+            ],
+            "inventoryId": "Stash1",
+            "isRelic": false,
+            "league": "Heist",
+            "lockedToCharacter": false,
+            "maxStackSize": null,
+            "name": "",
+            "note": null,
+            "properties": [
+                {
+                    "name": "OneHandedSword",
+                    "values": [],
+                    "displayMode": 0,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "PhysicalDamage",
+                    "values": [
+                        [
+                            "20-80",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 9,
+                    "progress": null
+                },
+                {
+                    "name": "CriticalStrikeChance",
+                    "values": [
+                        [
+                            "5.00%",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 12,
+                    "progress": null
+                },
+                {
+                    "name": "AttacksperSecond",
+                    "values": [
+                        [
+                            "1.55",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 13,
+                    "progress": null
+                },
+                {
+                    "name": "WeaponRange",
+                    "values": [
+                        [
+                            "11",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": 14,
+                    "progress": null
+                }
+            ],
+            "prophecyDiffText": null,
+            "prophecyText": null,
+            "requirements": [
+                {
+                    "name": "Level",
+                    "values": [
+                        [
+                            "58",
+                            0
+                        ]
+                    ],
+                    "displayMode": 0,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "Str",
+                    "values": [
+                        [
+                            "81",
+                            0
+                        ]
+                    ],
+                    "displayMode": 1,
+                    "type": null,
+                    "progress": null
+                },
+                {
+                    "name": "Dex",
+                    "values": [
+                        [
+                            "117",
+                            0
+                        ]
+                    ],
+                    "displayMode": 1,
+                    "type": null,
+                    "progress": null
+                }
+            ],
+            "secDescrText": null,
+            "shaper": false,
+            "sockets": [
+                {
+                    "group": 0,
+                    "attr": "I",
+                    "sColour": "B"
+                },
+                {
+                    "group": 0,
+                    "attr": "S",
+                    "sColour": "R"
+                },
+                {
+                    "group": 0,
+                    "attr": "D",
+                    "sColour": "G"
+                }
+            ],
+            "stackSize": null,
+            "support": false,
+            "talismanTier": 0,
+            "typeLine": "CorsairSword",
+            "utilityMods": null,
+            "verified": false,
+            "w": 1,
+            "x": 0,
+            "y": 14,
+            "'^[\\\\s]RaceReward$'": false
+        }
+    }
+]
