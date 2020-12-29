@@ -13,8 +13,6 @@ class SubscriptionList extends Component {
 
 	render() {
 
-        const 
-
 		return (
 			<div>
 				<List>
