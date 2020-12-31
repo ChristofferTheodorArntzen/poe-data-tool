@@ -1,0 +1,52 @@
+{
+	"subscriptions": [
+		{
+			"id": 1,
+			"name": "Early league subscription",
+			"tabIds": ["tab 1", "tab 2", "tab 3"],
+			"currencyThreshold": 5.0,
+			"currencyType": "chaos",
+			"itemFilter": [
+				{
+					"id": 10,
+					"name": "Divination Cards"
+				},
+				{
+					"id": 15,
+					"name": "Unique Jewels"
+				},
+				{
+					"id": 22,
+					"name": "Rare Weapons"
+				}
+			],
+			"isActive": false
+		},
+		{
+			"id": 2,
+			"name": "Mid league subscription",
+			"tabIds": ["tab 2", "tab 11", "tab 13"],
+			"currencyThreshold": 15.0,
+			"currencyType": "chaos",
+			"itemFilter": [
+				{
+					"id": 23,
+					"name": "Rare Armours"
+				},
+				{
+					"id": 24,
+					"name": "Rare Accessories"
+				},
+				{
+					"id": 22,
+					"name": "Rare Weapons"
+				},
+				{
+					"id": 21,
+					"name": "Rare Jewels"
+				}
+			],
+			"isActive": true
+		}
+	]
+}

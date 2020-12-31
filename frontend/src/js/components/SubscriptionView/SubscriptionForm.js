@@ -13,6 +13,7 @@ import ItemFilterDialog from "./ItemFilterDialog";
 import ItemFilterList from "./ItemFilterList";
 import Chip from "@material-ui/core/Chip";
 import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
 
 const styles = (theme) => ({
 	formControl: {
@@ -31,6 +32,8 @@ const styles = (theme) => ({
 		margin: 2,
 	},
 });
+
+const OutliOutlinedInput = {};
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -98,7 +101,7 @@ class SubscriptionForm extends Component {
 						value={this.state.currencyType}
 						onChange={this.handleInputChange}
 					>
-						{/* TODO: optimize this. really slow to open - maybe add default to 1ex */}
+						{/* TODO: optimize this. really slow to open - maybe add default to selected item and or    */}
 						{CurrencyDataDump.currencyDetails.map((currencyType) => (
 							<MenuItem key={currencyType.id} value={currencyType.tradeId}>
 								{currencyType.name}
@@ -131,13 +134,15 @@ class SubscriptionForm extends Component {
 						value={this.state.tabIds}
 						onChange={this.handleInputChange}
 						input={<Input id="select-multiple-chip" />}
-            renderValue={ /*figure out how this works*/ (selected) => (
-							<div className={classes.chips}>
-								{selected.map((value) => (
-									<Chip key={value} label={value} className={classes.chip} />
-								))}
-							</div>
-						)}
+						renderValue={
+							/*figure out how this works*/ (selected) => (
+								<div className={classes.chips}>
+									{selected.map((value) => (
+										<Chip key={value} label={value} className={classes.chip} />
+									))}
+								</div>
+							)
+						}
 						MenuProps={MenuProps}
 					></Select>
 				</FormControl>
@@ -150,6 +155,9 @@ class SubscriptionForm extends Component {
 					<div className="edit-item-filter-button">
 						<ItemFilterDialog />
 					</div>
+				</div>
+				<div className="form-save-button">
+					<Button variant="contained">Save</Button>
 				</div>
 			</form>
 		);
