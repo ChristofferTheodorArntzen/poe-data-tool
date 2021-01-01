@@ -1,5 +1,4 @@
-.subscription-menu-container {
-	width: 60%;
+.subscription-view-container {
 	margin: auto;
 	color: white;
 }
@@ -37,9 +36,31 @@
 	border-radius: 2px;
 }
 
-.subscription-menu-root {
+.subscription-view-root {
+  width: 100%;
   margin: 0 auto;
   display: inline-flex;
-  width: 80%;
-  height: 80%;
 }
+
+.subscription-list {
+	display: inline-flex;
+	height: 90vh;
+	margin-right: auto;
+}
+
+.card-list-item  {
+ 	width: 100%;
+}
+
+.subscription-list-item {
+	height: 80vh;
+	overflow-y: auto;
+}
+
+.subscription-list-header {
+	color: white;
+	text-align: center;
+	border-bottom: 2px white solid;
+}
+
+/* make active subscriptions drop down at and below this width 1040*/
