@@ -1,4 +1,4 @@
-import { ADD_ARTICLE } from "../constants/action-types";
+import { ADD_ARTICLE } from "../js/constants/action-types";
 
 const initialState = {
     articles: []
@@ -11,6 +11,6 @@ const initialState = {
         });
       }
       return state;
-  };
+  }
   
   export default rootReducer;

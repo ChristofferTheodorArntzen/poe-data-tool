@@ -1,34 +1,36 @@
-import logo from './logo.svg' 
-import './App.css';
-import ItemView from './ItemView';
-import ButtonsView from './ButtonsView';
+/* eslint-disable no-unused-vars */
+import { React, Component } from "react";
+import Header from "./Header/Header";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import ValuableItemContainer from "./valuableItemContainer/ValuableItemContainer";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import SubscriptionMenu from "./SubscriptionView/SubscriptionView";
+import LoginView from "./LoginView/LoginView"
 
-// remove when we adpat redux to our components
-import React from "react";
-import List from "./List";
-import Form from "./Form";
+import "./App.css";
 
-const App = () => (
-  <>
-    <div>
-     <ItemView/>
-    </div>
-  </>
-);
+export default function Apps() {
+	const darkTheme = createMuiTheme({
+		palette: {
+			type: "dark",
+		},
+	});
 
-export default App;
+	return (
+		<div className="app">
+			<Router>
+				<ThemeProvider theme={darkTheme}>
+					<Header />
 
+					<Route exact path="/" component={ValuableItemContainer} />
 
-//function App() {
+					<Route path="/subscriptionView" component={SubscriptionMenu} />
 
-//  return (
-//    <div className="App" style={{ backgroundColor: '#222' }}>
-//       <ButtonsView/>
-//     </div>
-      
-//   );
-// }
-// export default App;
-
-// https://www.valentinog.com/blog/redux/
-
+					<Route path="/LoginView" component={LoginView} />
+				</ThemeProvider>
+			</Router>
+		</div>
+	);
+}

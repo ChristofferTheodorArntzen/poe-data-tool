@@ -1,5 +1,6 @@
 package com.carnnjoh.poedatatool.api;
 
+import com.carnnjoh.poedatatool.api.requestobjects.ValuableItemRequest;
 import com.carnnjoh.poedatatool.db.dao.ValuableItemDAO;
 import com.carnnjoh.poedatatool.db.model.ValuableItem;
 import com.carnnjoh.poedatatool.db.utils.CreateSuccessResult;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +27,7 @@ public class ValuableItemController {
 	@GetMapping("/{pk}")
 	public ResponseEntity<ValuableItem> get(@PathVariable Integer pk) {
 		if(pk < 0)
-			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
 		ValuableItem valuableItem = valuableItemDAO.fetch(pk);
 
@@ -33,7 +35,7 @@ public class ValuableItemController {
 			return new ResponseEntity<>(valuableItem, HttpStatus.OK);
 		}
 
-		return new ResponseEntity(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping()
@@ -76,7 +78,10 @@ public class ValuableItemController {
 	}
 
 	@PutMapping("/{pk}")
-	public ResponseEntity<ValuableItem> put(@PathVariable Integer pk, @RequestBody ValuableItem valuableItemDetails) {
+	public ResponseEntity<ValuableItem> put(
+			@PathVariable Integer pk,
+			@Valid @RequestBody ValuableItemRequest valuableItemRequest
+	) {
 		if(pk < 0)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
@@ -86,9 +91,9 @@ public class ValuableItemController {
 			valuableItem = new ValuableItem();
 		}
 
-		valuableItem.setItem(valuableItemDetails.getItem());
-		valuableItem.setSubscriptionFk(valuableItemDetails.getSubscriptionFk());
-		valuableItem.setId(valuableItemDetails.getId());
+		valuableItem.setItem(valuableItemRequest.getItem());
+		valuableItem.setSubscriptionFk(valuableItemRequest.getSubscriptionFk());
+		valuableItem.setId(valuableItemRequest.getId());
 
 		Result putResult = (valuableItem.getPk() == null)
 			? valuableItemDAO.save(valuableItem)
@@ -103,33 +108,4 @@ public class ValuableItemController {
 			? new ResponseEntity<>(valuableItem, HttpStatus.OK)
 			: new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-
-//	private ValuableItem test() throws JsonProcessingException {
-//
-//		Scanner scanner = new Scanner(getClass().getResourceAsStream("/item.txt"));
-//		StringBuilder sb = new StringBuilder();
-//
-//		while(scanner.hasNext()) {
-//			sb.append(scanner.next());
-//		}
-//
-//		itemJson = sb.toString();
-//
-//		ValuableItem item = new ValuableItem();
-//		item.setId("qiowkepqormmprok");
-//		item.setSubscriptionFk(1);
-//
-//		Item itemDeserialize;
-//		try {
-//			itemDeserialize = objectMapper.readValue(itemJson, Item.class);
-//			item.setItem(itemDeserialize);
-//
-//			return item;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		return null;
-//	}
-
 }

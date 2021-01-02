@@ -1,11 +1,11 @@
 package com.carnnjoh.poedatatool.api;
 
+import com.carnnjoh.poedatatool.api.requestobjects.UserRequest;
 import com.carnnjoh.poedatatool.db.dao.UserDAO;
 import com.carnnjoh.poedatatool.db.model.User;
 import com.carnnjoh.poedatatool.db.utils.CreateSuccessResult;
 import com.carnnjoh.poedatatool.db.utils.Result;
 import com.carnnjoh.poedatatool.db.utils.SuccessResult;
-import com.sun.org.apache.bcel.internal.generic.FSUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +34,7 @@ public class UserController {
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		}
 
-		return new ResponseEntity(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping()
@@ -77,7 +77,10 @@ public class UserController {
 	}
 
 	@PutMapping("/{pk}")
-	public ResponseEntity<User> put(@PathVariable Integer pk, @RequestBody User userDetails) {
+	public ResponseEntity<User> put(
+			@PathVariable Integer pk,
+			@RequestBody UserRequest userRequest
+	) {
 		if(pk < 0)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
@@ -87,10 +90,10 @@ public class UserController {
 			user = new User();
 		}
 
-		user.setLeague(userDetails.getLeague());
-		user.setAccountName(userDetails.getAccountName());
-		user.setRealm(userDetails.getRealm());
-		user.setSessionId(userDetails.getSessionId());
+		user.setLeague(userRequest.getLeague());
+		user.setAccountName(userRequest.getAccountName());
+		user.setRealm(userRequest.getRealm());
+		user.setSessionId(userRequest.getSessionId());
 
 		Result putResult = (user.getPk() == null)
 			? userDAO.save(user)
