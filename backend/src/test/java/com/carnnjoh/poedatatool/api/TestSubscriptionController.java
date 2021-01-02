@@ -6,6 +6,7 @@ import com.carnnjoh.poedatatool.db.dao.ValuableItemDAO;
 import com.carnnjoh.poedatatool.db.model.Subscription;
 import com.carnnjoh.poedatatool.db.utils.Result;
 import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,11 @@ import org.springframework.http.*;
 import org.springframework.http.client.ClientHttpRequest;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.net.URI;
+import java.util.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class TestSubscriptionController {
+class TestSubscriptionController {
 
 	@LocalServerPort
 	private int port;
@@ -50,11 +49,14 @@ public class TestSubscriptionController {
 		subscriptionDAO.save(subscription2);
 
 	}
-
-
+	//TODO: Rewrite test with another assert framework
 	@Test
-	public void testGet() {
-		ResponseEntity<Subscription> subscriptionResponse = restTemplate.getForEntity(endPointUrl + "/1", Subscription.class);
+	void testGet() {
+		ResponseEntity<Subscription> subscriptionResponse = restTemplate
+			.getForEntity(endPointUrl + "/1", Subscription.class);
+
+
+		assert subscriptionResponse.getStatusCode() == HttpStatus.OK;
 
 		Assert.isTrue(subscriptionResponse.getStatusCode() == HttpStatus.OK,
 			"Http status for get call was incorrect");
@@ -71,8 +73,7 @@ public class TestSubscriptionController {
 		Assert.isTrue(subscription.getPk() == 1,
 			"Pk for first object created was not equal to 1");
 
-		Assert.isTrue(Arrays.equals(subscription.getTabIds(), tabArray),
-			"TabIds had incorrect values");
+		Assertions.assertArrayEquals(subscription.getTabIds(), tabArray);
 
 		Assert.isTrue(subscription.getThreshold() == 20.0,
 			"Threshold was not equal to the initially saved object");
@@ -82,7 +83,7 @@ public class TestSubscriptionController {
 	}
 
 	@Test
-	public void testGetAll() {
+	void testGetAll() {
 		ResponseEntity<Subscription[]> subscriptionResponse = restTemplate.getForEntity(endPointUrl, Subscription[].class);
 
 		Assert.isTrue(subscriptionResponse.getStatusCode() == HttpStatus.OK,
@@ -95,7 +96,7 @@ public class TestSubscriptionController {
 	}
 
 	@Test
-	public void testDelete() {
+	void testDelete() {
 		restTemplate.delete(endPointUrl + "/1");
 
 		Subscription subscription = subscriptionDAO.fetch(1);
@@ -104,7 +105,7 @@ public class TestSubscriptionController {
 	}
 
 	@Test
-	public void testPost(){
+	void testPost(){
 		Subscription subscriptionForPost = new Subscription(
 			null,
 			new String[]{"1", "2", "3"},
@@ -134,13 +135,30 @@ public class TestSubscriptionController {
 	}
 
 	@Test
-	public void testPut(){
+	void testPut(){
 
-		HttpHeaders request = new HttpHeaders();
+		String[] tabIds = {"1", "2", "3"};
 
-		//TODO: Sett lag test ferdig her
-		// Se på endringer som ble gjort til Subscription entiten for at SQL ikke skulle feile.
-		// Måtte sette initial verdi for alle member variablene - Kanskje ikke så gunstig?
+		SubscriptionRequest subscriptionRequest = new SubscriptionRequest(
+			tabIds,
+			10.0,
+			"exalted");
+
+		HttpEntity<SubscriptionRequest> httpEntity = new HttpEntity<>(subscriptionRequest);
+
+		ResponseEntity<Subscription>  subscriptionResponseEntity =
+			restTemplate.exchange(endPointUrl+"/1", HttpMethod.PUT, httpEntity, Subscription.class);
+
+		Subscription subscriptionFromDb = subscriptionDAO.fetch(1);
+
+		Assert.isTrue(subscriptionResponseEntity.getStatusCode() == HttpStatus.OK);
+
+		Subscription subscriptionResponse = subscriptionResponseEntity.getBody();
+
+		Assert.isTrue(Arrays.equals(subscriptionFromDb.getTabIds(), subscriptionResponse.getTabIds()),
+			"The tab id list from DB was not equal to the tab id from put response");
+
+
 
 	}
 

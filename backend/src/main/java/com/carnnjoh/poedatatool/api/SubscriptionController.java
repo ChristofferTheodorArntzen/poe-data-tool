@@ -8,8 +8,8 @@ import com.carnnjoh.poedatatool.db.utils.SuccessResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -20,12 +20,10 @@ public class SubscriptionController {
 	@Autowired
 	private SubscriptionDAO subscriptionDAO;
 
-	private final RestTemplate template = new RestTemplate();
-
 	@GetMapping("/{pk}")
 	public ResponseEntity<Subscription> get(@PathVariable Integer pk) {
 		if(pk < 0)
-			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
 		Subscription subscription = subscriptionDAO.fetch(pk);
 
@@ -33,14 +31,14 @@ public class SubscriptionController {
 			return new ResponseEntity<>(subscription, HttpStatus.OK);
 		}
 
-		return new ResponseEntity(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping()
 	public ResponseEntity<List<Subscription>> getAll() {
 		List<Subscription> subscriptions = subscriptionDAO.fetchAll();
 
-		if(subscriptions.size() > 0)
+		if(subscriptions.isEmpty())
 			return new ResponseEntity<>(subscriptions, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -76,7 +74,7 @@ public class SubscriptionController {
 	}
 
 	@PutMapping("/{pk}")
-	public ResponseEntity<Subscription> put(@PathVariable Integer pk, @RequestBody Subscription subscriptionDetails) {
+	public ResponseEntity<Subscription> put(@PathVariable Integer pk, @Validated @RequestBody SubscriptionRequest subscriptionRequest) {
 		if(pk < 0)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
@@ -86,9 +84,9 @@ public class SubscriptionController {
 			subscription = new Subscription();
 		}
 
-		subscription.setTabIds(subscriptionDetails.getTabIds());
-		subscription.setThreshold(subscriptionDetails.getThreshold());
-		subscription.setThresholdCurrencyType(subscriptionDetails.getThresholdCurrencyType());
+		subscription.setTabIds(subscriptionRequest.getTabIds());
+		subscription.setThreshold(subscriptionRequest.getThreshold());
+		subscription.setThresholdCurrencyType(subscriptionRequest.getThresholdCurrencyType());
 
 		Result putResult = (subscription.getPk() == null)
 			? subscriptionDAO.save(subscription)
