@@ -1,10 +1,8 @@
-package com.carnnjoh.poedatatool.scheduler;
+package com.carnnjoh.poedatatool.schedulers;
 
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 @Configuration
 @ComponentScan(basePackages = "")
