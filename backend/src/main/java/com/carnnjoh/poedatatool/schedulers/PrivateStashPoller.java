@@ -1,4 +1,4 @@
-package com.carnnjoh.poedatatool.scheduler;
+package com.carnnjoh.poedatatool.schedulers;
 
 import com.carnnjoh.poedatatool.model.*;
 import com.carnnjoh.poedatatool.services.PrivateStashTabFetcher;
@@ -25,7 +25,7 @@ public class PrivateStashPoller implements ScheduledTask {
 	}
 
 	@Override
-	@Scheduled(initialDelay = 1000, fixedDelay = 20000)
+	//@Scheduled(initialDelay = 1000, fixedDelay = 20000)
 	public void execute() {
 		try{
 			System.out.println("Scheduled task has began");
@@ -64,7 +64,6 @@ public class PrivateStashPoller implements ScheduledTask {
 		}
 	}
 
-	@Override
 	public PrivateStashTabRequest fetchRequest(Integer tabIndex) {
 
 		if(tabIndex!=null){
