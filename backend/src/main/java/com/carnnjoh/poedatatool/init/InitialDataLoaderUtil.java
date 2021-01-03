@@ -104,7 +104,8 @@ public class InitialDataLoaderUtil {
 					null,
 					"1",
 					subscription.getPk(),
-					item
+					item,
+					10
 			);
 			valuableItemDAO.save(valuableItem);
 		} else {

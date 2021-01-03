@@ -16,6 +16,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -64,8 +65,11 @@ public class ValuableItemGenerator implements ScheduledTask {
 			itemList = itemList.subList(0, 2);
 		}
 
+		Random random = new Random();
+
 		for (Item item : itemList) {
-			ValuableItem valuableItem = new ValuableItem(item.itemId, 1, item);
+
+			ValuableItem valuableItem = new ValuableItem(item.itemId, 1, item, random.nextInt(20));
 			valuableItemDAO.save(valuableItem);
 		}
 
@@ -74,8 +78,7 @@ public class ValuableItemGenerator implements ScheduledTask {
 	}
 
 	private List<Item> getItems(List<StashTab> stashTabs) {
-		List<Item> items = stashTabs.stream().flatMap(stashTab -> stashTab.items.stream()).collect(Collectors.toList());
-		return items;
+		return stashTabs.stream().flatMap(stashTab -> stashTab.items.stream()).collect(Collectors.toList());
 	}
 
 	private double getDuration(double startTime, double endTime) {

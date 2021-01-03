@@ -94,6 +94,7 @@ public class ValuableItemController {
 		valuableItem.setItem(valuableItemRequest.getItem());
 		valuableItem.setSubscriptionFk(valuableItemRequest.getSubscriptionFk());
 		valuableItem.setId(valuableItemRequest.getId());
+		valuableItem.setEstimatedPrice(valuableItemRequest.getEstimatedPrice());
 
 		Result putResult = (valuableItem.getPk() == null)
 			? valuableItemDAO.save(valuableItem)

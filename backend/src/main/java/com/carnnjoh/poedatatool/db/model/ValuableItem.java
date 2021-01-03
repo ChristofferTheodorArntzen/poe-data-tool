@@ -12,19 +12,23 @@ public class ValuableItem {
 	private String id;
 	private Integer subscriptionFk;
 	private Item item;
+	private Integer estimatedPrice;
+
 
 	public ValuableItem(){
-		this(null, null, null, null);
+		this(null, null, null, null, null);
 	}
 
-	public ValuableItem(String id, Integer subscriptionFk, Item item) {
-		this(null, id, subscriptionFk, item);
+	public ValuableItem(String id, Integer subscriptionFk, Item item, Integer estimatedPrice) {
+		this(null, id, subscriptionFk, item, estimatedPrice);
 	}
 
-	public ValuableItem(Integer pk, String id, Integer subscriptionFk, Item item) {
+	public ValuableItem(Integer pk, String id, Integer subscriptionFk, Item item, Integer estimatedPrice) {
+		this.pk = pk;
 		this.id = id;
 		this.subscriptionFk = subscriptionFk;
 		this.item = item;
+		this.estimatedPrice = estimatedPrice;
 	}
 
 	@Override
@@ -34,6 +38,7 @@ public class ValuableItem {
 			", id='" + id + '\'' +
 			", subscriptionFk='" + subscriptionFk + '\'' +
 			", item=" + item +
+			", estimatedPrice=" + estimatedPrice +
 			'}';
 	}
 }

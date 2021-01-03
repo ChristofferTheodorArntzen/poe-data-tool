@@ -40,9 +40,12 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("id", item.getId())
 				.addValue("subscriptionFk", item.getSubscriptionFk())
-				.addValue("item",  mapper.writeValueAsBytes(item.getItem()));
+				.addValue("item", mapper.writeValueAsBytes(item.getItem()))
+				.addValue("estimatedPrice", item.getEstimatedPrice());
 			KeyHolder keyHolder = new GeneratedKeyHolder();
-			template.update("insert into ValuableItem(id, subscriptionFk, item) values( :id, :subscriptionFk, :item)", params, keyHolder);
+			template.update(
+				"insert into ValuableItem(id, subscriptionFk, item, estimatedPrice) values( :id, :subscriptionFk, :item, :estimatedPrice)",
+				params, keyHolder);
 			return Utils.getCreateResult(keyHolder);
 		});
 	}
@@ -65,7 +68,7 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 	public Result update(ValuableItem item) {
 		return Utils.tryUpdate(() -> {
 
-			if(item.getPk() == null){
+			if (item.getPk() == null) {
 				return new FailedResult();
 			}
 
@@ -73,8 +76,15 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 				.addValue("pk", item.getPk())
 				.addValue("id", item.getId())
 				.addValue("subscriptionId", item.getSubscriptionFk())
-				.addValue("item",  mapper.writeValueAsBytes(item.getItem()));
-			int rowUpdate = template.update("update ValuableItem set id = :id, set subscriptionId = :subscriptionId, set item = :item where pk = :pk", params);
+				.addValue("item", mapper.writeValueAsBytes(item.getItem()))
+				.addValue("estimatedPrice", item.getEstimatedPrice());
+			String updateStatement =
+				"update ValuableItem set id = :id," +
+					" set subscriptionId = :subscriptionId," +
+					" set item = :item," +
+					" set estimatedPrice = :estimatedPrice" +
+					" where pk = :pk";
+			int rowUpdate = template.update(updateStatement, params);
 			return (rowUpdate != 0)
 				? new UpdateSuccessResult()
 				: new FailedResult();
@@ -86,6 +96,7 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 			rs.getInt("pk"),
 			rs.getString("id"),
 			rs.getInt("subscriptionFk"),
-			mapper.readValue(rs.getBytes("item"), Item.class)
+			mapper.readValue(rs.getBytes("item"), Item.class),
+			rs.getInt("estimatedPrice")
 		)));
 }
