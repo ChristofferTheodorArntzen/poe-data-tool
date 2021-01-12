@@ -12,6 +12,10 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 public class ValuableItemDAOImpl implements ValuableItemDAO {
@@ -35,16 +39,27 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 	}
 
 	@Override
+	public Result deleteById(String id) {
+		return Utils.tryUpdate(() -> {
+			MapSqlParameterSource params = new MapSqlParameterSource()
+				.addValue("id", id);
+			template.update("delete from ValuableItem where id = :id", params);
+			return new SuccessResult();
+		});
+	}
+
+	@Override
 	public Result save(ValuableItem item) {
 		return Utils.tryUpdate(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("id", item.getId())
 				.addValue("subscriptionFk", item.getSubscriptionFk())
 				.addValue("item", mapper.writeValueAsBytes(item.getItem()))
-				.addValue("estimatedPrice", item.getEstimatedPrice());
+				.addValue("estimatedPrice", item.getEstimatedPrice())
+				.addValue("createdDate", Timestamp.valueOf(item.getCreatedDate()));
 			KeyHolder keyHolder = new GeneratedKeyHolder();
 			template.update(
-				"insert into ValuableItem(id, subscriptionFk, item, estimatedPrice) values( :id, :subscriptionFk, :item, :estimatedPrice)",
+				"insert into ValuableItem(id, subscriptionFk, item, estimatedPrice, createdDate) values( :id, :subscriptionFk, :item, :estimatedPrice, :createdDate)",
 				params, keyHolder);
 			return Utils.getCreateResult(keyHolder);
 		});
@@ -62,6 +77,18 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 	@Override
 	public List<ValuableItem> fetchAll() {
 		return Utils.tryGet(() -> template.query("Select * from ValuableItem", rowMapper));
+	}
+
+	public List<ValuableItem> getAllByDate(boolean ascending){
+		return Utils.tryGet( () -> {
+			String sqlQuery = "Select * from ValuableItem order by createdDate";
+			if(ascending)
+				sqlQuery = sqlQuery + " asc";
+			else
+				sqlQuery = sqlQuery + " desc";
+
+			return template.query(sqlQuery, rowMapper);
+		});
 	}
 
 	@Override
@@ -97,6 +124,7 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 			rs.getString("id"),
 			rs.getInt("subscriptionFk"),
 			mapper.readValue(rs.getBytes("item"), Item.class),
-			rs.getInt("estimatedPrice")
+			rs.getInt("estimatedPrice"),
+			rs.getTimestamp("createdDate").toLocalDateTime()
 		)));
 }

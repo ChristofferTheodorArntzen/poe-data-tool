@@ -141,4 +141,55 @@ public class Item {
 
 	@JsonProperty("'^[\\\\s]RaceReward$'")
 	public boolean isRaceReward;
+
+
+	@Override
+	public String toString() {
+		return "Item{" +
+			"isAbyssalJewel=" + isAbyssalJewel +
+			", additionalProperties=" + additionalProperties +
+			", artFilename=" + artFilename +
+			", categories=" + categories +
+			", isCorrupted=" + isCorrupted +
+			", cosmeticMods=" + cosmeticMods +
+			", craftedMods=" + craftedMods +
+			", descText='" + descText + '\'' +
+			", isDuplicated=" + isDuplicated +
+			", isElder=" + isElder +
+			", enchantedMods=" + enchantedMods +
+			", explicitMods=" + explicitMods +
+			", flavourText=" + flavourText +
+			", frameTypes=" + frameTypes +
+			", height=" + height +
+			", icon='" + icon + '\'' +
+			", itemId='" + itemId + '\'' +
+			", isIdentified=" + isIdentified +
+			", itemLevel=" + itemLevel +
+			", implicitMods=" + implicitMods +
+			", inventoryId='" + inventoryId + '\'' +
+			", isRelic=" + isRelic +
+			", league='" + league + '\'' +
+			", isLockedToCharacter=" + isLockedToCharacter +
+			", maxStackSize=" + maxStackSize +
+			", name='" + name + '\'' +
+			", note='" + note + '\'' +
+			", properties=" + properties +
+			", prophecyDiffText='" + prophecyDiffText + '\'' +
+			", prophecyText='" + prophecyText + '\'' +
+			", requirements=" + requirements +
+			", secDescText='" + secDescText + '\'' +
+			", isShaper=" + isShaper +
+			", sockets=" + sockets +
+			", StackSize=" + StackSize +
+			", isSupport=" + isSupport +
+			", talismanTier=" + talismanTier +
+			", typeLine='" + typeLine + '\'' +
+			", utilityMods=" + utilityMods +
+			", isVerified=" + isVerified +
+			", width=" + width +
+			", xPos=" + xPos +
+			", yPos=" + yPos +
+			", isRaceReward=" + isRaceReward +
+			'}';
+	}
 }
