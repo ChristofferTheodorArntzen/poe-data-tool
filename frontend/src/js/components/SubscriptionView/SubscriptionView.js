@@ -13,23 +13,18 @@ class SubscriptionMenu extends Component {
 	}
 
 	componentDidMount() {}
-
 	/*
-    
         legge til på subscriptionen
             - navn
             - treshold type
             - treshold quantity
             - filter for hva subscription filtrere vekk av item typer
 
-
         handle submit
-
         - loade in data fra endepunkt
-        - vise data i 
-
-		todo - remove eslint - no - unused vars  
+		- vise data i 
 		
+		todo - remove eslint - no - unused vars  
 		how to keep state on this thing?
     */
 
