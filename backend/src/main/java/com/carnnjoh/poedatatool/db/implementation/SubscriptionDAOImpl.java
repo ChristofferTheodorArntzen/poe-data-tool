@@ -31,6 +31,12 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 	}
 
 	@Override
+	public Result deleteById(String id) {
+		//TODO impl
+		return null;
+	}
+
+	@Override
 	public Result save(Subscription subscription) {
 		return Utils.tryUpdate(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()

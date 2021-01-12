@@ -6,6 +6,8 @@ import com.carnnjoh.poedatatool.db.model.ValuableItem;
 import com.carnnjoh.poedatatool.db.utils.CreateSuccessResult;
 import com.carnnjoh.poedatatool.db.utils.Result;
 import com.carnnjoh.poedatatool.db.utils.SuccessResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/valuableItem")
 public class ValuableItemController {
+
+	private final static Logger logger =  LoggerFactory.getLogger(ValuableItemController.class);
 
 	@Autowired
 	private ValuableItemDAO valuableItemDAO;
@@ -38,9 +42,10 @@ public class ValuableItemController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	// todo: Impl query params to get items order by date and / or just "normal" get all
 	@GetMapping()
 	public ResponseEntity<List<ValuableItem>> getAll() {
-		List<ValuableItem> valuableItem = valuableItemDAO.fetchAll();
+		List<ValuableItem> valuableItem = valuableItemDAO.getAllByDate(false);
 
 		if(valuableItem.size() > 0)
 			return new ResponseEntity<>(valuableItem, HttpStatus.OK);
@@ -48,17 +53,27 @@ public class ValuableItemController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@DeleteMapping("/{pk}")
-	public ResponseEntity<ValuableItem> delete(@PathVariable int pk) {
-		if(pk < 0)
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> delete(@PathVariable String id) {
+		if(id.isEmpty())
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		Result deleteResult = valuableItemDAO.deleteByPk(pk);
+		Result deleteResult = null;
 
-		if(deleteResult instanceof SuccessResult)
+		try {
+			deleteResult = valuableItemDAO.deleteById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if(deleteResult instanceof SuccessResult){
+			logger.info("Deleted item with id: " + id);
 			return new ResponseEntity<>(HttpStatus.OK);
-		else
+		}
+		else {
+			logger.info("Failed to delete item with id: " + id);
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@PostMapping()
@@ -94,6 +109,7 @@ public class ValuableItemController {
 		valuableItem.setItem(valuableItemRequest.getItem());
 		valuableItem.setSubscriptionFk(valuableItemRequest.getSubscriptionFk());
 		valuableItem.setId(valuableItemRequest.getId());
+		valuableItem.setEstimatedPrice(valuableItemRequest.getEstimatedPrice());
 
 		Result putResult = (valuableItem.getPk() == null)
 			? valuableItemDAO.save(valuableItem)

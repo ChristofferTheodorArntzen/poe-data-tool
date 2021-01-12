@@ -1,10 +1,10 @@
 package com.carnnjoh.poedatatool.schedulers;
 
-import com.carnnjoh.poedatatool.model.PrivateStashTabRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface ScheduledTask {
 
 
-	void execute();
+	void execute() throws JsonProcessingException;
 
 }

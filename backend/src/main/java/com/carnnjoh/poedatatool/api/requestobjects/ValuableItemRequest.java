@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class ValuableItemRequest {
 
 	private String id;
 	private Integer subscriptionFk;
 	private Item item;
+	private Integer estimatedPrice;
 }

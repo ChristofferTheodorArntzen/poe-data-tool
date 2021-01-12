@@ -4,6 +4,8 @@ import com.carnnjoh.poedatatool.model.Item;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class ValuableItem {
@@ -12,19 +14,25 @@ public class ValuableItem {
 	private String id;
 	private Integer subscriptionFk;
 	private Item item;
+	private Integer estimatedPrice;
+	private LocalDateTime createdDate;
+
 
 	public ValuableItem(){
-		this(null, null, null, null);
+		this(null, null, null, null, null, LocalDateTime.now());
 	}
 
-	public ValuableItem(String id, Integer subscriptionFk, Item item) {
-		this(null, id, subscriptionFk, item);
+	public ValuableItem(String id, Integer subscriptionFk, Item item, Integer estimatedPrice, LocalDateTime createdDate) {
+		this(null, id, subscriptionFk, item, estimatedPrice, createdDate);
 	}
 
-	public ValuableItem(Integer pk, String id, Integer subscriptionFk, Item item) {
+	public ValuableItem(Integer pk, String id, Integer subscriptionFk, Item item, Integer estimatedPrice, LocalDateTime createdDate) {
+		this.pk = pk;
 		this.id = id;
 		this.subscriptionFk = subscriptionFk;
 		this.item = item;
+		this.estimatedPrice = estimatedPrice;
+		this.createdDate = createdDate;
 	}
 
 	@Override
@@ -34,6 +42,7 @@ public class ValuableItem {
 			", id='" + id + '\'' +
 			", subscriptionFk='" + subscriptionFk + '\'' +
 			", item=" + item +
+			", estimatedPrice=" + estimatedPrice +
 			'}';
 	}
 }

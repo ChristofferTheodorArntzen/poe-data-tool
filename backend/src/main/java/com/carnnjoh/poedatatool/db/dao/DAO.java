@@ -8,6 +8,8 @@ public interface DAO<T> {
 
 	Result deleteByPk(int pk);
 
+	Result deleteById(String id);
+
 	Result save(T object);
 
 	T fetch(int pk);

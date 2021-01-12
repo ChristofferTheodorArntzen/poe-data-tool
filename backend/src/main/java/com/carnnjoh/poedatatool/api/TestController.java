@@ -46,7 +46,7 @@ public class TestController {
 		ValuableItem item = new ValuableItem();
 		item.setId("qiowkepqormmprok");
 		item.setSubscriptionFk(1);
-
+		item.setEstimatedPrice(10);
 		Item itemDeserialize = objectMapper.readValue(itemJson, Item.class);
 
 		item.setItem(itemDeserialize);

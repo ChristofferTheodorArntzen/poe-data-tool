@@ -1,13 +1,11 @@
+/* eslint-disable no-unused-labels */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+
 /*
-
-Hente inn data fra endepunkt og i tillegg switche 
-om til datadump når backend ikke går om mulig 
-- han være en utils methode eller en greie for dev idk
-
-- håndtere item img ved mindre skjerm ...
-
-
+switche om til datadump når backend ikke går om mulig 
+- Kan være en utils methode eller en greie for dev idk
+- håndtere img bedre ...
 */
 
 import React, { Component } from "react";
@@ -20,31 +18,39 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import dataDump from "./dataDump.json";
 import "./ValuableItemContainer.css";
+import SockJS from "sockjs-client";
+import Stomp from "stomp-websocket";
 
 class ValuableItemContainer extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.state = {
+			isConnection: false,
+			connection: null,
 			renderableItems: [],
 		};
 
 		this.handleClick = this.handleClick.bind(this);
+		this.wsClient = null;
 	}
 
-	componentDidMount() {
-		const fetchedItems = dataDump.map((valuableItem) => {
+	async componentDidMount() {
+		const url = "http://localhost:8080/valuableItem";
+
+		const response = await fetch(url);
+		const json = await response.json();
+
+		const fetchedItems = json.map((valuableItem) => {
 			let renderableItem = {
 				id: valuableItem.id,
 				name: valuableItem.item.name,
 				type: valuableItem.item.typeLine,
 				stashId: valuableItem.item.inventoryId,
 				svg: valuableItem.item.icon,
-				price: 100,
+				price: valuableItem.estimatedPrice,
 				priceType: "chaos",
 			};
 
@@ -54,10 +60,66 @@ class ValuableItemContainer extends Component {
 		this.setState({
 			renderableItems: fetchedItems,
 		});
+
+		const sock = new SockJS("http://localhost:8080/gs-guide-websocket");
+		const stompClient = Stomp.over(sock);
+		stompClient.debug = null;
+
+		this.wsClient = stompClient;
+
+		stompClient.connect({}, () => {
+			stompClient.subscribe("/topic/greetings", (msg) =>
+				this.subscriptionCallBack(msg)
+			);
+		});
 	}
 
-	handleClick(event) {
-		console.log(event);
+	subscriptionCallBack(msg) {
+		
+		const receivedJson = JSON.parse(msg.body);
+		
+		const item = receivedJson.item;
+
+		console.log(item);
+
+		const newItem = {
+			id: item.id,
+			name: item.name,
+			type: item.typeLine,
+			stashId: item.inventoryId,
+			svg: item.icon,
+			price: 2,
+			priceType: "chaos",
+		};
+
+		this.setState({
+			renderableItems: [newItem, ...this.state.renderableItems],
+		});
+	}
+
+	async handleClick(id) {
+		const url = `http://localhost:8080/valuableItem/${id}`;
+
+		await fetch(url, {
+			method: "DELETE",
+		}).then((response) => {
+			if (response.status == 200) {
+				let resultList = this.state.renderableItems.filter(
+					(item) => item.id !== id
+				);
+
+				this.setState({
+					renderableItems: resultList,
+				});
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.wsClient != null 
+		? this.wsClient.disconnect() :
+		console.log("ws client was null");  
+		console.log("component did unmount");
 	}
 
 	render() {
@@ -65,8 +127,12 @@ class ValuableItemContainer extends Component {
 			table: {
 				minWidth: 650,
 				maxWidth: 1000,
+				overflowY: "auto",
 			},
 		});
+
+		// redo the return statement... maybe make it its own class passing
+		// state here as props
 
 		return (
 			<main>
@@ -97,7 +163,7 @@ class ValuableItemContainer extends Component {
 										<TableCell>{item.priceType}</TableCell>
 										<TableCell>
 											<Button
-												onClick={this.handleClick}
+												onClick={() => this.handleClick(item.id)}
 												variant="contained"
 												color="secondary"
 												size="small"
