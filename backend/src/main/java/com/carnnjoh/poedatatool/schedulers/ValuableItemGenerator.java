@@ -6,13 +6,17 @@ import com.carnnjoh.poedatatool.model.Item;
 import com.carnnjoh.poedatatool.model.StashTab;
 import com.carnnjoh.poedatatool.model.StashTabs;
 import com.carnnjoh.poedatatool.services.PublicStashTabFetcher;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +41,9 @@ public class ValuableItemGenerator implements ScheduledTask {
 
 	private String nextChangeId;
 
+	@Autowired
+	SimpMessagingTemplate simpMessagingTemplate;
+
 	@Override
 	@Scheduled(initialDelay = 1000, fixedDelay = 10000)
 	public void execute() {
@@ -46,6 +53,7 @@ public class ValuableItemGenerator implements ScheduledTask {
 		double startTime = (double) System.currentTimeMillis();
 
 		Optional<StashTabs> metaData = fetcher.fetchPublicStashTabs(nextChangeId);
+		LOGGER.info(String.format("Http call '%.2f' secs", getDuration(startTime, (double) System.currentTimeMillis())));
 
 		List<StashTab> stashTabList = new ArrayList<>();
 
@@ -62,15 +70,17 @@ public class ValuableItemGenerator implements ScheduledTask {
 
 		itemList = itemList.stream().filter(item -> item.sockets != null).collect(Collectors.toList());
 		if (itemList.size() > 5) {
-			itemList = itemList.subList(0, 2);
+			itemList = itemList.subList(0, 1);
 		}
 
 		Random random = new Random();
 
 		for (Item item : itemList) {
 
-			ValuableItem valuableItem = new ValuableItem(item.itemId, 1, item, random.nextInt(20));
+			ValuableItem valuableItem = new ValuableItem(item.itemId, 1, item, random.nextInt(20), LocalDateTime.now());
 			valuableItemDAO.save(valuableItem);
+
+			publishToWebSockets("/topic/greetings", valuableItem);
 		}
 
 		LOGGER.info(String.format("Added %d items", itemList.size()));
@@ -85,4 +95,15 @@ public class ValuableItemGenerator implements ScheduledTask {
 		double durationMillis = endTime - startTime;
 		return durationMillis / 1000;
 	}
+
+	private void publishToWebSockets(String path, Object objectToPublish){
+		ObjectMapper objectMapper = new ObjectMapper();
+		try{
+			simpMessagingTemplate.convertAndSend(path, objectMapper.writeValueAsString(objectToPublish));
+		} catch (JsonProcessingException e) {
+			LOGGER.warn(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
 }
