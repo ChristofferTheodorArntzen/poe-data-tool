@@ -1,11 +1,14 @@
 package com.carnnjoh.poedatatool.api;
 
 import com.carnnjoh.poedatatool.api.requestobjects.SubscriptionRequest;
+import com.carnnjoh.poedatatool.db.dao.ItemFilterTypeSubscriptionDAO;
 import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
 import com.carnnjoh.poedatatool.db.model.Subscription;
 import com.carnnjoh.poedatatool.db.utils.CreateSuccessResult;
 import com.carnnjoh.poedatatool.db.utils.Result;
 import com.carnnjoh.poedatatool.db.utils.SuccessResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,15 +22,17 @@ import java.util.List;
 @RequestMapping(path = "/subscription")
 public class SubscriptionController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(SubscriptionController.class);
+
 	@Autowired
-	private SubscriptionDAO subscriptionDAO;
+	private ItemFilterTypeSubscriptionDAO itemFilterTypeSubscriptionDAO;
 
 	@GetMapping("/{pk}")
 	public ResponseEntity<Subscription> get(@PathVariable Integer pk) {
 		if(pk < 0)
 			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-		Subscription subscription = subscriptionDAO.fetch(pk);
+		Subscription subscription = itemFilterTypeSubscriptionDAO.getSubscription(pk);
 
 		if(subscription != null) {
 			return new ResponseEntity<>(subscription, HttpStatus.OK);
@@ -38,7 +43,7 @@ public class SubscriptionController {
 
 	@GetMapping()
 	public ResponseEntity<List<Subscription>> getAll() {
-		List<Subscription> subscriptions = subscriptionDAO.fetchAll();
+		List<Subscription> subscriptions = itemFilterTypeSubscriptionDAO.getAllSubscription();
 
 		if(subscriptions.size() > 0)
 			return new ResponseEntity<>(subscriptions, HttpStatus.OK);
@@ -51,7 +56,7 @@ public class SubscriptionController {
 		if(pk < 0)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		Result deleteResult = subscriptionDAO.deleteByPk(pk);
+		Result deleteResult = itemFilterTypeSubscriptionDAO.deleteSubscription(pk);
 
 		if(deleteResult instanceof SuccessResult)
 			return new ResponseEntity<>(HttpStatus.OK);
@@ -60,16 +65,16 @@ public class SubscriptionController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<Subscription> post(@RequestBody Subscription subscription) {
+	public ResponseEntity<Subscription> post(@RequestBody SubscriptionRequest subscriptionRequest) {
 
-		if(subscription == null)
+		if(subscriptionRequest == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		Result postResult = subscriptionDAO.save(subscription);
+		Result postResult = itemFilterTypeSubscriptionDAO.saveSubscription(subscriptionRequest);
 
-		if(postResult instanceof CreateSuccessResult) {
-			subscription.setPk(((CreateSuccessResult) postResult).getPk());
-			return new ResponseEntity<>(subscription, HttpStatus.OK);
+		if(postResult instanceof SuccessResult) {
+			subscriptionRequest.setPk(((CreateSuccessResult) postResult).getPk());
+			return new ResponseEntity<>(subscriptionRequest, HttpStatus.OK);
 		}
 
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -83,19 +88,21 @@ public class SubscriptionController {
 		if(pk < 0)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		Subscription subscription = subscriptionDAO.fetch(pk);
+		Subscription subscription = itemFilterTypeSubscriptionDAO.getSubscription(pk);
 
 		if(subscription == null) {
 			subscription = new Subscription();
 		}
 
 		subscription.setTabIds(subscriptionRequest.getTabIds());
-		subscription.setThreshold(subscriptionRequest.getThreshold());
-		subscription.setThresholdCurrencyType(subscriptionRequest.getThresholdCurrencyType());
+		subscription.setCurrencyThreshold(subscriptionRequest.getCurrencyThreshold());
+		subscription.setCurrencyType(subscriptionRequest.getCurrencyType());
+		subscription.setName(subscriptionRequest.getName());
+		subscription.setItemFilterTypes(subscriptionRequest.getItemFilterTypes());
 
 		Result putResult = (subscription.getPk() == null)
-			? subscriptionDAO.save(subscription)
-			: subscriptionDAO.update(subscription);
+			? itemFilterTypeSubscriptionDAO.saveSubscription(subscription)
+			: itemFilterTypeSubscriptionDAO.updateSubscription(subscription);
 
 		if(putResult instanceof CreateSuccessResult) {
 			subscription.setPk(((CreateSuccessResult) putResult).getPk());
