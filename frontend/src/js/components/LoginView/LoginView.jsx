@@ -45,7 +45,7 @@ class LoginView extends Component {
 			[stateName]: value,
 		});
 	}
-	// find out why eslint disagrees with arrow functions in classes ...
+
 	handleSubmit(event) {
 		event.preventDefault();
 
