@@ -1,0 +1,100 @@
+{
+  "itemTypes": [
+    {
+      "id": 1,
+      "name": "Fragments"
+    },
+    {
+      "id": 2,
+      "name": "Delirium Orbs"
+    },
+    {
+      "id": 3,
+      "name": "Watchstones"
+    },
+    {
+      "id": 4,
+      "name": "Oils"
+    },
+    {
+      "id": 5,
+      "name": "Incubators"
+    },
+    {
+      "id": 6,
+      "name": "Scarabs"
+    },
+    {
+      "id": 7,
+      "name": "Fossils"
+    },
+    {
+      "id": 8,
+      "name": "Resonators"
+    },
+    {
+      "id": 9,
+      "name": "Essences"
+    },
+    {
+      "id": 10,
+      "name": "Divination Cards"
+    },
+    {
+      "id": 11,
+      "name": "Prophecies"
+    },
+    {
+      "id": 12,
+      "name": "Gems"
+    },
+    {
+      "id": 13,
+      "name": "Unique Maps"
+    },
+    {
+      "id": 14,
+      "name": "Maps"
+    },
+    {
+      "id": 15,
+      "name": "Unique Jewels"
+    },
+    {
+      "id": 16,
+      "name": "Unique Flasks"
+    },
+    {
+      "id": 17,
+      "name": "Unique Weapons"
+    },
+    {
+      "id": 18,
+      "name": "Unique Armours"
+    },
+    {
+      "id": 19,
+      "name": "Unique Accessories"
+    },
+    {
+      "id": 20,
+      "name": "Beasts"
+    },
+    {
+      "id": 21,
+      "name": "Rare Jewels"
+    },
+    {
+      "id": 22,
+      "name": "Rare Weapons"
+    },
+    {
+      "id": 23,
+      "name": "Rare Armours"
+    },
+    {
+      "id": 24,
+      "name": "Rare Accessories"
+    }
+  ]
+}
