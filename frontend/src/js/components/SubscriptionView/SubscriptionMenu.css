@@ -1,5 +1,5 @@
 .subscription-view-container {
-	margin: auto;
+	margin: 0 auto;
 	color: white;
 }
 
@@ -40,6 +40,7 @@
   width: 100%;
   margin: 0 auto;
   display: inline-flex;
+  height: 96.1vh;
 }
 
 .subscription-list {
@@ -62,5 +63,8 @@
 	text-align: center;
 	border-bottom: 2px white solid;
 }
-
+.form-save-button {
+	padding-top: 10em;
+	margin: auto;
+}
 /* make active subscriptions drop down at and below this width 1040*/
