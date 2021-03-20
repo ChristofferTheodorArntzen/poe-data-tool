@@ -3,7 +3,6 @@ package com.carnnjoh.poedatatool.db.implementation;
 import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
 import com.carnnjoh.poedatatool.db.utils.*;
 import com.carnnjoh.poedatatool.db.model.Subscription;
-import org.hibernate.sql.Update;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -26,7 +25,7 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", pk);
 			template.update("delete from Subscription where pk = :pk", params);
-			return new SuccessResult();
+			return new DeleteSuccessResult();
 		});
 	}
 
@@ -40,11 +39,16 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 	public Result save(Subscription subscription) {
 		return Utils.tryUpdate(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()
+				.addValue("name", subscription.getName())
 				.addValue("tabIds", subscription.getTabIds())
-				.addValue("threshold", subscription.getThreshold())
-				.addValue("thresholdCurrencyType", subscription.getThresholdCurrencyType());
+				.addValue("currencyThreshold", subscription.getCurrencyThreshold())
+				.addValue("currencyType", subscription.getCurrencyType());
 			KeyHolder keyHolder = new GeneratedKeyHolder();
-			template.update("Insert into Subscription(tabIds, threshold, thresholdCurrencyType) values (:tabIds, :threshold, :thresholdCurrencyType)", params, keyHolder);
+			template.update("" +
+					"Insert into Subscription ( name, tabIds, currencyThreshold, currencyType)" +
+					" values (:name, :tabIds, :currencyThreshold, :currencyType)",
+				params,
+				keyHolder);
 			return Utils.getCreateResult(keyHolder);
 		});
 	}
@@ -54,7 +58,13 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 		return Utils.tryGet(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", pk);
-			return template.query("Select * from Subscription where pk = :pk", params, rowMapper).stream().findFirst().orElse(null);
+			return template.query(
+				"Select * from Subscription where pk = :pk",
+				params,
+				rowMapper)
+				.stream()
+				.findFirst()
+				.orElse(null);
 		});
 	}
 
@@ -67,29 +77,41 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 	public Result update(Subscription subscription) {
 		return Utils.tryUpdate(() -> {
 
-			if(subscription.getPk() == null) {
+			if (subscription.getPk() == null) {
 				return new FailedResult();
 			}
 
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", subscription.getPk())
+				.addValue("name", subscription.getName())
 				.addValue("tabIds", subscription.getTabIds())
-				.addValue("threshold", subscription.getThreshold())
-				.addValue("thresholdCurrencyType", subscription.getThresholdCurrencyType());
-			int rowUpdate = template.update("update Subscription set tabIds = :tabIds, set threshold = :threshold, set thresholdCurrencyType = :thresholdCurrencyType where pk = :pk", params);
+				.addValue("currencyThreshold", subscription.getCurrencyThreshold())
+				.addValue("currencyType", subscription.getCurrencyType());
+
+			String updateStatement = "update Subscription set name = :name," +
+				" tabIds = :tabIds," +
+				" currencyThreshold = :currencyThreshold," +
+				" currencyType = :currencyType" +
+				" where pk = :pk";
+
+			//TODO: denne feiler???? why?
+			int rowUpdate = template.update(updateStatement, params);
 			return (rowUpdate != 0)
 				? new UpdateSuccessResult()
 				: new FailedResult();
 		});
-
 	}
 
 	private final RowMapper<Subscription> rowMapper = ((rs, rowNum) ->
-		Utils.tryGet(() -> new Subscription(
-			rs.getInt("pk"),
-			(String[]) rs.getArray("tabIds").getArray(),
-			rs.getDouble("threshold"),
-			rs.getString("thresholdCurrencyType")
-		)));
+		Utils.tryGet(() ->
+			new Subscription(
+				rs.getInt("pk"),
+				rs.getString("name"),
+				(String[]) rs.getArray("tabIds").getArray(),
+				rs.getDouble("currencyThreshold"),
+				rs.getString("currencyType")
+				, null
+			)
+		));
 
 }

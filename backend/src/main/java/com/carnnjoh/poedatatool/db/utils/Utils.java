@@ -5,11 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.support.KeyHolder;
 
-
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
-import java.util.EmptyStackException;
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Utils {
 
@@ -47,6 +47,19 @@ public class Utils {
 
 		if(keyHolder.getKey() != null){
 			return new CreateSuccessResult(keyHolder.getKey().intValue());
+		} else {
+			return new FailedResult();
+		}
+	}
+
+	public static Result getCreateResultList(List<Integer> keys) {
+
+		if(keys != null && keys.size() > 0) {
+			return new CreateSuccessResultList(
+				keys.stream()
+					.map(CreateSuccessResult::new)
+					.collect(Collectors.toList())
+			);
 		} else {
 			return new FailedResult();
 		}

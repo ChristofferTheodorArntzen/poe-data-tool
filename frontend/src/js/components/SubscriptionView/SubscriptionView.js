@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-vars */
+
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import SubscriptionForm from "./SubscriptionForm";
 import SubscriptionList from "./SubscriptionList";
@@ -14,12 +14,6 @@ class SubscriptionMenu extends Component {
 
 	componentDidMount() {}
 	/*
-        legge til på subscriptionen
-            - navn
-            - treshold type
-            - treshold quantity
-            - filter for hva subscription filtrere vekk av item typer
-
         handle submit
         - loade in data fra endepunkt
 		- vise data i 

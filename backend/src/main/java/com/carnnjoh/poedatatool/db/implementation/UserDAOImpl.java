@@ -1,8 +1,8 @@
 package com.carnnjoh.poedatatool.db.implementation;
 
 import com.carnnjoh.poedatatool.db.dao.UserDAO;
-import com.carnnjoh.poedatatool.db.utils.*;
 import com.carnnjoh.poedatatool.db.model.User;
+import com.carnnjoh.poedatatool.db.utils.*;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -28,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
 
 			template.update("delete from User where pk = :pk", params);
 
-			return new SuccessResult();
+			return new DeleteSuccessResult();
 		});
 	}
 
@@ -84,7 +84,13 @@ public class UserDAOImpl implements UserDAO {
 				.addValue("realm", user.getRealm())
 				.addValue("sessionId", user.getSessionId());
 
-			int rowUpdate = template.update("update User set league = :league, set accountName = :accountName, set realm = :realm, set sessionId = :sessionId where pk = :pk", params);
+			String sqlStatement =
+				"update User set league = :league," +
+					" accountName = :accountName," +
+					" realm = :realm,  sessionId = :sessionId" +
+					" where pk = :pk";
+
+			int rowUpdate = template.update(sqlStatement, params);
 			return (rowUpdate != 0)
 				? new UpdateSuccessResult()
 				: new FailedResult();

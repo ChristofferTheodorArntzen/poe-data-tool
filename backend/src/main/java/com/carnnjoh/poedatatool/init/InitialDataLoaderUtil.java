@@ -1,12 +1,13 @@
 package com.carnnjoh.poedatatool.init;
 
-import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
-import com.carnnjoh.poedatatool.db.dao.UserDAO;
-import com.carnnjoh.poedatatool.db.dao.ValuableItemDAO;
+import com.carnnjoh.poedatatool.db.dao.*;
+import com.carnnjoh.poedatatool.db.model.ItemFilterType;
 import com.carnnjoh.poedatatool.db.model.Subscription;
 import com.carnnjoh.poedatatool.db.model.User;
 import com.carnnjoh.poedatatool.db.model.ValuableItem;
 import com.carnnjoh.poedatatool.model.Item;
+import com.carnnjoh.poedatatool.model.ItemType;
+import com.carnnjoh.poedatatool.model.ItemTypes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -18,7 +19,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.Scanner;
+import java.util.*;
 
 @Component
 public class InitialDataLoaderUtil {
@@ -27,12 +28,21 @@ public class InitialDataLoaderUtil {
 	
 	@Autowired
 	ObjectMapper mapper;
+
 	@Autowired
 	UserDAO userDAO;
+
 	@Autowired
 	SubscriptionDAO subscriptionDAO;
+
 	@Autowired
 	ValuableItemDAO valuableItemDAO;
+
+	@Autowired
+	ItemFilterTypeDAO itemFilterTypeDAO;
+
+	@Autowired
+	ItemFilterTypeSubscriptionDAO itemFilterTypeSubscriptionDAO;
 
 	@Value("${initial.data.on.startup:false}")
 	boolean initializeData;
@@ -42,15 +52,46 @@ public class InitialDataLoaderUtil {
 
 		if(initializeData) {
 			LOGGER.info("Application is ready, starting to insert data...");
+
 			createUser();
 			LOGGER.info("A user is created");
+
+			createItemFilterTypes();
+			LOGGER.info("Inserted all item filter types");
+
 			createSubscription();
 			LOGGER.info("A subscription is created");
+
 			createValuableItem();
 			LOGGER.info("A valuable item is created");
+
+
 		} else {
 			LOGGER.info("Creation on initial data is turned off...");
 		}
+	}
+
+	private void createItemFilterTypes() {
+
+		try {
+//			String content = new String(Files.readAllBytes(Paths.get(getClass().getResource("/itemFilterTypes.json").toURI())));
+//
+//			ItemTypes itemTypes = mapper.readValue(content, ItemTypes.class);
+//
+//			List<String> itemTypeNames = itemTypes.itemTypes.stream().map(ItemType::getName).collect(Collectors.toList());
+//			itemFilterTypeDAO.batchSaveWithStrings(itemTypeNames);
+
+			List<ItemFilterType> itemFilterTypes = itemFilterTypeDAO.fetchAll();
+
+			if(itemFilterTypes.isEmpty()){
+				System.out.println("it didnt work ...");
+			}
+
+		} catch ( Exception e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+
 	}
 
 	public void createUser() {
@@ -66,16 +107,18 @@ public class InitialDataLoaderUtil {
 
 	public void createSubscription() {
 
-		String[] strings = {};
+		List<ItemFilterType> itemFilterTypes = itemFilterTypeDAO.fetchAll();
+		itemFilterTypes = itemFilterTypes.subList(0, 3);
 
 		Subscription subscription = new Subscription(
-				null,
+				"qweqwe",
 				new String[]{"1", "2", "3"},
 				20.0,
-				"chaos"
+			"chaos",
+				itemFilterTypes
 		);
 
-		subscriptionDAO.save(subscription);
+		itemFilterTypeSubscriptionDAO.saveSubscription(subscription);
 	}
 
 	public void createValuableItem() {

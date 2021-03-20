@@ -2,123 +2,99 @@
 	"itemTypes": [
 		{
 			"id": 1,
-			"name": "Fragments",
-			"isActive": false
+			"name": "Fragments"
 		},
 		{
 			"id": 2,
-			"name": "Delirium Orbs",
-			"isActive": false
+			"name": "Delirium Orbs"
 		},
 		{
 			"id": 3,
-			"name": "Watchstones",
-			"isActive": false
+			"name": "Watchstones"
 		},
 		{
 			"id": 4,
-			"name": "Oils",
-			"isActive": false
+			"name": "Oils"
 		},
 		{
 			"id": 5,
-			"name": "Incubators",
-			"isActive": false
+			"name": "Incubators"
 		},
 		{
 			"id": 6,
-			"name": "Scarabs",
-			"isActive": false
+			"name": "Scarabs"
 		},
 		{
 			"id": 7,
-			"name": "Fossils",
-			"isActive": false
+			"name": "Fossils"
 		},
 		{
 			"id": 8,
-			"name": "Resonators",
-			"isActive": false
+			"name": "Resonators"
 		},
 		{
 			"id": 9,
-			"name": "Essences",
-			"isActive": false
+			"name": "Essences"
 		},
 		{
 			"id": 10,
-			"name": "Divination Cards",
-			"isActive": false
+			"name": "Divination Cards"
 		},
 		{
 			"id": 11,
-			"name": "Prophecies",
-			"isActive": false
+			"name": "Prophecies"
 		},
 		{
 			"id": 12,
-			"name": "Gems",
-			"isActive": false
+			"name": "Gems"
 		},
 		{
 			"id": 13,
-			"name": "Unique Maps",
-			"isActive": false
+			"name": "Unique Maps"
 		},
 		{
 			"id": 14,
-			"name": "Maps",
-			"isActive": false
+			"name": "Maps"
 		},
 		{
 			"id": 15,
-			"name": "Unique Jewels",
-			"isActive": false
+			"name": "Unique Jewels"
 		},
 		{
 			"id": 16,
-			"name": "Unique Flasks",
-			"isActive": false
+			"name": "Unique Flasks"
 		},
 		{
 			"id": 17,
-			"name": "Unique Weapons",
-			"isActive": false
+			"name": "Unique Weapons"
 		},
 		{
 			"id": 18,
-			"name": "Unique Armours",
-			"isActive": false
+			"name": "Unique Armours"
 		},
 		{
 			"id": 19,
-			"name": "Unique Accessories",
-			"isActive": false
+			"name": "Unique Accessories"
 		},
 		{
 			"id": 20,
-			"name": "Beasts",
-			"isActive": false
+			"name": "Beasts"
 		},
 		{
 			"id": 21,
-			"name": "Rare Jewels",
-			"isActive": false
+			"name": "Rare Jewels"
 		},
 		{
 			"id": 22,
-			"name": "Rare Weapons",
-			"isActive": false
+			"name": "Rare Weapons"
 		},
 		{
 			"id": 23,
-			"name": "Rare Armours",
-			"isActive": false
+			"name": "Rare Armours"
 		},
 		{
 			"id": 24,
-			"name": "Rare Accessories",
-			"isActive": false
+			"name": "Rare Accessories"
 		}
 	]
 }

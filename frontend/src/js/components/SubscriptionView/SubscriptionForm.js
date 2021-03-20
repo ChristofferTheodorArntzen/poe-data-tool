@@ -33,8 +33,6 @@ const styles = (theme) => ({
 	},
 });
 
-const OutliOutlinedInput = {};
-
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -53,13 +51,14 @@ class SubscriptionForm extends Component {
 		this.state = {
 			name: "",
 			currencyType: "",
-			CurrencyTreshold: "",
+			currencyThreshold: "",
 			itemFilter: [],
 			currencyTypeList: [],
 			tabIds: ["tab 1", "tab 2"],
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	componentDidMount() {}
@@ -74,11 +73,38 @@ class SubscriptionForm extends Component {
 		console.log("event value: " + value);
 	}
 
+	handleSubmit(event) {
+		const url = "http://localhost:8080/subscription";
+
+		const { name, currencyType, currencyThreshold } = event.target;
+
+		const subscription = {
+			name: name.value,
+			tabIds: ["tab1", "tab2"],
+			currencyThreshold: currencyThreshold.value,
+			itemFilter: "placeholder",
+			currencyType: currencyType.value,
+		};
+
+		fetch(url, {
+			method: "POST",
+			body: JSON.stringify(subscription),
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: "same-origin",
+		}).then((response) => {
+			console.log("did it " + response);
+		});
+
+		event.preventDefault();
+	}
+
 	render() {
 		const { classes } = this.props;
 
 		return (
-			<form>
+			<form onSubmit={this.handleSubmit}>
 				<FormControl variant="outlined" className={classes.formControl}>
 					<InputLabel htmlFor="component-outlined">Name</InputLabel>
 					<OutlinedInput
@@ -101,7 +127,6 @@ class SubscriptionForm extends Component {
 						value={this.state.currencyType}
 						onChange={this.handleInputChange}
 					>
-						{/* TODO: optimize this. really slow to open - maybe add default to selected item and or    */}
 						{CurrencyDataDump.currencyDetails.map((currencyType) => (
 							<MenuItem key={currencyType.id} value={currencyType.tradeId}>
 								{currencyType.name}
@@ -116,8 +141,8 @@ class SubscriptionForm extends Component {
 					</InputLabel>
 					<OutlinedInput
 						autoComplete="off"
-						id="CurrencyTreshold"
-						name="CurrencyTreshold"
+						id="currencyThreshold"
+						name="currencyThreshold"
 						type="number"
 						value={this.state.treshold}
 						onChange={this.handleInputChange}
@@ -134,15 +159,14 @@ class SubscriptionForm extends Component {
 						value={this.state.tabIds}
 						onChange={this.handleInputChange}
 						input={<Input id="select-multiple-chip" />}
-						renderValue={
-							/*figure out how this works*/ (selected) => (
-								<div className={classes.chips}>
-									{selected.map((value) => (
-										<Chip key={value} label={value} className={classes.chip} />
-									))}
-								</div>
-							)
-						}
+						renderValue={(selected) => (
+							<div className={classes.chips}>
+								{selected.map((value) => {
+									console.log(value);
+									<Chip key={value} label={value} className={classes.chip} />;
+								})}
+							</div>
+						)}
 						MenuProps={MenuProps}
 					></Select>
 				</FormControl>
@@ -157,7 +181,9 @@ class SubscriptionForm extends Component {
 					</div>
 				</div>
 				<div className="form-save-button">
-					<Button variant="contained">Save</Button>
+					<Button variant="contained" type="submit">
+						Save
+					</Button>
 				</div>
 			</form>
 		);
