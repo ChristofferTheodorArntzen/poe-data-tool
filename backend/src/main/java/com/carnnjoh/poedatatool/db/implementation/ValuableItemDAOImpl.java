@@ -1,9 +1,8 @@
 package com.carnnjoh.poedatatool.db.implementation;
 
 import com.carnnjoh.poedatatool.db.dao.ValuableItemDAO;
-import com.carnnjoh.poedatatool.db.utils.*;
 import com.carnnjoh.poedatatool.db.model.ValuableItem;
-
+import com.carnnjoh.poedatatool.db.utils.*;
 import com.carnnjoh.poedatatool.model.Item;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,9 +12,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 public class ValuableItemDAOImpl implements ValuableItemDAO {
@@ -34,7 +30,7 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", pk);
 			template.update("delete from ValuableItem where pk = :pk", params);
-			return new SuccessResult();
+			return new DeleteSuccessResult();
 		});
 	}
 
@@ -102,14 +98,17 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", item.getPk())
 				.addValue("id", item.getId())
-				.addValue("subscriptionId", item.getSubscriptionFk())
+				.addValue("subscriptionFk", item.getSubscriptionFk())
 				.addValue("item", mapper.writeValueAsBytes(item.getItem()))
-				.addValue("estimatedPrice", item.getEstimatedPrice());
+				.addValue("estimatedPrice", item.getEstimatedPrice())
+				.addValue("createdDate", Timestamp.valueOf(item.getCreatedDate()));
+
 			String updateStatement =
 				"update ValuableItem set id = :id," +
-					" set subscriptionId = :subscriptionId," +
-					" set item = :item," +
-					" set estimatedPrice = :estimatedPrice" +
+					"subscriptionFk = :subscriptionFk," +
+					"item = :item," +
+					"estimatedPrice = :estimatedPrice, " +
+					"createdDate = :createdDate" +
 					" where pk = :pk";
 			int rowUpdate = template.update(updateStatement, params);
 			return (rowUpdate != 0)
