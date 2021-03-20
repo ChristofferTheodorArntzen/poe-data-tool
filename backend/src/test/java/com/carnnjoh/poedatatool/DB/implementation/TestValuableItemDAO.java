@@ -32,7 +32,7 @@ public class TestValuableItemDAO {
 
 	@Before
 	public void setup() {
-		testValuableItem = new ValuableItem(1, "123123", 1, new Item(), 20, LocalDateTime.now());
+		testValuableItem = new ValuableItem("123123", 1, new Item(), 20, LocalDateTime.now());
 	}
 
 	@Test
@@ -41,21 +41,20 @@ public class TestValuableItemDAO {
 
 		Assert.assertTrue(saveResult instanceof CreateSuccessResult);
 
-		ValuableItem fetchedValuableItem = valuableItemDAO.fetch(testValuableItem.getPk());
+		ValuableItem fetchedValuableItem = valuableItemDAO.fetch(((CreateSuccessResult) saveResult).getPk());
 
-		Assert.assertEquals(testValuableItem.getPk(), fetchedValuableItem.getPk());
+		Assert.assertEquals(((CreateSuccessResult) saveResult).getPk(), fetchedValuableItem.getPk());
 		Assert.assertEquals(testValuableItem.getEstimatedPrice(), fetchedValuableItem.getEstimatedPrice());
 		Assert.assertEquals(testValuableItem.getId(), fetchedValuableItem.getId());
-		//todo: find a better way to compare two Item objects to each other
 		Assert.assertEquals(testValuableItem.getItem().toString(), fetchedValuableItem.getItem().toString());
 		Assert.assertEquals(testValuableItem.getCreatedDate(), fetchedValuableItem.getCreatedDate());
 	}
 
 	@Test
 	public void testDeleteValuableItem() {
-		saveInitialValuableItem();
+		ValuableItem initialValuableItem = saveInitialValuableItem();
 
-		ValuableItem fetchedValuableItem = valuableItemDAO.fetch(testValuableItem.getPk());
+		ValuableItem fetchedValuableItem = valuableItemDAO.fetch(initialValuableItem.getPk());
 
 		Result deleteResult = valuableItemDAO.deleteByPk(fetchedValuableItem.getPk());
 
@@ -114,7 +113,7 @@ public class TestValuableItemDAO {
 	private ValuableItem saveInitialValuableItem() {
 		Result saveResult = valuableItemDAO.save(testValuableItem);
 		Assert.assertTrue(saveResult instanceof CreateSuccessResult);
-		return testValuableItem.copy();
+		return valuableItemDAO.fetch(((CreateSuccessResult) saveResult).getPk());
 	}
 
 }

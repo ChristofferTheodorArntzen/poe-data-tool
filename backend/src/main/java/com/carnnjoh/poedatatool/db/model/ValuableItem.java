@@ -18,7 +18,7 @@ public class ValuableItem {
 	private LocalDateTime createdDate;
 
 
-	public ValuableItem(){
+	public ValuableItem() {
 		this(null, null, null, null, null, LocalDateTime.now());
 	}
 
@@ -33,6 +33,10 @@ public class ValuableItem {
 		this.item = item;
 		this.estimatedPrice = estimatedPrice;
 		this.createdDate = createdDate;
+	}
+
+	public ValuableItem copy() {
+		return new ValuableItem(this.id, this.subscriptionFk, this.item, this.estimatedPrice, this.createdDate);
 	}
 
 	@Override
