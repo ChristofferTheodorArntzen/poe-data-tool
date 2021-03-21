@@ -1,10 +1,8 @@
 package com.carnnjoh.poedatatool.schedulers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
+@FunctionalInterface
 public interface ScheduledTask {
 
-
-	void execute() throws JsonProcessingException;
+	void execute() throws Exception;
 
 }

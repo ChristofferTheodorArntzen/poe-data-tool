@@ -2,7 +2,6 @@ package com.carnnjoh.poedatatool.api;
 
 import com.carnnjoh.poedatatool.api.requestobjects.SubscriptionRequest;
 import com.carnnjoh.poedatatool.db.dao.ItemFilterTypeSubscriptionDAO;
-import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
 import com.carnnjoh.poedatatool.db.model.Subscription;
 import com.carnnjoh.poedatatool.db.utils.CreateSuccessResult;
 import com.carnnjoh.poedatatool.db.utils.Result;
@@ -12,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

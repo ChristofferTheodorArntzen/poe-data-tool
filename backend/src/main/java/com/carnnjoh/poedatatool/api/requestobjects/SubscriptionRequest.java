@@ -17,7 +17,7 @@ public class SubscriptionRequest extends Subscription {
 	private String name;
 
 	@JsonProperty("tabIds")
-	private String[] tabIds;
+	private Integer[] tabIds;
 
 	@JsonProperty("currencyThreshold")
 	private double currencyThreshold;
@@ -32,7 +32,7 @@ public class SubscriptionRequest extends Subscription {
 	}
 
 	public SubscriptionRequest(String name,
-							   String[] tabIds,
+							   Integer[] tabIds,
 							   Double currencyThreshold,
 							   List<ItemFilterType> itemFilter,
 							   String currencyType

@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 
 @Configuration
 @EnableScheduling
-public class ValuableItemGenerator implements ScheduledTask {
+public class ValuableItemGenerator {
 
 	private final Logger LOGGER = LoggerFactory.getLogger(ValuableItemGenerator.class);
 
@@ -44,7 +44,6 @@ public class ValuableItemGenerator implements ScheduledTask {
 	@Autowired
 	SimpMessagingTemplate simpMessagingTemplate;
 
-	@Override
 	@Scheduled(initialDelay = 1000, fixedDelay = 10000)
 	public void execute() {
 

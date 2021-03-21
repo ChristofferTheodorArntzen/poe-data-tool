@@ -33,7 +33,7 @@ public class TestSubscriptionDAO {
 		testSubscription = new Subscription(
 			1,
 			"test-name",
-			new String[]{"1", "1"},
+			new Integer[]{1, 2},
 			200.0,
 			"chaos",
 			null
@@ -117,7 +117,7 @@ public class TestSubscriptionDAO {
 		for (int i = 0; i < numberOfSubscriptions; i++) {
 			Subscription subscription = (new Subscription(
 				"Name" + i,
-				new String[]{"1", "2", "3"},
+				new Integer[]{1, 2, 3},
 				200.0,
 				"chaos",
 				new ArrayList<>()

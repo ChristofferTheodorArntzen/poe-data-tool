@@ -6,8 +6,6 @@ import com.carnnjoh.poedatatool.db.model.Subscription;
 import com.carnnjoh.poedatatool.db.model.User;
 import com.carnnjoh.poedatatool.db.model.ValuableItem;
 import com.carnnjoh.poedatatool.model.Item;
-import com.carnnjoh.poedatatool.model.ItemType;
-import com.carnnjoh.poedatatool.model.ItemTypes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -19,7 +17,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 
 @Component
 public class InitialDataLoaderUtil {
@@ -112,7 +111,7 @@ public class InitialDataLoaderUtil {
 
 		Subscription subscription = new Subscription(
 				"qweqwe",
-				new String[]{"1", "2", "3"},
+				new Integer[]{1, 2, 3},
 				20.0,
 			"chaos",
 				itemFilterTypes

@@ -14,7 +14,7 @@ public class Subscription {
 	private Integer pk;
 	private String name;
 	//TODO: should maybe be a relation...?
-	private String[] tabIds;
+	private Integer[] tabIds;
 	private double currencyThreshold;
 	private String currencyType;
 	private List<ItemFilterType> itemFilterTypes;
@@ -24,7 +24,7 @@ public class Subscription {
 	}
 
 	public Subscription(String name,
-						String[] tabIds,
+						Integer[] tabIds,
 						Double currencyThreshold,
 						String currencyType,
 						List<ItemFilterType> itemFilterTypes) {
@@ -37,7 +37,7 @@ public class Subscription {
 
 	public Subscription(Integer pk,
 						String name,
-						String[] tabIds,
+						Integer[] tabIds,
 						Double currencyThreshold,
 						String currencyType,
 						List<ItemFilterType> itemFilterTypes) {
