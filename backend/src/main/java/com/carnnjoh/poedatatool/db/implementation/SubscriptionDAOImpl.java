@@ -1,8 +1,8 @@
 package com.carnnjoh.poedatatool.db.implementation;
 
 import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
-import com.carnnjoh.poedatatool.db.utils.*;
 import com.carnnjoh.poedatatool.db.model.Subscription;
+import com.carnnjoh.poedatatool.db.utils.*;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -94,7 +94,6 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 				" currencyType = :currencyType" +
 				" where pk = :pk";
 
-			//TODO: denne feiler???? why?
 			int rowUpdate = template.update(updateStatement, params);
 			return (rowUpdate != 0)
 				? new UpdateSuccessResult()
@@ -107,7 +106,7 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 			new Subscription(
 				rs.getInt("pk"),
 				rs.getString("name"),
-				(String[]) rs.getArray("tabIds").getArray(),
+				(Integer[]) rs.getArray("tabIds").getArray(),
 				rs.getDouble("currencyThreshold"),
 				rs.getString("currencyType")
 				, null

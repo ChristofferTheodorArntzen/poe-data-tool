@@ -8,7 +8,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Collections;
-import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -20,7 +19,9 @@ public class PrivateStashTabFetcher {
     private final RestTemplate template = new RestTemplate();
 
     public Optional<PrivateStashTab> fetchStashItems(PrivateStashTabRequest request) {
+
         HttpEntity<String> entity = new HttpEntity<>(createHeaders(request.poeSessionId));
+
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/get-stash-items")
             .queryParam("league", request.league)
             .queryParam("realm", request.realm)
