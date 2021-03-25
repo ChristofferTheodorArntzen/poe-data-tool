@@ -1,38 +1,57 @@
 package com.carnnjoh.poedatatool.db.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.carnnjoh.poedatatool.api.requestobjects.SubscriptionRequest;
+import com.carnnjoh.poedatatool.model.ItemType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Getter
-@Setter
+/**
+ * Entity to save, update and delete Subscriptions
+ */
 public class Subscription {
 
+	@JsonProperty("pk")
 	private Integer pk;
+
+	@JsonProperty("name")
 	private String name;
-	//TODO: should maybe be a relation...?
+
+	//TODO: should maybe be a relation...? -- do with array until it is necessary
+	@JsonProperty("tabIds")
 	private Integer[] tabIds;
+
+	@JsonProperty("currencyThreshold")
 	private double currencyThreshold;
+
+	@JsonProperty("currencyType")
 	private String currencyType;
-	private List<ItemFilterType> itemFilterTypes;
+
+	@JsonProperty("itemTypes")
+	private List<ItemType> itemTypes;
+
+	@JsonProperty("isActive")
+	private boolean isActive;
 
 	public Subscription() {
-		this("", null, 0.0,"", new ArrayList<>());
+		this("", null, 0.0,"", new ArrayList<>(), true);
 	}
 
 	public Subscription(String name,
 						Integer[] tabIds,
 						Double currencyThreshold,
 						String currencyType,
-						List<ItemFilterType> itemFilterTypes) {
+						List<ItemType> itemTypes,
+						boolean isActive
+	) {
 		this.name = name;
 		this.tabIds = tabIds;
 		this.currencyThreshold = currencyThreshold;
 		this.currencyType = currencyType;
-		this.itemFilterTypes = itemFilterTypes;
+		this.itemTypes = itemTypes;
+		this.isActive = isActive;
 	}
 
 	public Subscription(Integer pk,
@@ -40,13 +59,82 @@ public class Subscription {
 						Integer[] tabIds,
 						Double currencyThreshold,
 						String currencyType,
-						List<ItemFilterType> itemFilterTypes) {
+						List<ItemType> itemTypes,
+						boolean isActive
+	) {
 		this.pk = pk;
 		this.name = name;
 		this.tabIds = tabIds;
 		this.currencyThreshold = currencyThreshold;
 		this.currencyType = currencyType;
-		this.itemFilterTypes = itemFilterTypes;
+		this.itemTypes = itemTypes;
+		this.isActive = isActive;
+	}
+
+	public Subscription(SubscriptionRequest subscriptionRequest) {
+		this(subscriptionRequest.getName(),
+			subscriptionRequest.getTabIds(),
+			subscriptionRequest.getCurrencyThreshold(),
+			subscriptionRequest.getCurrencyType(),
+			subscriptionRequest.getItemTypes(),
+			subscriptionRequest.isActive()
+		);
+	}
+
+	public void setPk(Integer pk) {
+		this.pk = pk;
+	}
+
+	public Integer getPk() {
+		return pk;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer[] getTabIds() {
+		return tabIds;
+	}
+
+	public void setTabIds(Integer[] tabIds) {
+		this.tabIds = tabIds;
+	}
+
+	public double getCurrencyThreshold() {
+		return currencyThreshold;
+	}
+
+	public void setCurrencyThreshold(double currencyThreshold) {
+		this.currencyThreshold = currencyThreshold;
+	}
+
+	public String getCurrencyType() {
+		return currencyType;
+	}
+
+	public void setCurrencyType(String currencyType) {
+		this.currencyType = currencyType;
+	}
+
+	public List<ItemType> getItemTypes() {
+		return itemTypes;
+	}
+
+	public void setItemTypes(List<ItemType> itemTypes) {
+		this.itemTypes = itemTypes;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean active) {
+		isActive = active;
 	}
 
 	@Override
@@ -57,7 +145,7 @@ public class Subscription {
 			", tabIds=" + Arrays.toString(tabIds) +
 			", currencyThreshold=" + currencyThreshold +
 			", currencyType='" + currencyType + '\'' +
-			", itemFilterTypes=" + itemFilterTypes +
+			", itemTypes=" + itemTypes +
 			'}';
 	}
 
@@ -68,7 +156,8 @@ public class Subscription {
 			this.tabIds,
 			this.currencyThreshold,
 			this.currencyType,
-			this.itemFilterTypes
+			this.itemTypes,
+			this.isActive
 		);
 	}
 }
