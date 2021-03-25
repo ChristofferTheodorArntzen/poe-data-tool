@@ -33,12 +33,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public Result deleteById(String id) {
-		//TODO: impl
-		return null;
-	}
-
-	@Override
 	public Result save(User user) {
 		return Utils.tryUpdate(() -> {
 

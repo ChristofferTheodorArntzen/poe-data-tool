@@ -44,8 +44,14 @@ public class ValuableItemGenerator {
 	@Autowired
 	SimpMessagingTemplate simpMessagingTemplate;
 
+	boolean disabled = true;
+
 	@Scheduled(initialDelay = 1000, fixedDelay = 10000)
 	public void execute() {
+
+		if(disabled) {
+			return;
+		}
 
 		LOGGER.info("Started fetching stash tabs");
 

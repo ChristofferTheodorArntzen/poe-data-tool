@@ -1,8 +1,7 @@
 package com.carnnjoh.poedatatool.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 
@@ -48,7 +47,7 @@ public class Item {
 	public List<String> flavourText;
 
 	@JsonProperty("frameType")
-	public int frameTypes;
+	public int frameType;
 
 	@JsonProperty("h")
 	public int height;
@@ -142,7 +141,27 @@ public class Item {
 	@JsonProperty("'^[\\\\s]RaceReward$'")
 	public boolean isRaceReward;
 
+	@JsonIgnore
+	public boolean isCurrency() {
+		return frameType == 5 && maxStackSize != null;
+	}
 
+	@JsonIgnore
+	public boolean isFragment() {
+		return typeLine.endsWith("'s Key") ||
+			typeLine.endsWith("Breachstone") ||
+			typeLine.startsWith("Mortal")||
+			typeLine.endsWith("to the Goddess") ||
+			typeLine.equals("Simulacrum") ||
+			typeLine.startsWith("Fragment of") ||
+			typeLine.equals("The Maven's Writ") ||
+			(typeLine.startsWith("Timeless") && typeLine.endsWith("Emblem")) ||
+			typeLine.equals("Divine Vessel") ||
+			typeLine.startsWith("Sacrifice at") ||
+			typeLine.endsWith("Splinter");
+	}
+
+	@JsonIgnore
 	@Override
 	public String toString() {
 		return "Item{" +
@@ -159,7 +178,7 @@ public class Item {
 			", enchantedMods=" + enchantedMods +
 			", explicitMods=" + explicitMods +
 			", flavourText=" + flavourText +
-			", frameTypes=" + frameTypes +
+			", frameTypes=" + frameType +
 			", height=" + height +
 			", icon='" + icon + '\'' +
 			", itemId='" + itemId + '\'' +

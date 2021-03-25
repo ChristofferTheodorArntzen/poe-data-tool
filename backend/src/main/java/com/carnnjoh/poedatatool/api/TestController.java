@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.ParameterizedType;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
@@ -43,13 +44,13 @@ public class TestController {
 
 		itemJson = sb.toString();
 
-		ValuableItem item = new ValuableItem();
-		item.setId("qiowkepqormmprok");
-		item.setSubscriptionFk(1);
-		item.setEstimatedPrice(10);
-		Item itemDeserialize = objectMapper.readValue(itemJson, Item.class);
-
-		item.setItem(itemDeserialize);
+		ValuableItem item = new ValuableItem(
+			"qiowkepqormmprok",
+			1,
+			objectMapper.readValue(itemJson, Item.class),
+			10,
+			LocalDateTime.now()
+		);
 
 		Result saveResult =  itemDAO.save(item);
 
@@ -60,7 +61,7 @@ public class TestController {
 	}
 
 	@GetMapping("/testSelect")
-	public String testSelect() throws JsonProcessingException {
+	public String testSelect() {
 		return ":(";
 	}
 
@@ -89,5 +90,4 @@ public class TestController {
 			return null;
 		}
 	}
-
 }
