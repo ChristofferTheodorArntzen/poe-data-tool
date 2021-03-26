@@ -25,8 +25,6 @@ public class PrivateStashTabController {
         PrivateStashTabRequest request = new PrivateStashTabRequest(
             league, realm, accountName, true, tabIndex, poeSessionId);
 
-        return fetcher
-            .fetchStashItems(request)
-            .orElseThrow(StashNotFoundException::new);
+        return fetcher.fetchStashItems(request).orElseThrow(StashNotFoundException::new);
     }
 }

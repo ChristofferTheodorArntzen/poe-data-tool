@@ -42,7 +42,6 @@ public class ValuableItemController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	// todo: Impl query params to get items order by date and / or just "normal" get all
 	@GetMapping()
 	public ResponseEntity<List<ValuableItem>> getAll() {
 		List<ValuableItem> valuableItem = valuableItemDAO.getAllByDate(false);
@@ -110,6 +109,7 @@ public class ValuableItemController {
 		valuableItem.setSubscriptionFk(valuableItemRequest.getSubscriptionFk());
 		valuableItem.setId(valuableItemRequest.getId());
 		valuableItem.setEstimatedPrice(valuableItemRequest.getEstimatedPrice());
+		valuableItem.setCreatedDate(valuableItemRequest.getCreatedDate());
 
 		Result putResult = (valuableItem.getPk() == null)
 			? valuableItemDAO.save(valuableItem)
@@ -125,3 +125,6 @@ public class ValuableItemController {
 			: new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
+
+
+

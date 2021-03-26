@@ -1,7 +1,7 @@
 package com.carnnjoh.poedatatool.api;
 
 import com.carnnjoh.poedatatool.api.requestobjects.SubscriptionRequest;
-import com.carnnjoh.poedatatool.db.dao.ItemFilterTypeSubscriptionDAO;
+import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
 import com.carnnjoh.poedatatool.db.model.Subscription;
 import com.carnnjoh.poedatatool.db.utils.CreateSuccessResult;
 import com.carnnjoh.poedatatool.db.utils.Result;
@@ -23,14 +23,14 @@ public class SubscriptionController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SubscriptionController.class);
 
 	@Autowired
-	private ItemFilterTypeSubscriptionDAO itemFilterTypeSubscriptionDAO;
+	private SubscriptionDAO subscriptionDAO;
 
 	@GetMapping("/{pk}")
 	public ResponseEntity<Subscription> get(@PathVariable Integer pk) {
 		if(pk < 0)
 			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-		Subscription subscription = itemFilterTypeSubscriptionDAO.getSubscription(pk);
+		Subscription subscription = subscriptionDAO.fetch(pk);
 
 		if(subscription != null) {
 			return new ResponseEntity<>(subscription, HttpStatus.OK);
@@ -41,7 +41,7 @@ public class SubscriptionController {
 
 	@GetMapping()
 	public ResponseEntity<List<Subscription>> getAll() {
-		List<Subscription> subscriptions = itemFilterTypeSubscriptionDAO.getAllSubscription();
+		List<Subscription> subscriptions = subscriptionDAO.fetchAll();
 
 		if(subscriptions.size() > 0)
 			return new ResponseEntity<>(subscriptions, HttpStatus.OK);
@@ -54,7 +54,7 @@ public class SubscriptionController {
 		if(pk < 0)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		Result deleteResult = itemFilterTypeSubscriptionDAO.deleteSubscription(pk);
+		Result deleteResult = subscriptionDAO.deleteByPk(pk);
 
 		if(deleteResult instanceof SuccessResult)
 			return new ResponseEntity<>(HttpStatus.OK);
@@ -68,11 +68,13 @@ public class SubscriptionController {
 		if(subscriptionRequest == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		Result postResult = itemFilterTypeSubscriptionDAO.saveSubscription(subscriptionRequest);
+		Subscription subscription = new Subscription(subscriptionRequest);
+
+		Result postResult = subscriptionDAO.save(subscription);
 
 		if(postResult instanceof SuccessResult) {
-			subscriptionRequest.setPk(((CreateSuccessResult) postResult).getPk());
-			return new ResponseEntity<>(subscriptionRequest, HttpStatus.OK);
+			subscription.setPk(((CreateSuccessResult) postResult).getPk());
+			return new ResponseEntity<>(subscription, HttpStatus.OK);
 		}
 
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -86,7 +88,7 @@ public class SubscriptionController {
 		if(pk < 0)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		Subscription subscription = itemFilterTypeSubscriptionDAO.getSubscription(pk);
+		Subscription subscription = subscriptionDAO.fetch(pk);
 
 		if(subscription == null) {
 			subscription = new Subscription();
@@ -96,11 +98,12 @@ public class SubscriptionController {
 		subscription.setCurrencyThreshold(subscriptionRequest.getCurrencyThreshold());
 		subscription.setCurrencyType(subscriptionRequest.getCurrencyType());
 		subscription.setName(subscriptionRequest.getName());
-		subscription.setItemFilterTypes(subscriptionRequest.getItemFilterTypes());
+		subscription.setItemTypes(subscriptionRequest.getItemTypes());
+		subscription.setActive(subscriptionRequest.isActive());
 
 		Result putResult = (subscription.getPk() == null)
-			? itemFilterTypeSubscriptionDAO.saveSubscription(subscription)
-			: itemFilterTypeSubscriptionDAO.updateSubscription(subscription);
+			? subscriptionDAO.save(subscription)
+			: subscriptionDAO.update(subscription);
 
 		if(putResult instanceof CreateSuccessResult) {
 			subscription.setPk(((CreateSuccessResult) putResult).getPk());

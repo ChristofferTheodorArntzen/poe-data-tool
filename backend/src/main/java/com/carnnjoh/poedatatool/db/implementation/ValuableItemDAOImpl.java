@@ -78,10 +78,7 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 	public List<ValuableItem> getAllByDate(boolean ascending){
 		return Utils.tryGet( () -> {
 			String sqlQuery = "Select * from ValuableItem order by createdDate";
-			if(ascending)
-				sqlQuery = sqlQuery + " asc";
-			else
-				sqlQuery = sqlQuery + " desc";
+			sqlQuery = (ascending) ? sqlQuery + "asc" : sqlQuery + "desc";
 
 			return template.query(sqlQuery, rowMapper);
 		});

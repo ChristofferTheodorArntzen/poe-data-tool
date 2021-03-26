@@ -6,6 +6,8 @@ import com.carnnjoh.poedatatool.db.utils.CreateSuccessResult;
 import com.carnnjoh.poedatatool.db.utils.DeleteSuccessResult;
 import com.carnnjoh.poedatatool.db.utils.Result;
 import com.carnnjoh.poedatatool.db.utils.UpdateSuccessResult;
+import com.carnnjoh.poedatatool.model.ItemType;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -31,13 +34,25 @@ public class TestSubscriptionDAO {
 	@Before
 	public void setup() {
 		testSubscription = new Subscription(
-			1,
 			"test-name",
 			new Integer[]{1, 2},
 			200.0,
 			"chaos",
-			null
+			Arrays.asList(ItemType.CARD, ItemType.FRAGMENT),
+			true
 		);
+
+		Result saveResult = subscriptionDAO.save(testSubscription);
+		testSubscription.setPk(((CreateSuccessResult) saveResult).getPk());
+	}
+
+	@After
+	public void flush() {
+		List<Subscription> subscriptions = subscriptionDAO.fetchAll();
+
+		for (Subscription subscription : subscriptions) {
+			subscriptionDAO.deleteByPk(subscription.getPk());
+		}
 	}
 
 	@Test
@@ -52,13 +67,11 @@ public class TestSubscriptionDAO {
 		Assert.assertEquals(testSubscription.getCurrencyThreshold(), fetchedSubscription.getCurrencyThreshold(), 0.0001);
 		Assert.assertEquals(testSubscription.getCurrencyType(), fetchedSubscription.getCurrencyType());
 		Assert.assertEquals(testSubscription.getPk(), fetchedSubscription.getPk());
-		Assert.assertNull(fetchedSubscription.getPk());
 		Assert.assertEquals(testSubscription.getPk(), fetchedSubscription.getPk());
 	}
 
 	@Test
 	public void testDelete() {
-		saveInitialSubscription();
 
 		Subscription fetchedSubscription = subscriptionDAO.fetch(testSubscription.getPk());
 		Result deleteResult = subscriptionDAO.deleteByPk(fetchedSubscription.getPk());
@@ -84,14 +97,13 @@ public class TestSubscriptionDAO {
 		Assert.assertNotEquals(fetchedSubscription.getCurrencyType(), testSubscription.getCurrencyType());
 		Assert.assertEquals(fetchedSubscription.getCurrencyThreshold(), testSubscription.getCurrencyThreshold(), 0.001);
 		Assert.assertArrayEquals(fetchedSubscription.getTabIds(), testSubscription.getTabIds());
-		Assert.assertEquals(fetchedSubscription.getItemFilterTypes(), testSubscription.getItemFilterTypes());
+		Assert.assertEquals(fetchedSubscription.getItemTypes(), testSubscription.getItemTypes());
 	}
 
 	@Test
 	public void testFetch() {
 		saveInitialSubscription();
 		Subscription fetchedSubscription = subscriptionDAO.fetch(testSubscription.getPk());
-
 		Assert.assertNotNull(fetchedSubscription);
 	}
 
@@ -101,12 +113,19 @@ public class TestSubscriptionDAO {
 
 		List<Subscription> subscriptions = subscriptionDAO.fetchAll();
 
-		subscriptions.forEach(subscription -> System.out.println(subscription.toString()));
-
 		Assert.assertFalse(subscriptions.isEmpty());
 
-		Assert.assertEquals(100, subscriptions.size());
+		for(Subscription subscription : subscriptions) {
+			Assert.assertNotNull(subscription.getPk());
+		}
+	}
 
+	@Test
+	public void testFetchByStatus() {
+		Subscription subscription = subscriptionDAO.fetchByStatus(true);
+
+		Assert.assertNotNull(subscription);
+		Assert.assertTrue(subscription.isActive());
 	}
 
 	private void generateSubscriptions() {
@@ -120,17 +139,17 @@ public class TestSubscriptionDAO {
 				new Integer[]{1, 2, 3},
 				200.0,
 				"chaos",
-				new ArrayList<>()
+				new ArrayList<>(),
+				false
 			));
 			subscriptionDAO.save(subscription);
 		}
 	}
 
 	private Subscription saveInitialSubscription() {
-
 		Result saveResult = subscriptionDAO.save(testSubscription);
 		Assert.assertTrue(saveResult instanceof CreateSuccessResult);
-		return testSubscription.copy();
+		return subscriptionDAO.fetch(((CreateSuccessResult) saveResult).getPk());
 	}
 
 }

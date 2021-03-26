@@ -3,12 +3,15 @@ package com.carnnjoh.poedatatool.db.implementation;
 import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
 import com.carnnjoh.poedatatool.db.model.Subscription;
 import com.carnnjoh.poedatatool.db.utils.*;
+import com.carnnjoh.poedatatool.model.ItemType;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SubscriptionDAOImpl implements SubscriptionDAO {
@@ -30,25 +33,24 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 	}
 
 	@Override
-	public Result deleteById(String id) {
-		//TODO impl
-		return null;
-	}
-
-	@Override
 	public Result save(Subscription subscription) {
 		return Utils.tryUpdate(() -> {
+
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("name", subscription.getName())
 				.addValue("tabIds", subscription.getTabIds())
 				.addValue("currencyThreshold", subscription.getCurrencyThreshold())
-				.addValue("currencyType", subscription.getCurrencyType());
+				.addValue("currencyType", subscription.getCurrencyType())
+				.addValue("itemTypes", subscription.getItemTypes().stream().map(Enum::name).toArray())
+				.addValue("isActive", subscription.isActive());
+
 			KeyHolder keyHolder = new GeneratedKeyHolder();
-			template.update("" +
-					"Insert into Subscription ( name, tabIds, currencyThreshold, currencyType)" +
-					" values (:name, :tabIds, :currencyThreshold, :currencyType)",
-				params,
-				keyHolder);
+
+			String sqlQuery =  "Insert into Subscription (name, tabIds, currencyThreshold, currencyType, itemTypes, isActive)" +
+								" values (:name, :tabIds, :currencyThreshold, :currencyType, :itemTypes, :isActive)";
+
+			template.update(sqlQuery, params, keyHolder);
+
 			return Utils.getCreateResult(keyHolder);
 		});
 	}
@@ -86,18 +88,36 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 				.addValue("name", subscription.getName())
 				.addValue("tabIds", subscription.getTabIds())
 				.addValue("currencyThreshold", subscription.getCurrencyThreshold())
-				.addValue("currencyType", subscription.getCurrencyType());
+				.addValue("currencyType", subscription.getCurrencyType())
+				.addValue("itemTypes", subscription.getItemTypes().stream().map(Enum::name).toArray())
+				.addValue("isActive", subscription.isActive());
 
 			String updateStatement = "update Subscription set name = :name," +
 				" tabIds = :tabIds," +
 				" currencyThreshold = :currencyThreshold," +
-				" currencyType = :currencyType" +
+				" currencyType = :currencyType," +
+				" itemTypes = :itemTypes" +
 				" where pk = :pk";
 
 			int rowUpdate = template.update(updateStatement, params);
 			return (rowUpdate != 0)
 				? new UpdateSuccessResult()
 				: new FailedResult();
+		});
+	}
+
+	@Override
+	public Subscription fetchByStatus(boolean isActive) {
+		return Utils.tryGet(() -> {
+			MapSqlParameterSource params = new MapSqlParameterSource()
+				.addValue("isActive", isActive);
+			return template.query(
+				"Select * from Subscription where isActive = :isActive",
+				params,
+				rowMapper)
+				.stream()
+				.findFirst()
+				.orElse(null);
 		});
 	}
 
@@ -108,9 +128,19 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 				rs.getString("name"),
 				(Integer[]) rs.getArray("tabIds").getArray(),
 				rs.getDouble("currencyThreshold"),
-				rs.getString("currencyType")
-				, null
+				rs.getString("currencyType"),
+				convertEnumArrayToList(rs.getArray("itemTypes").getArray()),
+				rs.getBoolean("isActive")
 			)
 		));
 
+	//TODO: make this not suck
+	private List<ItemType> convertEnumArrayToList(Object object) {
+		String[] enumStringArray = Arrays.stream((Object[]) object).toArray(String[]::new);
+		List<ItemType> itemTypes = new ArrayList<>();
+		for (String string : enumStringArray) {
+			itemTypes.add(ItemType.valueOf(string));
+		}
+		return itemTypes;
+	}
 }

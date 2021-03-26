@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -44,8 +45,15 @@ public class ValuableItemGenerator {
 	@Autowired
 	SimpMessagingTemplate simpMessagingTemplate;
 
+	@Value("${schedulers.valuableItemGenerator.disabled:true}")
+	boolean disabled;
+
 	@Scheduled(initialDelay = 1000, fixedDelay = 10000)
 	public void execute() {
+
+		if(disabled) {
+			return;
+		}
 
 		LOGGER.info("Started fetching stash tabs");
 
