@@ -45,6 +45,7 @@ public class PrivateStashPoller {
 
 	@Scheduled(initialDelay = 1000, fixedDelay = 20000)
 	public void execute() {
+		long startTime = System.currentTimeMillis();
 
 		if(disabled) {
 			logger.info("Scheduled task " + getClass() + " is disabled");
@@ -54,18 +55,19 @@ public class PrivateStashPoller {
 		}
 
 		SchedulerUtils.execute(() -> {
-
 			//TODO: add a search for active user
 			User user = userDAO.fetch(1);
 
 			//TODO: add a search for active user
-			Subscription sub = subscriptionDAO.fetch(1);
+			Subscription sub = subscriptionDAO.fetchByStatus(true);
 
 			Integer[] activeTabs = sub.getTabIds();
 
 			if (activeTabs.length > 0) {
 				List<PrivateStashTab> privateStashTabs = privateStashTabService.requestStashTabs(activeTabs, user);
 				privateStashTabService.saveItems(privateStashTabs);
+
+				logger.debug(String.format("Executed %s in '%d'ms",getClass().getName(), System.currentTimeMillis() - startTime));
 			} else {
 				logger.debug("stashTab was not present");
 			}
