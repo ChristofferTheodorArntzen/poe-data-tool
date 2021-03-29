@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.carnnjoh.poedatatool.model.ItemType.*;
+import static com.carnnjoh.poedatatool.model.ItemType.UNIQUE;
 
 
 @Component
@@ -79,10 +79,8 @@ public class InitialDataLoaderUtil {
 
 	public void createSubscription() {
 
-		List<ItemType> itemTypes = Arrays.asList(CARD, CLUSTERJEWEL, FRAGMENT);
-
-		Subscription subscription = new Subscription("qweqwe", new Integer[]{1, 2, 3}, 20.0, "chaos", itemTypes, true);
-
+		List<ItemType> itemTypes = Arrays.asList(UNIQUE);
+		Subscription subscription = new Subscription("qweqwe", new Integer[]{0, 1, 2}, 20.0, "chaos", itemTypes, true);
 		subscriptionDAO.save(subscription);
 	}
 
