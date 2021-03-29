@@ -1,0 +1,19 @@
+package com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest;
+
+import com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest.QueryFilterType;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
+public class Stat {
+
+	@JsonProperty("type")
+	public QueryFilterType type;
+
+	@JsonProperty("filters")
+	public List<Filter> filters;
+
+	@JsonProperty("disabled")
+	public boolean disabled;
+
+}
