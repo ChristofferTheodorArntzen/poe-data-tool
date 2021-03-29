@@ -1,6 +1,7 @@
 package com.carnnjoh.poedatatool.services;
 
 import com.carnnjoh.poedatatool.db.model.User;
+import com.carnnjoh.poedatatool.model.InMemoryItem;
 import com.carnnjoh.poedatatool.model.Item;
 import com.carnnjoh.poedatatool.model.PrivateStashTab;
 import com.carnnjoh.poedatatool.model.PrivateStashTabRequest;
@@ -27,8 +28,9 @@ public class PrivateStashTabService {
 	@Value("${services.test.poesessid}")
 	private String testSessionId;
 
+	//TODO: singleton?
 	// in memory map, contains all "active" items that the PrivateStashPoller finds.
-	private final Map<String, Item> inMemoryItemMap = new HashMap<>();
+	private final Map<String, InMemoryItem> inMemoryItemMap = new HashMap<>();
 
 	public List<PrivateStashTab> requestStashTabs(Integer[] activeTabs, User user) {
 		List<PrivateStashTab> fetchedTabs = new ArrayList<>();
@@ -36,7 +38,8 @@ public class PrivateStashTabService {
 		try {
 			// need to loop through all "active" tabs from subscription, API call to retrieve private stash tab does not support fetching more than one at a time
 			for (Integer activeTab : activeTabs) {
-				Optional<PrivateStashTab> currentlyFetchedTab = privateStashTabFetcher.fetchStashItems(createPrivateStashTabRequest(user, activeTab));
+				Optional<PrivateStashTab> currentlyFetchedTab = privateStashTabFetcher
+						.fetchStashItems(createPrivateStashTabRequest(user, activeTab));
 				currentlyFetchedTab.ifPresent(fetchedTabs::add);
 
 				// Need to sleep between calls, to not get rate limited.
@@ -60,11 +63,15 @@ public class PrivateStashTabService {
 			List<String> itemsToBeRemoved = new ArrayList<>(inMemoryItemMap.keySet());
 
 			for (PrivateStashTab privateStashTab : privateStashTabs) {
-				logger.debug("Private stash tab name {}", privateStashTab.items.stream().map(item -> item.inventoryId).collect(Collectors.toSet()));
+				logger.debug("Private stash tab name {}", privateStashTab.
+						items
+						.stream()
+						.map(item -> item.inventoryId)
+						.collect(Collectors.toSet()));
 
 				for (Item item : privateStashTab.items) {
-					if (item != null) {
-						inMemoryItemMap.putIfAbsent(item.itemId, item);
+					if (item != null && item.isIdentified) {
+						inMemoryItemMap.putIfAbsent(item.itemId, new InMemoryItem(item, false));
 						itemsToBeRemoved.remove(item.itemId);
 					}
 				}
@@ -79,7 +86,7 @@ public class PrivateStashTabService {
 		}
 	}
 
-	public Map<String, Item> getInMemoryItemMapItemMap() {
+	public Map<String, InMemoryItem> getInMemoryItemMap() {
 		return inMemoryItemMap;
 	}
 
