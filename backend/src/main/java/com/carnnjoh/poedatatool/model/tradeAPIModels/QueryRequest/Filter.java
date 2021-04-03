@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public abstract class Filter {
 
 	@JsonProperty("disabled")
-	boolean disabled;
+	boolean disabled = false;
 
 	//--- typeFilter
-	@JsonProperty("category")
+	@JsonProperty("category") //TODO: find out what this is, can it be a enum?
 	public Category category;
 
 	@JsonProperty("rarity")
@@ -142,6 +142,14 @@ public abstract class Filter {
 	public StoredExperience storedExperience;
 	//--- misc_filters
 
+	//--- misc_filters
+
+	@JsonProperty("id")
+	public String modId;
+
+	public Value value;
+
+	//--- misc_filters
 
 	@JsonProperty("weapon_filters")
 	public WeaponFilter weaponFilter;
