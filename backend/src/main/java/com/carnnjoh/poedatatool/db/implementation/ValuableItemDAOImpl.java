@@ -51,12 +51,18 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 				.addValue("id", item.getId())
 				.addValue("subscriptionFk", item.getSubscriptionFk())
 				.addValue("item", mapper.writeValueAsBytes(item.getItem()))
-				.addValue("estimatedPrice", item.getEstimatedPrice())
+				.addValue("mean", item.getMean())
+				.addValue("median", item.getMedian())
+				.addValue("max", item.getMax())
+				.addValue("min", item.getMin())
 				.addValue("createdDate", Timestamp.valueOf(item.getCreatedDate()));
 			KeyHolder keyHolder = new GeneratedKeyHolder();
-			template.update(
-				"insert into ValuableItem(id, subscriptionFk, item, estimatedPrice, createdDate) values( :id, :subscriptionFk, :item, :estimatedPrice, :createdDate)",
-				params, keyHolder);
+
+			String sqlQuery = "insert into ValuableItem(id, subscriptionFk, item, mean, median, max, min, createdDate) " +
+					"values( :id, :subscriptionFk, :item, :mean, :median, :max, :min, :createdDate)";
+
+
+			template.update( sqlQuery, params, keyHolder);
 			return Utils.getCreateResult(keyHolder);
 		});
 	}
@@ -97,14 +103,20 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 				.addValue("id", item.getId())
 				.addValue("subscriptionFk", item.getSubscriptionFk())
 				.addValue("item", mapper.writeValueAsBytes(item.getItem()))
-				.addValue("estimatedPrice", item.getEstimatedPrice())
+				.addValue("mean", item.getMean())
+				.addValue("median", item.getMedian())
+				.addValue("max", item.getMax())
+				.addValue("min", item.getMin())
 				.addValue("createdDate", Timestamp.valueOf(item.getCreatedDate()));
 
 			String updateStatement =
 				"update ValuableItem set id = :id," +
 					"subscriptionFk = :subscriptionFk," +
 					"item = :item," +
-					"estimatedPrice = :estimatedPrice, " +
+					"mean = :mean, " +
+					"median = :median, " +
+					"max = :max, " +
+					"min = :min, " +
 					"createdDate = :createdDate" +
 					" where pk = :pk";
 			int rowUpdate = template.update(updateStatement, params);
@@ -120,7 +132,10 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 			rs.getString("id"),
 			rs.getInt("subscriptionFk"),
 			mapper.readValue(rs.getBytes("item"), Item.class),
-			rs.getInt("estimatedPrice"),
+			rs.getInt("mean"),
+			rs.getInt("median"),
+			rs.getInt("max"),
+			rs.getInt("min"),
 			rs.getTimestamp("createdDate").toLocalDateTime()
 		)));
 }

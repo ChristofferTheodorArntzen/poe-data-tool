@@ -48,7 +48,7 @@ public class TestController {
 			"qiowkepqormmprok",
 			1,
 			objectMapper.readValue(itemJson, Item.class),
-			10,
+			10, 12, 13,2,
 			LocalDateTime.now()
 		);
 
