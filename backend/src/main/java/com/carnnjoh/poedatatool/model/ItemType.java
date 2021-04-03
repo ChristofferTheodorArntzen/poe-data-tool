@@ -22,6 +22,8 @@ public enum ItemType {
 	ESSENCE("Essence", item -> item.typeLine.contains("Essence") && item.isCurrency()),
 	RESONATOR("Resonators", item -> item.typeLine.contains("Resonator") && item.isCurrency());
 
+	//TODO:	want to impl rare wep, rare armour etc. can be a pain to add tho.
+
 	public String text;
 	public Predicate<Item> filter;
 

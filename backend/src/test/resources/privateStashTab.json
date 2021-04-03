@@ -1,0 +1,5527 @@
+{
+  "numTabs": 54,
+  "quadLayout": true,
+  "items": [
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Metamorph/HeartInventory.png?v=4a8ae63b22f0bf7943de4a190f33f2f6&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "4ef882f8b6b399a8fcbe15c7a036fd0a1e70a6ecb246beafb972fa150e9d844a",
+      "name": "",
+      "typeLine": "Maligaro the Mutilator's Heart",
+      "baseType": "Maligaro the Mutilator's Heart",
+      "identified": true,
+      "itemLevel": 78,
+      "ilvl": 78,
+      "properties": [
+        {
+          "name": "Uses",
+          "values": [
+            [
+              "Combo Strike",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 27
+        }
+      ],
+      "explicitMods": [
+        "Drops additional Currency Items",
+        "Drops additional Rare Armour",
+        "Drops additional Rare Armour"
+      ],
+      "descrText": "Combine this with four other different samples in Tane's Laboratory.",
+      "frameType": 3,
+      "x": 16,
+      "y": 13,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Heist/BlueprintNotApproved7.png?v=be4883c86c14e52ab45c33b622437b9b&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "13106a10d99aa216580ec174ce754383996e6576c546756740b42a19bec6120d",
+      "name": "",
+      "typeLine": "Splitting Blueprint: Underbelly of Lightning",
+      "baseType": "Blueprint: Underbelly",
+      "identified": true,
+      "ilvl": 71,
+      "properties": [
+        {
+          "name": "Heist Target: {0}",
+          "values": [
+            [
+              "Thieves' Trinkets or Currency",
+              0
+            ]
+          ],
+          "displayMode": 3,
+          "type": 47
+        },
+        {
+          "name": "Area Level",
+          "values": [
+            [
+              "71",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 34
+        },
+        {
+          "name": "Wings Revealed",
+          "values": [
+            [
+              "1/2",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 35
+        },
+        {
+          "name": "Escape Routes Revealed",
+          "values": [
+            [
+              "1/4",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 36
+        },
+        {
+          "name": "Reward Rooms Revealed",
+          "values": [
+            [
+              "2/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 37
+        },
+        {
+          "name": "Requires {1} (Level {0})",
+          "values": [
+            [
+              "2",
+              0
+            ],
+            [
+              "Agility",
+              0
+            ]
+          ],
+          "displayMode": 3,
+          "type": 44
+        },
+        {
+          "name": "Requires {1} (Level {0})",
+          "values": [
+            [
+              "1",
+              0
+            ],
+            [
+              "Deception",
+              0
+            ]
+          ],
+          "displayMode": 3,
+          "type": 45
+        },
+        {
+          "name": "Requires {1} (Level {0})",
+          "values": [
+            [
+              "2",
+              0
+            ],
+            [
+              "Engineering",
+              0
+            ]
+          ],
+          "displayMode": 3,
+          "type": 46
+        },
+        {
+          "name": "Item Quantity",
+          "values": [
+            [
+              "+29%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 2
+        },
+        {
+          "name": "Item Rarity",
+          "values": [
+            [
+              "+17%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 3
+        },
+        {
+          "name": "Alert Level Reduction",
+          "values": [
+            [
+              "+11%",
+              1
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Time Before Lockdown",
+          "values": [
+            [
+              "+11%",
+              1
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Maximum Alive Reinforcements",
+          "values": [
+            [
+              "+11%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 4
+        }
+      ],
+      "explicitMods": [
+        "Area has patches of Shocked Ground which increase Damage taken by 20%",
+        "Monsters fire 2 additional Projectiles"
+      ],
+      "descrText": "Use Intelligence to Reveal additional Wings and Rooms by talking to certain NPCs in the Rogue Harbour. Give this Blueprint to Adiyah to embark on the Grand Heist.",
+      "frameType": 1,
+      "x": 6,
+      "y": 5,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXNcL01hcHNcL0F0bGFzMk1hcHNcL05ld1wvQm91bGV2YXJkIiwidyI6MSwiaCI6MSwic2NhbGUiOnRydWUsIm1uIjoxMCwibXQiOjEyLCJtYiI6dHJ1ZX1d/feb3c3a45e/Item.png",
+      "league": "Ritual",
+      "id": "a1dd9cba94e0f5594622e3ba12b64c4276b59dc7c9e4a03bb366127ef0627776",
+      "name": "",
+      "typeLine": "Blighted Siege Map",
+      "baseType": "Blighted Siege Map",
+      "identified": true,
+      "ilvl": 79,
+      "properties": [
+        {
+          "name": "Map Tier",
+          "values": [
+            [
+              "12",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 1
+        },
+        {
+          "name": "Atlas Region",
+          "values": [
+            [
+              "New Vastir",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "implicitMods": [
+        "Area is infested with Fungal Growths",
+        "Natural inhabitants of this area have been removed"
+      ],
+      "descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+      "frameType": 0,
+      "x": 11,
+      "y": 13,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 2,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Armours/Helmets/HelmetInt4.png?v=87d5e54839d2cb2d8097e595bb5fd840&w=2&h=2&scale=1",
+      "league": "Ritual",
+      "id": "507b9eb36887dbaafc49624830f699e667edc2f5ac795b520402124623316668",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "S",
+          "sColour": "R"
+        }
+      ],
+      "name": "Hypnotic Ward",
+      "typeLine": "Tribal Circlet",
+      "baseType": "Tribal Circlet",
+      "identified": true,
+      "ilvl": 73,
+      "properties": [
+        {
+          "name": "Energy Shield",
+          "values": [
+            [
+              "54",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 18
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "48",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Int",
+          "values": [
+            [
+              "58",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "explicitMods": [
+        "+9 to Intelligence",
+        "99% increased Energy Shield",
+        "+18% to Lightning Resistance",
+        "15% increased Stun and Block Recovery"
+      ],
+      "frameType": 2,
+      "x": 11,
+      "y": 1,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 2,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Heist/CrudeWard.png?v=ffdb4c0b3e8f04dc32c5238a807384df&w=2&h=2&scale=1",
+      "league": "Ritual",
+      "id": "0d74076ad59e8bc47f8a669f14ff24ef743860382844c75e69f2264012a1d6b5",
+      "name": "",
+      "typeLine": "Crude Ward",
+      "baseType": "Crude Ward",
+      "identified": true,
+      "ilvl": 71,
+      "properties": [
+        {
+          "name": "This item can be equipped by:\n{0}",
+          "values": [
+            [
+              "Niles, the Interrogator\nNenet, the Scout\nGianna, the Master of Disguise",
+              0
+            ]
+          ],
+          "displayMode": 3
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level {0} in {1}",
+          "values": [
+            [
+              "2",
+              0
+            ],
+            [
+              "Counter-Thaumaturgy",
+              0
+            ]
+          ],
+          "displayMode": 3,
+          "type": 42
+        }
+      ],
+      "implicitMods": [
+        "4% increased Counter-Thaumaturgy speed"
+      ],
+      "descrText": "Can only be equipped to Heist members.",
+      "frameType": 0,
+      "x": 19,
+      "y": 4,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Scarabs/GreaterScarabElder.png?v=b2cb5d97b3b205b12a0c4453226104e7&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "b2aaae42442e19340f6700122e825a60a860e7528d5316484292150616234045",
+      "name": "",
+      "typeLine": "Gilded Elder Scarab",
+      "baseType": "Gilded Elder Scarab",
+      "identified": true,
+      "ilvl": 0,
+      "explicitMods": [
+        "Adds Elder Influence outcome to Map Area\r\n90% more Rare Elder Items found in Area"
+      ],
+      "descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "flavourText": [
+        "Egrin of the Dark Between Stars, Forger of the Sealing Blade,\r",
+        "let your name be redeemed by your unexpected sacrifice."
+      ],
+      "frameType": 0,
+      "x": 18,
+      "y": 21,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Oils/BlackOil.png?v=1546a2c090924f9ce55ec5661b985f64&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "c99982c8a947879510de033408ed49f451ceff1798a8a6218e6484cda9702bca",
+      "name": "",
+      "typeLine": "Black Oil",
+      "baseType": "Black Oil",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+      "frameType": 5,
+      "x": 16,
+      "y": 12,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png?v=a8ae131b97fad3c64de0e6d9f250d743&w=1&h=1&scale=1",
+      "stackSize": 2,
+      "maxStackSize": 3,
+      "league": "Ritual",
+      "id": "99fe6b827668f03119dfe6da12050e947515c61ae98e5100f78bdfd3f7c011bb",
+      "name": "",
+      "typeLine": "Cartographer's Delight",
+      "baseType": "Cartographer's Delight",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "2/3",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "<normal>{Map}\r\n<default>{Map Tier:} <normal>{5}"
+      ],
+      "flavourText": [
+        "<size:28>{A map is similar\r",
+        "to a pair of eyes,\r",
+        "without one you stumble\r",
+        "around, unable to find your way.}"
+      ],
+      "frameType": 6,
+      "artFilename": "CartographersDelight",
+      "x": 2,
+      "y": 5,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png?v=a8ae131b97fad3c64de0e6d9f250d743&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 2,
+      "league": "Ritual",
+      "id": "05145e2e323fc23ada9c630e17c81e708a44df8dab64101f41dec8be1d0af0d7",
+      "name": "",
+      "typeLine": "Cameria's Cut",
+      "baseType": "Cameria's Cut",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/2",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "<whiteitem>{Scarab}"
+      ],
+      "flavourText": [
+        "\"There are two ways to pay, Gold and Blood. I'll take my share in both.\"\r",
+        "\r",
+        "-Cameria the Coldblooded"
+      ],
+      "frameType": 6,
+      "artFilename": "CameriasCut",
+      "x": 6,
+      "y": 9,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Jewels/NewGemBase3.png?v=d001e9192de6d47bf7c8cbdcd173e50e&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "440435ae6a1af290e6ec1cc5ea1efa7b89266842f933f760b8daab771ff119b3",
+      "name": "Hypnotic Glisten",
+      "typeLine": "Large Cluster Jewel",
+      "baseType": "Large Cluster Jewel",
+      "identified": true,
+      "ilvl": 48,
+      "explicitMods": [
+        "Added Small Passive Skills also grant: 2% increased Damage",
+        "Added Small Passive Skills also grant: +3 to Dexterity",
+        "Added Small Passive Skills also grant: 4% increased Mana Regeneration Rate"
+      ],
+      "enchantMods": [
+        "Adds 9 Passive Skills",
+        "2 Added Passive Skills are Jewel Sockets",
+        "Added Small Passive Skills grant: 10% increased Attack Damage"
+      ],
+      "descrText": "Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.",
+      "frameType": 2,
+      "x": 9,
+      "y": 14,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 3,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Armours/BodyArmours/BodyDex1B.png?v=6c54a5109d16d454488c1d342c00154e&w=2&h=3&scale=1",
+      "league": "Ritual",
+      "id": "05f297db65f6716abeb2d934781bae0213ff7dd0911b50caaba59aaca7144b38",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 1,
+          "attr": "I",
+          "sColour": "B"
+        }
+      ],
+      "name": "Storm Pelt",
+      "typeLine": "Sharkskin Tunic",
+      "baseType": "Sharkskin Tunic",
+      "identified": true,
+      "ilvl": 74,
+      "properties": [
+        {
+          "name": "Evasion Rating",
+          "values": [
+            [
+              "925",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 17
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "56",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Dex",
+          "values": [
+            [
+              "152",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "explicitMods": [
+        "+30 to Evasion Rating",
+        "57% increased Evasion Rating",
+        "+28 to maximum Life",
+        "Regenerate 2.3 Life per second",
+        "+11% to Cold Resistance",
+        "Reflects 3 Physical Damage to Melee Attackers"
+      ],
+      "frameType": 2,
+      "x": 11,
+      "y": 16,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Maps/PaleCourt02.png?v=757829336b7239c4b1e398c203f0cca0&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "0f7b34f8cf9b2a403fa4e1a8cb1d831abba6f9192cdd8a5d74b4f4f5ef927728",
+      "name": "",
+      "typeLine": "Yriel's Key",
+      "baseType": "Yriel's Key",
+      "identified": true,
+      "ilvl": 0,
+      "descrText": "Can be used in a personal Map Device.",
+      "flavourText": [
+        "Lord of the Wild, of the feral and frenzied,\r",
+        "of the uncivilized, the untamed, the untouched."
+      ],
+      "frameType": 0,
+      "x": 9,
+      "y": 13,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Breach/BreachFragmentsCold.png?v=8698bfa03dcc9fca7fdde5c763839bd0&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "7370a080448715ec9d80361e23e1642be72c65a021e3590cc9cfd5c8bb7bfa47",
+      "name": "",
+      "typeLine": "Tul's Breachstone",
+      "baseType": "Tul's Breachstone",
+      "identified": true,
+      "ilvl": 0,
+      "descrText": "Travel to Tul's Domain by using this item in a personal Map Device. Can only be used once.",
+      "frameType": 0,
+      "x": 21,
+      "y": 4,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXNcL01hcHNcL0F0bGFzMk1hcHNcL05ld1wvUGVuIiwidyI6MSwiaCI6MSwic2NhbGUiOnRydWUsIm1uIjoxMCwibXQiOjEsIm1iIjp0cnVlfV0/68ee5c7ca5/Item.png",
+      "league": "Ritual",
+      "id": "ba6433a70e86b2f65ea83aa57d9b878427b8d2c2d549ef1b449222edc284f92a",
+      "name": "",
+      "typeLine": "Superior Blighted Pen Map",
+      "baseType": "Blighted Pen Map",
+      "identified": true,
+      "ilvl": 68,
+      "properties": [
+        {
+          "name": "Map Tier",
+          "values": [
+            [
+              "1",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 1
+        },
+        {
+          "name": "Atlas Region",
+          "values": [
+            [
+              "Valdo's Rest",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Item Quantity",
+          "values": [
+            [
+              "+19%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 2
+        },
+        {
+          "name": "Quality",
+          "values": [
+            [
+              "+19%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 6
+        }
+      ],
+      "implicitMods": [
+        "Area is infested with Fungal Growths",
+        "Natural inhabitants of this area have been removed"
+      ],
+      "descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+      "frameType": 0,
+      "x": 11,
+      "y": 15,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Delirium/DeliriumOrbBreach.png?v=29ea65e261dbc108c4f4e8f2cff65fc6&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "6023ce0aa6e1d2ebfefbab6d840cee8e4a98ef3cea11570b88be75d615590764",
+      "name": "",
+      "typeLine": "Obscured Delirium Orb",
+      "baseType": "Obscured Delirium Orb",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Modifies a Map item adding layers of Delirium with the Breach Items reward type"
+      ],
+      "descrText": "Right click this item then left click a Map item to apply it. Can apply up to 5 to a single Map item.",
+      "frameType": 5,
+      "x": 15,
+      "y": 14,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Catalysts/TemperingCatalyst.png?v=a1d7b9ff50e76c3916d2e11ef1eeac63&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "d7e073eeb27f09add92729a21d3d66cb41588751aee1c130f4ce12ca4d1cdb0b",
+      "name": "",
+      "typeLine": "Tempering Catalyst",
+      "baseType": "Tempering Catalyst",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Adds quality that enhances Defence modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+      ],
+      "descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower-rarity jewellery. The maximum quality is 20%.",
+      "frameType": 5,
+      "x": 16,
+      "y": 14,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Maps/UberVaal04.png?v=735839ceae0fc45d15ec69555e931413&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "fb0147edaeea5f207ee85a4f0df5fb74b20f38f5c1a5e1f70a7461e737456c5c",
+      "name": "",
+      "typeLine": "Mortal Grief",
+      "baseType": "Mortal Grief",
+      "identified": true,
+      "ilvl": 0,
+      "descrText": "Can be used in a personal Map Device.",
+      "flavourText": [
+        "When we prostrate ourselves to the night, we worship mortality."
+      ],
+      "frameType": 0,
+      "x": 18,
+      "y": 22,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Maps/LabyrinthHarvestInfused1.png?v=fb1a3b3572ba9af66f0eb567a41607a7&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "547c2531931c94c530c856293aae863c7b03ae4b30bd343a0f6a81e89a7201b3",
+      "name": "",
+      "typeLine": "Gift to the Goddess",
+      "baseType": "Gift to the Goddess",
+      "identified": true,
+      "ilvl": 0,
+      "descrText": "Travel to the Aspirants' Plaza and spend this item to open the Eternal Labyrinth of Opportunity. You must have completed the six different Trials of Ascendancy found in Maps in order to access this area.",
+      "flavourText": [
+        "The Goddess abides a kingdom beyond compare,\r",
+        "should you meet her challenge."
+      ],
+      "frameType": 0,
+      "x": 4,
+      "y": 7,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Catalysts/FertileCatalyst.png?v=d7f88f489c3a7056f93f28f7b382a881&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "bc332d9f65dbdfe6d4aa6471b298093dc67fb1cbcd863b1b14ce3128dcc76167",
+      "name": "",
+      "typeLine": "Fertile Catalyst",
+      "baseType": "Fertile Catalyst",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Adds quality that enhances Life and Mana modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+      ],
+      "descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower-rarity jewellery. The maximum quality is 20%.",
+      "frameType": 5,
+      "x": 13,
+      "y": 14,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Delve/SanctifiedFossil.png?v=06e401cb206eef0d0d2ed44487ee6098&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "854df6d6ac6dd4ca734168c575fc091f15c9c60eea409e374b853d3b4b4a83f6",
+      "name": "",
+      "typeLine": "Gilded Fossil",
+      "baseType": "Gilded Fossil",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Item is overvalued by vendors"
+      ],
+      "descrText": "Place in a Resonator to influence item crafting.",
+      "frameType": 5,
+      "x": 15,
+      "y": 12,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Scarabs/Tier4ScarabLegion.png?v=25b4034bfe21ef7ac96544f6bd162303&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "e6eca0126d8d1cce261abccb35d47d8a7a3c13c0af67a3ff65cfe436b0ec1c9d",
+      "name": "",
+      "typeLine": "Winged Legion Scarab",
+      "baseType": "Winged Legion Scarab",
+      "identified": true,
+      "ilvl": 0,
+      "explicitMods": [
+        "Area contains 2 additional Legion Encounters\r\nEach Legion contains a War Hoard\r\nEach Legion is accompanied by a General"
+      ],
+      "descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "flavourText": [
+        "As the passage between Wraeclast and the land beyond time's reach is torn open,\r",
+        "we stand on the precipice of eternal war.\r",
+        "And no one remains to hold us back."
+      ],
+      "frameType": 0,
+      "x": 8,
+      "y": 12,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Jewels/basicint.png?v=cd579ea22c05f1c6ad2fd015d7a710bd&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "2af7953cb6e9788f338f268dec97750c4b8d5b54e31ab22f754d538b262efbec",
+      "name": "Foe Sliver",
+      "typeLine": "Cobalt Jewel",
+      "baseType": "Cobalt Jewel",
+      "identified": true,
+      "ilvl": 71,
+      "explicitMods": [
+        "5% increased Attack Speed while holding a Shield",
+        "6% increased maximum Energy Shield",
+        "3% reduced Mana Cost of Skills",
+        "Totems gain +9% to all Elemental Resistances"
+      ],
+      "descrText": "Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.",
+      "frameType": 2,
+      "x": 19,
+      "y": 10,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 2,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Armours/Boots/BootsDex3.png?v=597ff9da61bbd5547ef2b10d25b8e909&w=2&h=2&scale=1",
+      "league": "Ritual",
+      "id": "38acb9492f3f46b8ade06ab3700ca5d51b365bbe0a8e3e383092790754ae74be",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 1,
+          "attr": "D",
+          "sColour": "G"
+        }
+      ],
+      "name": "Doom Spur",
+      "typeLine": "Sharkskin Boots",
+      "baseType": "Sharkskin Boots",
+      "identified": true,
+      "ilvl": 78,
+      "properties": [
+        {
+          "name": "Evasion Rating",
+          "values": [
+            [
+              "152",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 17
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "44",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Dex",
+          "values": [
+            [
+              "79",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "explicitMods": [
+        "+7 to Evasion Rating",
+        "Regenerate 10.6 Life per second",
+        "+11% to Fire Resistance",
+        "+35% to Lightning Resistance"
+      ],
+      "frameType": 2,
+      "x": 20,
+      "y": 19,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/ProphecyOrbRed.png?v=dc9105d2b038a79c7c316fc2ba30cef0&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "5a3113123edc79d9015447df2e4b7b5816a849a5cf7ecc74c360a66f2d651434",
+      "name": "",
+      "typeLine": "Ending the Torment",
+      "baseType": "Ending the Torment",
+      "identified": true,
+      "ilvl": 0,
+      "descrText": "Right-click to add this prophecy to your character.",
+      "flavourText": [
+        "A fearsome foe's inner torment spills out into the world."
+      ],
+      "prophecyText": "You will slay a powerful foe who will release a Tormented Spirit.",
+      "frameType": 8,
+      "x": 23,
+      "y": 1,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Heist/ContractItem9.png?v=46608c574906a4eaf3c3e7b940e0875a&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "6991ff608162bbfe175908ce240c15c0afbc0d292bcd08a06f9a455fa6ffff79",
+      "name": "",
+      "typeLine": "Contract: Mansion",
+      "baseType": "Contract: Mansion",
+      "identified": true,
+      "ilvl": 77,
+      "properties": [
+        {
+          "name": "Client",
+          "values": [
+            [
+              "The Crimson Scribe",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Heist Target: {0} ({1})",
+          "values": [
+            [
+              "Seal of Solaris",
+              0
+            ],
+            [
+              "High Value",
+              0
+            ]
+          ],
+          "displayMode": 3,
+          "type": 47
+        },
+        {
+          "name": "Area Level",
+          "values": [
+            [
+              "77",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 34
+        },
+        {
+          "name": "Requires {1} (Level {0})",
+          "values": [
+            [
+              "2",
+              0
+            ],
+            [
+              "Deception",
+              0
+            ]
+          ],
+          "displayMode": 3,
+          "type": 45
+        }
+      ],
+      "descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+      "flavourText": [
+        "\"It is my belief that Solerai, from the Maraketh legend, is Solaris herself in another system of\r",
+        "myths. If I can prove that, I can begin piecing together a true history of the Winter of the World.\""
+      ],
+      "frameType": 0,
+      "x": 0,
+      "y": 1,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Jewels/basicdex.png?v=7375b3bb90a9809870b31d1aa4aa68b9&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "278319952c012303509545db6fe48eada9f5b0f149bc1a3a4820f81929987c69",
+      "name": "",
+      "typeLine": "Ripping Viridian Jewel",
+      "baseType": "Viridian Jewel",
+      "identified": true,
+      "ilvl": 74,
+      "explicitMods": [
+        "6% increased Attack Speed with Claws"
+      ],
+      "descrText": "Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.",
+      "frameType": 1,
+      "x": 18,
+      "y": 10,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Scarabs/NormalScarabStrongboxes.png?v=c85ce52908cd9a5db2ed9145c224c953&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "9a38bad501e025eb66f6b4aee2cd74c56df69d8b458448cd41fe7bc0ef9cecc8",
+      "name": "",
+      "typeLine": "Polished Ambush Scarab",
+      "baseType": "Polished Ambush Scarab",
+      "identified": true,
+      "ilvl": 0,
+      "explicitMods": [
+        "Area contains 4 additional Strongboxes"
+      ],
+      "descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "flavourText": [
+        "Your people were renegades, Rindwik, but you have proven your loyalty.\r",
+        "You will lead the martial defence of our expeditions."
+      ],
+      "frameType": 0,
+      "x": 20,
+      "y": 22,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Jewels/BlightThreshold.png?v=7debb911ae40235ce0bc6113092f6a80&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "7974f92eebe9a0f06a72e5d6f279cdca00b424ad7115166b3026567996f1d190",
+      "name": "Spreading Rot",
+      "typeLine": "Cobalt Jewel",
+      "baseType": "Cobalt Jewel",
+      "identified": true,
+      "ilvl": 78,
+      "properties": [
+        {
+          "name": "Limited to",
+          "values": [
+            [
+              "2",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Radius",
+          "values": [
+            [
+              "Medium",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 25
+        }
+      ],
+      "explicitMods": [
+        "8% increased Chaos Damage",
+        "With at least 40 Intelligence in Radius, Blight inflicts Withered for 2 seconds",
+        "With at least 40 Intelligence in Radius, Blight has 50% increased Hinder Duration"
+      ],
+      "descrText": "Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.",
+      "flavourText": [
+        "The Cataclysm was but the first act in a play of horrors.\r",
+        "The dead lingered, and the living began to rot."
+      ],
+      "frameType": 3,
+      "x": 7,
+      "y": 15,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 4,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Weapons/TwoHandWeapons/Bows/Bow3.png?v=da52da78a5c580592f9071316832b647&w=2&h=4&scale=1",
+      "league": "Ritual",
+      "id": "a48bc1653457c3c802855211ff904222a70ad66328de865475c9b10c1df1f617",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        }
+      ],
+      "name": "Ghoul Strike",
+      "typeLine": "Citadel Bow",
+      "baseType": "Citadel Bow",
+      "identified": true,
+      "ilvl": 79,
+      "properties": [
+        {
+          "name": "Bow",
+          "values": [],
+          "displayMode": 0
+        },
+        {
+          "name": "Quality",
+          "values": [
+            [
+              "+13%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 6
+        },
+        {
+          "name": "Physical Damage",
+          "values": [
+            [
+              "28-113",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 9
+        },
+        {
+          "name": "Elemental Damage",
+          "values": [
+            [
+              "4-56",
+              6
+            ]
+          ],
+          "displayMode": 0,
+          "type": 10
+        },
+        {
+          "name": "Critical Strike Chance",
+          "values": [
+            [
+              "7.74%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 12
+        },
+        {
+          "name": "Attacks per Second",
+          "values": [
+            [
+              "1.25",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 13
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "58",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Dex",
+          "values": [
+            [
+              "185",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "explicitMods": [
+        "Adds 4 to 56 Lightning Damage",
+        "29% increased Critical Strike Chance",
+        "+33% to Fire Resistance",
+        "34% increased Stun Duration on Enemies"
+      ],
+      "frameType": 2,
+      "x": 15,
+      "y": 15,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXNcL01hcHNcL0F0bGFzMk1hcHNcL05ld1wvRHJ5V29vZHMiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6dHJ1ZSwibW4iOjEwLCJtdCI6M31d/b9d8e38b8c/Item.png",
+      "league": "Ritual",
+      "id": "9a924cde5378954d48642b2deaa0d53c6eb34f98fb9066623edfcffafb13e827",
+      "name": "",
+      "typeLine": "Ashen Wood Map",
+      "baseType": "Ashen Wood Map",
+      "identified": true,
+      "ilvl": 70,
+      "properties": [
+        {
+          "name": "Map Tier",
+          "values": [
+            [
+              "3",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 1
+        },
+        {
+          "name": "Atlas Region",
+          "values": [
+            [
+              "Valdo's Rest",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+      "frameType": 0,
+      "x": 0,
+      "y": 2,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Essence/Fear7.png?v=23447273b68054be5341a93e5b31253e&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 9,
+      "league": "Ritual",
+      "id": "54a8d1c21e6fc7773db74ceb0904aab1465e3a32c81be14bddc621bd1ce6bf23",
+      "name": "",
+      "typeLine": "Deafening Essence of Fear",
+      "baseType": "Deafening Essence of Fear",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/9",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Upgrades a normal item to rare or reforges a rare item, guaranteeing one property",
+        "",
+        "One Handed Weapon: Minions deal (63-69)% increased Damage",
+        "Two Handed Weapon: Minions deal (95-104)% increased Damage",
+        "Armour: Minions have (27-30)% increased maximum Life",
+        "Quiver: Minions have (27-30)% increased Movement Speed",
+        "Belt: Minions have (27-30)% increased maximum Life",
+        "Other Jewellery: Minions have (27-30)% increased Movement Speed"
+      ],
+      "descrText": "Right click this item then left click a normal or rare item to apply it.",
+      "frameType": 5,
+      "x": 22,
+      "y": 11,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Essence/Torment7.png?v=fea8e2d8ccb19124d227f0baaf810039&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 9,
+      "league": "Ritual",
+      "id": "81d0b419461b08d95d74003b7482a31c126521a7a71d1dcb3e9980f828b39a1c",
+      "name": "",
+      "typeLine": "Deafening Essence of Torment",
+      "baseType": "Deafening Essence of Torment",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/9",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Upgrades a normal item to rare or reforges a rare item, guaranteeing one property",
+        "",
+        "One Handed Weapon: Adds (4-11) to (134-144) Lightning Damage to Spells",
+        "Two Handed Weapon: Adds (6-16) to (201-216) Lightning Damage to Spells",
+        "Gloves: Adds (1-3) to (29-30) Lightning Damage to Attacks",
+        "Body Armour: (9-10)% chance to Avoid Lightning Damage from Hits",
+        "Shield: (9-10)% chance to Avoid Lightning Damage from Hits",
+        "Other Armour: (31-44)% chance to Avoid being Shocked",
+        "Quiver: Adds (1-3) to (29-30) Lightning Damage to Attacks",
+        "Belt: (31-44)% chance to Avoid being Shocked",
+        "Other Jewellery: Adds (4-8) to (71-76) Lightning Damage to Attacks"
+      ],
+      "descrText": "Right click this item then left click a normal or rare item to apply it.",
+      "frameType": 5,
+      "x": 22,
+      "y": 12,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 4,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Weapons/TwoHandWeapons/Bows/Deathsharp.png?v=30d9c7ac0512d51582364c323abd3550&w=2&h=4&scale=1",
+      "league": "Ritual",
+      "id": "4c063259c8c70ad718184fe2ba830eb448b791e5bb3876152162478f702ac8fa",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "I",
+          "sColour": "B"
+        },
+        {
+          "group": 1,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 2,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 2,
+          "attr": "D",
+          "sColour": "G"
+        }
+      ],
+      "name": "Death's Harp",
+      "typeLine": "Death Bow",
+      "baseType": "Death Bow",
+      "identified": true,
+      "ilvl": 70,
+      "properties": [
+        {
+          "name": "Bow",
+          "values": [],
+          "displayMode": 0
+        },
+        {
+          "name": "Physical Damage",
+          "values": [
+            [
+              "44-116",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 9
+        },
+        {
+          "name": "Critical Strike Chance",
+          "values": [
+            [
+              "6.75%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 12
+        },
+        {
+          "name": "Attacks per Second",
+          "values": [
+            [
+              "1.32",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 13
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "32",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Dex",
+          "values": [
+            [
+              "107",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "implicitMods": [
+        "35% increased Critical Strike Chance"
+      ],
+      "explicitMods": [
+        "118% increased Physical Damage",
+        "10% increased Attack Speed",
+        "+50% to Global Critical Strike Multiplier",
+        "Bow Attacks fire an additional Arrow"
+      ],
+      "flavourText": [
+        "The mournful music of the strings,\r",
+        "The creaking arch, the arrow sings.\r",
+        "A choking cry, a rattled breath,\r",
+        "The Reaper's Song, the Harp of Death."
+      ],
+      "frameType": 3,
+      "x": 4,
+      "y": 11,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXNcL01hcHNcL0F0bGFzMk1hcHNcL05ld1wvTGFpciIsInciOjEsImgiOjEsInNjYWxlIjp0cnVlLCJtbiI6MTAsIm10IjoyfV0/193192c84f/Item.png",
+      "league": "Ritual",
+      "id": "11a74fc65fca00512285db739b75cfc8d865e72d15c861d401e7f7e021262163",
+      "name": "",
+      "typeLine": "Lair Map",
+      "baseType": "Lair Map",
+      "identified": true,
+      "ilvl": 70,
+      "properties": [
+        {
+          "name": "Map Tier",
+          "values": [
+            [
+              "2",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 1
+        },
+        {
+          "name": "Atlas Region",
+          "values": [
+            [
+              "Valdo's Rest",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+      "frameType": 0,
+      "x": 0,
+      "y": 4,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Gems/BlackHole.png?v=dc637d94ecbd71afa8e1f6961512e494&w=1&h=1&scale=1",
+      "support": false,
+      "league": "Ritual",
+      "id": "7c6affd453680120acc37875caaa6154e486721b052725c0afd596d69415d3e9",
+      "name": "",
+      "typeLine": "Void Sphere",
+      "baseType": "Void Sphere",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Spell, AoE, Duration, Physical, Chaos, Orb",
+          "values": [],
+          "displayMode": 0
+        },
+        {
+          "name": "Level",
+          "values": [
+            [
+              "1",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 5
+        },
+        {
+          "name": "Mana Cost",
+          "values": [
+            [
+              "30",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Cooldown Time",
+          "values": [
+            [
+              "10.00 sec",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Cast Time",
+          "values": [
+            [
+              "0.60 sec",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Critical Strike Chance",
+          "values": [
+            [
+              "5.00%",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Effectiveness of Added Damage",
+          "values": [
+            [
+              "55%",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Quality",
+          "values": [
+            [
+              "+10%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 6
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "34",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Int",
+          "values": [
+            [
+              "79",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "additionalProperties": [
+        {
+          "name": "Experience",
+          "values": [
+            [
+              "1/252595",
+              0
+            ]
+          ],
+          "displayMode": 2,
+          "progress": 0,
+          "type": 20
+        }
+      ],
+      "secDescrText": "Creates a Void Sphere which Hinders enemies in an area around it, with the debuff being stronger on enemies closer to the sphere. It also regularly releases pulses of area damage. The Void Sphere will consume the corpses of any enemies which die in its area. Can only have one Void Sphere at a time.",
+      "explicitMods": [
+        "Deals 27 to 41 Physical Damage",
+        "Base duration is 5.00 seconds",
+        "Pulses every 0.40 seconds",
+        "40% of Physical Damage Converted to Chaos Damage",
+        "5% increased Area of Effect",
+        "Enemies in range are Hindered, with up to 30% reduced Movement Speed, based on distance from the Void Sphere"
+      ],
+      "descrText": "Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.",
+      "frameType": 4,
+      "x": 13,
+      "y": 6,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Amulets/SharedUnsight.png?v=70255561c7af204c2b832a333474be1f&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "a4db20ac656bc777c206f9b37c42c537024743c6a34f5c982734c482f953aa6a",
+      "name": "Retaliation Charm",
+      "typeLine": "Citrine Amulet",
+      "baseType": "Citrine Amulet",
+      "identified": true,
+      "ilvl": 70,
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "30",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "implicitMods": [
+        "+23 to Strength and Dexterity"
+      ],
+      "explicitMods": [
+        "30% increased Damage with Hits and Ailments against Blinded Enemies",
+        "37% increased Critical Strike Chance against Blinded Enemies",
+        "45% chance to Blind Enemies on Critical Strike",
+        "Blind does not affect your Light Radius",
+        "Blind you inflict is Reflected to you"
+      ],
+      "flavourText": [
+        "An eye for an eye."
+      ],
+      "frameType": 3,
+      "x": 9,
+      "y": 22,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/RegretOrb.png?v=2a2321a13ab36e01da75a717e103f943&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 40,
+      "league": "Ritual",
+      "id": "bf8a3df43acf89523cda31ec590ebf641c0313414a959eb957105fa0e101e713",
+      "name": "",
+      "typeLine": "Orb of Unmaking",
+      "baseType": "Orb of Unmaking",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/40",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Grants an atlas passive skill refund point"
+      ],
+      "descrText": "Right click on this item to use it.",
+      "frameType": 5,
+      "x": 6,
+      "y": 2,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Jewels/RivetedEye.png?v=a0904494de195adde172f2d6dd329b05&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "595836502482672803c06e1f60d6d2e552d977907790fd8feee9eaba407dff96",
+      "abyssJewel": true,
+      "name": "",
+      "typeLine": "Frosted Hypnotic Eye Jewel",
+      "baseType": "Hypnotic Eye Jewel",
+      "identified": true,
+      "ilvl": 70,
+      "properties": [
+        {
+          "name": "Abyss",
+          "values": [],
+          "displayMode": 0
+        }
+      ],
+      "explicitMods": [
+        "Adds 3 to 5 Cold Damage to Spells while Dual Wielding"
+      ],
+      "descrText": "Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.",
+      "frameType": 1,
+      "x": 19,
+      "y": 6,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Jewels/CallofSteelFreq.png?v=4de0e5d883bef15e36ce421a94da0d83&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "296d0b6a8ca5b2d307c02713749abd125044b6221f339e8f15d282fb800da97d",
+      "name": "Lord of Steel",
+      "typeLine": "Viridian Jewel",
+      "baseType": "Viridian Jewel",
+      "identified": true,
+      "ilvl": 70,
+      "properties": [
+        {
+          "name": "Limited to",
+          "values": [
+            [
+              "1",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "explicitMods": [
+        "5% increased Impale Effect",
+        "Call of Steel deals Reflected Damage with 42% increased Area of Effect",
+        "Call of Steel has 98% increased Use Speed"
+      ],
+      "descrText": "Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.",
+      "flavourText": [
+        "Her apprentice spends hours working the steel,\r",
+        "and the end result is melted for scrap.\r",
+        "Each one made better than the last.\r",
+        "Each one made more quickly.\r",
+        "She knows the path well."
+      ],
+      "frameType": 3,
+      "x": 9,
+      "y": 20,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 3,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Weapons/OneHandWeapons/OneHandSwords/OneHandSword3.png?v=0bf4b174a0c80b2fd80a12026ed04a05&w=1&h=3&scale=1",
+      "league": "Ritual",
+      "id": "7f64e96478a7e122d3e528b8f88b520164aebaa494f80cf646845016ef386a9b",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "S",
+          "sColour": "R"
+        },
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 0,
+          "attr": "I",
+          "sColour": "B"
+        }
+      ],
+      "name": "",
+      "typeLine": "Honed Corsair Sword of Impact",
+      "baseType": "Corsair Sword",
+      "identified": true,
+      "ilvl": 74,
+      "properties": [
+        {
+          "name": "One Handed Sword",
+          "values": [],
+          "displayMode": 0
+        },
+        {
+          "name": "Physical Damage",
+          "values": [
+            [
+              "30-98",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 9
+        },
+        {
+          "name": "Critical Strike Chance",
+          "values": [
+            [
+              "5.00%",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 12
+        },
+        {
+          "name": "Attacks per Second",
+          "values": [
+            [
+              "1.55",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 13
+        },
+        {
+          "name": "Weapon Range",
+          "values": [
+            [
+              "11",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 14
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "58",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Str",
+          "values": [
+            [
+              "81",
+              0
+            ]
+          ],
+          "displayMode": 1
+        },
+        {
+          "name": "Dex",
+          "values": [
+            [
+              "117",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "implicitMods": [
+        "40% increased Global Accuracy Rating"
+      ],
+      "explicitMods": [
+        "Adds 10 to 18 Physical Damage",
+        "11% increased Stun Duration on Enemies"
+      ],
+      "frameType": 1,
+      "x": 19,
+      "y": 15,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Rings/Ring1Unique.png?v=f962bd6db3b4125085fdadc3f7c00c44&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "df1adddb895a695978141589f25e284ada63e80bb070cd556e62f3174b505c2f",
+      "name": "Blackheart",
+      "typeLine": "Iron Ring",
+      "baseType": "Iron Ring",
+      "identified": true,
+      "ilvl": 70,
+      "implicitMods": [
+        "Adds 1 to 4 Physical Damage to Attacks"
+      ],
+      "explicitMods": [
+        "5% increased Global Physical Damage",
+        "Adds 1 to 3 Chaos Damage to Attacks",
+        "+25 to maximum Life",
+        "Regenerate 3 Life per second",
+        "10% chance to Cause Monsters to Flee"
+      ],
+      "flavourText": [
+        "Fear is highly infectious."
+      ],
+      "frameType": 3,
+      "x": 11,
+      "y": 22,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Heist/HeistCoinCurrency.png?v=91f470e219855da2a828fd553feb30f6&w=1&h=1&scale=1",
+      "stackSize": 4120,
+      "maxStackSize": 50000,
+      "league": "Ritual",
+      "id": "c60981b0fe5207f27120c6252f2f6f4c8fb4667091aa6dacb00293b8917399bd",
+      "name": "",
+      "typeLine": "Rogue's Marker",
+      "baseType": "Rogue's Marker",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "4120/50000",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Creates a portal to the Rogue Harbour from a Town or Hideout\nUsed as Currency for services in the Rogue Harbour"
+      ],
+      "descrText": "Right click on this item while in a Town or Hideout to use it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 0,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Jewels/MurderousEye.png?v=6679365e95eb89fd626cf59fa2b57c99&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "ea1f783c9ae4d9e1b68caae873fda7ade40d5c296a2cf327a3d86e9d96bfc3e6",
+      "abyssJewel": true,
+      "name": "",
+      "typeLine": "Murderous Eye Jewel of Coals",
+      "baseType": "Murderous Eye Jewel",
+      "identified": true,
+      "ilvl": 82,
+      "properties": [
+        {
+          "name": "Abyss",
+          "values": [],
+          "displayMode": 0
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "28",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "explicitMods": [
+        "Adds 5 to 11 Fire Damage to Attacks"
+      ],
+      "descrText": "Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.",
+      "frameType": 1,
+      "x": 19,
+      "y": 8,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyIdentification.png?v=1b9b38c45be95c59d8900f91b2afd58b&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 40,
+      "league": "Ritual",
+      "id": "2d7ea543d67bb9fa9955ca5b6c3b9ff27794534806f5672e40c11d898e731bb3",
+      "name": "",
+      "typeLine": "Scroll of Wisdom",
+      "baseType": "Scroll of Wisdom",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/40",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Identifies an item"
+      ],
+      "descrText": "Right click this item then left click an unidentified item to apply it.",
+      "frameType": 5,
+      "x": 1,
+      "y": 3,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyPortal.png?v=728696ea10d4fb1e789039debc5d8c3c&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 40,
+      "league": "Ritual",
+      "id": "1f5a858a3d38f17314634d6ae836dcbc9bee13b019d1b1fe87ce74cb7dc5f2e2",
+      "name": "",
+      "typeLine": "Portal Scroll",
+      "baseType": "Portal Scroll",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/40",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Creates a portal to town"
+      ],
+      "descrText": "Right click on this item to use it.",
+      "frameType": 5,
+      "x": 1,
+      "y": 0,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyWeaponQuality.png?v=d2ce9167e23a74cef5d8465433e86482&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "84febb234f46c92da889c3aa3119b0d5ac00474a0631728ca2bd8ae47832cebe",
+      "name": "",
+      "typeLine": "Blacksmith's Whetstone",
+      "baseType": "Blacksmith's Whetstone",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Improves the quality of a weapon"
+      ],
+      "descrText": "Right click this item then left click a weapon to apply it. Has greater effect on lower-rarity weapons. The maximum quality is 20%.",
+      "frameType": 5,
+      "x": 0,
+      "y": 5,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyArmourQuality.png?v=251e204e4ec325f75ce8ef75b2dfbeb8&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 40,
+      "league": "Ritual",
+      "id": "f16b361d51343be6650b84e59ae6fb86ca4c11dc24d3dc747f3976a07aa2d0f2",
+      "name": "",
+      "typeLine": "Armourer's Scrap",
+      "baseType": "Armourer's Scrap",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/40",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Improves the quality of an armour"
+      ],
+      "descrText": "Right click this item then left click an armour to apply it. Has greater effect on lower-rarity armours. The maximum quality is 20%.",
+      "frameType": 5,
+      "x": 0,
+      "y": 13,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyFlaskQuality.png?v=ca8bd0dd43d2adf8b021578a398eb9de&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "5e70465420f99aeff7c8377bc59fad8dacac23bf8641d789ca339b3bd58c5b1a",
+      "name": "",
+      "typeLine": "Glassblower's Bauble",
+      "baseType": "Glassblower's Bauble",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Improves the quality of a flask"
+      ],
+      "descrText": "Right click this item then left click a flask to apply it. Has greater effect on lower-rarity flasks. The maximum quality is 20%.",
+      "frameType": 5,
+      "x": 0,
+      "y": 6,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyGemQuality.png?v=f11792b6dbd2f5f869351151bc3a4539&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "7a176e1137f10b7c176749f9964f2698fadc9a6fd7354ef7003ca49841d526ad",
+      "name": "",
+      "typeLine": "Gemcutter's Prism",
+      "baseType": "Gemcutter's Prism",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Improves the quality of a gem"
+      ],
+      "descrText": "Right click this item then left click a gem to apply it. The maximum quality is 20%.",
+      "frameType": 5,
+      "x": 0,
+      "y": 8,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyMapQuality.png?v=f46e0a1af7223e2d4cae52bc3f9f7a1f&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "b3369b034222f5a5669d7acda6b8d6a58c705eb90ffa2ba596876f593ef8b40f",
+      "name": "",
+      "typeLine": "Cartographer's Chisel",
+      "baseType": "Cartographer's Chisel",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Improves the quality of a map"
+      ],
+      "descrText": "Right click this item then left click a map to apply it. Has greater effect on lower-rarity maps. The maximum quality is 20%.",
+      "frameType": 5,
+      "x": 0,
+      "y": 12,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeToMagic.png?v=333b8b5e28b73c62972fc66e7634c5c8&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 40,
+      "league": "Ritual",
+      "id": "2ae59fab49c6daa9d50827022429554e6e8fd2a31fa6550a74d69238f637960b",
+      "name": "",
+      "typeLine": "Orb of Transmutation",
+      "baseType": "Orb of Transmutation",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/40",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Upgrades a normal item to a magic item"
+      ],
+      "descrText": "Right click this item then left click a normal item to apply it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 7,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollMagic.png?v=6d9520174f6643e502da336e76b730d3&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "7f01b3449c095a7cdc05623ea9d189a95b9c2aa8f80c7d695aa18690268f2cf5",
+      "name": "",
+      "typeLine": "Orb of Alteration",
+      "baseType": "Orb of Alteration",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Reforges a magic item with new random modifiers"
+      ],
+      "descrText": "Right click this item then left click a magic item to apply it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 11,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/AnnullOrb.png?v=f9a0f8b21515c8abf517e9648cfc7455&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "a1706ebbfed6f4f512106b263a8ca930cd5cb703542edf3231c8b9d73daea132",
+      "name": "",
+      "typeLine": "Orb of Annulment",
+      "baseType": "Orb of Annulment",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Removes a random modifier from an item"
+      ],
+      "descrText": "Right click this item then left click on a magic or rare item to apply it. The item's Catalyst quality decreases the chance of removing a modifier which matches the quality type. Removes 20% Quality applied by Catalysts on use.",
+      "frameType": 5,
+      "x": 0,
+      "y": 17,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeRandomly.png?v=e4049939b9cd61291562f94364ee0f00&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "4ed9b2ce1a18a6f65d26b22fe414fe548ef451a7961cea19bad88ba5e844f07a",
+      "name": "",
+      "typeLine": "Orb of Chance",
+      "baseType": "Orb of Chance",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Upgrades a normal item to a random rarity"
+      ],
+      "descrText": "Right click this item then left click a normal item to apply it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 14,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToMagic.png?v=97e63b85807f2419f4208482fd0b4859&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 30,
+      "league": "Ritual",
+      "id": "309881d376909ab668a3038c9ace17ea5c61ad64ff2356ee8d04b3663666465c",
+      "name": "",
+      "typeLine": "Orb of Augmentation",
+      "baseType": "Orb of Augmentation",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/30",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Augments a magic item with a new random modifier"
+      ],
+      "descrText": "Right click this item then left click a magic item to apply it. Magic items can have up to two random modifiers. The item's Catalyst quality increases the chance of applying a modifier which matches the quality type. Removes 2% Quality applied by Catalysts on use.",
+      "frameType": 5,
+      "x": 0,
+      "y": 15,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/ExaltedShard.png?v=4945fe24b79868be79870f8ad01f20b0&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "5b52b9dee84cc84d618ad85b664d53f1c766e3e5b317779e4f671d75ae4a38a2",
+      "name": "",
+      "typeLine": "Exalted Shard",
+      "baseType": "Exalted Shard",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "descrText": "A stack of 20 shards becomes an Exalted Orb.",
+      "frameType": 5,
+      "x": 0,
+      "y": 16,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 2,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Armours/Gloves/FingerlessSilkGloves.png?v=8ef9d6c01a770301713fd41e41b1a3be&w=2&h=2&scale=1",
+      "league": "Ritual",
+      "id": "87929a146f70dbb05aa198fc54943b5ad311df6f8b13e071e2493b2ed134c4da",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "I",
+          "sColour": "B"
+        }
+      ],
+      "name": "Rapture Clutches",
+      "typeLine": "Fingerless Silk Gloves",
+      "baseType": "Fingerless Silk Gloves",
+      "identified": true,
+      "ilvl": 70,
+      "properties": [
+        {
+          "name": "Quality",
+          "values": [
+            [
+              "+9%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 6
+        },
+        {
+          "name": "Energy Shield",
+          "values": [
+            [
+              "129",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 18
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "70",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Int",
+          "values": [
+            [
+              "95",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "implicitMods": [
+        "16% increased Spell Damage"
+      ],
+      "explicitMods": [
+        "Adds 1 to 23 Lightning Damage to Attacks",
+        "+30 to maximum Energy Shield",
+        "68% increased Energy Shield",
+        "+16% to Cold Resistance",
+        "+27% to Lightning Resistance"
+      ],
+      "frameType": 2,
+      "x": 21,
+      "y": 15,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeMagicToRare.png?v=1187a8511b47b35815bd75698de1fa2a&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "78c78b05b87b9fa3cbc624030b14a5b0ebab6b8ff8f7e8ead093e76c0fb48e8c",
+      "name": "",
+      "typeLine": "Regal Orb",
+      "baseType": "Regal Orb",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Upgrades a magic item to a rare item"
+      ],
+      "descrText": "Right click this item then left click a magic item to apply it. Current modifiers are retained and a new one is added. The item's Catalyst quality increases the chance of applying a modifier which matches the quality type. Removes 5% Quality applied by Catalysts on use.",
+      "frameType": 5,
+      "x": 1,
+      "y": 1,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeToRare.png?v=89c110be97333995522c7b2c29cae728&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "d2ad9fc7ed063cc6fd1f01084ad7cfaf0305cdef7ee027c9f49dd96d4ea5df04",
+      "name": "",
+      "typeLine": "Orb of Alchemy",
+      "baseType": "Orb of Alchemy",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Upgrades a normal item to a rare item"
+      ],
+      "descrText": "Right click this item then left click a normal item to apply it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 23,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png?v=c60aa876dd6bab31174df91b1da1b4f9&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "e73a245f73a736a21709cd65accca6bec5dbfde3afab6d081b1eb94c0d74b01f",
+      "name": "",
+      "typeLine": "Chaos Orb",
+      "baseType": "Chaos Orb",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Reforges a rare item with new random modifiers"
+      ],
+      "descrText": "Right click this item then left click a rare item to apply it.",
+      "frameType": 5,
+      "x": 1,
+      "y": 2,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyImplicitMod.png?v=472eeef04846d8a25d65b3d4f9ceecc8&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "72d7c9e4b9cc2e4cd50a9f2f7654c5e975c76f37049676e1af996127379ac8ca",
+      "name": "",
+      "typeLine": "Blessed Orb",
+      "baseType": "Blessed Orb",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Randomises the numeric values of the implicit modifiers of an item"
+      ],
+      "descrText": "Right click this item then left click another item to apply it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 22,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyModValues.png?v=0ad99d4a2b0356a60fa8194910d80f6b&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "8a927d6217d5580ced1773c2a587568fae5caf847a7129bd75a665d9f8b7f174",
+      "name": "",
+      "typeLine": "Divine Orb",
+      "baseType": "Divine Orb",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Randomises the numeric values of the random modifiers on an item"
+      ],
+      "descrText": "Right click this item then left click a magic, rare or unique item to apply it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 18,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/HarbingerOrb.png?v=a61bf3add692a2fe74bb5f39213f4d93&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "7166ba02c69442b41e625f5bb7528d96efffd4ab462d07b0dfd7391ed8756274",
+      "name": "",
+      "typeLine": "Harbinger's Orb",
+      "baseType": "Harbinger's Orb",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Reforges a map item as another of a higher tier"
+      ],
+      "descrText": "Right click this item then left click a map to apply it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 21,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/HorizonOrb.png?v=f3b3343dc61c60e667003bbdbbdb2374&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "c56d16074818115f4e04f7a4124302fb588592137aa7ed554f88a01c3056c2af",
+      "name": "",
+      "typeLine": "Orb of Horizons",
+      "baseType": "Orb of Horizons",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Reforges a map item as another of the same tier"
+      ],
+      "descrText": "Right click this item then left click a map to apply it.",
+      "frameType": 5,
+      "x": 1,
+      "y": 4,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 2,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Armours/Gloves/GlovesDexIntUnique1.png?v=7f0286e47d36b4c4a50966ae736e58c5&w=2&h=2&scale=1",
+      "league": "Ritual",
+      "id": "f711ea16271fcf4487cb5201c8141e1a964f813d9fce6c47c5bec1f39e3c99c7",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "S",
+          "sColour": "R"
+        },
+        {
+          "group": 0,
+          "attr": "I",
+          "sColour": "B"
+        },
+        {
+          "group": 0,
+          "attr": "S",
+          "sColour": "R"
+        },
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        }
+      ],
+      "name": "Facebreaker",
+      "typeLine": "Strapped Mitts",
+      "baseType": "Strapped Mitts",
+      "identified": true,
+      "ilvl": 77,
+      "properties": [
+        {
+          "name": "Evasion Rating",
+          "values": [
+            [
+              "30",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 17
+        },
+        {
+          "name": "Energy Shield",
+          "values": [
+            [
+              "6",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 18
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "16",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "explicitMods": [
+        "+30% to Global Critical Strike Multiplier",
+        "10% reduced Enemy Stun Threshold",
+        "603% more Physical Damage with Unarmed Attacks",
+        "Extra gore"
+      ],
+      "flavourText": [
+        "Fly like a Storm Crow, crush like a Rhoa"
+      ],
+      "frameType": 3,
+      "x": 5,
+      "y": 17,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/AtlasRadiusTier1.png?v=7c21fc06120d910018893083227406df&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "f945bd5c316dad0dff5ee3e19a65b2fb3664c388600606c857056b3dbecaf8de",
+      "name": "",
+      "typeLine": "Simple Sextant",
+      "baseType": "Simple Sextant",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Adds or rerolls a modifier on a Watchstone."
+      ],
+      "descrText": "Right click this item then left click a Watchstone to apply it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 10,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 2,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Delve/Reroll2x2C.png?v=ded8c68c14ea93f9fb6421b5b047d730&w=2&h=2&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "d5e9d4e47cce563eec067f749169bcb86e128c61786e1684f417f3f073c49b9e",
+      "delve": true,
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "DV",
+          "sColour": "DV"
+        },
+        {
+          "group": 1,
+          "attr": "DV",
+          "sColour": "DV"
+        },
+        {
+          "group": 2,
+          "attr": "DV",
+          "sColour": "DV"
+        },
+        {
+          "group": 3,
+          "attr": "DV",
+          "sColour": "DV"
+        }
+      ],
+      "name": "",
+      "typeLine": "Prime Chaotic Resonator",
+      "baseType": "Prime Chaotic Resonator",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        },
+        {
+          "name": "Requires <unmet>{4} Socketed Fossils",
+          "values": [],
+          "displayMode": 0
+        }
+      ],
+      "explicitMods": [
+        "Reforges a rare item with new random modifiers"
+      ],
+      "descrText": "All sockets must be filled with Fossils before this item can be used.",
+      "frameType": 5,
+      "x": 14,
+      "y": 10,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/AtlasRadiusTier2.png?v=043e5f4d8c52af6b302e30afaffa5eba&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "07c3fb94abe9032874c34a9b06c5eced0a0d6780afafdd2ecac01a3978bc98f8",
+      "name": "",
+      "typeLine": "Prime Sextant",
+      "baseType": "Prime Sextant",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Adds or rerolls a modifier on a Watchstone."
+      ],
+      "descrText": "Right click this item then left click a Watchstone to apply it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 9,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/AtlasRadiusTier3.png?v=d69377f526ff51c408461b0cee4d4ade&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "41be8dfb377ed33749c4855db68237cf88720af99155f3296f5eef2c772c72f4",
+      "name": "",
+      "typeLine": "Awakened Sextant",
+      "baseType": "Awakened Sextant",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Adds or rerolls a modifier on a Watchstone."
+      ],
+      "descrText": "Right click this item then left click a Watchstone to apply it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 19,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyPassiveSkillRefund.png?v=1de687952ce56385b74ac450f97fcc33&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 40,
+      "league": "Ritual",
+      "id": "8f829bb6ab6bca876d3bfa278fa30eb5eac0d0c0d45dfd393cad8a6bfd6ba21b",
+      "name": "",
+      "typeLine": "Orb of Regret",
+      "baseType": "Orb of Regret",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/40",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Grants a passive skill refund point"
+      ],
+      "descrText": "Right click on this item to use it.",
+      "frameType": 5,
+      "x": 0,
+      "y": 20,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Delve/JaggedFossil.png?v=2939dc778481bf687e678e22885cb847&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "06938c622fb1879fbd359ea2a90ffaaffd147cdeff4a8a5eb2c354939dde020a",
+      "name": "",
+      "typeLine": "Jagged Fossil",
+      "baseType": "Jagged Fossil",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "More Physical modifiers\r\nNo Chaos modifiers"
+      ],
+      "descrText": "Place in a Resonator to influence item crafting.",
+      "frameType": 5,
+      "x": 18,
+      "y": 13,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollSocketNumbers.png?v=2946b0825af70f796b8f15051d75164d&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "36c2c89a3ab01a366c7e4db0d70ffe1d4812da0f4f1736f348d58e7b1a98621b",
+      "name": "",
+      "typeLine": "Jeweller's Orb",
+      "baseType": "Jeweller's Orb",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Reforges the number of sockets on an item"
+      ],
+      "descrText": "Right click this item then left click a socketed item to apply it. The item's quality increases the chances of obtaining more sockets.",
+      "frameType": 5,
+      "x": 1,
+      "y": 5,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollSocketLinks.png?v=0ad7134a62e5c45e4f8bc8a44b95540f&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "02ce9619eda86a52ef8b6c41865e530557f8815e27447e06c960f42c861343c9",
+      "name": "",
+      "typeLine": "Orb of Fusing",
+      "baseType": "Orb of Fusing",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Reforges the links between sockets on an item"
+      ],
+      "descrText": "Right click this item then left click a socketed item to apply it. The item's quality increases the chances of obtaining more links.",
+      "frameType": 5,
+      "x": 1,
+      "y": 9,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXNcL01hcHNcL0F0bGFzMk1hcHNcL05ld1wvUm9ib3RUdW5uZWxTaWxvIiwidyI6MSwiaCI6MSwic2NhbGUiOnRydWUsIm1uIjoxMCwibXQiOjksIm1iIjp0cnVlfV0/93474bd33e/Item.png",
+      "league": "Ritual",
+      "id": "d5950094606b43fdc705a3d1729878bbde71b5ce967f0d973feebaabb7210c56",
+      "name": "",
+      "typeLine": "Blighted Silo Map",
+      "baseType": "Blighted Silo Map",
+      "identified": true,
+      "ilvl": 74,
+      "properties": [
+        {
+          "name": "Map Tier",
+          "values": [
+            [
+              "9",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 1
+        },
+        {
+          "name": "Atlas Region",
+          "values": [
+            [
+              "Tirn's End",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "implicitMods": [
+        "Area is infested with Fungal Growths",
+        "Natural inhabitants of this area have been removed"
+      ],
+      "descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+      "frameType": 0,
+      "x": 11,
+      "y": 14,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollSocketColours.png?v=9d377f2cf04a16a39aac7b14abc9d7c3&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 20,
+      "league": "Ritual",
+      "id": "575882686afc3437f5085a3c05764455d03349804a8739c293c70799729191a8",
+      "name": "",
+      "typeLine": "Chromatic Orb",
+      "baseType": "Chromatic Orb",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/20",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Reforges the colour of sockets on an item"
+      ],
+      "descrText": "Right click this item then left click a socketed item to apply it.",
+      "frameType": 5,
+      "x": 1,
+      "y": 8,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyConvertToNormal.png?v=15e3ef97f04a39ae284359309697ef7d&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 30,
+      "league": "Ritual",
+      "id": "c49601675806e6ab8e6eb43505c66a03b1d04121dc9855a59da966d062b3857f",
+      "name": "",
+      "typeLine": "Orb of Scouring",
+      "baseType": "Orb of Scouring",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/30",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Removes all modifiers from an item"
+      ],
+      "descrText": "Right click this item then left click on a magic or rare item to apply it.",
+      "frameType": 5,
+      "x": 1,
+      "y": 7,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyVaal.png?v=64114709d67069cd665f8f1a918cd12a&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "db37acfdb3aca4354be7affc47778681c30ed19c8de023dca37f2e77b447a653",
+      "name": "",
+      "typeLine": "Vaal Orb",
+      "baseType": "Vaal Orb",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Corrupts an item, modifying it unpredictably"
+      ],
+      "descrText": "Right click this item then left click an item to corrupt it. Corrupted items cannot be modified again.",
+      "frameType": 5,
+      "x": 1,
+      "y": 6,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 3,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Quivers/QuiverUnique4.png?v=8b8e83f6cd787e0cf7bcddfc27dcd90a&w=2&h=3&scale=1",
+      "league": "Ritual",
+      "id": "74a50e64ba84397993c754ec50201ddd86efcccecaf894b3541e2eb77626b826",
+      "name": "Craghead",
+      "typeLine": "Serrated Arrow Quiver",
+      "baseType": "Serrated Arrow Quiver",
+      "identified": true,
+      "ilvl": 71,
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "5",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "implicitMods": [
+        "Adds 1 to 4 Physical Damage to Bow Attacks"
+      ],
+      "explicitMods": [
+        "23% reduced Enemy Stun Threshold",
+        "25% reduced Projectile Speed",
+        "68% increased Stun Duration on Enemies",
+        "Adds 6 to 10 Physical Damage to Bow Attacks"
+      ],
+      "flavourText": [
+        "Hit them hard. Hit them once."
+      ],
+      "frameType": 3,
+      "x": 5,
+      "y": 20,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Maps/Vaal02.png?v=3ead6455599ec6c303f54ba98d6f8eb2&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "4473579084ed755f0d1eab6a1a1bd3d8f68ec7589ff77cee8da4ede1da348e54",
+      "name": "",
+      "typeLine": "Sacrifice at Dawn",
+      "baseType": "Sacrifice at Dawn",
+      "identified": true,
+      "ilvl": 0,
+      "descrText": "Can be used in a personal Map Device.",
+      "flavourText": [
+        "Only those who aspire can dare to hope."
+      ],
+      "frameType": 0,
+      "x": 21,
+      "y": 3,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Scarabs/LesserScarabMetamorph.png?v=decb45456542695db386cbe517cb50a4&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "2ce44d41c79beffec59e355d555930175b7ac2ff41ef212c1d1bf2e4ba0ec4d9",
+      "name": "",
+      "typeLine": "Rusted Metamorph Scarab",
+      "baseType": "Rusted Metamorph Scarab",
+      "identified": true,
+      "ilvl": 0,
+      "explicitMods": [
+        "Area contains Metamorph Monsters"
+      ],
+      "descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "flavourText": [
+        "Rejected even by the Faridun outcasts, young Saresh, you were cursed to walk the\r",
+        "white sands until we found you. The Order shall command your penance now."
+      ],
+      "frameType": 0,
+      "x": 21,
+      "y": 23,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Maps/EternalEmpireShard.png?v=c39753adba56300b8c08f3066a79429c&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 100,
+      "league": "Ritual",
+      "id": "a25a6b3ba056142293bf4508ab55b8ac578719a536b67535ab0d1b1d5a6d043b",
+      "name": "",
+      "typeLine": "Timeless Eternal Empire Splinter",
+      "baseType": "Timeless Eternal Empire Splinter",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/100",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "descrText": "Combine 100 Splinters to create a Timeless Eternal Emblem.",
+      "frameType": 5,
+      "x": 21,
+      "y": 11,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Breach/BreachShardPhysical.png?v=25f31f4a5e1ba4540cb7bfa03b82c1e8&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 100,
+      "league": "Ritual",
+      "id": "557de7411cb771fd041d3b3c612f246aace5bc95e588f109be6af050186aad04",
+      "name": "",
+      "typeLine": "Splinter of Uul-Netol",
+      "baseType": "Splinter of Uul-Netol",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/100",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "descrText": "Combine 100 Splinters to create Uul-Netol's Breachstone.",
+      "frameType": 5,
+      "x": 21,
+      "y": 8,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Essence/Anguish6.png?v=9d967aa7f5034bd401886eb96d1f8e59&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 9,
+      "league": "Ritual",
+      "id": "8b4965fbde12680e348d49f43d8d97ba315ac79f2dbf664b73a5c7fd9d3ac72d",
+      "name": "",
+      "typeLine": "Shrieking Essence of Anguish",
+      "baseType": "Shrieking Essence of Anguish",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/9",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Upgrades a normal item to rare or reforges a rare item, guaranteeing one property",
+        "",
+        "One Handed Weapon: Adds (36-49) to (73-85) Fire Damage to Spells",
+        "Two Handed Weapon: Adds (49-65) to (98-115) Fire Damage to Spells",
+        "Gloves: Adds (8-10) to (16-18) Fire Damage to Attacks",
+        "Body Armour: (8-9)% chance to Avoid Fire Damage from Hits",
+        "Shield: (8-9)% chance to Avoid Fire Damage from Hits",
+        "Other Armour: (27-30)% chance to Avoid being Ignited",
+        "Quiver: Adds (8-10) to (16-18) Fire Damage to Attacks",
+        "Belt: (27-30)% chance to Avoid being Ignited",
+        "Other Jewellery: Adds (19-25) to (39-45) Fire Damage to Attacks"
+      ],
+      "descrText": "Right click this item then left click a normal or rare item to apply it.",
+      "frameType": 5,
+      "x": 22,
+      "y": 10,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Essence/Greed6.png?v=cbd2fb41eb4648a1b47915bab39b130b&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 9,
+      "league": "Ritual",
+      "id": "fbbe6a6fb4b4f33fa105e5a544f58045a53d35747877b1101f3fd0e38400fc22",
+      "name": "",
+      "typeLine": "Shrieking Essence of Greed",
+      "baseType": "Shrieking Essence of Greed",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/9",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "Upgrades a normal item to rare or reforges a rare item, guaranteeing one property",
+        "",
+        "Weapon: (1-1.2)% of Physical Attack Damage Leeched as Life",
+        "Body Armour: (110-119) to maximum Life",
+        "Helmet: (90-99) to maximum Life",
+        "Shield: (100-109) to maximum Life",
+        "Other Armour: (80-89) to maximum Life",
+        "Quiver: (1-1.2)% of Physical Attack Damage Leeched as Life",
+        "Belt: (28-31)% increased Flask Life Recovery rate",
+        "Other Jewellery: Regenerate (22-30) Life per second"
+      ],
+      "descrText": "Right click this item then left click a normal or rare item to apply it.",
+      "frameType": 5,
+      "x": 20,
+      "y": 12,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Maps/DeliriumSplinter.png?v=63d53dfdcf5b047248b781187d66624b&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 300,
+      "league": "Ritual",
+      "id": "18cd7fbe2ff2a91e5c7ede43c160b6239558b1a74a5356d7accd4d832a4c4fef",
+      "name": "",
+      "typeLine": "Simulacrum Splinter",
+      "baseType": "Simulacrum Splinter",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/300",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "descrText": "Combine 300 Splinters to create a Simulacrum.",
+      "frameType": 5,
+      "x": 15,
+      "y": 13,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 3,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Weapons/OneHandWeapons/Wands/Wand3.png?v=ac9f7eee09f5a8f580151298712f2a9e&w=1&h=3&scale=1",
+      "league": "Ritual",
+      "id": "4339586d838da5cbb0ca99147c367bb64d11d580984e90c6e845f627db32355a",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "S",
+          "sColour": "R"
+        },
+        {
+          "group": 0,
+          "attr": "I",
+          "sColour": "B"
+        },
+        {
+          "group": 0,
+          "attr": "I",
+          "sColour": "B"
+        }
+      ],
+      "name": "Glyph Edge",
+      "typeLine": "Imbued Wand",
+      "baseType": "Imbued Wand",
+      "identified": true,
+      "ilvl": 70,
+      "properties": [
+        {
+          "name": "Wand",
+          "values": [],
+          "displayMode": 0
+        },
+        {
+          "name": "Physical Damage",
+          "values": [
+            [
+              "28-53",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 9
+        },
+        {
+          "name": "Elemental Damage",
+          "values": [
+            [
+              "5-57",
+              6
+            ]
+          ],
+          "displayMode": 0,
+          "type": 10
+        },
+        {
+          "name": "Critical Strike Chance",
+          "values": [
+            [
+              "7.84%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 12
+        },
+        {
+          "name": "Attacks per Second",
+          "values": [
+            [
+              "1.50",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 13
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "59",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Int",
+          "values": [
+            [
+              "188",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "implicitMods": [
+        "33% increased Spell Damage"
+      ],
+      "explicitMods": [
+        "24% increased Cold Damage",
+        "Adds 5 to 57 Lightning Damage",
+        "Adds 27 to 47 Cold Damage to Spells",
+        "12% increased Critical Strike Chance"
+      ],
+      "frameType": 2,
+      "x": 17,
+      "y": 5,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Incubation/IncubationFragments.png?v=1ae56ed16deb7b2f4371970f84b3169f&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "4d90cc2593590d6a01f48a9c95459f7c0b304df5d6f02b0ed6037201cb6085f5",
+      "name": "",
+      "typeLine": "Fragmented Incubator",
+      "baseType": "Fragmented Incubator",
+      "identified": true,
+      "ilvl": 78,
+      "explicitMods": [
+        "Adds an incubated Fragment item to an equippable item\r\nItem drops after killing 8412 monsters"
+      ],
+      "descrText": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "frameType": 0,
+      "x": 23,
+      "y": 4,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXNcL01hcHNcL0F0bGFzMk1hcHNcL05ld1wvTGFpciIsInciOjEsImgiOjEsInNjYWxlIjp0cnVlLCJtbiI6MTAsIm10Ijo1fV0/e501913e8a/Item.png",
+      "league": "Ritual",
+      "id": "58759fa64696c63e53a9d61374a165c0f043274fde413ff27f49ff62a509a82c",
+      "name": "",
+      "typeLine": "Lair Map",
+      "baseType": "Lair Map",
+      "identified": true,
+      "ilvl": 74,
+      "properties": [
+        {
+          "name": "Map Tier",
+          "values": [
+            [
+              "5",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 1
+        },
+        {
+          "name": "Atlas Region",
+          "values": [
+            [
+              "Valdo's Rest",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+      "frameType": 0,
+      "x": 0,
+      "y": 3,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Heist/ContractItem6.png?v=d17da1bb827cd60cd871108bd05330f9&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "f29ff630105add3226012736d94c400e499606797f8fb13b7cdcb4f89fccc2cc",
+      "name": "",
+      "typeLine": "Supplemented Contract: Tunnels of Deadliness",
+      "baseType": "Contract: Tunnels",
+      "identified": true,
+      "ilvl": 69,
+      "properties": [
+        {
+          "name": "Client",
+          "values": [
+            [
+              "The Crimson Scribe",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Heist Target: {0} ({1})",
+          "values": [
+            [
+              "The Golden Ibis",
+              0
+            ],
+            [
+              "High Value",
+              0
+            ]
+          ],
+          "displayMode": 3,
+          "type": 47
+        },
+        {
+          "name": "Area Level",
+          "values": [
+            [
+              "69",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 34
+        },
+        {
+          "name": "Requires {1} (Level {0})",
+          "values": [
+            [
+              "1",
+              0
+            ],
+            [
+              "Brute Force",
+              0
+            ]
+          ],
+          "displayMode": 3,
+          "type": 39
+        },
+        {
+          "name": "Item Quantity",
+          "values": [
+            [
+              "+32%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 2
+        },
+        {
+          "name": "Item Rarity",
+          "values": [
+            [
+              "+18%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 3
+        },
+        {
+          "name": "Alert Level Reduction",
+          "values": [
+            [
+              "+12%",
+              1
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Time Before Lockdown",
+          "values": [
+            [
+              "+12%",
+              1
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Maximum Alive Reinforcements",
+          "values": [
+            [
+              "+12%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 4
+        }
+      ],
+      "explicitMods": [
+        "Monsters have 176% increased Critical Strike Chance",
+        "+33% to Monster Critical Strike Multiplier",
+        "Reinforcements have 25% increased Attack Speed",
+        "Reinforcements have 22% increased Cast Speed",
+        "Reinforcements have 19% increased Movement Speed"
+      ],
+      "descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+      "flavourText": [
+        "\"It is said that the Golden Ibis was forged before time itself, before writing, or even\r",
+        "oral history. That's nonsense, of course, but it's still very old, and therefore noteworthy.\""
+      ],
+      "frameType": 1,
+      "x": 23,
+      "y": 0,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Currency/Oils/ClearOil.png?v=7e94917a8ab308cd44507d432f6427e0&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "550baaa2dde167e33a7ab72186b1676ab3e6f491ae9a6ac85e43eef58dc2710e",
+      "name": "",
+      "typeLine": "Clear Oil",
+      "baseType": "Clear Oil",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+      "frameType": 5,
+      "x": 13,
+      "y": 13,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 3,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Armours/BodyArmours/TheRestlessWard.png?v=ed3fdb4456632cf514570267f727d54d&w=2&h=3&scale=1",
+      "league": "Ritual",
+      "id": "25c87dd2ebfba14fe5cba4b441a7d4e97cc6d7b7bf7fcc051329401f2b5728af",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "S",
+          "sColour": "R"
+        }
+      ],
+      "name": "The Restless Ward",
+      "typeLine": "Carnal Armour",
+      "baseType": "Carnal Armour",
+      "identified": true,
+      "ilvl": 83,
+      "properties": [
+        {
+          "name": "Evasion Rating",
+          "values": [
+            [
+              "1225",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 17
+        },
+        {
+          "name": "Energy Shield",
+          "values": [
+            [
+              "340",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 18
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "71",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Dex",
+          "values": [
+            [
+              "88",
+              0
+            ]
+          ],
+          "displayMode": 1
+        },
+        {
+          "name": "Int",
+          "values": [
+            [
+              "122",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "implicitMods": [
+        "+23 to maximum Mana"
+      ],
+      "explicitMods": [
+        "247% increased Evasion and Energy Shield",
+        "+71 to maximum Life",
+        "1% increased Movement Speed per Frenzy Charge",
+        "Regenerate 26.6 Life per second per Endurance Charge",
+        "100% increased Endurance, Frenzy and Power Charge Duration"
+      ],
+      "flavourText": [
+        "Use the dead to stave off death,\r",
+        "An armour of bones and rot.\r",
+        "Hanging on with bated breath,\r",
+        "One lapse and all for naught."
+      ],
+      "frameType": 3,
+      "x": 2,
+      "y": 18,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 4,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Weapons/OneHandWeapons/Rapiers/Rapier7.png?v=d4a9ff1bbae62362d78bc8d5a4484446&w=1&h=4&scale=1",
+      "league": "Ritual",
+      "id": "c9b29c6227af099758b94c5c858775bc9df2de574601497371d4cdba0ba07143",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 1,
+          "attr": "D",
+          "sColour": "G"
+        }
+      ],
+      "name": "Sol Slicer",
+      "typeLine": "Jewelled Foil",
+      "baseType": "Jewelled Foil",
+      "identified": true,
+      "ilvl": 78,
+      "properties": [
+        {
+          "name": "One Handed Sword",
+          "values": [],
+          "displayMode": 0
+        },
+        {
+          "name": "Physical Damage",
+          "values": [
+            [
+              "51-91",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 9
+        },
+        {
+          "name": "Elemental Damage",
+          "values": [
+            [
+              "28-59",
+              4
+            ],
+            [
+              "1-5",
+              6
+            ]
+          ],
+          "displayMode": 0,
+          "type": 10
+        },
+        {
+          "name": "Critical Strike Chance",
+          "values": [
+            [
+              "6.10%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 12
+        },
+        {
+          "name": "Attacks per Second",
+          "values": [
+            [
+              "1.60",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 13
+        },
+        {
+          "name": "Weapon Range",
+          "values": [
+            [
+              "14",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 14
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "68",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Dex",
+          "values": [
+            [
+              "212",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "implicitMods": [
+        "+25% to Global Critical Strike Multiplier"
+      ],
+      "explicitMods": [
+        "Adds 19 to 31 Physical Damage",
+        "Adds 28 to 59 Fire Damage",
+        "Adds 1 to 5 Lightning Damage",
+        "11% increased Critical Strike Chance",
+        "+107 to Accuracy Rating",
+        "Attacks have 30% chance to cause Bleeding",
+        "45% increased Damage with Bleeding"
+      ],
+      "frameType": 2,
+      "x": 15,
+      "y": 4,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/Deck.png?v=0e5e6da39f79fc57f3d38d463126617a&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 10,
+      "league": "Ritual",
+      "id": "13a58bfeea888159399d1d7956c17018c2e1d5c19124da449c2e7a963241eef0",
+      "name": "",
+      "typeLine": "Stacked Deck",
+      "baseType": "Stacked Deck",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/10",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "A stack of unknown divination cards"
+      ],
+      "descrText": "Right click to take a divination card out of the deck.",
+      "frameType": 5,
+      "x": 9,
+      "y": 4,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 2,
+      "icon": "https://web.poecdn.com/gen/image/WzksMTQseyJmIjoiMkRJdGVtc1wvRmxhc2tzXC9nb2xkIiwidyI6MSwiaCI6Miwic2NhbGUiOnRydWUsImxldmVsIjoxfV0/30c9ac9e60/Item.png",
+      "league": "Ritual",
+      "id": "c7b5bb4a523feacff57d862fc86ac667c7993b94f6a5fc4d9a1c9de1d4750cc3",
+      "name": "",
+      "typeLine": "Sulphur Flask",
+      "baseType": "Sulphur Flask",
+      "identified": true,
+      "ilvl": 68,
+      "properties": [
+        {
+          "name": "Lasts {0} Seconds",
+          "values": [
+            [
+              "4.0",
+              0
+            ]
+          ],
+          "displayMode": 3
+        },
+        {
+          "name": "Consumes {0} of {1} Charges on use",
+          "values": [
+            [
+              "20",
+              0
+            ],
+            [
+              "60",
+              0
+            ]
+          ],
+          "displayMode": 3
+        },
+        {
+          "name": "Currently has {0} Charges",
+          "values": [
+            [
+              "0",
+              0
+            ]
+          ],
+          "displayMode": 3
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "35",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "utilityMods": [
+        "40% increased Damage"
+      ],
+      "implicitMods": [
+        "Creates Consecrated Ground on Use"
+      ],
+      "descrText": "Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.",
+      "frameType": 0,
+      "x": 19,
+      "y": 1,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Amulets/Amulet2.png?v=1bb23cebd36e20ede7c0e76575215b14&w=1&h=1&scale=1",
+      "league": "Ritual",
+      "id": "c89170fdf98f94765ecf22d00eb4ba56601e2c954c5d52f1861720eb10300bea",
+      "name": "Hate Torc",
+      "typeLine": "Coral Amulet",
+      "baseType": "Coral Amulet",
+      "identified": true,
+      "ilvl": 76,
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "33",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "implicitMods": [
+        "Regenerate 4 Life per second"
+      ],
+      "explicitMods": [
+        "13% increased Cold Damage",
+        "13% increased Armour",
+        "+15 to maximum Energy Shield",
+        "+22% to Lightning Resistance"
+      ],
+      "frameType": 2,
+      "x": 19,
+      "y": 11,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 1,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png?v=a8ae131b97fad3c64de0e6d9f250d743&w=1&h=1&scale=1",
+      "stackSize": 1,
+      "maxStackSize": 6,
+      "league": "Ritual",
+      "id": "65b23ab8baa4c8f115f779eafcfc5bea70ccc781c7fffef6a51f0b3b3ec34e4b",
+      "name": "",
+      "typeLine": "The Cache",
+      "baseType": "The Cache",
+      "identified": true,
+      "ilvl": 0,
+      "properties": [
+        {
+          "name": "Stack Size",
+          "values": [
+            [
+              "1/6",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 32
+        }
+      ],
+      "explicitMods": [
+        "<uniqueitem>{Jewellery}"
+      ],
+      "flavourText": [
+        "<size:23>{Vintage or crafted, Glittering and shiny\r",
+        "Dusty or glittering, huge or tiny\r",
+        "Secured within a chest \r",
+        "or unearthed from your mining\r",
+        "Find jewellery everywhere, \r",
+        "no need for divining!\r",
+        "So why is it so hard \r",
+        "to figure out which one to wear?\r",
+        "This one makes me stronger, \r",
+        "but does it match my hair?}"
+      ],
+      "frameType": 6,
+      "artFilename": "TheCache",
+      "x": 7,
+      "y": 6,
+      "inventoryId": "Stash1"
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 3,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Weapons/OneHandWeapons/Scepters/scepter9.png?v=e4b2d93d8ee9ccd583551f4154a3684a&w=2&h=3&scale=1",
+      "league": "Ritual",
+      "id": "55c79a6dcd6d80bac8c231b74d191d42ada3bbf64024b67752387f7bbbe661cb",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "S",
+          "sColour": "R"
+        },
+        {
+          "group": 0,
+          "attr": "S",
+          "sColour": "R"
+        }
+      ],
+      "name": "Viper Knell",
+      "typeLine": "Sambar Sceptre",
+      "baseType": "Sambar Sceptre",
+      "identified": true,
+      "ilvl": 70,
+      "properties": [
+        {
+          "name": "Sceptre",
+          "values": [],
+          "displayMode": 0
+        },
+        {
+          "name": "Physical Damage",
+          "values": [
+            [
+              "49-91",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 9
+        },
+        {
+          "name": "Critical Strike Chance",
+          "values": [
+            [
+              "6.00%",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 12
+        },
+        {
+          "name": "Attacks per Second",
+          "values": [
+            [
+              "1.30",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 13
+        },
+        {
+          "name": "Weapon Range",
+          "values": [
+            [
+              "11",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 14
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "70",
+              0
+            ]
+          ],
+          "displayMode": 0
+        },
+        {
+          "name": "Str",
+          "values": [
+            [
+              "121",
+              0
+            ]
+          ],
+          "displayMode": 1
+        },
+        {
+          "name": "Int",
+          "values": [
+            [
+              "113",
+              0
+            ]
+          ],
+          "displayMode": 1
+        }
+      ],
+      "implicitMods": [
+        "Damage Penetrates 6% Elemental Resistances"
+      ],
+      "explicitMods": [
+        "49% increased Spell Damage",
+        "17% increased Physical Damage",
+        "+80 to maximum Mana",
+        "+20% to Lightning Resistance",
+        "30% increased Stun Duration on Enemies",
+        "+18 to Accuracy Rating"
+      ],
+      "frameType": 2,
+      "x": 10,
+      "y": 9,
+      "inventoryId": "Stash1",
+      "socketedItems": []
+    },
+    {
+      "verified": false,
+      "w": 2,
+      "h": 3,
+      "icon": "https://web.poecdn.com/image/Art/2DItems/Armours/BodyArmours/bellyofthebeast.png?v=68c1c110e5498e00919b9491e30d4e21&w=2&h=3&scale=1",
+      "league": "Ritual",
+      "id": "7794125f5db9a408a5e5301d8b166356ff9674c325ba89c0f2c3a79e7948535b",
+      "sockets": [
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 0,
+          "attr": "S",
+          "sColour": "R"
+        },
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        },
+        {
+          "group": 0,
+          "attr": "S",
+          "sColour": "R"
+        },
+        {
+          "group": 0,
+          "attr": "D",
+          "sColour": "G"
+        }
+      ],
+      "name": "Belly of the Beast",
+      "typeLine": "Full Wyrmscale",
+      "baseType": "Full Wyrmscale",
+      "identified": true,
+      "ilvl": 76,
+      "properties": [
+        {
+          "name": "Quality",
+          "values": [
+            [
+              "+20%",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 6
+        },
+        {
+          "name": "Armour",
+          "values": [
+            [
+              "645",
+              1
+            ]
+          ],
+          "displayMode": 0,
+          "type": 16
+        },
+        {
+          "name": "Evasion Rating",
+          "values": [
+            [
+              "254",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "type": 17
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "68",
+              0
+            ]
+          ],
+          "displayMode": 0,
+          "suffix": "(gem)"
+        },
+        {
+          "name": "Str",
+          "values": [
+            [
+              "106",
+              0
+            ]
+          ],
+          "displayMode": 1,
+          "suffix": "(gem)"
+        },
+        {
+          "name": "Dex",
+          "values": [
+            [
+              "134",
+              0
+            ]
+          ],
+          "displayMode": 1,
+          "suffix": "(gem)"
+        },
+        {
+          "name": "Int",
+          "values": [
+            [
+              "44",
+              0
+            ]
+          ],
+          "displayMode": 1,
+          "suffix": "(gem)"
+        }
+      ],
+      "explicitMods": [
+        "154% increased Armour",
+        "39% increased maximum Life",
+        "+11% to all Elemental Resistances",
+        "50% increased Flask Life Recovery rate",
+        "Extra gore"
+      ],
+      "enchantMods": [
+        "Quality does not increase Defences",
+        "Grants +1 to Maximum Life per 2% Quality"
+      ],
+      "flavourText": [
+        "There is no safer place\r",
+        "Than the Belly of the Beast"
+      ],
+      "frameType": 3,
+      "x": 14,
+      "y": 0,
+      "inventoryId": "Stash1",
+      "socketedItems": [
+        {
+          "verified": false,
+          "w": 1,
+          "h": 1,
+          "icon": "https://web.poecdn.com/image/Art/2DItems/Gems/SplitArrow.png?v=f2f07e5e67987d072a6a8a3f43de5f7e&w=1&h=1&scale=1",
+          "support": false,
+          "id": "d799b9b9cd280b35f88c80d54e939c1505ae9fa0307176a48ed4f3b99f37bd12",
+          "name": "",
+          "typeLine": "Split Arrow",
+          "baseType": "Split Arrow",
+          "identified": true,
+          "ilvl": 0,
+          "properties": [
+            {
+              "name": "Attack, Projectile, Physical, Bow",
+              "values": [],
+              "displayMode": 0
+            },
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "17",
+                  0
+                ]
+              ],
+              "displayMode": 0,
+              "type": 5
+            },
+            {
+              "name": "Mana Cost",
+              "values": [
+                [
+                  "9",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Effectiveness of Added Damage",
+              "values": [
+                [
+                  "116%",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Quality",
+              "values": [
+                [
+                  "+20%",
+                  1
+                ]
+              ],
+              "displayMode": 0,
+              "type": 6
+            }
+          ],
+          "requirements": [
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "60",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Dex",
+              "values": [
+                [
+                  "134",
+                  0
+                ]
+              ],
+              "displayMode": 1
+            }
+          ],
+          "additionalProperties": [
+            {
+              "name": "Experience",
+              "values": [
+                [
+                  "26474560/27792735",
+                  0
+                ]
+              ],
+              "displayMode": 2,
+              "progress": 0.95,
+              "type": 20
+            }
+          ],
+          "secDescrText": "Fires multiple arrows at different targets.",
+          "explicitMods": [
+            "Deals 116% of Base Damage",
+            "39 to 59 Added Attack Physical Damage",
+            "Fires 8 additional Arrows",
+            "10% increased Attack Speed"
+          ],
+          "descrText": "Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.",
+          "frameType": 4,
+          "socket": 0,
+          "colour": "D"
+        },
+        {
+          "verified": false,
+          "w": 1,
+          "h": 1,
+          "icon": "https://web.poecdn.com/image/Art/2DItems/Gems/Support/ChanceToBleed.png?v=ab842b5f92d418146726eec8370c2101&w=1&h=1&scale=1",
+          "support": true,
+          "id": "705edbdd2f869c6c295fe17b17adb2cf503b359d9783f052b42ee5a93bdb4508",
+          "name": "",
+          "typeLine": "Chance to Bleed Support",
+          "baseType": "Chance to Bleed Support",
+          "identified": true,
+          "ilvl": 0,
+          "properties": [
+            {
+              "name": "Attack, Physical, Support",
+              "values": [],
+              "displayMode": 0
+            },
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "17",
+                  0
+                ]
+              ],
+              "displayMode": 0,
+              "type": 5
+            },
+            {
+              "name": "Mana Multiplier",
+              "values": [
+                [
+                  "110%",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Quality",
+              "values": [
+                [
+                  "+20%",
+                  1
+                ]
+              ],
+              "displayMode": 0,
+              "type": 6
+            }
+          ],
+          "requirements": [
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "60",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Str",
+              "values": [
+                [
+                  "96",
+                  0
+                ]
+              ],
+              "displayMode": 1
+            }
+          ],
+          "additionalProperties": [
+            {
+              "name": "Experience",
+              "values": [
+                [
+                  "26474560/27792735",
+                  0
+                ]
+              ],
+              "displayMode": 2,
+              "progress": 0.95,
+              "type": 20
+            }
+          ],
+          "secDescrText": "Supports attack skills. Cannot support skills that create minions.",
+          "explicitMods": [
+            "Supported Attacks deal 29 to 44 added Physical Damage with Weapons",
+            "Supported Attacks have 25% chance to cause Bleeding",
+            "Supported Attacks deal 10% increased Damage with Bleeding",
+            "Supported Attacks deal 26% more Damage with Bleeding"
+          ],
+          "descrText": "This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Active Skill Gem you wish to augment. Right click to remove from a socket.",
+          "frameType": 4,
+          "socket": 1,
+          "colour": "S"
+        },
+        {
+          "verified": false,
+          "w": 1,
+          "h": 1,
+          "icon": "https://web.poecdn.com/image/Art/2DItems/Gems/Support/RangedPhysicalAttackDamage.png?v=735592ee6e3d74910399d331281312c6&w=1&h=1&scale=1",
+          "support": true,
+          "id": "2988586db5d6e0f348c0804bffe0c794841b3d59a2cac39c4b1f638997a8b6c5",
+          "name": "",
+          "typeLine": "Vicious Projectiles Support",
+          "baseType": "Vicious Projectiles Support",
+          "identified": true,
+          "ilvl": 0,
+          "properties": [
+            {
+              "name": "Projectile, Attack, Physical, Chaos, Support",
+              "values": [],
+              "displayMode": 0
+            },
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "17",
+                  0
+                ]
+              ],
+              "displayMode": 0,
+              "type": 5
+            },
+            {
+              "name": "Mana Multiplier",
+              "values": [
+                [
+                  "120%",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Quality",
+              "values": [
+                [
+                  "+20%",
+                  1
+                ]
+              ],
+              "displayMode": 0,
+              "type": 6
+            }
+          ],
+          "requirements": [
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "64",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Dex",
+              "values": [
+                [
+                  "102",
+                  0
+                ]
+              ],
+              "displayMode": 1
+            }
+          ],
+          "additionalProperties": [
+            {
+              "name": "Experience",
+              "values": [
+                [
+                  "14261624/26260555",
+                  0
+                ]
+              ],
+              "displayMode": 2,
+              "progress": 0.54,
+              "type": 20
+            }
+          ],
+          "secDescrText": "Supports projectile attack skills.",
+          "explicitMods": [
+            "Supported Skills deal 10% increased Physical Damage",
+            "Supported Skills deal 56% more Chaos Damage over Time",
+            "Supported Skills deal 56% more Physical Damage over Time",
+            "Supported Skills deal 56% more Physical Projectile Attack Damage",
+            "Supported Skills have 10% less Projectile Attack Speed"
+          ],
+          "descrText": "This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Active Skill Gem you wish to augment. Right click to remove from a socket.",
+          "frameType": 4,
+          "socket": 2,
+          "colour": "D"
+        },
+        {
+          "verified": false,
+          "w": 1,
+          "h": 1,
+          "icon": "https://web.poecdn.com/image/Art/2DItems/Gems/Support/SupportRapidDecayGem.png?v=6866c4bdbeec0c85754889ff59470ed8&w=1&h=1&scale=1",
+          "support": true,
+          "id": "e5fc08ebc1b96379400cbbab3980171f77901e5b68ef9bb40589ab8e122ff2e4",
+          "name": "",
+          "typeLine": "Swift Affliction Support",
+          "baseType": "Swift Affliction Support",
+          "identified": true,
+          "ilvl": 0,
+          "properties": [
+            {
+              "name": "Support, Duration",
+              "values": [],
+              "displayMode": 0
+            },
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "19",
+                  0
+                ]
+              ],
+              "displayMode": 0,
+              "type": 5
+            },
+            {
+              "name": "Mana Multiplier",
+              "values": [
+                [
+                  "125%",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            }
+          ],
+          "requirements": [
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "68",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Dex",
+              "values": [
+                [
+                  "108",
+                  0
+                ]
+              ],
+              "displayMode": 1
+            }
+          ],
+          "additionalProperties": [
+            {
+              "name": "Experience",
+              "values": [
+                [
+                  "162444817/211508743",
+                  0
+                ]
+              ],
+              "displayMode": 2,
+              "progress": 0.77,
+              "type": 20
+            }
+          ],
+          "secDescrText": "Supports any skill that has a duration, or can hit enemies to inflict ailments on them.",
+          "explicitMods": [
+            "Supported Skills deal 43% more Damage over Time",
+            "15% reduced Duration of Supported Skills and Damaging Ailments they inflict"
+          ],
+          "descrText": "This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Active Skill Gem you wish to augment. Right click to remove from a socket.",
+          "frameType": 4,
+          "socket": 3,
+          "colour": "D"
+        },
+        {
+          "verified": false,
+          "w": 1,
+          "h": 1,
+          "icon": "https://web.poecdn.com/image/Art/2DItems/Gems/Support/Brutality.png?v=e39c3abec2992338acbbeac37e31fae7&w=1&h=1&scale=1",
+          "support": true,
+          "id": "f22a0d68db5ef036d0274c8048e287272c6dcc180aee66bb5630fc6484509564",
+          "name": "",
+          "typeLine": "Brutality Support",
+          "baseType": "Brutality Support",
+          "identified": true,
+          "ilvl": 0,
+          "properties": [
+            {
+              "name": "Physical, Support",
+              "values": [],
+              "displayMode": 0
+            },
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "17",
+                  0
+                ]
+              ],
+              "displayMode": 0,
+              "type": 5
+            },
+            {
+              "name": "Mana Multiplier",
+              "values": [
+                [
+                  "130%",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Quality",
+              "values": [
+                [
+                  "+20%",
+                  1
+                ]
+              ],
+              "displayMode": 0,
+              "type": 6
+            }
+          ],
+          "requirements": [
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "67",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Str",
+              "values": [
+                [
+                  "106",
+                  0
+                ]
+              ],
+              "displayMode": 1
+            }
+          ],
+          "additionalProperties": [
+            {
+              "name": "Experience",
+              "values": [
+                [
+                  "2667815/41170367",
+                  0
+                ]
+              ],
+              "displayMode": 2,
+              "progress": 0.06,
+              "type": 20
+            }
+          ],
+          "secDescrText": "Supports any skill that hits enemies.",
+          "explicitMods": [
+            "Supported Skills deal 56% more Physical Damage",
+            "Supported Skills deal no Chaos Damage",
+            "Supported Skills deal no Elemental Damage",
+            "Supported Skills deal 10% increased Physical Damage"
+          ],
+          "descrText": "This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Active Skill Gem you wish to augment. Right click to remove from a socket.",
+          "frameType": 4,
+          "socket": 4,
+          "colour": "S"
+        },
+        {
+          "verified": false,
+          "w": 1,
+          "h": 1,
+          "icon": "https://web.poecdn.com/image/Art/2DItems/Gems/Support/DeadlyAilments.png?v=8a05c52248b3e5ff6d798ba56195f9c8&w=1&h=1&scale=1",
+          "support": true,
+          "id": "5ecfc80c7fa34417a8a0dac7e9db4f1aa6cfa9d5e52b10d9345d6687a3d86f66",
+          "name": "",
+          "typeLine": "Deadly Ailments Support",
+          "baseType": "Deadly Ailments Support",
+          "identified": true,
+          "ilvl": 0,
+          "properties": [
+            {
+              "name": "Support",
+              "values": [],
+              "displayMode": 0
+            },
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "17",
+                  0
+                ]
+              ],
+              "displayMode": 0,
+              "type": 5
+            },
+            {
+              "name": "Mana Multiplier",
+              "values": [
+                [
+                  "130%",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Quality",
+              "values": [
+                [
+                  "+20%",
+                  1
+                ]
+              ],
+              "displayMode": 0,
+              "type": 6
+            }
+          ],
+          "requirements": [
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "64",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Dex",
+              "values": [
+                [
+                  "64",
+                  0
+                ]
+              ],
+              "displayMode": 1
+            },
+            {
+              "name": "Int",
+              "values": [
+                [
+                  "44",
+                  0
+                ]
+              ],
+              "displayMode": 1
+            }
+          ],
+          "additionalProperties": [
+            {
+              "name": "Experience",
+              "values": [
+                [
+                  "14261624/26260555",
+                  0
+                ]
+              ],
+              "displayMode": 2,
+              "progress": 0.54,
+              "type": 20
+            }
+          ],
+          "secDescrText": "Supports any skill that hits enemies.",
+          "explicitMods": [
+            "Supported Skills deal 61% more Damage with Ailments",
+            "Supported Skills deal 10% less Damage with Hits",
+            "Supported Skills deal 10% increased Damage over Time"
+          ],
+          "descrText": "This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Active Skill Gem you wish to augment. Right click to remove from a socket.",
+          "frameType": 4,
+          "socket": 5,
+          "colour": "D"
+        }
+      ]
+    },
+    {
+      "verified": false,
+      "w": 1,
+      "h": 2,
+      "icon": "https://web.poecdn.com/gen/image/WzksMTQseyJmIjoiMkRJdGVtc1wvRmxhc2tzXC9XaXRjaEZpcmVCcmV3IiwidyI6MSwiaCI6Miwic2NhbGUiOnRydWUsImxldmVsIjoxfV0/32faa161ce/Item.png",
+      "league": "Ritual",
+      "id": "f24dd785db6337b346c612ade2177bf4cb574ab43e70052f4c100f41f3987eef",
+      "name": "Witchfire Brew",
+      "typeLine": "Stibnite Flask",
+      "baseType": "Stibnite Flask",
+      "identified": true,
+      "ilvl": 74,
+      "properties": [
+        {
+          "name": "Lasts {0} Seconds",
+          "values": [
+            [
+              "5.0",
+              0
+            ]
+          ],
+          "displayMode": 3
+        },
+        {
+          "name": "Consumes {0} of {1} Charges on use",
+          "values": [
+            [
+              "15",
+              1
+            ],
+            [
+              "30",
+              0
+            ]
+          ],
+          "displayMode": 3
+        },
+        {
+          "name": "Currently has {0} Charges",
+          "values": [
+            [
+              "0",
+              0
+            ]
+          ],
+          "displayMode": 3
+        }
+      ],
+      "requirements": [
+        {
+          "name": "Level",
+          "values": [
+            [
+              "48",
+              0
+            ]
+          ],
+          "displayMode": 0
+        }
+      ],
+      "utilityMods": [
+        "100% increased Evasion Rating"
+      ],
+      "implicitMods": [
+        "Creates a Smoke Cloud on Use"
+      ],
+      "explicitMods": [
+        "50% increased Charges used",
+        "39% increased Damage Over Time during Flask Effect",
+        "Grants Level 21 Despair Curse Aura during Flask Effect"
+      ],
+      "descrText": "Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.",
+      "flavourText": [
+        "\"Think of those that cursed us, judged us, \r",
+        "and burned our sisters upon the pyre. \r",
+        "Think of their names as you drink, \r",
+        "and even their children will feel what we do to them today.\" \r",
+        "-Vadinya, to her coven"
+      ],
+      "frameType": 3,
+      "x": 14,
+      "y": 21,
+      "inventoryId": "Stash1"
+    }
+  ]
+}
