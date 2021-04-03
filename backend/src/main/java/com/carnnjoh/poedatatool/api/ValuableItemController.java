@@ -108,7 +108,10 @@ public class ValuableItemController {
 		valuableItem.setItem(valuableItemRequest.getItem());
 		valuableItem.setSubscriptionFk(valuableItemRequest.getSubscriptionFk());
 		valuableItem.setId(valuableItemRequest.getId());
-		valuableItem.setEstimatedPrice(valuableItemRequest.getEstimatedPrice());
+		valuableItem.setMean(valuableItemRequest.getMean());
+		valuableItem.setMedian(valuableItemRequest.getMedian());
+		valuableItem.setMax(valuableItemRequest.getMax());
+		valuableItem.setMin(valuableItemRequest.getMin());
 		valuableItem.setCreatedDate(valuableItemRequest.getCreatedDate());
 
 		Result putResult = (valuableItem.getPk() == null)

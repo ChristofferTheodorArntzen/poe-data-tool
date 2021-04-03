@@ -13,4 +13,8 @@ public class Price {
 	@JsonProperty("currency")
 	public String currency;
 
+	@Override
+	public String toString() {
+		return String.format("Item goes for: %d - %s with type: %s ", amount, currency, type);
+	}
 }

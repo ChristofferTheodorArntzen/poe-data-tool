@@ -80,7 +80,7 @@ public class InitialDataLoaderUtil {
 	public void createSubscription() {
 
 		List<ItemType> itemTypes = Arrays.asList(UNIQUE);
-		Subscription subscription = new Subscription("qweqwe", new Integer[]{0, 1, 2}, 20.0, "chaos", itemTypes, true);
+		Subscription subscription = new Subscription("qweqwe", new Integer[]{0}, 20.0, "chaos", itemTypes, true);
 		subscriptionDAO.save(subscription);
 	}
 
@@ -112,7 +112,7 @@ public class InitialDataLoaderUtil {
 					"1",
 					subscription.getPk(),
 					item,
-					10,
+					10, 20, 30, 40,
 					LocalDateTime.now()
 			);
 			valuableItemDAO.save(valuableItem);

@@ -14,4 +14,12 @@ public class Listings {
 	@JsonProperty("item")
 	public Item item;
 
+	@Override
+	public String toString() {
+		return "Listings{" +
+				"id='" + id + '\'' +
+				", listing=" + listing +
+				//", item=" + item +
+				'}';
+	}
 }

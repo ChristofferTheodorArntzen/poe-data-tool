@@ -32,7 +32,7 @@ public class TestValuableItemDAO {
 
 	@Before
 	public void setup() {
-		testValuableItem = new ValuableItem("123123", 1, new Item(), 20, LocalDateTime.now());
+		testValuableItem = new ValuableItem("123123", 1, new Item(), 20, 22, 25, 18, LocalDateTime.now());
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class TestValuableItemDAO {
 		ValuableItem fetchedValuableItem = valuableItemDAO.fetch(((CreateSuccessResult) saveResult).getPk());
 
 		Assert.assertEquals(((CreateSuccessResult) saveResult).getPk(), fetchedValuableItem.getPk());
-		Assert.assertEquals(testValuableItem.getEstimatedPrice(), fetchedValuableItem.getEstimatedPrice());
+		Assert.assertEquals(testValuableItem.getMean(), fetchedValuableItem.getMean());
 		Assert.assertEquals(testValuableItem.getId(), fetchedValuableItem.getId());
 		Assert.assertEquals(testValuableItem.getItem().toString(), fetchedValuableItem.getItem().toString());
 		Assert.assertEquals(testValuableItem.getCreatedDate(), fetchedValuableItem.getCreatedDate());
@@ -68,7 +68,7 @@ public class TestValuableItemDAO {
 	@Test
 	public void testUpdateValuableItem() {
 		ValuableItem initialValuableItem = saveInitialValuableItem();
-		initialValuableItem.setEstimatedPrice(1000);
+		initialValuableItem.setMax(1000);
 
 		Result updateResult = valuableItemDAO.update(initialValuableItem);
 
@@ -76,7 +76,6 @@ public class TestValuableItemDAO {
 
 		ValuableItem fetchedValuableItem = valuableItemDAO.fetch(initialValuableItem.getPk());
 
-		Assert.assertNotEquals(fetchedValuableItem.getEstimatedPrice(), testValuableItem.getEstimatedPrice());
 		Assert.assertEquals(fetchedValuableItem.getCreatedDate(), testValuableItem.getCreatedDate());
 		Assert.assertEquals(fetchedValuableItem.getItem().toString(), testValuableItem.getItem().toString());
 		Assert.assertEquals(fetchedValuableItem.getId(), testValuableItem.getId());
@@ -102,7 +101,7 @@ public class TestValuableItemDAO {
 		List<ValuableItem> valuableItems = new ArrayList<>();
 
 		for (int i = 0; i < numberOfValuableItems; i++) {
-			valuableItems.add(new ValuableItem("qwe" +  i + "qwe", 1, new Item(), i, LocalDateTime.now()));
+			valuableItems.add(new ValuableItem("qwe" +  i + "qwe", 1, new Item(), i, i+i, i-1, 0, LocalDateTime.now()));
 		}
 
 		for(ValuableItem valuableItem : valuableItems) {

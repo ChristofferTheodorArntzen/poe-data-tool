@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 
 /**
  * fetches the last public items and saves a subset of the items to the active database.
+ * used for prototyping.
  */
 
 @Configuration
@@ -84,7 +85,16 @@ public class ValuableItemGenerator {
 
 		for (Item item : itemList) {
 
-			ValuableItem valuableItem = new ValuableItem(item.itemId, 1, item, random.nextInt(20), LocalDateTime.now());
+			ValuableItem valuableItem = new ValuableItem(
+					item.itemId,
+					1,
+					item,
+					random.nextInt(20),
+					random.nextInt(20),
+					random.nextInt(20),
+					random.nextInt(20),
+					LocalDateTime.now());
+
 			valuableItemDAO.save(valuableItem);
 
 			publishToWebSockets("/topic/greetings", valuableItem);

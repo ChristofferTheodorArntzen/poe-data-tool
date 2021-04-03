@@ -9,4 +9,15 @@ public class ListingResponse {
 	@JsonProperty("result")
 	public List<Listings> result;
 
+	@Override
+	public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+
+		for(Listings entry : result) {
+			sb.append(entry.toString());
+		}
+
+		return sb.toString();
+	}
 }

@@ -2,6 +2,7 @@ package com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Query {
@@ -13,7 +14,7 @@ public class Query {
 	private List<Filter> Filters;
 
 	@JsonProperty("stats")
-	public List<Stat> stats;
+	public List<Stats> stats;
 
 	@JsonProperty("name")
 	public String name;
@@ -21,7 +22,15 @@ public class Query {
 	@JsonProperty("type")
 	public String type;
 
-	public Query(Status status, List<Filter> filters, List<Stat> stats, String name, String type) {
+	public Query(String name, String type) {
+		this(new Status(), new ArrayList<>(), new ArrayList<>(), name, type);
+	}
+
+	public Query(List<Filter> filters, List<Stats> stats, String name, String type) {
+		this(new Status(), filters, stats, name, type);
+	}
+
+	public Query(Status status, List<Filter> filters, List<Stats> stats, String name, String type) {
 		this.status = status;
 		Filters = filters;
 		this.stats = stats;

@@ -13,4 +13,16 @@ public class SchedulerUtils {
 		}
 	}
 
+	public static void trySleep() {
+		trySleep(HTTP_REQUEST_SLEEP);
+	}
+
+	public static void trySleep(int millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

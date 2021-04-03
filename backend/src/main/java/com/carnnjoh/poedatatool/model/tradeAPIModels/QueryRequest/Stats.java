@@ -1,11 +1,10 @@
 package com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest;
 
-import com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest.QueryFilterType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class Stat {
+public class Stats {
 
 	@JsonProperty("type")
 	public QueryFilterType type;

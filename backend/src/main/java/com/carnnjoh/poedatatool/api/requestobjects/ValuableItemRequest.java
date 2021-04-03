@@ -9,7 +9,10 @@ public class ValuableItemRequest {
 	private String id;
 	private Integer subscriptionFk;
 	private Item item;
-	private Integer estimatedPrice;
+	private int mean;
+	private int median;
+	private int max;
+	private int min;
 	private LocalDateTime createdDate;
 
 	public String getId() {
@@ -24,8 +27,20 @@ public class ValuableItemRequest {
 		return item;
 	}
 
-	public Integer getEstimatedPrice() {
-		return estimatedPrice;
+	public int getMean() {
+		return mean;
+	}
+
+	public int getMedian() {
+		return median;
+	}
+
+	public int getMax() {
+		return max;
+	}
+
+	public int getMin() {
+		return min;
 	}
 
 	public LocalDateTime getCreatedDate() {

@@ -4,7 +4,10 @@ CREATE TABLE ValuableItem (
     id VARCHAR(250) NOT NULL,
     subscriptionFk INT NOT NULL,
     item JSON NOT NULL,
-    estimatedPrice INT NOT NULL,
+    mean INT NOT NULL,
+    median INT NOT NULL,
+    max INT NOT NULL,
+    min INT NOT NULL,
     createdDate TIMESTAMP NOT NULL
 );
 
