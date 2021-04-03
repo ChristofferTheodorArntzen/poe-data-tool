@@ -3,8 +3,8 @@ package com.carnnjoh.poedatatool.model;
 public class InMemoryItem {
 
 	private Item item;
-
 	private boolean search;
+	private ItemType itemType;
 
 	public InMemoryItem(Item item, boolean search) {
 		this.item = item;
@@ -25,5 +25,22 @@ public class InMemoryItem {
 
 	public void setSearch(boolean search) {
 		this.search = search;
+	}
+
+	public ItemType getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(ItemType itemType) {
+		this.itemType = itemType;
+	}
+
+	@Override
+	public String toString() {
+		return "InMemoryItem{" +
+				"item=" + item.itemId +
+				", search=" + search +
+				", itemTypes=" + itemType +
+				'}';
 	}
 }
