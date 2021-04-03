@@ -2,17 +2,18 @@ package com.carnnjoh.poedatatool.schedulers;
 
 import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
 import com.carnnjoh.poedatatool.db.dao.UserDAO;
+import com.carnnjoh.poedatatool.db.dao.ValuableItemDAO;
 import com.carnnjoh.poedatatool.db.model.Subscription;
 import com.carnnjoh.poedatatool.db.model.User;
+import com.carnnjoh.poedatatool.db.model.ValuableItem;
+import com.carnnjoh.poedatatool.db.utils.CreateSuccessResult;
+import com.carnnjoh.poedatatool.db.utils.Result;
 import com.carnnjoh.poedatatool.model.InMemoryItem;
+import com.carnnjoh.poedatatool.model.Item;
 import com.carnnjoh.poedatatool.model.tradeAPIModels.ListingResponse.ListingResponse;
 import com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest.QueryRequest;
 import com.carnnjoh.poedatatool.model.tradeAPIModels.QueryResponse;
-import com.carnnjoh.poedatatool.services.ItemFilterService;
-import com.carnnjoh.poedatatool.services.ItemSearcher;
-import com.carnnjoh.poedatatool.services.PrivateStashTabService;
-import com.carnnjoh.poedatatool.services.TradeAPISearchService;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.carnnjoh.poedatatool.services.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +22,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import java.util.HashMap;
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Configuration
 @EnableScheduling
@@ -46,10 +49,16 @@ public class ScheduledPriceEstimator {
 	private PrivateStashTabService privateStashTabService;
 
 	@Autowired
-	private TradeAPISearchService tradeAPISearchService;
+	private TradeAPIService tradeAPIService;
 
 	@Autowired
 	private UserDAO userDAO;
+
+	@Autowired
+	private ValuableItemDAO valuableItemDAO;
+
+	@Autowired
+	private WebSocketPublishService webSocketPublishService;
 
 	@Autowired
 	private ObjectMapper objectMapper;
@@ -66,62 +75,94 @@ public class ScheduledPriceEstimator {
 
 		User user = userDAO.fetch(1);
 
-		Map<String, InMemoryItem> items = privateStashTabService.getInMemoryItemMap();
-		if(items.size() == 0) {
+		Map<String, InMemoryItem> inMemoryItemMap = privateStashTabService.getInMemoryItemMap();
+		if (inMemoryItemMap.size() == 0) {
 			logger.info("in memory map of items in " + getClass().getName() + " is empty! Returning early from job");
 			return;
 		}
 
-		items = itemFilterService.filterItems(items, sub.getItemTypes());
+		inMemoryItemMap = itemFilterService.filterItems(inMemoryItemMap, sub.getItemTypes());
 
-		Map<String, InMemoryItem> testShit = new HashMap<>();
+		//todo: build this out
+		List<QueryRequest> queryRequests = itemSearcher.createQueryRequests(inMemoryItemMap);
 
-		for(InMemoryItem item : items.values()) {
+		//todo: figure out a way to do this a different way? need to sleep in between every call, maybe?
+		makeQueries(queryRequests, user, sub);
+	}
 
-			if(item.getItem().name.equals("Death's Harp")) {
+	private void makeQueries(List<QueryRequest> queryRequests, User user, Subscription subscription) {
 
-				if(item.isSearch()) {
-					System.out.println("we search");
-				} else  {
-					System.out.println("filter is fucked up");
-					item.setSearch(true);
-				}
+		// One per searchable item
+		for (QueryRequest request : queryRequests) {
 
-				testShit.put(item.getItem().itemId, item);
-				System.out.println(item.getItem().toString());
+			Optional<QueryResponse> queryResponse = getQueryIdAndItemListingIds(request, user);
+
+			if(!queryResponse.isPresent()) {
+				continue;
+			}
+
+			Optional<ListingResponse> listingResponse = getListings(queryResponse.get(), user);
+
+			if(!listingResponse.isPresent()) {
+				continue;
+			}
+
+			ValuableItem valuableItem = createValuableItem(listingResponse.get(), subscription);
+
+			webSocketPublishService.publishToWebSocket(valuableItem);
+		}
+	}
+
+	private ValuableItem createValuableItem(ListingResponse listingResponse, Subscription subscription) {
+		List<Integer> listingValues = getConvertedListOfPrices(listingResponse);
+
+		//TODO: use the original item that made the query, not the first of the response.
+		Item item = listingResponse.result.get(0).item;
+
+		int meanPrice = listingValues.stream().mapToInt(price -> price).sum() / listingValues.size();
+		int medianPrice = getMedianPrice(listingValues);
+		int max = Collections.max(listingValues);
+		int min = Collections.min(listingValues);
+
+		if(meanPrice > (int) subscription.getCurrencyThreshold()) {
+			ValuableItem valuableItem = new ValuableItem(item.itemId, subscription.getPk(), item, meanPrice, medianPrice, max, min, LocalDateTime.now());
+			Result result = valuableItemDAO.save(valuableItem);
+
+			if(result instanceof CreateSuccessResult) {
+				valuableItem.setPk(((CreateSuccessResult) result).getPk());
+				return valuableItem;
 			}
 		}
 
+		return null;
+	}
 
-		List<QueryRequest> queryRequests = itemSearcher.searchForItem(testShit);
+	// TODO: this can contain more than 1 currency type. Convert all amount nums to chaos
+	private List<Integer> getConvertedListOfPrices(ListingResponse listingResponse) {
+		return listingResponse.result.stream().map(response -> response.listing.price.amount).collect(Collectors.toList());
+	}
 
-		for(QueryRequest queryRequest : queryRequests) {
-			try {
-				System.out.println(objectMapper.writeValueAsString(queryRequest));
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
-			}
-		}
+	private int getMedianPrice(List<Integer> listingValues) {
+		return (listingValues.size() % 2 == 0)
+				? (listingValues.get(listingValues.size() / 2) + listingValues.get(listingValues.size() / 2 - 1) /2)
+				: listingValues.get(listingValues.size() / 2);
+	}
 
-		for(QueryRequest requests : queryRequests) {
+	private Optional<QueryResponse> getQueryIdAndItemListingIds(QueryRequest request, User user) {
+		Optional<QueryResponse> queryResponse = tradeAPIService
+				.searchForItemIds(user.getSessionId(), request);
 
-			Optional<QueryResponse> queryResponse = tradeAPISearchService
-					.searchForItemIds(user.getSessionId(), requests);
+		SchedulerUtils.trySleep();
 
-			if (queryResponse.isPresent()) {
+		return queryResponse;
+	}
 
-				//TODO: get 400 bad request here - fix
-				Optional<ListingResponse> listingResponse = tradeAPISearchService
-						.fetchListings(user.getSessionId(), queryResponse.get());
+	private Optional<ListingResponse> getListings(QueryResponse response, User user) {
+		Optional<ListingResponse> listingResponse = tradeAPIService
+				.fetchListings(user.getSessionId(), response);
 
-				if(listingResponse.isPresent()) {
-					try {
-						System.out.println(new ObjectMapper().writeValueAsString(listingResponse));
-					} catch (JsonProcessingException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
+		SchedulerUtils.trySleep();
+
+		return listingResponse;
 	}
 }
