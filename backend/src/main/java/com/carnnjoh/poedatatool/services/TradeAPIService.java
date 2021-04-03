@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 @Service
-public class TradeAPISearchService {
+public class TradeAPIService {
 
 	private final String BASE_URL_SEARCH = "http://www.pathofexile.com/api/trade/search/";
 	private final String BASE_URL_FETCH = "http://www.pathofexile.com/api/trade/fetch/";
@@ -30,17 +30,15 @@ public class TradeAPISearchService {
 
 	private final RestTemplate template = new RestTemplate();
 
-
-	//TODO: not tested...
 	public Optional<QueryResponse> searchForItemIds(String poeSessId, QueryRequest queryRequest) {
 
 		String queryString = createBody(queryRequest);
 
-		if(queryString == null || queryString.isEmpty()) {
+		if (queryString == null || queryString.isEmpty()) {
 			return Optional.empty();
 		}
 
-		HttpEntity<String> entity = new HttpEntity<>(queryString,createHeader(poeSessId));
+		HttpEntity<String> entity = new HttpEntity<>(queryString, createHeader(poeSessId));
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(BASE_URL_SEARCH + urlLeagueSuffix);
 
@@ -52,16 +50,12 @@ public class TradeAPISearchService {
 				: Optional.empty();
 	}
 
-	//TODO: not tested
 	public Optional<ListingResponse> fetchListings(String poeSessId, QueryResponse queryResponse) {
 
-		String queryString = createBody(queryResponse);
+		HttpEntity<String> entity = new HttpEntity<>(createHeader(poeSessId));
 
-		HttpEntity<String> entity = new HttpEntity<>(
-				queryString,createHeader(poeSessId));
-
-		//TODO: find a more elegant way of constructing this maybe?
-		String queryIdString = createIdParam(queryResponse);
+		//TODO: find out if there is a max limit for how many ids can be concatenated (from small test including every id didn't work?)
+		String queryIdString = createIdParam(queryResponse.result);
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(BASE_URL_FETCH + queryIdString)
 				.queryParam("query", queryResponse.id);
@@ -72,16 +66,15 @@ public class TradeAPISearchService {
 		return (responseEntity.getStatusCode() == HttpStatus.OK)
 				? Optional.ofNullable(responseEntity.getBody())
 				: Optional.empty();
-
 	}
 
-	private String createIdParam(QueryResponse queryResponse) {
-		return String.join(",", queryResponse.result);
+	private static String createIdParam(String[] itemIds) {
+		return String.join(",", itemIds);
 	}
 
 	private String createBody(Object object) {
 		try {
-		 return objectMapper.writeValueAsString(object);
+			return objectMapper.writeValueAsString(object);
 		} catch (JsonProcessingException jpe) {
 			jpe.printStackTrace();
 		}
