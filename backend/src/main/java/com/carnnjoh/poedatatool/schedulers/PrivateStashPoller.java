@@ -48,17 +48,16 @@ public class PrivateStashPoller {
 		long startTime = System.currentTimeMillis();
 
 		if(disabled) {
-			logger.info("Scheduled task " + getClass() + " is disabled");
+			logger.info("Scheduled task " + getClass().getSimpleName() + " is disabled");
 			return;
 		} else {
-			logger.info("Scheduled task " + getClass().getName() + " has began");
+			logger.info("Scheduled task " + getClass().getSimpleName() + " has began");
 		}
 
 		SchedulerUtils.execute(() -> {
 			//TODO: add a search for active user
 			User user = userDAO.fetch(1);
 
-			//TODO: add a search for active user
 			Subscription sub = subscriptionDAO.fetchByStatus(true);
 
 			Integer[] activeTabs = sub.getTabIds();
@@ -67,21 +66,10 @@ public class PrivateStashPoller {
 				List<PrivateStashTab> privateStashTabs = privateStashTabService.requestStashTabs(activeTabs, user);
 				privateStashTabService.saveItems(privateStashTabs);
 
-				logger.debug(String.format("Executed %s in '%d'ms",getClass().getName(), System.currentTimeMillis() - startTime));
+				logger.debug(String.format("Executed %s in '%d'ms",	getClass().getSimpleName(), System.currentTimeMillis() - startTime));
 			} else {
 				logger.debug("stashTab was not present");
 			}
 		});
 	}
-
-	//TODO: make a better way to disable this.
-//	private void disabledTick() {
-//		if (disabled) {
-//
-//			disableCounter++;
-//			if (disableCounter > 1000) {
-//				disabled = false;
-//			}
-//		}
-//	}
 }
