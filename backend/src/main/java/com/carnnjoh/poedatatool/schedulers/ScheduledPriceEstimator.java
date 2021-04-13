@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -41,9 +42,8 @@ public class ScheduledPriceEstimator {
 	@Autowired
 	private ItemFilterService itemFilterService;
 
-	//TODO: rename to a more appropriate name
 	@Autowired
-	private ItemSearcher itemSearcher;
+	private QueryConstructorService queryConstructorService;
 
 	@Autowired
 	private PrivateStashTabService privateStashTabService;
@@ -63,13 +63,23 @@ public class ScheduledPriceEstimator {
 	@Autowired
 	private ObjectMapper objectMapper;
 
+	@Value("${schedulers.ScheduledPriceEstimator.disabled:false}")
+	private boolean disabled;
+
 	public ScheduledPriceEstimator() {
 	}
 
 	@Scheduled(initialDelay = 2000, fixedDelay = 20000)
 	public void execute() {
 
-		logger.info("Scheduled task " + getClass().getName() + " has began");
+		long startTime = System.currentTimeMillis();
+
+		if(disabled) {
+			logger.info("Scheduled task " + getClass().getSimpleName() + " is disabled");
+			return;
+		} else {
+			logger.info("Scheduled task " + getClass().getSimpleName() + " has began");
+		}
 
 		Subscription sub = subscriptionDAO.fetchByStatus(true);
 
@@ -77,16 +87,16 @@ public class ScheduledPriceEstimator {
 
 		Map<String, InMemoryItem> inMemoryItemMap = privateStashTabService.getInMemoryItemMap();
 		if (inMemoryItemMap.size() == 0) {
-			logger.info("in memory map of items in " + getClass().getName() + " is empty! Returning early from job");
+			logger.info("in memory map of items in " + privateStashTabService.getClass().getSimpleName() + " is empty! Returning early from job");
 			return;
 		}
 
 		inMemoryItemMap = itemFilterService.filterItems(inMemoryItemMap, sub.getItemTypes());
 
-		//todo: build this out
-		List<QueryRequest> queryRequests = itemSearcher.createQueryRequests(inMemoryItemMap);
+		//todo: build this out -- attach original item to the object
+		List<QueryRequest> queryRequests = queryConstructorService.createQueryRequests(inMemoryItemMap);
 
-		//todo: figure out a way to do this a different way? need to sleep in between every call, maybe?
+		//todo: figure out a way to do this a different way? need to sleep in between every call
 		makeQueries(queryRequests, user, sub);
 	}
 
@@ -125,6 +135,8 @@ public class ScheduledPriceEstimator {
 		int min = Collections.min(listingValues);
 
 		if(meanPrice > (int) subscription.getCurrencyThreshold()) {
+
+			// lookup if an item with the same itemId exists, if it does update that rather than creating a new one
 			ValuableItem valuableItem = new ValuableItem(item.itemId, subscription.getPk(), item, meanPrice, medianPrice, max, min, LocalDateTime.now());
 			Result result = valuableItemDAO.save(valuableItem);
 
