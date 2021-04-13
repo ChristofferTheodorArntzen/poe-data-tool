@@ -123,6 +123,9 @@ public class Item {
 	@JsonProperty("typeLine")
 	public String typeLine;
 
+	@JsonProperty(required = false, defaultValue = "baseType")
+	public String baseType;
+
 	@JsonProperty("utilityMods")
 	public List<String> utilityMods;
 
@@ -140,6 +143,57 @@ public class Item {
 
 	@JsonProperty("'^[\\\\s]RaceReward$'")
 	public boolean isRaceReward;
+
+	public Item() {
+	}
+
+	public Item(Item item) {
+		this.isAbyssalJewel = item.isAbyssalJewel;
+		this.additionalProperties = item.additionalProperties;
+		this.artFilename = item.artFilename;
+		this.categories = item.categories;
+		this.isCorrupted = item.isCorrupted;
+		this.cosmeticMods = item.cosmeticMods;
+		this.craftedMods = item.craftedMods;
+		this.descText = item.descText;
+		this.isDuplicated = item.isDuplicated;
+		this.isElder = item.isElder;
+		this.enchantedMods = item.enchantedMods;
+		this.explicitMods = item.explicitMods;
+		this.flavourText = item.flavourText;
+		this.frameType = item.frameType;
+		this.height = item.height;
+		this.icon = item.icon;
+		this.itemId = item.itemId;
+		this.isIdentified = item.isIdentified;
+		this.itemLevel = item.itemLevel;
+		this.implicitMods = item.implicitMods;
+		this.inventoryId = item.inventoryId;
+		this.isRelic = item.isRelic;
+		this.league = item.league;
+		this.isLockedToCharacter = item.isLockedToCharacter;
+		this.maxStackSize = item.maxStackSize;
+		this.name = item.name;
+		this.note = item.note;
+		this.properties = item.properties;
+		this.prophecyDiffText = item.prophecyDiffText;
+		this.prophecyText = item.prophecyText;
+		this.requirements = item.requirements;
+		this.secDescText = item.secDescText;
+		this.isShaper = item.isShaper;
+		this.sockets = item.sockets;
+		this.StackSize = item.StackSize;
+		this.isSupport = item.isSupport;
+		this.talismanTier = item.talismanTier;
+		this.typeLine = item.typeLine;
+		this.baseType = item.baseType;
+		this.utilityMods = item.utilityMods;
+		this.isVerified = item.isVerified;
+		this.width = item.width;
+		this.xPos = item.xPos;
+		this.yPos = item.yPos;
+		this.isRaceReward = item.isRaceReward;
+	}
 
 	@JsonIgnore
 	public boolean isCurrency() {
@@ -203,6 +257,7 @@ public class Item {
 			", isSupport=" + isSupport +
 			", talismanTier=" + talismanTier +
 			", typeLine='" + typeLine + '\'' +
+			", baseType='" + baseType + '\'' +
 			", utilityMods=" + utilityMods +
 			", isVerified=" + isVerified +
 			", width=" + width +
