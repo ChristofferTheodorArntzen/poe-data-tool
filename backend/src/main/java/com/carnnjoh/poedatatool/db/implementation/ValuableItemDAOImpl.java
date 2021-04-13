@@ -81,10 +81,10 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 		return Utils.tryGet(() -> template.query("Select * from ValuableItem", rowMapper));
 	}
 
-	public List<ValuableItem> getAllByDate(boolean ascending){
+	public List<ValuableItem> getAllByDate(boolean ascending) {
 		return Utils.tryGet( () -> {
 			String sqlQuery = "Select * from ValuableItem order by createdDate";
-			sqlQuery = (ascending) ? sqlQuery + "asc" : sqlQuery + "desc";
+			sqlQuery = (ascending) ? sqlQuery + " asc" : sqlQuery + " desc";
 
 			return template.query(sqlQuery, rowMapper);
 		});
