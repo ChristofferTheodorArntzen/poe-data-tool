@@ -1,32 +1,31 @@
 package com.carnnjoh.poedatatool.schedulers;
 
 import com.carnnjoh.poedatatool.db.dao.ValuableItemDAO;
+import com.carnnjoh.poedatatool.db.inMemory.dao.StatsDao;
 import com.carnnjoh.poedatatool.db.model.ValuableItem;
+import com.carnnjoh.poedatatool.model.InMemoryItem;
 import com.carnnjoh.poedatatool.model.Item;
-import com.carnnjoh.poedatatool.model.StashTab;
+import com.carnnjoh.poedatatool.model.PublicStashTab;
 import com.carnnjoh.poedatatool.model.StashTabs;
+import com.carnnjoh.poedatatool.services.ExplicitModExtractorService;
+import com.carnnjoh.poedatatool.services.PrivateStashTabService;
 import com.carnnjoh.poedatatool.services.PublicStashTabFetcher;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.carnnjoh.poedatatool.services.WebSocketPublishService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * fetches the last public items and saves a subset of the items to the active database.
- * used for prototyping.
+ * used for prototyping / testing / extracting data. Not meant to run while the program is in production
  */
 
 @Configuration
@@ -44,7 +43,16 @@ public class ValuableItemGenerator {
 	private String nextChangeId;
 
 	@Autowired
-	SimpMessagingTemplate simpMessagingTemplate;
+	WebSocketPublishService webSocketPublishService;
+
+	@Autowired
+	ExplicitModExtractorService explicitModExtractorService;
+
+	@Autowired
+	private PrivateStashTabService privateStashTabService;
+
+	@Autowired
+	StatsDao statsDao;
 
 	@Value("${schedulers.valuableItemGenerator.disabled:true}")
 	boolean disabled;
@@ -53,28 +61,60 @@ public class ValuableItemGenerator {
 	public void execute() {
 
 		if(disabled) {
+			LOGGER.info("ValuableItemGenerator is disabled");
 			return;
 		}
 
 		LOGGER.info("Started fetching stash tabs");
 
-		double startTime = (double) System.currentTimeMillis();
+		long startTime = System.currentTimeMillis();
 
 		Optional<StashTabs> metaData = fetcher.fetchPublicStashTabs(nextChangeId);
-		LOGGER.info(String.format("Http call '%.2f' secs", getDuration(startTime, (double) System.currentTimeMillis())));
+		LOGGER.info(String.format("Http call '%.2f' secs", getDuration(startTime, System.currentTimeMillis())));
 
-		List<StashTab> stashTabList = new ArrayList<>();
+		List<PublicStashTab> publicStashTabList = new ArrayList<>();
 
 		if (metaData.isPresent()) {
 			nextChangeId = metaData.get().changeId;
-			stashTabList.addAll(metaData.get().stashes);
+			publicStashTabList.addAll(metaData.get().stashes);
 		}
 
-		if (stashTabList.isEmpty()) {
-			System.out.println("stash tabs are empty");
-		}
+		privateStashTabService.saveItems(publicStashTabList);
 
-		List<Item> itemList = getItems(stashTabList);
+		Map<String, InMemoryItem> inMemoryItemMap = privateStashTabService.getInMemoryItemMap();
+
+		List<Item> itemList = getItems(publicStashTabList);
+//		for (InMemoryItem item : inMemoryItemMap.values()) {
+//
+//			List<InterpretedMod> interpretedMods = new ArrayList<>();
+//
+//			if(item.getItemType() != null && item.getItemType().convertMods && item.explicitMods != null) {
+//				 interpretedMods.addAll(explicitModExtractorService.convertExplicitMods(item.explicitMods));
+//			} else {
+//
+//				if(item.getItemType() != null) {
+//					//System.out.println(item.getItemType());
+//				} else {
+//					//System.out.println(item.toString());
+//				}
+//
+//			}
+//
+//			for (InterpretedMod interpretedMod : interpretedMods) {
+//
+//				String modId = statsDao.lookUpIdByModText(interpretedMod.getGenericText());
+//
+//				if(modId == null)  {
+//					System.out.println(String.format("Interpreted mod, text: %s, minValue: %.2f, maxValue: %.2f",
+//						interpretedMod.getGenericText(),
+//						interpretedMod.getMinValue(),
+//						interpretedMod.getMaxValue()
+//					));
+//				} else {
+//					//System.out.println(modId);
+//				}
+//			}
+//		}
 
 		itemList = itemList.stream().filter(item -> item.sockets != null).collect(Collectors.toList());
 		if (itemList.size() > 5) {
@@ -93,34 +133,24 @@ public class ValuableItemGenerator {
 					random.nextInt(20),
 					random.nextInt(20),
 					random.nextInt(20),
-					LocalDateTime.now());
+					LocalDateTime.now()
+			);
 
 			valuableItemDAO.save(valuableItem);
 
-			publishToWebSockets("/topic/greetings", valuableItem);
+			webSocketPublishService.publishToWebSocket("/topic/greetings", valuableItem);
 		}
 
 		LOGGER.info(String.format("Added %d items", itemList.size()));
 		LOGGER.info(String.format("Execution took '%.2f' secs", getDuration(startTime, (double) System.currentTimeMillis())));
 	}
 
-	private List<Item> getItems(List<StashTab> stashTabs) {
-		return stashTabs.stream().flatMap(stashTab -> stashTab.items.stream()).collect(Collectors.toList());
+	private List<Item> getItems(List<PublicStashTab> publicStashTabs) {
+		return publicStashTabs.stream().flatMap(stashTab -> stashTab.items.stream()).collect(Collectors.toList());
 	}
 
 	private double getDuration(double startTime, double endTime) {
 		double durationMillis = endTime - startTime;
 		return durationMillis / 1000;
 	}
-
-	private void publishToWebSockets(String path, Object objectToPublish){
-		ObjectMapper objectMapper = new ObjectMapper();
-		try{
-			simpMessagingTemplate.convertAndSend(path, objectMapper.writeValueAsString(objectToPublish));
-		} catch (JsonProcessingException e) {
-			LOGGER.warn(e.getMessage());
-			e.printStackTrace();
-		}
-	}
-
 }
