@@ -1,33 +1,27 @@
 package com.carnnjoh.poedatatool.services;
 
+import com.carnnjoh.poedatatool.db.inMemory.dao.ConstantsDao;
+import com.carnnjoh.poedatatool.db.inMemory.dao.StatsDao;
 import com.carnnjoh.poedatatool.model.InMemoryItem;
 import com.carnnjoh.poedatatool.model.Item;
 import com.carnnjoh.poedatatool.model.ItemType;
 import com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-//TODO: rename with a more appropriate name
-
 @Service
-public class ItemSearcher {
+public class QueryConstructorService {
 
-	//Henter alle stats i spillet?
-	//https://www.pathofexile.com/api/trade/data/stats
+	@Autowired
+	ConstantsDao constantsDao;
 
-	// Henter statiske props
-	// https://www.pathofexile.com/api/trade/data/static
-
-	// Bygge query component
-
-	// Sende søke på dette apiet
-	// https://www.pathofexile.com/api/trade/search/{league}
-
-	// få resultatsetet
-	// https://www.pathofexile.com/api/trade/fetch/{items}
+	@Autowired
+	StatsDao statsDao;
 
 	public List<QueryRequest> createQueryRequests(Map<String, InMemoryItem> inMemoryItemMap) {
 
@@ -35,7 +29,7 @@ public class ItemSearcher {
 
 		for (InMemoryItem inMemoryItem : inMemoryItemMap.values()) {
 			if (inMemoryItem.isSearch()) {
-				QueryRequest queryRequest = bigAssSwitchCase(inMemoryItem.getItemType(), inMemoryItem.getItem());
+				QueryRequest queryRequest = createQueryRequest(inMemoryItem.getItemType(), inMemoryItem);
 				if (queryRequest != null) {
 					queryRequests.add(queryRequest);
 				}
@@ -48,42 +42,43 @@ public class ItemSearcher {
 	// want specify how to construct the request query per itemType.
 	// how to impl without switch case for each itemType here.
 
-	private QueryRequest constructQueryRequest(InMemoryItem inMemoryItem) {
+	private QueryRequest createQueryRequest(ItemType itemType, Item item) {
+
+
+		Query query = createQuery(item);
+
+
+
+		//QueryRequest queryRequest = createTestQueryRequest();
+
+		QueryRequest queryRequest = new QueryRequest(query, new Sort());
+
+		return queryRequest;
+	}
+
+	private Query createQuery(Item item) {
+
+		Stats stats = new Stats();
+		stats.type = QueryFilterType.AND;
+		stats.disabled = false;
 
 		List<Filter> filters = new ArrayList<>();
-		List<Stats> stats = new ArrayList<>();
-		String name = inMemoryItem.getItem().name;
-		String type = inMemoryItem.getItem().typeLine;
-		Status status = new Status();
-		Query query = new Query(status, filters, stats, name, type);
-		Sort sort = new Sort();
 
-		if (name == null || name.isEmpty()) {
-			return null;
+		for(String explicitModText : item.explicitMods) {
+			Filter filter = new Filter();
+			filter.modId = getModIdFromExplicitMod(explicitModText);
+
 		}
 
-		return new QueryRequest(query, sort);
+		TypeFilter typeFilter = new TypeFilter();
+
+		stats.filters = Collections.singletonList(typeFilter);
+		return new Query("", "");
 	}
 
-	private QueryRequest bigAssSwitchCase(ItemType itemType, Item item) {
-
-		switch(itemType) {
-			case UNIQUE: return constructDefaultUniqueQuery(itemType, item);
-			case CARD: return constructCardQuery(itemType, item);
-			default: return null;
-		}
-
-	}
-
-	private QueryRequest constructCardQuery(ItemType itemtype, Item item) {
-
-		return null;
-	}
-
-	private QueryRequest constructDefaultUniqueQuery(ItemType itemType, Item item) {
-		Query query = new Query(item.name, item.typeLine);
-		Sort sort = new Sort();
-		return new QueryRequest(query, sort);
+	private String getModIdFromExplicitMod(String explicitMods) {
+		String modId = statsDao.lookUpIdByModText(explicitMods);
+		return modId;
 	}
 
 	private QueryRequest constructDefaultQuery(Item item) {
