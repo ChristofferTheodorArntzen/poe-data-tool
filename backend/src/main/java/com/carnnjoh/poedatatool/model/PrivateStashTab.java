@@ -3,11 +3,10 @@ package com.carnnjoh.poedatatool.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PrivateStashTab {
+public class PrivateStashTab extends StashTab {
 
 	@JsonProperty("numTabs")
 	public int numberOfTabs;
@@ -29,7 +28,4 @@ public class PrivateStashTab {
 
 	@JsonProperty(value = "quadLayout", required = false)
 	public Boolean isQuadLayout = null;
-
-	@JsonProperty("items")
-	public List<Item> items;
 }

@@ -1,6 +1,6 @@
 package com.carnnjoh.poedatatool.services;
 
-import com.carnnjoh.poedatatool.model.StashTab;
+import com.carnnjoh.poedatatool.model.PublicStashTab;
 import com.carnnjoh.poedatatool.model.StashTabs;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -19,8 +19,8 @@ public class PublicStashTabFetcher {
 
 	private final RestTemplate template = new RestTemplate();
 
-	public Optional<StashTab> fetchStash(String id) {
-		Optional<List<StashTab>> stashes = fetchStash();
+	public Optional<PublicStashTab> fetchStash(String id) {
+		Optional<List<PublicStashTab>> stashes = fetchStash();
 		if (stashes.isPresent()) {
 			return stashes
 				.get()
@@ -43,7 +43,7 @@ public class PublicStashTabFetcher {
 			: Optional.empty();
 	}
 
-	public Optional<List<StashTab>> fetchStash() {
+	public Optional<List<PublicStashTab>> fetchStash() {
 		HttpEntity<String> entity = new HttpEntity<>("parameters", createHeaders());
 		ResponseEntity<StashTabs> responseEntity = template
 			.exchange(BASE_URL + "/public-stash-tabs", HttpMethod.GET, entity, StashTabs.class);
