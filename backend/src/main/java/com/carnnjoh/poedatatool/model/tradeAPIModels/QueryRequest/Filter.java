@@ -2,7 +2,7 @@ package com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public abstract class Filter {
+public class Filter {
 
 	@JsonProperty("disabled")
 	boolean disabled = false;
@@ -143,12 +143,10 @@ public abstract class Filter {
 	//--- misc_filters
 
 	//--- misc_filters
-
 	@JsonProperty("id")
 	public String modId;
 
 	public Value value;
-
 	//--- misc_filters
 
 	@JsonProperty("weapon_filters")
@@ -171,4 +169,13 @@ public abstract class Filter {
 
 	@JsonProperty("type_filters")
 	public TypeFilter typeFilter;
+
+	public Filter() {
+	}
+
+	public Filter(String modId, Value value) {
+		this.modId = modId;
+		this.value = value;
+	};
+
 }

@@ -6,7 +6,6 @@ import com.carnnjoh.poedatatool.model.InMemoryItem;
 import com.carnnjoh.poedatatool.model.Item;
 import com.carnnjoh.poedatatool.model.ItemType;
 import com.carnnjoh.poedatatool.model.PrivateStashTab;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,17 +28,14 @@ public class ItemFilterServiceTest {
 	@Autowired
 	private ItemFilterService itemFilterService;
 
-	@Autowired
-	private ObjectMapper objectMapper;
-
 	private Item item;
 	private PrivateStashTab privateStashTab;
 
 	@Before
 	public void setup() {
 
-		item = TestUtils.getItemFromResources("/item.txt", objectMapper);
-		privateStashTab = TestUtils.getPrivateStashTabFromResources("/privateStashTab.json", objectMapper);
+		item = TestUtils.getFileFromResourcesAsObject("/item.txt", Item.class);
+		privateStashTab = TestUtils.getFileFromResourcesAsObject("/privateStashTab.json", PrivateStashTab.class);
 	}
 
 	@Test
@@ -69,7 +65,7 @@ public class ItemFilterServiceTest {
 		inMemoryItemMap = itemFilterService.filterItems(inMemoryItemMap, itemTypes);
 
 		for(InMemoryItem inMemoryItem : inMemoryItemMap.values()) {
-			System.out.println("item with name: " + inMemoryItem.getItem().name + "is search: " + inMemoryItem.isSearch());
+			System.out.println("item with name: " + inMemoryItem.name + "is search: " + inMemoryItem.isSearch());
 		}
 
 	}

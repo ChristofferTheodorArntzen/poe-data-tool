@@ -1,22 +1,13 @@
 package com.carnnjoh.poedatatool.model;
 
-public class InMemoryItem {
+public class InMemoryItem extends Item {
 
-	private Item item;
 	private boolean search;
 	private ItemType itemType;
 
 	public InMemoryItem(Item item, boolean search) {
-		this.item = item;
+		super(item);
 		this.search = search;
-	}
-
-	public Item getItem() {
-		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
 	}
 
 	public boolean isSearch() {
@@ -38,7 +29,7 @@ public class InMemoryItem {
 	@Override
 	public String toString() {
 		return "InMemoryItem{" +
-				"item=" + item.itemId +
+				"item=" + super.toString() +
 				", search=" + search +
 				", itemTypes=" + itemType +
 				'}';

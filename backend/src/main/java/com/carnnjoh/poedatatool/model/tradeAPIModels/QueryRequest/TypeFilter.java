@@ -9,4 +9,10 @@ public class TypeFilter extends Filter {
 	@JsonProperty("filters")
 	public List<Filter> filters;
 
+	public TypeFilter() {
+	}
+
+	public TypeFilter(List<Filter> filters) {
+		this.filters = filters;
+	}
 }

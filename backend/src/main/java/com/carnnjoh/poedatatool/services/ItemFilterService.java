@@ -19,12 +19,8 @@ public class ItemFilterService {
 
 		for(ItemType itemType : itemTypes) {
 			for(InMemoryItem item : fetchedItems.values()) {
-				if(itemType.filter.test(item.getItem())) {
-					System.out.println("Item was set to true");
+				if(item.getItemType() == itemType) {
 					item.setSearch(true);
-					//TODO: this should hopefully only be set once per item (rare item vs. a cluster jewel ???)
-					//Need to work more on the test functions for the filters.
-					item.setItemType(itemType);
 				}
 			}
 		}

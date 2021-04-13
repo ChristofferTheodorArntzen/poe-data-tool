@@ -1,11 +1,8 @@
 package com.carnnjoh.poedatatool.services;
 
+import com.carnnjoh.poedatatool.db.inMemory.dao.UniqueDao;
 import com.carnnjoh.poedatatool.db.model.User;
-import com.carnnjoh.poedatatool.model.InMemoryItem;
-import com.carnnjoh.poedatatool.model.Item;
-import com.carnnjoh.poedatatool.model.PrivateStashTab;
-import com.carnnjoh.poedatatool.model.PrivateStashTabRequest;
-import com.carnnjoh.poedatatool.schedulers.PrivateStashPoller;
+import com.carnnjoh.poedatatool.model.*;
 import com.carnnjoh.poedatatool.schedulers.SchedulerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,22 +11,50 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
+import static com.carnnjoh.poedatatool.model.ItemType.*;
 
 @Service
 public class PrivateStashTabService {
 
-	private Logger logger = LoggerFactory.getLogger(PrivateStashPoller.class);
+	private Logger logger = LoggerFactory.getLogger(PrivateStashTabService.class);
 
 	@Autowired
 	private PrivateStashTabFetcher privateStashTabFetcher;
+
+	@Autowired
+	private UniqueDao uniqueDao;
 
 	//TODO: find a better way to set this when testing... ?
 	@Value("${services.test.poesessid}")
 	private String testSessionId;
 
-	//TODO: singleton?
-	// in memory map, contains all "active" items that the PrivateStashPoller finds.
+	private final List<ItemType> listOfItemTypes = Arrays.asList(
+		ABYSSALJEWEL,
+		SCARAB,
+		PROPHECY,
+		FRAGMENT,
+		OIL,
+		CURRENCY,
+		UNIQUE,
+		CARD,
+		CLUSTERJEWEL,
+		BLIGHTMAP,
+		MAP,
+		DELIRIUMORB,
+		CATALYST,
+		FOSSIL,
+		ESSENCE,
+		RESONATOR,
+		GEM,
+		UNIQUE_ARMOUR,
+		UNIQUE_WEAPON,
+		UNIQUE_ACCESSORY,
+		UNIQUE_FLASK,
+		RARE_WEAPON,
+		RARE_ARMOUR,
+		RARE_ACCESSORIES);
+
 	private final Map<String, InMemoryItem> inMemoryItemMap = new HashMap<>();
 
 	public List<PrivateStashTab> requestStashTabs(Integer[] activeTabs, User user) {
@@ -54,36 +79,60 @@ public class PrivateStashTabService {
 		return fetchedTabs;
 	}
 
-	public void saveItems(List<PrivateStashTab> privateStashTabs) {
-		if (!privateStashTabs.isEmpty()) {
+	public <T extends StashTab> void saveItems(List<T> stashTabs) {
+		if (!stashTabs.isEmpty()) {
 
 			logger.debug("before adding/removing ItemMap size: " + inMemoryItemMap.size());
 
 			//Used to control the size of the in memory map of items.
 			List<String> itemsToBeRemoved = new ArrayList<>(inMemoryItemMap.keySet());
 
-			for (PrivateStashTab privateStashTab : privateStashTabs) {
-				logger.debug("Private stash tab name {}", privateStashTab.
-						items
-						.stream()
-						.map(item -> item.inventoryId)
-						.collect(Collectors.toSet()));
+			for (StashTab stashTab : stashTabs) {
 
-				for (Item item : privateStashTab.items) {
+				if(stashTab.items == null || stashTab.items.isEmpty()) {
+					continue;
+				}
+
+				for (Item item : stashTab.items) {
 					if (item != null && item.isIdentified) {
-						inMemoryItemMap.putIfAbsent(item.itemId, new InMemoryItem(item, false));
+
+						InMemoryItem inMemoryItem = new InMemoryItem(item, false);
+
+						applyItemType(inMemoryItem);
+
+						inMemoryItemMap.putIfAbsent(item.itemId, inMemoryItem);
 						itemsToBeRemoved.remove(item.itemId);
 					}
 				}
 			}
 
 			for(String itemId : itemsToBeRemoved) {
-				logger.debug("trying to remove {}", itemId);
 				inMemoryItemMap.remove(itemId);
 			}
 
 			logger.debug("after adding/removing ItemMap size: " + inMemoryItemMap.size());
 		}
+	}
+
+	private void applyItemType(InMemoryItem inMemoryItem) {
+
+		lookUpItemIfSpecialItem(inMemoryItem);
+
+		if(inMemoryItem.getItemType() != null) {
+			return;
+		}
+
+		for(ItemType itemType : listOfItemTypes) {
+			if(itemType.filter != null  && itemType.filter.test(inMemoryItem)) {
+				inMemoryItem.setItemType(itemType);
+				break;
+			}
+		}
+	}
+
+	private void lookUpItemIfSpecialItem(InMemoryItem item) {
+		uniqueDao.applyItemTypeIfGem(item);
+		uniqueDao.applyItemTypeIfUnique(item);
 	}
 
 	public Map<String, InMemoryItem> getInMemoryItemMap() {
