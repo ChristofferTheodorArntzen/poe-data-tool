@@ -3,6 +3,8 @@ package com.carnnjoh.poedatatool.db.inMemory.implementation;
 import com.carnnjoh.poedatatool.db.inMemory.dao.UniqueDao;
 import com.carnnjoh.poedatatool.model.InMemoryItem;
 import com.carnnjoh.poedatatool.model.ItemType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 public class UniqueDaoImpl implements UniqueDao {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(UniqueDaoImpl.class);
 
 	private Map<String, ItemType> accessoriesMap = new HashMap<>();
 	private Map<String, ItemType> armourMap = new HashMap<>();
@@ -147,7 +151,7 @@ public class UniqueDaoImpl implements UniqueDao {
 		}
 
 		if (item.getItemType() == null) {
-			System.out.println("Could not find the item or the item was not unique, name of item: " + item.name);
+			LOGGER.debug("Could not find the item or the item was not unique, name of item: " + item.name);
 		}
 
 	}

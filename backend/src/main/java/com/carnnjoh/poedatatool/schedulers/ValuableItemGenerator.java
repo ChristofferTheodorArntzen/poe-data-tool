@@ -79,9 +79,9 @@ public class ValuableItemGenerator {
 			publicStashTabList.addAll(metaData.get().stashes);
 		}
 
-		privateStashTabService.saveItems(publicStashTabList);
-
-		Map<String, InMemoryItem> inMemoryItemMap = privateStashTabService.getInMemoryItemMap();
+//		privateStashTabService.saveItems(publicStashTabList);
+//
+//		Map<String, InMemoryItem> inMemoryItemMap = privateStashTabService.getInMemoryItemMap();
 
 		List<Item> itemList = getItems(publicStashTabList);
 //		for (InMemoryItem item : inMemoryItemMap.values()) {
