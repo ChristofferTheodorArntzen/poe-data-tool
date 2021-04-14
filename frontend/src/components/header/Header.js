@@ -6,7 +6,7 @@ import LoginButton from "./HeaderIcons/LoginButton";
 import TestAlertButton from "./HeaderIcons/TestAlertButton";
 import Typography from "@material-ui/core/Typography";
 
-import "./header.css";
+import "../../styles/header.css";
 
 /*
     Add button handle for when view is smaller - hamburbur thingy
