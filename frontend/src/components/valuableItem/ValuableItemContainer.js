@@ -2,12 +2,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
-/*
-switche om til datadump når backend ikke går om mulig 
-- Kan være en utils methode eller en greie for dev idk
-- håndtere img bedre ...
-*/
-
 import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";

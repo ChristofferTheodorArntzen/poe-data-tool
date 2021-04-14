@@ -26,8 +26,6 @@ class ValuableItem extends Component {
         }
     }
 
-    /* reformat as hover thingy if needed, idk how to do it tho ... */
-
     render() {
         return (
             <div className="valuable-item">
