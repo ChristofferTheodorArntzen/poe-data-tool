@@ -26,18 +26,19 @@ const ValuableItemFeed = () => {
 
     const [valuableItem, setValuableItem] = useState([]);
     const [hasError, setErrors] = useState(false);
-    // const [connection, setConnection] = useState();
-    // const [isConnected, setIsConnected] = useState();
 
     // Fetches already created valuableItems
     async function fetchData() {
         getValuableItem().then(data => setValuableItem(data)).catch(err => setErrors(err));
     }
 
+    // adding a useEffect to fetchData when it is mounted.
     useEffect(() => {
         fetchData();
     }, []);
 
+
+    // --- Socket connection - TODO:
     function updateStateWithSocketCallBack(msg) {
         let parsedItem = socketCallBack(msg);
         
@@ -46,7 +47,7 @@ const ValuableItemFeed = () => {
         });
 
     }
-
+    
     useEffect(() => {
         const client = connectToEndpoint();
         client.connect({}, () => {
@@ -58,8 +59,8 @@ const ValuableItemFeed = () => {
             client.disconnect();
         }
     }, []);
+    // --- Socket connection
 
-    // Calls backend tries to delete there, if 200 OK then removes from UI.
     const handleClick = (itemId) => {
         deleteValuableItem(itemId).then(resp => {
             if (resp.status !== 200) return;
