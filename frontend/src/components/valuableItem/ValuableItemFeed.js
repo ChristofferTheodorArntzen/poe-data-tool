@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import './ValuableItemContainer.css';
+import '../../styles/ValuableItemFeed.css';
 
 import { getValuableItem, deleteValuableItem } from '../../adapters/ValuableItemAdapter';
 import { connectToEndpoint, socketCallBack, webSocketSubscribePoint } from '../../adapters/SocketAdapter';
@@ -22,14 +22,23 @@ const useStyles = makeStyles({
     },
 });
 
+const loadingStyles = {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: '100px'
+}
+
 const ValuableItemFeed = () => {
 
     const [valuableItem, setValuableItem] = useState([]);
-    const [hasError, setErrors] = useState(false);
+    const [hasError, setError] = useState(false);
 
     // Fetches already created valuableItems
     async function fetchData() {
-        getValuableItem().then(data => setValuableItem(data)).catch(err => setErrors(err));
+        getValuableItem().then(data => setValuableItem(data)).catch(err => {
+            setError(true);
+            console.log(err);
+        });
     }
 
     // adding a useEffect to fetchData when it is mounted.
@@ -41,13 +50,15 @@ const ValuableItemFeed = () => {
     // --- Socket connection - TODO:
     function updateStateWithSocketCallBack(msg) {
         let parsedItem = socketCallBack(msg);
-        
-        setValuableItem((value) =>  {
+
+        if (parsedItem == null) return;
+
+        setValuableItem((value) => {
             return [parsedItem, ...value]
         });
 
     }
-    
+
     useEffect(() => {
         const client = connectToEndpoint();
         client.connect({}, () => {
@@ -56,8 +67,9 @@ const ValuableItemFeed = () => {
         });
 
         return () => {
-            client.disconnect();
+            client.disconnect()
         }
+
     }, []);
     // --- Socket connection
 
@@ -73,7 +85,6 @@ const ValuableItemFeed = () => {
     //TODO: should this be gotten from a context or something similar? this takes 1 - 1.5 sec to retrieve and "make"
     //TODO: make this its own functional component way to much code here
     const constructedRowComponent = valuableItem.map((item) => {
-
         return (
             <TableRow key={'table-row' + item.id}>
                 <TableCell component='th' scope='row'>
@@ -92,15 +103,16 @@ const ValuableItemFeed = () => {
                         startIcon={<DeleteIcon />}
                     >
                         Delete
-                    </Button>
+                        </Button>
                 </TableCell>
             </TableRow>
         );
-
     });
 
+
+
     const loadingDisplay = (
-        <div>
+        <div style={loadingStyles}>
             <label>Loading...</label>
         </div>
     )
@@ -125,13 +137,13 @@ const ValuableItemFeed = () => {
             </Table>
         </TableContainer>
     )
-    
+
     console.log(hasError);
 
     return (
         <main>
             <div className='table-container'>
-                {(constructedRowComponent.length > 0) ? tableComponent : loadingDisplay}
+                {(hasError) ? loadingDisplay : tableComponent}
             </div>
         </main>
     )
