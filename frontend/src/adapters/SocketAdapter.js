@@ -13,11 +13,8 @@ function returnWebSocket() {
 
 export function connectToEndpoint() {
 
-    console.log('websocket subscribe point');
-    console.log(webSocketSubscribePoint);
-
     const stompClient = returnWebSocket();
-    //stompClient.debug = null;
+    stompClient.debug = null;
 
     return stompClient;
 }
