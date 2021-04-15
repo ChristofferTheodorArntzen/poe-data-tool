@@ -1,7 +1,7 @@
 import { get, deleteRequest } from './BaseAdapter';
 
 //const baseUrl = "";
-const devUrl = "http://localhost:8080/valuableItem/";
+const devUrl = 'http://localhost:8080/valuableItem/';
 
 //TODO: only return the last 20 or 50? or impl. lazy loading
 //TODO: figure out if it is possible to just return the data instead of a promise...
