@@ -9,9 +9,9 @@ export async function get(url) {
     return await axios.get(url);
 }
 
-export function post(url, requestData) {
+export async function post(url, requestData) {
     const axios = returnAxiosInstance();
-    return axios.post(url, requestData);
+    return await axios.post(url, requestData);
 }
 
 export function deleteRequest(url, requestData) {
