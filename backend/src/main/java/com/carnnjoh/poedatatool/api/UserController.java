@@ -6,6 +6,8 @@ import com.carnnjoh.poedatatool.db.model.User;
 import com.carnnjoh.poedatatool.db.utils.CreateSuccessResult;
 import com.carnnjoh.poedatatool.db.utils.Result;
 import com.carnnjoh.poedatatool.db.utils.SuccessResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,8 @@ public class UserController {
 	private UserDAO userDAO;
 
 	private final RestTemplate template  = new RestTemplate();
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
 	@GetMapping("/{pk}")
 	public ResponseEntity<User> get(@PathVariable Integer pk) {
@@ -66,10 +70,13 @@ public class UserController {
 		if(user == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		Result postResult = userDAO.save(user);
+		LOGGER.debug("trying to create user" + user.toString());
 
-		if(postResult instanceof CreateSuccessResult){
-			user.setPk(((CreateSuccessResult) postResult).getPk());
+		Result createResult = userDAO.save(user);
+
+		if(createResult instanceof CreateSuccessResult){
+			user.setPk(((CreateSuccessResult) createResult).getPk());
+			LOGGER.debug("saved user: " + user.toString());
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		}
 
