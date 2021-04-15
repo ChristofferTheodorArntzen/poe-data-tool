@@ -3,7 +3,6 @@ import React from "@material-ui/core";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ItemFilterTypes from "./ItemFilterTypes.json";
-import "./SubscriptionMenu.css";
 
 const ItemFilterList = (props) => {
 	const listItemElements = ItemFilterTypes.itemTypes.map((type) => {
