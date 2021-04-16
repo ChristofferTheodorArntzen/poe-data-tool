@@ -2,6 +2,7 @@
 import React, { useContext } from "react";
 
 import SettingsButton from "./HeaderIcons/SettingsButton";
+import FeedButton from "./HeaderIcons/FeedButton";
 import SubscriptionButton from "./HeaderIcons/SubscriptionButton";
 import LoginButton from "./HeaderIcons/LoginButton";
 import TestAlertButton from "./HeaderIcons/TestAlertButton";
@@ -9,11 +10,13 @@ import Typography from "@material-ui/core/Typography";
 
 import "../../styles/header.css";
 import { userContext } from "../../contexts/UserContext";
-import FeedButton from "./HeaderIcons/FeedButton";
+import { connectionContext } from "../../contexts/ConnectionContext";
+import Emoji from "../Emoji";
 
 const Header = () => {
 
 	const { user } = useContext(userContext);
+	const { isConnected } = useContext(connectionContext);
 
 	return (
 		<header className="header">
@@ -29,8 +32,13 @@ const Header = () => {
 				<TestAlertButton />
 				<SettingsButton />
 				{/* TODO: add a logged in icon to taskbar */}
-				<div style={{ color: 'white' }}>
-					{(user != null) ? user.accountName : 'null'}
+				<div style={{ color: 'white' }} className="headerIcon">
+					{/* todo - make this into it's own component - to login and show login state - remove old login button */}
+					{(user != null) ? user.accountName : 'Not logged in'}					
+				</div>
+				<div style={{ color: 'white' }} className="headerIcon">
+					Connected: 
+					{(isConnected != null && isConnected) ? <Emoji symbol='✔️'/> : <Emoji symbol='❌'/>}
 				</div>
 			</div>
 		</header>
