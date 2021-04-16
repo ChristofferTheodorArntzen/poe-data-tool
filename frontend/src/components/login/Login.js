@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        backgroundColor: 'gray',
+        padding: theme.spacing(2),
+        borderRadius: theme.spacing(1),
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -59,7 +62,7 @@ const Login = () => {
     const [submitted, setSubmitted] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
     const [loginInfo, setLoginInfo] = useState(userData);
-    const {setUser} = useContext(userContext);
+    const { setUser } = useContext(userContext);
 
     useEffect(() => {
         const loggedInUser = getUserFromLocalStorage();
@@ -98,113 +101,123 @@ const Login = () => {
     const classes = useStyles();
 
     return (
-        <Container component='main' maxWidth='xs'>
-            <CssBaseline />
-            <div className={classes.paper}>
+        <main>
+            <Container component="div" maxWidth='xs'>
+                <CssBaseline />
+                <div className={classes.paper}>
 
-                {loggedIn
-                    ?
-                    <div className={classes.loggedInHeader}>
-                        <Typography component='h1' variant='h5'>
-                            Logged In As
+                    {loggedIn
+                        ?
+                        <div className={classes.loggedInHeader}>
+                            <Typography component='h1' variant='h5'>
+                                Logged In As
                         </Typography>
-                        {/*TODO: this is needs to be styled different. currently it overflows  */}
-                        <div className={classes.loggedInDiv}>
-                            <label> Account Name: </label>
-                            <label> {loginInfo.accountName} </label>
-                            <label> League: </label>
-                            <label> {loginInfo.league} </label>
-                            <label> Realm: </label>
-                            <label> {loginInfo.realm} </label>
-                            <label> SessionId: </label>
-                            <label> {loginInfo.sessionId} </label>
-                        </div>
-                        <Button
-                            type='onClick'
-                            fullWidth
-                            variant='contained'
-                            color='secondary'
-                            className={classes.submit}
-                            onClick={handleLogOut}
-                        >
-                            Sign out
+                            {/*TODO: this is needs to be styled different. currently it overflows  */}
+                            <div className={classes.loggedInDiv}>
+                                <label> Account Name: </label>
+                                <label> {loginInfo.accountName} </label>
+                                <label> League: </label>
+                                <label> {loginInfo.league} </label>
+                                <label> Realm: </label>
+                                <label> {loginInfo.realm} </label>
+                                <label> SessionId: </label>
+                                <label> {loginInfo.sessionId} </label>
+                            </div>
+                            <Button
+                                type='onClick'
+                                fullWidth
+                                variant='contained'
+                                color='secondary'
+                                className={classes.submit}
+                                onClick={handleLogOut}
+                            >
+                                Sign out
                         </Button>
-                    </div>
-                    : <form className={classes.form} onSubmit={handleSubmit}>
-                        <TextField
-                            variant='outlined'
-                            margin='normal'
-                            required
-                            fullWidth
-                            id='accountName'
-                            label='Account Name'
-                            name='accountName'
-                            autoFocus
-                            value={loginInfo.accountName}
-                            onChange={handleChange}
-                        />
+                        </div>
+                        :
+                        <div className={classes.loggedInHeader}>
+                            <Typography component='h1' variant='h5'>
+                                Logged In As
+                        </Typography>
+                            <form className={classes.form} onSubmit={handleSubmit}>
+                                <TextField
+                                    variant='outlined'
+                                    margin='normal'
+                                    required
+                                    fullWidth
+                                    id='accountName'
+                                    label='Account Name'
+                                    name='accountName'
+                                    autoFocus
+                                    value={loginInfo.accountName}
+                                    onChange={handleChange}
+                                />
 
-                        {submitted && !loginInfo.accountName
-                            ? <span className={classes.validationError}>Please enter a account name</span>
-                            : null}
+                                {submitted && !loginInfo.accountName
+                                    ? <span className={classes.validationError}>Please enter a account name</span>
+                                    : null}
 
-                        <TextField
-                            variant='outlined'
-                            margin='normal'
-                            required
-                            fullWidth
-                            id='league'
-                            label='League'
-                            name='league'
-                            value={loginInfo.league}
-                            onChange={handleChange}
-                        />
-                        {submitted && !loginInfo.league
-                            ? <span className={classes.validationError}>Please choose a league</span>
-                            : null}
-                        <TextField
-                            variant='outlined'
-                            margin='normal'
-                            required
-                            fullWidth
-                            id='realm'
-                            label='Realm'
-                            name='realm'
-                            value={loginInfo.realm}
-                            onChange={handleChange}
-                        />
-                        {submitted && !loginInfo.realm
-                            ? <span className={classes.validationError}>Please choose a realm</span>
-                            : null}
-                        <TextField
-                            variant='outlined'
-                            margin='normal'
-                            required
-                            fullWidth
-                            id='sessionId'
-                            label='Session ID'
-                            name='sessionId'
-                            value={loginInfo.sessionId}
-                            onChange={handleChange}
-                        />
-                        {submitted && !loginInfo.sessionId
-                            ? <span className={classes.validationError}>Please enter a sessionId</span>
-                            : null}
-                        <Button
-                            type='submit'
-                            fullWidth
-                            variant='contained'
-                            color='primary'
-                            className={classes.submit}
-                        >
-                            Sign In
+                                <TextField
+                                    variant='outlined'
+                                    margin='normal'
+                                    required
+                                    fullWidth
+                                    id='league'
+                                    label='League'
+                                    name='league'
+                                    value={loginInfo.league}
+                                    onChange={handleChange}
+                                />
+                                {submitted && !loginInfo.league
+                                    ? <span className={classes.validationError}>Please choose a league</span>
+                                    : null}
+                                <TextField
+                                    variant='outlined'
+                                    margin='normal'
+                                    required
+                                    fullWidth
+                                    id='realm'
+                                    label='Realm'
+                                    name='realm'
+                                    value={loginInfo.realm}
+                                    onChange={handleChange}
+                                />
+                                {submitted && !loginInfo.realm
+                                    ? <span className={classes.validationError}>Please choose a realm</span>
+                                    : null}
+                                <TextField
+                                    variant='outlined'
+                                    margin='normal'
+                                    required
+                                    fullWidth
+                                    id='sessionId'
+                                    label='Session ID'
+                                    name='sessionId'
+                                    type='password'
+                                    value={loginInfo.sessionId}
+                                    onChange={handleChange}
+                                />
+                                {submitted && !loginInfo.sessionId
+                                    ? <span className={classes.validationError}>Please enter a sessionId</span>
+                                    : null}
+                                <Button
+                                    type='submit'
+                                    fullWidth
+                                    variant='contained'
+                                    color='primary'
+                                    className={classes.submit}
+                                >
+                                    Sign In
                 </Button>
-                    </form>
-                }
-            </div>
-            <Box mt={8}>
-            </Box>
-        </Container >
+                            </form>
+                        </div>
+                    }
+
+                </div>
+                <Box mt={8}>
+                </Box>
+            </Container >
+        </main>
     );
 }
 
