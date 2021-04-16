@@ -22,52 +22,64 @@ const useStyles = makeStyles({
     },
 });
 
-const loadingStyles = {
+const errorStyles = {
     color: 'white',
     textAlign: 'center',
-    fontSize: '100px'
+    fontSize: '20px',
+    padding: '20px'
 }
 
 const ValuableItemFeed = () => {
 
-    const [valuableItem, setValuableItem] = useState([]);
+    const [valuableItemArray, setValuableItemArray] = useState([]);
     const [hasError, setError] = useState(false);
 
     // Fetches already created valuableItems
     async function fetchData() {
-        getValuableItem().then(data => setValuableItem(data)).catch(err => {
-            setError(true);
+        try {
+            const fetchedItems = await getValuableItem();
+            if(fetchedItems == null) {
+                setError(true);
+            } else {
+                setValuableItemArray(fetchedItems);
+            }
+    
+        } catch (err) {
             console.log(err);
-        });
+        }
     }
 
     // adding a useEffect to fetchData when it is mounted.
-    useEffect(() => {
+    useEffect( async () => {
         fetchData();
     }, []);
-
 
     // --- Socket connection - TODO:
     function updateStateWithSocketCallBack(msg) {
         let parsedItem = socketCallBack(msg);
-
         if (parsedItem == null) return;
 
-        setValuableItem((value) => {
+        setValuableItemArray((value) => {
             return [parsedItem, ...value]
         });
 
     }
 
     useEffect(() => {
-        const client = connectToEndpoint();
-        client.connect({}, () => {
-            client.subscribe(webSocketSubscribePoint,
-                (msg) => updateStateWithSocketCallBack(msg))
-        });
-
-        return () => {
-            client.disconnect()
+        
+        try {
+            const client = connectToEndpoint();
+            client.connect({}, () => {
+                client.subscribe(webSocketSubscribePoint,
+                    (msg) => updateStateWithSocketCallBack(msg))
+            });
+    
+            return () => {
+                if(client != null && client.connected) client.disconnect()
+            }   
+        } catch (err) {
+            setError(true);
+            console.log(err);
         }
 
     }, []);
@@ -76,44 +88,47 @@ const ValuableItemFeed = () => {
     const handleClick = (itemId) => {
         deleteValuableItem(itemId).then(resp => {
             if (resp.status !== 200) return;
-            setValuableItem((value) => {
+            setValuableItemArray((value) => {
                 return value.filter((item) => item.id !== itemId);
             })
         });
     }
 
-    //TODO: should this be gotten from a context or something similar? this takes 1 - 1.5 sec to retrieve and "make"
+    //TODO: should this be gotten from a context or something similar? this takes 1 - 1.5 sec to retrieve and "make" when there is lots of data. 
+    //maybe serve a 1:1 dto from API to remove the mapping that is done. 
     //TODO: make this its own functional component way to much code here
-    const constructedRowComponent = valuableItem.map((item) => {
-        return (
-            <TableRow key={'table-row' + item.id}>
-                <TableCell component='th' scope='row'>
-                    <img src={item.svg} className='item-frame' />
-                </TableCell>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.type}</TableCell>
-                <TableCell>{item.stashId}</TableCell>
-                <TableCell>{item.price.median}</TableCell>
-                <TableCell>{item.priceType}</TableCell>
-                <TableCell>
-                    <Button onClick={() => handleClick(item.id)}
-                        variant='contained'
-                        color='secondary'
-                        size='small'
-                        startIcon={<DeleteIcon />}
-                    >
-                        Delete
-                        </Button>
-                </TableCell>
-            </TableRow>
-        );
-    });
+    const constructRowComponents = (items) => {
+        const rows = items.map((item) => {
+            return (
+                <TableRow key={'table-row' + item.id}>
+                    <TableCell component='th' scope='row'>
+                        <img loading='lazy' src={item.svg} className='item-frame' />
+                    </TableCell>
+                    <TableCell>{item.name}</TableCell>
+                    <TableCell>{item.type}</TableCell>
+                    <TableCell>{item.stashId}</TableCell>
+                    <TableCell>{item.price.median}</TableCell>
+                    <TableCell>{item.priceType}</TableCell>
+                    <TableCell>
+                        <Button onClick={() => handleClick(item.id)}
+                            variant='contained'
+                            color='secondary'
+                            size='small'
+                            startIcon={<DeleteIcon />}
+                        >
+                            Delete
+                            </Button>
+                    </TableCell>
+                </TableRow>
+            );
+        })
 
+        return rows;
+    }
 
-
-    const loadingDisplay = (
-        <div style={loadingStyles}>
-            <label>Loading...</label>
+    const errorDisplay = (
+        <div style={errorStyles}>
+            <label>Could not connect to the server. Try to relaunch the application.</label>
         </div>
     )
 
@@ -132,18 +147,16 @@ const ValuableItemFeed = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {constructedRowComponent}
+                    {(valuableItemArray.length == 0) ? null : constructRowComponents(valuableItemArray)}
                 </TableBody>
             </Table>
         </TableContainer>
     )
-
-    console.log(hasError);
-
+    
     return (
         <main>
             <div className='table-container'>
-                {(hasError) ? loadingDisplay : tableComponent}
+                {(hasError) ? errorDisplay : tableComponent}
             </div>
         </main>
     )
