@@ -317,9 +317,25 @@ public class InitialDataLoaderUtil {
 
 	public void createSubscription() {
 
-		List<ItemType> itemTypes = Arrays.asList(UNIQUE);
-		Subscription subscription = new Subscription("qweqwe", new Integer[]{0}, 20.0, "chaos", itemTypes, true);
+
+		Subscription subscription = new Subscription(
+				"High value subscription",
+				new Integer[]{1, 2, 3},
+				1.0,
+				"Exalted",
+				Arrays.asList(UNIQUE, RARE_ACCESSORIES, RARE_WEAPON),
+				true
+		);
+
+		Subscription subscription1 = new Subscription(
+				"Dump tab",
+				new Integer[]{0, 5, 6},
+				60.0,
+				"Chaos",
+				Arrays.asList(UNIQUE, MAP, SCARAB, GEM, ABYSSALJEWEL),
+				false);
 		subscriptionDAO.save(subscription);
+		subscriptionDAO.save(subscription1);
 	}
 
 	public void createValuableItem() {
