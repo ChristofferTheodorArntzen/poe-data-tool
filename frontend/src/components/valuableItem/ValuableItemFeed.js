@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -13,14 +12,6 @@ import '../../styles/ValuableItemFeed.css';
 
 import { getValuableItem, deleteValuableItem } from '../../adapters/ValuableItemAdapter';
 import { connectToEndpoint, socketCallBack, webSocketSubscribePoint } from '../../adapters/SocketAdapter';
-
-const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
-        maxWidth: 1000,
-        overflowY: 'auto',
-    },
-});
 
 const errorStyles = {
     color: 'white',
@@ -101,15 +92,15 @@ const ValuableItemFeed = () => {
         const rows = items.map((item) => {
             return (
                 <TableRow key={'table-row' + item.id}>
-                    <TableCell component='th' scope='row'>
+                    <TableCell scope='row' align='center'>
                         <img loading='lazy' src={item.svg} className='item-frame' />
                     </TableCell>
-                    <TableCell>{item.name}</TableCell>
-                    <TableCell>{item.type}</TableCell>
-                    <TableCell>{item.stashId}</TableCell>
-                    <TableCell>{item.price.median}</TableCell>
-                    <TableCell>{item.priceType}</TableCell>
-                    <TableCell>
+                    <TableCell align='center'>{item.name}</TableCell>
+                    <TableCell align='center'>{item.type}</TableCell>
+                    <TableCell align='center'>{item.stashId}</TableCell>
+                    <TableCell align='center'>{item.price.median}</TableCell>
+                    <TableCell align='center'>{item.priceType}</TableCell>
+                    <TableCell align='center'>
                         <Button onClick={() => handleClick(item.id)}
                             variant='contained'
                             color='secondary'
@@ -132,9 +123,10 @@ const ValuableItemFeed = () => {
         </div>
     )
 
+    //TODO: add css from Valuable item pertaining to style here, keep positional css in the css file.
     const tableComponent = (
-        <TableContainer component={Paper}>
-            <Table className={useStyles.table} aria-label='simple table'>
+        <TableContainer component={Paper} className='tableFixHead'>
+            <Table aria-label='simple table'>
                 <TableHead>
                     <TableRow>
                         <TableCell align='center'>Img</TableCell>
