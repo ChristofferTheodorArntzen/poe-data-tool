@@ -41,7 +41,7 @@ const ValuableItemFeed = () => {
     }
 
     // adding a useEffect to fetchData when it is mounted.
-    useEffect( async () => {
+    useEffect( () => {
         fetchData();
     }, []);
 
