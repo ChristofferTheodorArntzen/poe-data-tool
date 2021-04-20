@@ -4,7 +4,7 @@ html, body {
 }
 
 .app {
-  font-size: calc(5px + 2vmin);
+  font-size: 16px;
 }
 
 main {

@@ -38,8 +38,8 @@ const App = () => {
 								<Header />
 								<Route exact path='/' component={LandingPage} />
 								<Route path='/valuableItemFeed' component={ValuableItemFeed} />
-								<Route path='/subscriptionView' component={SubscriptionMenu} />
-								<Route path='/LoginView' component={Login} />
+								<Route path='/subscription' component={SubscriptionMenu} />
+								<Route path='/login' component={Login} />
 							</ThemeProvider>
 						</Router>
 					</div>
