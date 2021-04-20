@@ -6,6 +6,7 @@ import Header from '../components/header/Header';
 import ValuableItemFeed from '../components/valuableItem/ValuableItemFeed';
 import SubscriptionMenu from './subscription/SubscriptionMenu';
 import Login from '../components/login/Login';
+import LandingPage from '../components/landingPage/LandingPage'
 
 // Context imports
 import { userContext } from '../contexts/UserContext'
@@ -35,7 +36,8 @@ const App = () => {
 						<Router>
 							<ThemeProvider theme={darkTheme}>
 								<Header />
-								<Route exact path='/' component={ValuableItemFeed} />
+								<Route exact path='/' component={LandingPage} />
+								<Route path='/valuableItemFeed' component={ValuableItemFeed} />
 								<Route path='/subscriptionView' component={SubscriptionMenu} />
 								<Route path='/LoginView' component={Login} />
 							</ThemeProvider>

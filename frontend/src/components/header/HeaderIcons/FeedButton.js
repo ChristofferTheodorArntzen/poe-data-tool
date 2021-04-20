@@ -11,7 +11,7 @@ const FeedButton = () => {
                 size="small"
                 startIcon={<RssFeedIcon />}
                 component={Link}
-                to={"/"}
+                to={"/valuableItemFeed"}
             >
                 Feed
 				</Button>
