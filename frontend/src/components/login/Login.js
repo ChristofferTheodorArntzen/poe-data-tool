@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import {
     Container,
-    makeStyles,
-    CssBaseline,
+    makeStyles,    
     Typography,
     TextField,
     Button,
-    Box
 } from '@material-ui/core';
 import './../../styles/LoginView.css';
 import { postUserInfo } from '../../adapters/LoginAdapter';
@@ -19,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: 'gray',
+        backgroundColor: '#404040',
+        color: 'white',
         padding: theme.spacing(2),
         borderRadius: theme.spacing(1),
     },
@@ -46,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
         gridTemplateColumns: '1fr 0.5fr',
         gridTemplateRows: '0.5fr 0.5fr 0.5fr 0.5fr',
         gap: '20px 21px',
-        fontSize: 'calc(5px + 2vmin)'
     }
 }));
 
@@ -103,7 +101,7 @@ const Login = () => {
     return (
         <main>
             <Container component="div" maxWidth='xs'>
-                <CssBaseline />
+            
                 <div className={classes.paper}>
 
                     {loggedIn
@@ -208,14 +206,11 @@ const Login = () => {
                                     className={classes.submit}
                                 >
                                     Sign In
-                </Button>
+                                </Button>
                             </form>
                         </div>
                     }
-
                 </div>
-                <Box mt={8}>
-                </Box>
             </Container >
         </main>
     );

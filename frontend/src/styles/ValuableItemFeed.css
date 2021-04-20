@@ -1,7 +1,7 @@
 .table-container {
     width: 75%;
     /* sets height of "main" div for table and constricts the height of the component */
-    height: 90vh;
+    height: 85vh;
     margin: auto;
     margin-top: 2%;
 }

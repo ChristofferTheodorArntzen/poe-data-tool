@@ -1,6 +1,9 @@
+html, body {
+  height: 100%;
+  background-color: #222222;
+}
+
 .app {
-  height: 100vh;
-  background-color: rgb(20, 20, 20);
   font-size: calc(5px + 2vmin);
 }
 

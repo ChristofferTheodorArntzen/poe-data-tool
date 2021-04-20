@@ -2,7 +2,7 @@ header {
     background-color: rgb(71, 71, 71);
     display: flex;
     width: 100%;
-    height: calc(10px + 3vmin);
+    height: calc(1vh + 5vmin);
 }
 
 .header-icon-container {
@@ -17,17 +17,21 @@ header {
     height: 100%;
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 
 .header-title {
     color: white;
-    display: flex;
-    align-items: center;
     margin: auto 0.5vw;
     width: 50%;
-    font-size: 19px;
-    height: 100%;
+    overflow: hidden ;
+}
+
+.header-title-text {
+    color: white;
+    text-decoration: none;
     overflow: hidden;
 }
+
 
 
