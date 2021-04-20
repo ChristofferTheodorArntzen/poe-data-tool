@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,6 +12,8 @@ import '../../styles/ValuableItemFeed.css';
 
 import { getValuableItem, deleteValuableItem } from '../../adapters/ValuableItemAdapter';
 import { connectToEndpoint, socketCallBack, webSocketSubscribePoint } from '../../adapters/SocketAdapter';
+import { connectionContext } from "../../contexts/ConnectionContext";
+
 
 const errorStyles = {
     color: 'white',
@@ -25,8 +27,16 @@ const ValuableItemFeed = () => {
     const [valuableItemArray, setValuableItemArray] = useState([]);
     const [hasError, setError] = useState(false);
 
+    const { isConnected } = useContext(connectionContext);
+
     // Fetches already created valuableItems
     async function fetchData() {
+        
+        if(!isConnected) {
+            setError(true);
+            return;   
+        }
+
         try {
             const fetchedItems = await getValuableItem();
             if(fetchedItems == null) {
@@ -58,6 +68,11 @@ const ValuableItemFeed = () => {
 
     useEffect(() => {
         
+        if(!isConnected) {
+            setError(true);
+            return;   
+        }
+
         try {
             const client = connectToEndpoint();
             client.connect({}, () => {

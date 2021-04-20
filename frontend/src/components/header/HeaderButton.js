@@ -7,15 +7,13 @@ import { Link } from "react-router-dom";
 
 const HeaderButton = ({ variant, size, startIcon, directoryLink, buttonText, reSizeWidth }) => {
 
-    console.log(reSizeWidth);
-
     const [hideText, setHideText] = useState(window.innerWidth > reSizeWidth);
 
     const updateMedia = () => {
         setHideText(window.innerWidth > reSizeWidth);
     }
 
-    useEffect( () => {
+    useEffect(() => {
         window.addEventListener('resize', updateMedia);
         return () => window.removeEventListener('resize', updateMedia);
     })
@@ -23,7 +21,6 @@ const HeaderButton = ({ variant, size, startIcon, directoryLink, buttonText, reS
     return (
         <div className='header-content-container'>
             <Button
-                // className={classes.button}
                 variant={variant}
                 size={size}
                 startIcon={startIcon}
@@ -32,11 +29,8 @@ const HeaderButton = ({ variant, size, startIcon, directoryLink, buttonText, reS
             >
                 {(hideText) ? buttonText : null}
             </Button>
-
         </div>
-
     )
-
 }
 
 export default HeaderButton;

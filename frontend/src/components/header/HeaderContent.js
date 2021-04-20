@@ -11,7 +11,6 @@ const HeaderContent = ({ text, label, reSizeWidth }) => {
 
     useEffect(() => {
         window.addEventListener('resize', updateMedia);
-        console.log('header content hidden thingy: ' + hideContent);
         return () => window.removeEventListener('resize', updateMedia);
     })
 
