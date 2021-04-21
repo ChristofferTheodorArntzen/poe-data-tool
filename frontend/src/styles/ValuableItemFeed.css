@@ -1,0 +1,27 @@
+.table-container {
+    width: 75%;
+    /* sets height of "main" div for table and constricts the height of the component */
+    height: 85vh;
+    margin: auto;
+    margin-top: 2%;
+}
+
+
+/* Table header fixed and sticky on top of the table - https://stackoverflow.com/questions/21168521/table-fixed-header-and-scrollable-body */
+.tableFixHead {
+    overflow: auto;
+    height: 100%;
+}
+.tableFixHead thead th {
+    position: sticky;
+    top: 0; z-index: 1;
+}
+
+th { 
+    background:rgb(104, 104, 104);
+}
+
+.item-frame {
+    width: auto;
+    height:auto;
+}

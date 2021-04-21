@@ -1,0 +1,19 @@
+
+.subscription-view-root {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+}
+
+.subscription-list {
+	margin-right: 0 auto;
+	overflow-y: auto;
+}
+
+.subscription-list-header {
+	color: white;
+	text-align: center;
+	padding: 1vh;
+}

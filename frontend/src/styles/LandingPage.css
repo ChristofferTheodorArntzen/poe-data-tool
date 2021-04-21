@@ -1,0 +1,71 @@
+.landing-page-container {
+    display: flex;
+    margin: 0 auto;
+    color: white;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container {
+    margin: 0 auto;
+    margin-top: 2%;
+    width: 50%;
+    background-color: rgb(71, 71, 71);
+    border: 5px;
+    border-color: rgb(100, 100, 100);
+    border-style: solid;
+    padding: 20px;
+}
+
+main > div:last-child {
+    margin-bottom: 2%;
+}
+
+.center-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 2px;
+    padding: 2px;
+}
+
+.left-header {
+    padding-left: 2px;
+}
+
+.gutter{
+    text-align: center;
+}
+
+.content-text {
+    padding-left: 1rem;
+    padding-right: 10px;
+    margin: auto;
+    list-style: none;
+}
+
+.link {
+    color: rgb(176, 232, 241);
+    text-decoration: none;
+}
+
+.link:visited {
+    color: rgb(31, 207, 238);
+}
+
+li {
+    padding: 1rem 0 1rem 0;
+}
+
+.faq-item {
+    background-color: rgb(100, 100, 100);
+    margin-bottom: 10px;
+    padding: 10px;
+}
