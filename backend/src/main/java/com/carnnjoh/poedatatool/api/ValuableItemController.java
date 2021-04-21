@@ -46,6 +46,13 @@ public class ValuableItemController {
 	public ResponseEntity<List<ValuableItem>> getAll() {
 		List<ValuableItem> valuableItem = valuableItemDAO.getAllByDate(false);
 
+		//TODO: remove this before commit - maybe look up how to impl a pagination thingy - or limit this to
+		if(valuableItem.size() > 200) {
+			int size = valuableItem.size();
+
+			valuableItem = valuableItem.subList(size-200, size);
+		}
+
 		if(valuableItem.size() > 0)
 			return new ResponseEntity<>(valuableItem, HttpStatus.OK);
 		else

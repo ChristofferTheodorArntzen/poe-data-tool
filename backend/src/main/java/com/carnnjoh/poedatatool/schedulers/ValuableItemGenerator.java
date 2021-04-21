@@ -60,7 +60,7 @@ public class ValuableItemGenerator {
 	@Scheduled(initialDelay = 1000, fixedDelay = 10000)
 	public void execute() {
 
-		if(disabled) {
+		if (disabled) {
 			LOGGER.info("ValuableItemGenerator is disabled");
 			return;
 		}

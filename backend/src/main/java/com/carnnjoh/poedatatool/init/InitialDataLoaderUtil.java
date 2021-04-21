@@ -63,7 +63,7 @@ public class InitialDataLoaderUtil {
 	UniqueDao uniqueDao;
 
 	@Value("${initial.data.on.startup:false}")
-	boolean initializeData;
+	boolean testData;
 
 	// static texts for Unique Static import
 	private static final String CURRENCY = "Currency";
@@ -107,8 +107,25 @@ public class InitialDataLoaderUtil {
 	@EventListener
 	public void insertInitialData(ApplicationReadyEvent event) {
 
-		if (initializeData) {
-			LOGGER.info("Application is ready, starting to insert data...");
+		LOGGER.info("Application is ready, starting to insert data...");
+
+		long startTime = System.currentTimeMillis();
+		createConstantsImport();
+		LOGGER.info("Importing 'static' took '{}'ms", System.currentTimeMillis() - startTime);
+
+		startTime = System.currentTimeMillis();
+		createStatsImport();
+		LOGGER.info("Importing 'stats' took '{}'ms", System.currentTimeMillis() - startTime);
+
+		startTime = System.currentTimeMillis();
+		createUniqueImport();
+		LOGGER.info("Importing 'unique' took '{}'ms", System.currentTimeMillis() - startTime);
+
+		LOGGER.info("Done creating essential data.");
+
+		if (testData) {
+
+			LOGGER.info("Application is run in test mode, starting to create test data...");
 
 			createUser();
 			LOGGER.info("A user is created");
@@ -119,23 +136,12 @@ public class InitialDataLoaderUtil {
 			createValuableItem();
 			LOGGER.info("A valuable item is created");
 
-			long startTime = System.currentTimeMillis();
-			createConstantsImport();
-			LOGGER.info("Importing 'static' took '{}'ms", System.currentTimeMillis() - startTime);
-
-			startTime = System.currentTimeMillis();
-			createStatsImport();
-			LOGGER.info("Importing 'stats' took '{}'ms", System.currentTimeMillis() - startTime);
-
-			startTime = System.currentTimeMillis();
-			createUniqueImport();
-			LOGGER.info("Importing 'unique' took '{}'ms", System.currentTimeMillis() - startTime);
-
-		} else {
-			LOGGER.info("Creation on initial data is turned off...");
 		}
+
+		LOGGER.info("Application is run in test mode, starting to create test data...");
 	}
 
+	//TODO: move insertion of constants, stats and unqiues to each of its own beans. Try to make the code footprint smaller in this class atleast
 	private void createUniqueImport() {
 		UniqueRoot uniqueRoot = InitUtils.getFileFromResourcesAsObject("/unique-items.json", UniqueRoot.class);
 
