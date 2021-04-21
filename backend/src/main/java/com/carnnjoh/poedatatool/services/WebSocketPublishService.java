@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
+import static com.carnnjoh.poedatatool.socket.WebSocketConstants.*;
+
 @Service
 public class WebSocketPublishService {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(WebSocketPublishService.class);
-	public static final String WEB_SOCKET_PATH = "/topic/greetings";
 
 	@Autowired
 	SimpMessagingTemplate simpMessagingTemplate;
@@ -20,8 +21,12 @@ public class WebSocketPublishService {
 	@Autowired
 	ObjectMapper objectMapper;
 
-	public void publishToWebSocket(Object objectToPublish) {
-		publishToWebSocket(WEB_SOCKET_PATH, objectToPublish);
+	public void publishToFeed(Object objectToPublish) {
+		publishToWebSocket(WEB_SOCKET_FEED, objectToPublish);
+	}
+
+	public void publishToGenerator(Object objectToPublish) {
+		publishToWebSocket(WEB_SOCKET_GENERATOR, objectToPublish);
 	}
 
 	public void publishToWebSocket(String path, Object objectToPublish) {

@@ -107,19 +107,19 @@ public class ScheduledPriceEstimator {
 
 			Optional<QueryResponse> queryResponse = getQueryIdAndItemListingIds(request, user);
 
-			if(!queryResponse.isPresent()) {
+			if(queryResponse.isEmpty()) {
 				continue;
 			}
 
 			Optional<ListingResponse> listingResponse = getListings(queryResponse.get(), user);
 
-			if(!listingResponse.isPresent()) {
+			if(listingResponse.isEmpty()) {
 				continue;
 			}
 
 			ValuableItem valuableItem = createValuableItem(listingResponse.get(), subscription);
 
-			webSocketPublishService.publishToWebSocket(valuableItem);
+			webSocketPublishService.publishToFeed(valuableItem);
 		}
 	}
 

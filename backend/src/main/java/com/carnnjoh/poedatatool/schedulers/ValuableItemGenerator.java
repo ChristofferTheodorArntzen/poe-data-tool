@@ -138,7 +138,7 @@ public class ValuableItemGenerator {
 
 			valuableItemDAO.save(valuableItem);
 
-			webSocketPublishService.publishToWebSocket("/topic/greetings", valuableItem);
+			webSocketPublishService.publishToGenerator(valuableItem);
 		}
 
 		LOGGER.info(String.format("Added %d items", itemList.size()));
