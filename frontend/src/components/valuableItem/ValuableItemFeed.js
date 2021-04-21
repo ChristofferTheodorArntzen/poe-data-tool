@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,7 +12,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import '../../styles/ValuableItemFeed.css';
 
 import { getValuableItem, deleteValuableItem } from '../../adapters/ValuableItemAdapter';
-import { connectToEndpoint, socketCallBack, webSocketSubscribePoint } from '../../adapters/SocketAdapter';
+import { connectToEndpoint, socketCallBack } from '../../adapters/ValuableItemWSAdapter';
 import { connectionContext } from "../../contexts/ConnectionContext";
 
 
@@ -22,7 +23,7 @@ const errorStyles = {
     padding: '20px'
 }
 
-const ValuableItemFeed = () => {
+const ValuableItemFeed = ({ webSocketTopic }) => {
 
     const [valuableItemArray, setValuableItemArray] = useState([]);
     const [hasError, setError] = useState(false);
@@ -31,12 +32,6 @@ const ValuableItemFeed = () => {
 
     // Fetches already created valuableItems
     async function fetchData() {
-        
-        if(!isConnected) {
-            setError(true);
-            return;   
-        }
-
         try {
             const fetchedItems = await getValuableItem();
             if(fetchedItems == null) {
@@ -50,12 +45,20 @@ const ValuableItemFeed = () => {
         }
     }
 
+    useEffect( () => {
+        if(!isConnected) {
+            setError(true);
+        } else {
+            setError(false);
+        }
+    }, [isConnected])
+
     // adding a useEffect to fetchData when it is mounted.
     useEffect( () => {
         fetchData();
     }, []);
 
-    // --- Socket connection - TODO:
+    // --- Socket connection
     function updateStateWithSocketCallBack(msg) {
         let parsedItem = socketCallBack(msg);
         if (parsedItem == null) return;
@@ -63,20 +66,13 @@ const ValuableItemFeed = () => {
         setValuableItemArray((value) => {
             return [parsedItem, ...value]
         });
-
     }
 
     useEffect(() => {
-        
-        if(!isConnected) {
-            setError(true);
-            return;   
-        }
-
         try {
             const client = connectToEndpoint();
             client.connect({}, () => {
-                client.subscribe(webSocketSubscribePoint,
+                client.subscribe(webSocketTopic,
                     (msg) => updateStateWithSocketCallBack(msg))
             });
     
