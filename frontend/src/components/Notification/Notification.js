@@ -9,6 +9,8 @@ import { connectionContext } from "../../contexts/ConnectionContext";
 const notConnectedText = 'Not Connected'
 const connectedText = 'Reconnected'
 
+//TODO: add props and make more generic. Take in context object
+
 const Notification = () => {
 
     const [open, setOpen] = useState(false);
@@ -37,7 +39,7 @@ const Notification = () => {
                 open={open}
                 autoHideDuration={3000}
                 onClose={handleClose}
-                message={ (isConnected) ? connectedText : notConnectedText}
+                message={(isConnected) ? connectedText : notConnectedText}
                 action={
                     <React.Fragment>
                         <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
