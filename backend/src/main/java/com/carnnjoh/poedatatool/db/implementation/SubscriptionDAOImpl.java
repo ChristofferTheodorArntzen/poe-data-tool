@@ -92,11 +92,14 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 				.addValue("itemTypes", subscription.getItemTypes().stream().map(Enum::name).toArray())
 				.addValue("isActive", subscription.isActive());
 
-			String updateStatement = "update Subscription set name = :name," +
-				" tabIds = :tabIds," +
-				" currencyThreshold = :currencyThreshold," +
-				" currencyType = :currencyType," +
-				" itemTypes = :itemTypes" +
+			String updateStatement =
+					"update Subscription set" +
+					" name = :name," +
+					" tabIds = :tabIds," +
+					" currencyThreshold = :currencyThreshold," +
+					" currencyType = :currencyType," +
+					" itemTypes = :itemTypes," +
+					" isActive = :isActive" +
 				" where pk = :pk";
 
 			int rowUpdate = template.update(updateStatement, params);
@@ -133,8 +136,7 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 				rs.getBoolean("isActive")
 			)
 		));
-
-	//TODO: make this not suck
+	
 	private List<ItemType> convertEnumArrayToList(Object object) {
 		String[] enumStringArray = Arrays.stream((Object[]) object).toArray(String[]::new);
 		List<ItemType> itemTypes = new ArrayList<>();

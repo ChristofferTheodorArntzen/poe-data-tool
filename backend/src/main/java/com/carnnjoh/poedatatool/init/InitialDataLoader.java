@@ -356,7 +356,7 @@ public class InitialDataLoader {
 						FOSSIL,
 						DELIRIUMORB
 						),
-				true);
+				false);
 		subscriptionDAO.save(subscription1);
 	}
 
