@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 @EnableScheduling
 public class ScheduledPriceEstimator {
 
-	private Logger logger = LoggerFactory.getLogger(ScheduledPriceEstimator.class);
+    private Logger LOGGER = LoggerFactory.getLogger(ScheduledPriceEstimator.class);
 
 	@Autowired
 	private SubscriptionDAO subscriptionDAO;
@@ -48,8 +48,8 @@ public class ScheduledPriceEstimator {
 	@Autowired
 	private PrivateStashTabService privateStashTabService;
 
-	@Autowired
-	private TradeAPIService tradeAPIService;
+    @Autowired
+    private TradeAPIFetcher tradeAPIFetcher;
 
 	@Autowired
 	private UserDAO userDAO;
@@ -66,81 +66,126 @@ public class ScheduledPriceEstimator {
 	@Value("${schedulers.ScheduledPriceEstimator.disabled:false}")
 	private boolean disabled;
 
-	public ScheduledPriceEstimator() {
-	}
+    @Scheduled(initialDelay = 2000, fixedDelay = 20000)
+    public void execute() {
 
-	@Scheduled(initialDelay = 2000, fixedDelay = 20000)
-	public void execute() {
+        long startTime = System.currentTimeMillis();
 
-		long startTime = System.currentTimeMillis();
+        if (disabled) {
+            LOGGER.info("Scheduled task " + ScheduledPriceEstimator.class + " is disabled");
+            return;
+        } else {
+            LOGGER.info("Scheduled task " + ScheduledPriceEstimator.class + " has began");
+        }
 
-		if(disabled) {
-			logger.info("Scheduled task " + getClass().getSimpleName() + " is disabled");
-			return;
-		} else {
-			logger.info("Scheduled task " + getClass().getSimpleName() + " has began");
-		}
+        Subscription sub = subscriptionDAO.fetchByStatus(true);
 
-		Subscription sub = subscriptionDAO.fetchByStatus(true);
+        if (sub == null) {
+            LOGGER.info("There are no active subscriptions. Returning early!");
+            return;
+        }
 
-		User user = userDAO.fetch(1);
+        User user = userDAO.getLastCreatedUser();
+
+        if (user == null) {
+            LOGGER.info("There are no users. Returning early!");
+            return;
+        }
 
 		Map<String, InMemoryItem> inMemoryItemMap = privateStashTabService.getInMemoryItemMap();
-		if (inMemoryItemMap.size() == 0) {
-			logger.info("in memory map of items in " + privateStashTabService.getClass().getSimpleName() + " is empty! Returning early from job");
+
+        if (inMemoryItemMap.size() == 0) {
+			LOGGER.info("in memory map of items in " + privateStashTabService.getClass().getSimpleName() + " is empty! Returning early from job");
 			return;
 		}
 
 		inMemoryItemMap = itemFilterService.filterItems(inMemoryItemMap, sub.getItemTypes());
 
-		//todo: build this out -- attach original item to the object
-		List<QueryRequest> queryRequests = queryConstructorService.createQueryRequests(inMemoryItemMap);
+        Map<String, QueryRequest> queryRequests = queryConstructorService.createQueryRequestsItemMap(inMemoryItemMap);
+        LOGGER.info(String.format("Constructed query requests for all item in the inMemoryMap - queryRequests size: %d", queryRequests.size()));
 
-		//todo: figure out a way to do this a different way? need to sleep in between every call
-		makeQueries(queryRequests, user, sub);
-	}
+        //todo: figure out a way to do this a different way? need to sleep in between every call
+        makeQueries(queryRequests, user, sub);
 
-	private void makeQueries(List<QueryRequest> queryRequests, User user, Subscription subscription) {
+        LOGGER.debug(String.format("Executed %s in '%d'ms",	getClass().getSimpleName(), System.currentTimeMillis() - startTime));
+    }
 
-		// One per searchable item
-		for (QueryRequest request : queryRequests) {
+    private void makeQueries(Map<String, QueryRequest> queryItemMap, User user, Subscription subscription) {
 
-			Optional<QueryResponse> queryResponse = getQueryIdAndItemListingIds(request, user);
+        try {
 
-			if(queryResponse.isEmpty()) {
-				continue;
-			}
+            // One per searchable item
+            for (Map.Entry<String, QueryRequest> queryItemEntry : queryItemMap.entrySet()) {
 
-			Optional<ListingResponse> listingResponse = getListings(queryResponse.get(), user);
+                Optional<QueryResponse> queryResponse = getQueryIdAndItemListingIds(queryItemEntry.getValue(), user);
 
-			if(listingResponse.isEmpty()) {
-				continue;
-			}
+                try {
+                    Thread.sleep(SchedulerUtils.HTTP_REQUEST_SLEEP);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
 
-			ValuableItem valuableItem = createValuableItem(listingResponse.get(), subscription);
+                if (queryResponse.isEmpty()) {
+                    LOGGER.info("Query response is empty for item with id: '%s', continuing to next query.");
+                    continue;
+                }
 
-			webSocketPublishService.publishToFeed(valuableItem);
-		}
-	}
+                if(queryResponse.get().result.length == 0) {
+                    LOGGER.info("Query response didn't contain any result ids, continuing to next query.");
+                    continue;
+                }
 
-	private ValuableItem createValuableItem(ListingResponse listingResponse, Subscription subscription) {
+                //TODO: If there are more than 15 listing ids this shortens it down to 15, and drop the last in the queryResponse object
+                // need to figure out a way to get the listing response for all ids.
+                Optional<ListingResponse> listingResponse = getListings(queryResponse.get(), user);
+
+                try {
+                    Thread.sleep(SchedulerUtils.HTTP_REQUEST_SLEEP);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+
+                if (listingResponse.isEmpty()) {
+                    LOGGER.info("Listing response is empty for item it id: '%s', continuing to next query.");
+                    continue;
+                }
+
+                Item item = privateStashTabService.getItemFromInMemoryMap(queryItemEntry.getKey());
+
+                //TODO: try to find the item a different way?
+                if(item == null) {
+                    LOGGER.debug("Item from private stash tab was not present when listings were processed, continuing...");
+                    continue;
+                }
+
+                ValuableItem valuableItem = createValuableItem(listingResponse.get(), subscription, item);
+
+                webSocketPublishService.publishToFeed(valuableItem);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+	private ValuableItem createValuableItem(ListingResponse listingResponse, Subscription subscription, Item item) {
 		List<Integer> listingValues = getConvertedListOfPrices(listingResponse);
-
-		//TODO: use the original item that made the query, not the first of the response.
-		Item item = listingResponse.result.get(0).item;
 
 		int meanPrice = listingValues.stream().mapToInt(price -> price).sum() / listingValues.size();
 		int medianPrice = getMedianPrice(listingValues);
 		int max = Collections.max(listingValues);
 		int min = Collections.min(listingValues);
 
-		if(meanPrice > (int) subscription.getCurrencyThreshold()) {
+		if (meanPrice > (int) subscription.getCurrencyThreshold()) {
 
 			// lookup if an item with the same itemId exists, if it does update that rather than creating a new one
 			ValuableItem valuableItem = new ValuableItem(item.itemId, subscription.getPk(), item, meanPrice, medianPrice, max, min, LocalDateTime.now());
 			Result result = valuableItemDAO.save(valuableItem);
 
-			if(result instanceof CreateSuccessResult) {
+			if (result instanceof CreateSuccessResult) {
 				valuableItem.setPk(((CreateSuccessResult) result).getPk());
 				return valuableItem;
 			}
@@ -160,21 +205,23 @@ public class ScheduledPriceEstimator {
 				: listingValues.get(listingValues.size() / 2);
 	}
 
-	private Optional<QueryResponse> getQueryIdAndItemListingIds(QueryRequest request, User user) {
-		Optional<QueryResponse> queryResponse = tradeAPIService
-				.searchForItemIds(user.getSessionId(), request);
+    private Optional<QueryResponse> getQueryIdAndItemListingIds(QueryRequest request, User user) {
+        try {
+            return tradeAPIFetcher.searchForItemIds(user.getLeague(), user.getSessionId(), request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		SchedulerUtils.trySleep();
+        return Optional.empty();
+    }
 
-		return queryResponse;
-	}
+    private Optional<ListingResponse> getListings(QueryResponse response, User user) {
+        try {
+            return tradeAPIFetcher.fetchListings(user.getSessionId(), response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	private Optional<ListingResponse> getListings(QueryResponse response, User user) {
-		Optional<ListingResponse> listingResponse = tradeAPIService
-				.fetchListings(user.getSessionId(), response);
-
-		SchedulerUtils.trySleep();
-
-		return listingResponse;
-	}
+        return Optional.empty();
+    }
 }
