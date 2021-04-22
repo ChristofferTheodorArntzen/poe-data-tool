@@ -41,7 +41,7 @@ public class ItemFilterServiceTest {
 	@Test
 	public void testItemFilterService() {
 		Map<String, InMemoryItem> inMemoryItemMap = new HashMap<>();
-		inMemoryItemMap.put(item.itemId, new InMemoryItem(item, false));
+		inMemoryItemMap.put(item.itemId, new InMemoryItem(item, false, false));
 
 		List<ItemType> itemTypes = Collections.singletonList(ItemType.UNIQUE);
 
@@ -57,7 +57,7 @@ public class ItemFilterServiceTest {
 		Map<String, InMemoryItem> inMemoryItemMap = new HashMap<>();
 
 		for(Item item : privateStashTab.items) {
-			inMemoryItemMap.put(item.itemId, new InMemoryItem(item, false));
+			inMemoryItemMap.put(item.itemId, new InMemoryItem(item, false, false));
 		}
 
 		List<ItemType> itemTypes = Collections.singletonList(ItemType.UNIQUE);
