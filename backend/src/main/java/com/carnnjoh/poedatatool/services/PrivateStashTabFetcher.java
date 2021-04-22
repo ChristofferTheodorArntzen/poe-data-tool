@@ -32,6 +32,8 @@ public class PrivateStashTabFetcher {
         ResponseEntity<PrivateStashTab> responseEntity = template
             .exchange(builder.toUriString(), HttpMethod.GET, entity, PrivateStashTab.class);
 
+        APIUtils.checkIfRateLimitExceeded(responseEntity);
+
         return (responseEntity.getStatusCode() == HttpStatus.OK)
             ? Optional.ofNullable(responseEntity.getBody())
             : Optional.empty();
