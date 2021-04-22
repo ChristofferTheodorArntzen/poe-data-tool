@@ -64,6 +64,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public User getLastCreatedUser() {
+		return Utils.tryGet(() -> template.query("Select * from User order by pk asc", rowMapper).stream().findFirst().orElse(null));
+	}
+
+	@Override
 	public Result update(User user) {
 		return Utils.tryUpdate(() -> {
 
@@ -99,4 +104,6 @@ public class UserDAOImpl implements UserDAO {
 			rs.getString("realm"),
 			rs.getString("sessionId")
 		)));
+
+
 }
