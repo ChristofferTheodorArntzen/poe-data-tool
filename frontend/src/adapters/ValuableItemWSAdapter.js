@@ -14,21 +14,28 @@ function returnWebSocket() {
 export function connectToEndpoint() {
 
     const stompClient = returnWebSocket();
-    // stompClient.debug = null;
+    stompClient.debug = null;
 
     return stompClient;
 }
 
 export function socketCallBack(msg) {
-    const receivedJson = JSON.parse(msg.body);
-    const item = receivedJson.item;
-    return {
-        id: item.id,
-        name: item.name,
-        type: item.typeLine,
-        stashId: item.inventoryId,
-        svg: item.icon,
-        price: 10000,
-        priceType: 'chaos',
-    };
+    const json = JSON.parse(msg.body);
+    
+    let valuableItem = {
+        id: json.id,
+        name: json.item.name,
+        type: json.item.typeLine,
+        stashId: json.item.inventoryId,
+        svg: json.item.icon,
+        price: {
+            mean: json.mean,
+            median: json.median,
+            max: json.max,
+            min: json.min,
+        },
+        priceType: 'chaos', // TODO - this data is available on the subscription, not on each item, maybe just add it there too.
+    }
+
+    return valuableItem;
 }

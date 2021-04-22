@@ -38,17 +38,16 @@ const App = () => {
 		setIsConnected(health);
 	}
 
+	// Running health check at refresh of this component to not have to wait 10sec for other components to re-mount.
+	// See if there is a better way to impl. the logic.
+	checkHealth();
+
 	useEffect(() => {
-		try {
-			const interval = setInterval(() => {
-				checkHealth();
-			}, 10000);
+		const interval = setInterval(() => {
+			checkHealth();
+		}, 10000);
 
-			return () => clearInterval(interval);
-
-		} catch (err) {
-			console.log(err);
-		}
+		return () => clearInterval(interval);
 	}, []);
 
 	return (
@@ -58,14 +57,14 @@ const App = () => {
 					<div className='app'>
 						<Router>
 							<ThemeProvider theme={darkTheme}>
-								<Notification showNotification={ connectedState } />
+								<Notification showNotification={connectedState} />
 								<Header />
 								<Route exact path='/' component={LandingPage} />
 								<Route path='/valuableItemFeed'>
-									<ValuableItemFeed webSocketTopic={topicFeed} />	
+									<ValuableItemFeed webSocketTopic={topicFeed} />
 								</Route>
 								<Route path='/valuableItemSimulator'>
-									<ValuableItemFeed webSocketTopic={topicGenerator} />	
+									<ValuableItemFeed webSocketTopic={topicGenerator} />
 								</Route>
 								<Route path='/subscription' component={SubscriptionMenu} />
 								<Route path='/login' component={Login} />
