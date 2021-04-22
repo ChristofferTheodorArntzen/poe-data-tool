@@ -1,197 +1,173 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { Component } from "react";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import CurrencyDataDump from "./CurrencyDataDump.json";
-import ItemFilterDialog from "./ItemFilterDialog";
-import ItemFilterList from "./ItemFilterList";
-import Chip from "@material-ui/core/Chip";
-import Input from "@material-ui/core/Input";
-import Button from "@material-ui/core/Button";
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect, useContext } from 'react'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
-const styles = (theme) => ({
-	formControl: {
-		marginTop: theme.spacing(2),
-		minWidth: 250,
-		width: 500,
-	},
-	selectEmpty: {
-		marginTop: theme.spacing(2),
-	},
-	chips: {
-		display: "flex",
-		flexWrap: "wrap",
-	},
-	chip: {
-		margin: 2,
-	},
-});
+import { submitSubscription } from './../../adapters/SubscriptionAdapter';
+import { subscriptionContext } from './../../contexts/SubscriptionContext';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-	PaperProps: {
-		style: {
-			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-			width: 250,
-		},
-	},
-};
-
-class SubscriptionForm extends Component {
-	constructor() {
-		super();
-
-		this.state = {
-			name: "",
-			currencyType: "",
-			currencyThreshold: "",
-			itemFilter: [],
-			currencyTypeList: [],
-			tabIds: ["tab 1", "tab 2"],
-		};
-
-		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	componentDidMount() {}
-
-	handleInputChange(event) {
-		const value = event.target.value;
-		const fieldName = event.target.name;
-
-		this.setState({
-			[fieldName]: value,
-		});
-		console.log("event value: " + value);
-	}
-
-	handleSubmit(event) {
-		const url = "http://localhost:8080/subscription";
-
-		const { name, currencyType, currencyThreshold } = event.target;
-
-		const subscription = {
-			name: name.value,
-			tabIds: ["tab1", "tab2"],
-			currencyThreshold: currencyThreshold.value,
-			itemFilter: "placeholder",
-			currencyType: currencyType.value,
-		};
-
-		fetch(url, {
-			method: "POST",
-			body: JSON.stringify(subscription),
-			headers: {
-				"Content-Type": "application/json",
-			},
-			credentials: "same-origin",
-		}).then((response) => {
-			console.log("did it " + response);
-		});
-
-		event.preventDefault();
-	}
-
-	render() {
-		const { classes } = this.props;
-
-		return (
-			<form onSubmit={this.handleSubmit}>
-				<FormControl variant="outlined" className={classes.formControl}>
-					<InputLabel htmlFor="component-outlined">Name</InputLabel>
-					<OutlinedInput
-						id="name"
-						name="name"
-						value={this.state.name}
-						autoComplete="off"
-						onChange={this.handleInputChange}
-						label="Name"
-					/>
-				</FormControl>
-				<br />
-				<FormControl variant="outlined" className={classes.formControl}>
-					<InputLabel id="currency-type">Currency Type</InputLabel>
-					<Select
-						name="currencyType"
-						label="Currency Type"
-						labelId="currecy-type"
-						id="select-currency-type"
-						value={this.state.currencyType}
-						onChange={this.handleInputChange}
-					>
-						{CurrencyDataDump.currencyDetails.map((currencyType) => (
-							<MenuItem key={currencyType.id} value={currencyType.tradeId}>
-								{currencyType.name}
-							</MenuItem>
-						))}
-					</Select>
-				</FormControl>
-				<br />
-				<FormControl variant="outlined" className={classes.formControl}>
-					<InputLabel htmlFor="component-outlined">
-						Currency Treshold
-					</InputLabel>
-					<OutlinedInput
-						autoComplete="off"
-						id="currencyThreshold"
-						name="currencyThreshold"
-						type="number"
-						value={this.state.treshold}
-						onChange={this.handleInputChange}
-						label="Currency Treshold"
-					/>
-				</FormControl>
-				<br />
-				<FormControl variant="outlined" className={classes.formControl}>
-					<InputLabel id="multiple-chip-label"> Selected Tabs </InputLabel>
-					<Select
-						name="tabIds"
-						labelId="multiple-chip-label"
-						id="multiple-chip"
-						value={this.state.tabIds}
-						onChange={this.handleInputChange}
-						input={<Input id="select-multiple-chip" />}
-						renderValue={(selected) => (
-							<div className={classes.chips}>
-								{selected.map((value) => {
-									console.log(value);
-									<Chip key={value} label={value} className={classes.chip} />;
-								})}
-							</div>
-						)}
-						MenuProps={MenuProps}
-					></Select>
-				</FormControl>
-				<div className="item-filter-container">
-					<div className="active-item-filter-list-container">
-						<h2 className="active-item-filter-list-header"> Active items </h2>
-						<br />
-						<ItemFilterList />
-					</div>
-					<div className="edit-item-filter-button">
-						<ItemFilterDialog />
-					</div>
-				</div>
-				<div className="form-save-button">
-					<Button variant="contained" type="submit">
-						Save
-					</Button>
-				</div>
-			</form>
-		);
-	}
+const subscriptionData = {
+	pk: '',
+	name: '',
+	tabIds: '',
+	currencyThreshold: '',
+	currencyType: '',
+	itemTypes: '',
+	isActive: false,
 }
 
-SubscriptionForm.propTypes = {
-	classes: PropTypes.object.isRequired,
-};
+const SubscriptionForm = (props) => {
 
-export default withStyles(styles)(SubscriptionForm);
+	const { close, subscriptionAsProp } = props;
+	const [subscription, setSubscription] = useState(subscriptionData);
+
+	const { setSubscriptions } = useContext(subscriptionContext);
+
+	const handleChange = (event) => {
+		const { target: { name, value } } = event;
+		setSubscription((subscription) => ({
+			...subscription,
+			[name]: value, event: event,
+		}));
+	}
+
+	//Setting the initial state if the subscription is present
+	useEffect(() => {
+		if (subscriptionAsProp) {
+			setSubscription(() => ({
+				pk: subscriptionAsProp.pk,
+				name: subscriptionAsProp.name,
+				tabIds: subscriptionAsProp.tabIds[0],
+				currencyThreshold: subscriptionAsProp.currencyThreshold,
+				currencyType: subscriptionAsProp.currencyType,
+				itemTypes: subscriptionAsProp.itemTypes[0],
+				isActive: false
+			}));
+		}
+	}, [])
+
+	const handleAsyncSubmit = async () => {
+
+		const responseData = await submitSubscription(subscription);
+		return responseData;
+	}
+
+	//TODO: last minute fix for this to work before demo. Need to actually call setSubscriptions from context and prevent default
+	const setContextSubscriptions = async (newSub) => {
+
+		console.log('new Sub');
+		console.log(newSub);
+
+		setSubscriptions( (prevSubs) => {
+
+			console.log('prevSub before set subs');
+			console.log(prevSubs);
+
+			let alteredSubs = prevSubs.map((sub) => {
+				if(sub.pk == newSub.pk) {
+					sub = newSub;
+				}
+			})
+
+			console.log('prevSub after set subs');
+			console.log(prevSubs);
+
+			return alteredSubs;
+		})
+	}
+
+	const handleSubmit = async (e) => {
+		//TODO: last minute fix for this to work before demo. Need to actually call setSubscriptions from context and prevent default
+		//e.preventDefault();
+
+		const response =  await handleAsyncSubmit();
+
+		try {
+			//setContextSubscriptions(response);
+		} catch (err) {
+			console.log(err);
+		} 
+
+		close();
+	}
+
+	return (
+		<form onSubmit={handleSubmit}>
+			<TextField
+				autoFocus
+				margin='dense'
+				id='name'
+				label='Subscription Name'
+				type='text'
+				name='name'
+				fullWidth
+				value={subscription.name}
+				onChange={handleChange}
+			/>
+
+			{/* TODO: needs to be a selectable list - See Material UI Chip for intended use */}
+			<TextField
+				margin='dense'
+				id='tabIds'
+				label='Tab Ids'
+				type='text'
+				name='tabIds'
+				fullWidth
+				value={subscription.tabIds}
+				onChange={handleChange}
+			/>
+
+			<TextField
+				margin='dense'
+				id='currencyThreshold'
+				label='Currency Threshold'
+				type='number'
+				name='currencyThreshold'
+				fullWidth
+				value={subscription.currencyThreshold}
+				onChange={handleChange}
+			/>
+
+			{/* TODO: needs to be a selectable list - See Material UI Chip for intended use */}
+			<TextField
+				autoFocus
+				margin='dense'
+				id='currencyType'
+				label='Currency Type'
+				type='text'
+				name='currencyType'
+				fullWidth
+				value={subscription.currencyType}
+				onChange={handleChange}
+			/>
+
+			<TextField
+				margin='dense'
+				id='itemTypes'
+				label='Item Types'
+				type='text'
+				name='itemTypes'
+				fullWidth
+				value={subscription.itemTypes}
+				onChange={handleChange}
+			/>
+
+			<FormControlLabel
+				control={<Checkbox name="checkedF" />}
+				label="Set Active"
+			/>
+			<Button type='submit' color='primary' variant="contained">
+				Save
+			</Button>
+			<Button onClick={close} color='secondary' variant="contained">
+				cancel
+			</Button>
+		</form>
+
+	);
+}
+
+export default SubscriptionForm;

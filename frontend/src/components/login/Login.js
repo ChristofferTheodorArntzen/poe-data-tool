@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import {
     Container,
-    makeStyles,    
+    makeStyles,
     Typography,
     TextField,
     Button,
@@ -101,7 +101,7 @@ const Login = () => {
     return (
         <main>
             <Container component="div" maxWidth='xs'>
-            
+
                 <div className={classes.paper}>
 
                     {loggedIn
