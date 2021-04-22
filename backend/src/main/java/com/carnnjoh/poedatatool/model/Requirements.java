@@ -19,4 +19,8 @@ public class Requirements {
 
 	@JsonProperty("progress")
 	String progress;
+
+	@JsonProperty("suffix")
+	String suffix;
+
 }

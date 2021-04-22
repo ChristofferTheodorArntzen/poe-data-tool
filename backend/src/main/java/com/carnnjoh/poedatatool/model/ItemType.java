@@ -14,7 +14,7 @@ public enum ItemType {
 	OIL("Oil", item -> item.typeLine.endsWith("Oil") && item.isCurrency(), false),
 	CURRENCY("Currency", Item::isCurrency, false),
 	UNIQUE("Unique", item -> !item.name.isEmpty() && item.frameType == 3, false),
-	CARD("Card", item -> item.artFilename, false),
+	CARD("Card", item -> item.artFilename != null && !item.artFilename.isEmpty(), false),
 	BLIGHTMAP("Blight map", item -> item.typeLine.contains("Blighted") && item.typeLine.endsWith("Map"), false),
 	MAP("Map", item -> item.typeLine.endsWith("Map"), false),
 	DELIRIUMORB("Delirium Orb", item -> item.typeLine.endsWith("Delirium Orb") && item.isCurrency(), false),

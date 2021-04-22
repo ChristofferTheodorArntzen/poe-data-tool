@@ -6,21 +6,21 @@ import java.util.ArrayList;
 
 public class QueryRequest {
 
-	@JsonProperty("query")
-	public Query query;
+    @JsonProperty(value = "query", index = 1)
+    public Query query;
 
-	@JsonProperty()
-	public Sort sort;
+    @JsonProperty(value = "sort", index = 2)
+    public Sort sort;
 
 
-	public QueryRequest(Query query, Sort sort) {
-		this.query = query;
-		this.sort = sort;
-	}
+    public QueryRequest(Query query, Sort sort) {
+        this.query = query;
+        this.sort = sort;
+    }
 
-	public QueryRequest() {
-		this.query = new Query(new Status(), new ArrayList<>(), new ArrayList<>(), null, null);
-		this.sort = new Sort();
-	}
+    public QueryRequest() {
+        this.query = new Query(new Status(), new ArrayList<>(), new ArrayList<>(), null, null);
+        this.sort = new Sort();
+    }
 
 }
