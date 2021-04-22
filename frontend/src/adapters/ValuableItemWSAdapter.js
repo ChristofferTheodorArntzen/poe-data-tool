@@ -1,9 +1,9 @@
 import SockJS from 'sockjs-client'
 import Stomp from 'stomp-websocket';
 
-const socketEndPoint = 'http://localhost:8080/gs-guide-websocket';
-export const webSocketSubscribePoint = '/topic/greetings';
-
+const socketEndPoint = 'http://localhost:8080/valuableItemFeed';
+export const topicFeed = '/feed';
+export const topicGenerator = '/generator';
 
 function returnWebSocket() {
     const socket = new SockJS(socketEndPoint);
@@ -14,7 +14,7 @@ function returnWebSocket() {
 export function connectToEndpoint() {
 
     const stompClient = returnWebSocket();
-    stompClient.debug = null;
+    // stompClient.debug = null;
 
     return stompClient;
 }

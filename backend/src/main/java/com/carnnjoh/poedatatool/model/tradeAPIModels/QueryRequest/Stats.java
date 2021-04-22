@@ -7,7 +7,7 @@ import java.util.List;
 public class Stats {
 
 	@JsonProperty("type")
-	public QueryFilterType type;
+	public String type;
 
 	@JsonProperty("filters")
 	public List<Filter> filters;
@@ -15,11 +15,18 @@ public class Stats {
 	@JsonProperty("disabled")
 	public boolean disabled;
 
-	public QueryFilterType getType() {
+	public Stats() {
+	}
+	public Stats(String type, List<Filter> filters) {
+		this.type = type;
+		this.filters = filters;
+	}
+
+	public String getType() {
 		return type;
 	}
 
-	public void setType(QueryFilterType type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

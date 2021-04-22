@@ -24,4 +24,5 @@ public interface StatsDao {
 	void setDelveModMap(Map<String, String> delveModMap);
 
 	String lookUpIdByModText(String modText);
+	String lookUpExplicitModIdByModText(String modText);
 }

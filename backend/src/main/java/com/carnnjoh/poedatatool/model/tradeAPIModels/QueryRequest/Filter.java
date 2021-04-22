@@ -1,11 +1,13 @@
 package com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Filter {
 
 	@JsonProperty("disabled")
-	boolean disabled = false;
+	Boolean disabled;
 
 	//--- typeFilter
 	@JsonProperty("category") //TODO: find out what this is, can it be a enum?
@@ -143,9 +145,10 @@ public class Filter {
 	//--- misc_filters
 
 	//--- misc_filters
-	@JsonProperty("id")
+	@JsonProperty(value = "id", index = 9998)
 	public String modId;
 
+	@JsonProperty(value="value", index = 9999)
 	public Value value;
 	//--- misc_filters
 
@@ -176,6 +179,6 @@ public class Filter {
 	public Filter(String modId, Value value) {
 		this.modId = modId;
 		this.value = value;
-	};
+	}
 
 }

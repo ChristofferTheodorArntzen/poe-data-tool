@@ -3,111 +3,115 @@ package com.carnnjoh.poedatatool.services;
 import com.carnnjoh.poedatatool.db.inMemory.dao.ConstantsDao;
 import com.carnnjoh.poedatatool.db.inMemory.dao.StatsDao;
 import com.carnnjoh.poedatatool.model.InMemoryItem;
+import com.carnnjoh.poedatatool.model.InterpretedMod;
 import com.carnnjoh.poedatatool.model.Item;
 import com.carnnjoh.poedatatool.model.ItemType;
 import com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class QueryConstructorService {
 
-	@Autowired
-	ConstantsDao constantsDao;
+    @Autowired
+    private ConstantsDao constantsDao;
 
-	@Autowired
-	StatsDao statsDao;
+    @Autowired
+    private ExplicitModExtractorService explicitModExtractorService;
 
-	public List<QueryRequest> createQueryRequests(Map<String, InMemoryItem> inMemoryItemMap) {
+    public List<QueryRequest> createQueryRequests(Map<String, InMemoryItem> inMemoryItemMap) {
 
-		List<QueryRequest> queryRequests = new ArrayList<>();
+        List<QueryRequest> queryRequests = new ArrayList<>();
 
-		for (InMemoryItem inMemoryItem : inMemoryItemMap.values()) {
-			if (inMemoryItem.isSearch()) {
-				QueryRequest queryRequest = createQueryRequest(inMemoryItem.getItemType(), inMemoryItem);
-				if (queryRequest != null) {
-					queryRequests.add(queryRequest);
-				}
-			}
-		}
-		return queryRequests;
-	}
+        for (InMemoryItem inMemoryItem : inMemoryItemMap.values()) {
+            if (inMemoryItem.isSearch()) {
+                queryRequests.add(createQuery(inMemoryItem));
+            }
+        }
 
-	//TODO: this needs to be fleshed out
-	// want specify how to construct the request query per itemType.
-	// how to impl without switch case for each itemType here.
+        return queryRequests;
+    }
 
-	private QueryRequest createQueryRequest(ItemType itemType, Item item) {
+    public Map<String, QueryRequest> createQueryRequestsItemMap(Map<String, InMemoryItem> inMemoryItemMap) {
 
+        Map<String, QueryRequest> queryRequests = new HashMap<>();
 
-		Query query = createQuery(item);
+        for (InMemoryItem inMemoryItem : inMemoryItemMap.values()) {
+            if (inMemoryItem.isSearch()) {
+                queryRequests.put(inMemoryItem.itemId, createQuery(inMemoryItem));
+            }
+        }
 
+        return queryRequests;
+    }
 
+    private QueryRequest createQuery(final InMemoryItem inMemoryItem) {
 
-		//QueryRequest queryRequest = createTestQueryRequest();
+        Query query = new Query();
 
-		QueryRequest queryRequest = new QueryRequest(query, new Sort());
+        List<Stats> statsList = new ArrayList<>();
 
-		return queryRequest;
-	}
+        Stats stats = createStatsFilter(inMemoryItem);
 
-	private Query createQuery(Item item) {
+        if (stats != null) {
+            statsList.add(createStatsFilter(inMemoryItem));
+        }
 
-		Stats stats = new Stats();
-		stats.type = QueryFilterType.AND;
-		stats.disabled = false;
+        if (statsList.size() > 0) {
+            query.setStats(statsList);
+        }
 
-		List<Filter> filters = new ArrayList<>();
+        if (inMemoryItem.name != null && !inMemoryItem.name.isEmpty() && !inMemoryItem.name.isBlank()) {
+            query.setName(inMemoryItem.name);
+        }
 
-		for(String explicitModText : item.explicitMods) {
-			Filter filter = new Filter();
-			filter.modId = getModIdFromExplicitMod(explicitModText);
+        if (inMemoryItem.baseType != null && !inMemoryItem.baseType.isEmpty() && !inMemoryItem.baseType.isBlank()) {
+            query.setType(inMemoryItem.baseType);
+        }
 
-		}
+        return new QueryRequest(query, new Sort());
+    }
 
-		TypeFilter typeFilter = new TypeFilter();
+    private Stats createStatsFilter(final InMemoryItem inMemoryItem) {
 
-		stats.filters = Collections.singletonList(typeFilter);
-		return new Query("", "");
-	}
+        if (inMemoryItem.getInterpretedMods() == null || inMemoryItem.getInterpretedMods().size() == 0) {
+            return null;
+        }
 
-	private String getModIdFromExplicitMod(String explicitMods) {
-		String modId = statsDao.lookUpIdByModText(explicitMods);
-		return modId;
-	}
+        List<Filter> filters = new ArrayList<>();
 
-	private QueryRequest constructDefaultQuery(Item item) {
+        for (InterpretedMod interpretedMod : inMemoryItem.getInterpretedMods()) {
 
-		List<Filter> filters = new ArrayList<>();
-		Filter filter = new TypeFilter();
-		filters.add(filter);
+            Filter filter = new Filter();
 
-		List<Stats> stats = new ArrayList<>();
-		Stats stat = new Stats();
-		stat.type = QueryFilterType.AND;
-		stat.disabled = false;
-		stat.filters = new ArrayList<>();
-		stats.add(stat);
+            if (interpretedMod.getRelatedModId() != null) {
 
-		Query query =  new Query(filters, stats, item.name, item.typeLine);
+                filter.modId = interpretedMod.getRelatedModId();
 
-		return new QueryRequest();
-	}
+                Value value = new Value();
 
-	private QueryRequest createTestQueryRequest() {
-		List<Filter> filters = new ArrayList<>();
-		List<Stats> stats = new ArrayList<>();
-		String name = "Tabula Rasa";
-		String type = "Simple Robe";
-		Status status = new Status();
-		Query query = new Query(status, filters, stats, name, type);
-		Sort sort = new Sort();
+                if (interpretedMod.getMinValue() != null) {
+                    value.setMin(interpretedMod.getMinValue().intValue());
+                }
 
-		return new QueryRequest(query, sort);
-	}
+                if (interpretedMod.getMaxValue() != null) {
+                    value.setMax(interpretedMod.getMaxValue().intValue());
+                }
+
+                if (value.getMax() != null || value.getMin() != null) {
+                    filter.value = value;
+                }
+            }
+
+            if (filter.modId != null) {
+                filters.add(filter);
+            }
+
+        }
+
+        return (filters.size() > 0) ? new Stats(QueryFilterType.AND.getText(), filters) : null;
+    }
+
 }

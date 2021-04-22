@@ -13,8 +13,8 @@ public class Item {
 	@JsonProperty("additionalProperties")
 	public List<Properties> additionalProperties;
 
-	@JsonProperty("artFileName")
-	public boolean artFilename;
+	@JsonProperty("artFilename")
+	public String artFilename;
 
 	@JsonProperty("category")
 	public List<Category> categories;
@@ -62,6 +62,9 @@ public class Item {
 	public boolean isIdentified;
 
 	@JsonProperty("ilvl")
+	public int ilvl;
+
+	@JsonProperty("itemLevel")
 	public int itemLevel;
 
 	@JsonProperty("implicitMods")
@@ -123,7 +126,7 @@ public class Item {
 	@JsonProperty("typeLine")
 	public String typeLine;
 
-	@JsonProperty(required = false, defaultValue = "baseType")
+	@JsonProperty("baseType")
 	public String baseType;
 
 	@JsonProperty("utilityMods")
@@ -143,6 +146,13 @@ public class Item {
 
 	@JsonProperty("'^[\\\\s]RaceReward$'")
 	public boolean isRaceReward;
+
+	@JsonIgnore
+	@JsonProperty("socketedItems")
+	private String socketedItems;
+
+	@JsonProperty("delve")
+	private boolean delve;
 
 	public Item() {
 	}
@@ -166,7 +176,7 @@ public class Item {
 		this.icon = item.icon;
 		this.itemId = item.itemId;
 		this.isIdentified = item.isIdentified;
-		this.itemLevel = item.itemLevel;
+		this.ilvl = item.ilvl;
 		this.implicitMods = item.implicitMods;
 		this.inventoryId = item.inventoryId;
 		this.isRelic = item.isRelic;
@@ -193,6 +203,9 @@ public class Item {
 		this.xPos = item.xPos;
 		this.yPos = item.yPos;
 		this.isRaceReward = item.isRaceReward;
+		this.itemLevel = item.itemLevel;
+		this.socketedItems = item.socketedItems;
+		this.delve = item.delve;
 	}
 
 	@JsonIgnore
@@ -237,7 +250,7 @@ public class Item {
 			", icon='" + icon + '\'' +
 			", itemId='" + itemId + '\'' +
 			", isIdentified=" + isIdentified +
-			", itemLevel=" + itemLevel +
+			", itemLevel=" + ilvl +
 			", implicitMods=" + implicitMods +
 			", inventoryId='" + inventoryId + '\'' +
 			", isRelic=" + isRelic +

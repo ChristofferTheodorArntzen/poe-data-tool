@@ -37,9 +37,9 @@ import static com.carnnjoh.poedatatool.model.ItemType.*;
 
 
 @Component
-public class InitialDataLoaderUtil {
+public class InitialDataLoader {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(InitialDataLoaderBean.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(InitialDataLoader.class);
 
 	@Autowired
 	ObjectMapper mapper;
@@ -313,7 +313,7 @@ public class InitialDataLoaderUtil {
 
 	public void createUser() {
 		User user = new User(
-			"Ritual",
+			"Ultimatum",
 			"Athzen",
 			"pc",
 			"qwerty"
@@ -332,15 +332,31 @@ public class InitialDataLoaderUtil {
 				Arrays.asList(UNIQUE, RARE_ACCESSORIES, RARE_WEAPON),
 				true
 		);
+		subscriptionDAO.save(subscription);
 
 		Subscription subscription1 = new Subscription(
 				"Dump tab",
-				new Integer[]{0, 5, 6},
-				60.0,
+				new Integer[]{0, 1, 2},
+				1.0,
 				"Chaos",
-				Arrays.asList(UNIQUE, MAP, SCARAB, GEM, ABYSSALJEWEL),
-				false);
-		subscriptionDAO.save(subscription);
+				Arrays.asList(UNIQUE_ACCESSORY,
+						UNIQUE_ARMOUR,
+						UNIQUE_WEAPON,
+						UNIQUE_MAP,
+						UNIQUE_FLASK,
+						UNIQUE_JEWEL,
+						MAP,
+						SCARAB,
+						GEM,
+						ABYSSALJEWEL,
+						CARD,
+						FRAGMENT,
+						OIL,
+						PROPHECY,
+						FOSSIL,
+						DELIRIUMORB
+						),
+				true);
 		subscriptionDAO.save(subscription1);
 	}
 

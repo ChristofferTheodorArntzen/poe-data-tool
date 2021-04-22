@@ -11,6 +11,7 @@ import Notification from './Notification/Notification';
 
 //Adapters
 import { checkHealthEndPoint } from '../adapters/HealthAdapter';
+import { topicFeed, topicGenerator } from '../adapters/ValuableItemWSAdapter';
 
 // Context imports
 import { userContext } from '../contexts/UserContext'
@@ -34,7 +35,6 @@ const App = () => {
 
 	const checkHealth = async () => {
 		const health = await checkHealthEndPoint();
-		console.log(health);
 		setIsConnected(health);
 	}
 
@@ -61,9 +61,15 @@ const App = () => {
 								<Notification showNotification={ connectedState } />
 								<Header />
 								<Route exact path='/' component={LandingPage} />
-								<Route path='/valuableItemFeed' component={ValuableItemFeed} />
+								<Route path='/valuableItemFeed'>
+									<ValuableItemFeed webSocketTopic={topicFeed} />	
+								</Route>
+								<Route path='/valuableItemSimulator'>
+									<ValuableItemFeed webSocketTopic={topicGenerator} />	
+								</Route>
 								<Route path='/subscription' component={SubscriptionMenu} />
 								<Route path='/login' component={Login} />
+
 							</ThemeProvider>
 						</Router>
 					</div>

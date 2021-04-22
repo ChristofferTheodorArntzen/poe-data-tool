@@ -21,7 +21,7 @@ import java.util.List;
 @EnableScheduling
 public class PrivateStashPoller {
 
-	private Logger logger = LoggerFactory.getLogger(PrivateStashPoller.class);
+	private Logger LOGGER = LoggerFactory.getLogger(PrivateStashPoller.class);
 
 	@Autowired
 	private PrivateStashTabFetcher privateStashTabFetcher;
@@ -43,22 +43,32 @@ public class PrivateStashPoller {
 	public PrivateStashPoller() {
 	}
 
-	@Scheduled(initialDelay = 1000, fixedDelay = 20000)
+	@Scheduled(initialDelay = 1000, fixedDelay = 60000)
 	public void execute() {
 		long startTime = System.currentTimeMillis();
 
 		if(disabled) {
-			logger.info("Scheduled task " + getClass().getSimpleName() + " is disabled");
+			LOGGER.info("Scheduled task " + PrivateStashPoller.class + " is disabled");
 			return;
 		} else {
-			logger.info("Scheduled task " + getClass().getSimpleName() + " has began");
+			LOGGER.info("Scheduled task " + PrivateStashPoller.class + " has began");
 		}
 
 		SchedulerUtils.execute(() -> {
-			//TODO: add a search for active user
-			User user = userDAO.fetch(1);
+
+			User user = userDAO.getLastCreatedUser();
+
+			if (user == null) {
+				LOGGER.info("No user were found. Returning early!");
+				return;
+			}
 
 			Subscription sub = subscriptionDAO.fetchByStatus(true);
+
+			if (sub == null) {
+				LOGGER.info("No active subscriptions were found. Returning early!");
+				return;
+			}
 
 			Integer[] activeTabs = sub.getTabIds();
 
@@ -66,9 +76,9 @@ public class PrivateStashPoller {
 				List<PrivateStashTab> privateStashTabs = privateStashTabService.requestStashTabs(activeTabs, user);
 				privateStashTabService.saveItems(privateStashTabs);
 
-				logger.debug(String.format("Executed %s in '%d'ms",	getClass().getSimpleName(), System.currentTimeMillis() - startTime));
+				LOGGER.debug(String.format("Executed %s in '%d'ms",	getClass().getSimpleName(), System.currentTimeMillis() - startTime));
 			} else {
-				logger.debug("stashTab was not present");
+				LOGGER.debug("stashTab was not present");
 			}
 		});
 	}

@@ -1,6 +1,9 @@
 package com.carnnjoh.poedatatool.services;
 
+import com.carnnjoh.poedatatool.db.inMemory.dao.StatsDao;
+import com.carnnjoh.poedatatool.model.InMemoryItem;
 import com.carnnjoh.poedatatool.model.InterpretedMod;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,14 +15,36 @@ import java.util.regex.Pattern;
 @Service
 public class ExplicitModExtractorService {
 
+	@Autowired
+	StatsDao statsDao;
+
 	Pattern regex = Pattern.compile("(\\d+(?:\\.\\d+)?)");
 
-	public List<InterpretedMod> convertExplicitMods(List<String> explicitMods) {
+	public void extractAndApplyMods(InMemoryItem inMemoryItem) {
+
+		if(inMemoryItem.explicitMods == null || inMemoryItem.explicitMods.size() == 0) {
+			return;
+		}
+
+		List<InterpretedMod> interpretedMods = convertExplicitMods(inMemoryItem.explicitMods);
+
+		inMemoryItem.setInterpretedMods(interpretedMods);
+	}
+
+	private List<InterpretedMod> convertExplicitMods(List<String> explicitMods) {
 
 		List<InterpretedMod> interpretedModList = new ArrayList<>();
 
 		for (String explicitMod : explicitMods) {
-			interpretedModList.add(convertStringModToGenericMod(explicitMod));
+			InterpretedMod interpretedMod = convertStringModToGenericMod(explicitMod);
+
+			String modId = statsDao.lookUpExplicitModIdByModText(interpretedMod.getGenericText());
+
+			if(modId != null) {
+				interpretedMod.setRelatedModId(modId);
+			}
+
+			interpretedModList.add(interpretedMod);
 		}
 
 		return interpretedModList;
@@ -40,11 +65,6 @@ public class ExplicitModExtractorService {
 		while (matcher.find()) {
 			if (minValue == null) {
 				minValue = Float.parseFloat(matcher.group(1));
-
-				if (genericText.contains("reduced")) {
-					minValue = minValue * -1;
-				}
-
 				continue;
 			}
 
@@ -92,9 +112,7 @@ public class ExplicitModExtractorService {
 		return new InterpretedMod(genericText, minValue, maxValue);
 	}
 
-
-	//TODO: remove this if it is determined than the block above is next to flawless
-//	public ExplicitMod getExplicitModFromString(String explicitMod) {
+	//	public ExplicitMod getExplicitModFromString(String explicitMod) {
 //
 //		String genericModText;
 //		Integer minValue = null;

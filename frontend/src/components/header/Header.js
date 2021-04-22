@@ -70,8 +70,8 @@ const Header = () => {
 					variant='outlined'
 					size='small'
 					startIcon={<NotificationsActiveIcon />}
-					directoryLink='/testAlert'
-					buttonText='Test Alert'
+					directoryLink='/valuableItemSimulator'
+					buttonText='simulator'
 					reSizeWidth={resizeButtonsAtWidth}
 				/>
 
