@@ -25,10 +25,14 @@ public class PrivateStashTabService {
 	@Autowired
 	private UniqueDao uniqueDao;
 
+	@Autowired
+	private ExplicitModExtractorService explicitModExtractor;
+
 	//TODO: find a better way to set this when testing... ?
 	@Value("${services.test.poesessid}")
 	private String testSessionId;
 
+	//TODO: find a better way of achieving the same thing
 	private final List<ItemType> listOfItemTypes = Arrays.asList(
 		ABYSSALJEWEL,
 		SCARAB,
@@ -96,9 +100,10 @@ public class PrivateStashTabService {
 				for (Item item : stashTab.items) {
 					if (item != null && item.isIdentified) {
 
-						InMemoryItem inMemoryItem = new InMemoryItem(item, false);
+						InMemoryItem inMemoryItem = new InMemoryItem(item);
 
 						applyItemType(inMemoryItem);
+						applyExplicitMods(inMemoryItem);
 
 						inMemoryItemMap.putIfAbsent(item.itemId, inMemoryItem);
 						itemsToBeRemoved.remove(item.itemId);
@@ -133,6 +138,14 @@ public class PrivateStashTabService {
 	private void lookUpItemIfSpecialItem(InMemoryItem item) {
 		uniqueDao.applyItemTypeIfGem(item);
 		uniqueDao.applyItemTypeIfUnique(item);
+	}
+
+	private void applyExplicitMods(InMemoryItem inMemoryItem) {
+		explicitModExtractor.extractAndApplyMods(inMemoryItem);
+	}
+
+	public Item getItemFromInMemoryMap(String itemId) {
+		return inMemoryItemMap.get(itemId);
 	}
 
 	public Map<String, InMemoryItem> getInMemoryItemMap() {

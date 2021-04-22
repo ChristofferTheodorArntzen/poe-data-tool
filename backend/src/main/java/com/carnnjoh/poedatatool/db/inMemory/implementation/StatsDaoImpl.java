@@ -96,6 +96,15 @@ public class StatsDaoImpl implements StatsDao {
 		return lookUpModInAllMaps(modText);
 	}
 
+	@Override
+	public String lookUpExplicitModIdByModText(String modText) {
+		Map<String, String> modMap = explicitModMap;
+		return modMap.get(modText);
+	}
+
+
+
+
 	private String lookUpModInAllMaps(String modText) {
 
 		List<Map> listOfMaps = Arrays.asList(
