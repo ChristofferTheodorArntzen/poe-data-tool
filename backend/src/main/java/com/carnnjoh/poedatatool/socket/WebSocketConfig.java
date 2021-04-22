@@ -28,7 +28,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	@EventListener(SessionConnectEvent.class)
 	public void handleWebSocketConnectListener(SessionConnectEvent event) {
-		System.out.println("got a new connection" + event.getUser());
+		System.out.println("got a new connection " + event.getUser());
 	}
 
 	@EventListener(SessionDisconnectEvent.class)

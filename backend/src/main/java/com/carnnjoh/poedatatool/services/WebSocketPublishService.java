@@ -22,10 +22,12 @@ public class WebSocketPublishService {
 	ObjectMapper objectMapper;
 
 	public void publishToFeed(Object objectToPublish) {
+		LOGGER.info("Publishing a message to topic " + WEB_SOCKET_FEED);
 		publishToWebSocket(WEB_SOCKET_FEED, objectToPublish);
 	}
 
 	public void publishToGenerator(Object objectToPublish) {
+		LOGGER.info("Publishing a message to topic " + WEB_SOCKET_GENERATOR);
 		publishToWebSocket(WEB_SOCKET_GENERATOR, objectToPublish);
 	}
 
