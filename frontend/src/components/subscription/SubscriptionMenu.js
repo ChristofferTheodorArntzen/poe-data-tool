@@ -62,7 +62,7 @@ const SubscriptionMenu = () => {
 	const handleDelete = async (subscription) => {
 		const responseData = await deleteSubscription(subscription);
 		if(responseData) {
-			updateDeleteSubscription
+			updateDeleteSubscription();
 		} 
 	}
 
