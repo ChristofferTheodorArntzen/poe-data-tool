@@ -18,7 +18,7 @@ const SubscriptionFormDialog = ({ subscription }) => {
     };
 
     return (
-        <div>
+        <>
             <Button variant='contained' color='primary' onClick={handleClickOpen}>
                { (subscription) ? 'Edit' : 'Add'}
             </Button>
@@ -27,7 +27,7 @@ const SubscriptionFormDialog = ({ subscription }) => {
                     <SubscriptionForm close={handleClose} subscriptionAsProp={subscription} />
                 </DialogContent>
             </Dialog>
-        </div>
+        </>
     );
 }
 

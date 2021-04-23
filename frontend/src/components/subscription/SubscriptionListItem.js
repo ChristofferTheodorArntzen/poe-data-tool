@@ -52,7 +52,7 @@ const SubscriptionListItem = ({ subscription, handleSetActive, handleDelete }) =
 					{`Tab ids: ${tabIds ? tabIds : ''} `}
 				</Typography>
 			</CardContent>
-			<CardActions >
+			<CardActions>
 
 				<Button variant="contained" onClick={() => handleSetActive(subscription)}>
 					Set Active
@@ -60,7 +60,7 @@ const SubscriptionListItem = ({ subscription, handleSetActive, handleDelete }) =
 
 				<SubscriptionFormDialog subscription={subscription} />
 
-				<Button variant='contained' color='secondary' onClick={ () => handleDelete(subscription)}>
+				<Button variant='contained' color='secondary' onClick={() => handleDelete(subscription)}>
 					Delete
 				</Button>
 
