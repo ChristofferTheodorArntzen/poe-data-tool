@@ -121,24 +121,23 @@ public class InitialDataLoader {
 		createUniqueImport();
 		LOGGER.info("Importing 'unique' took '{}'ms", System.currentTimeMillis() - startTime);
 
-		LOGGER.info("Done creating essential data.");
+		LOGGER.info("Done importing essential data.");
 
 		if (testData) {
 
 			LOGGER.info("Application is run in test mode, starting to create test data...");
 
 			createUser();
-			LOGGER.info("A user is created");
+			LOGGER.info("user(s) is created");
 
 			createSubscription();
-			LOGGER.info("A subscription is created");
+			LOGGER.info("subscription(s) is created");
 
 			createValuableItem();
-			LOGGER.info("A valuable item is created");
+			LOGGER.info("valuable item(s) is created");
 
+			LOGGER.info("Done importing test data.");
 		}
-
-		LOGGER.info("Application is run in test mode, starting to create test data...");
 	}
 
 	//TODO: move insertion of constants, stats and unqiues to each of its own beans. Try to make the code footprint smaller in this class atleast

@@ -32,32 +32,7 @@ public class PrivateStashTabService {
 	@Value("${services.test.poesessid}")
 	private String testSessionId;
 
-	//TODO: find a better way of achieving the same thing
-	private final List<ItemType> listOfItemTypes = Arrays.asList(
-		ABYSSALJEWEL,
-		SCARAB,
-		PROPHECY,
-		FRAGMENT,
-		OIL,
-		CURRENCY,
-		UNIQUE,
-		CARD,
-		CLUSTERJEWEL,
-		BLIGHTMAP,
-		MAP,
-		DELIRIUMORB,
-		CATALYST,
-		FOSSIL,
-		ESSENCE,
-		RESONATOR,
-		GEM,
-		UNIQUE_ARMOUR,
-		UNIQUE_WEAPON,
-		UNIQUE_ACCESSORY,
-		UNIQUE_FLASK,
-		RARE_WEAPON,
-		RARE_ARMOUR,
-		RARE_ACCESSORIES);
+	private List<ItemType> itemTypes = new ArrayList<>(EnumSet.allOf(ItemType.class));
 
 	private final Map<String, InMemoryItem> inMemoryItemMap = new HashMap<>();
 
@@ -121,13 +96,15 @@ public class PrivateStashTabService {
 
 	private void applyItemType(InMemoryItem inMemoryItem) {
 
+		//Looking up the item name / type from static data to determine the itemType.
 		lookUpItemIfSpecialItem(inMemoryItem);
 
 		if(inMemoryItem.getItemType() != null) {
 			return;
 		}
 
-		for(ItemType itemType : listOfItemTypes) {
+		// if it doesn't find the itemType above this will test all
+		for(ItemType itemType : itemTypes) {
 			if(itemType.filter != null  && itemType.filter.test(inMemoryItem)) {
 				inMemoryItem.setItemType(itemType);
 				break;
