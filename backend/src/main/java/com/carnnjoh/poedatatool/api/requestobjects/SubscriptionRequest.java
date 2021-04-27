@@ -3,6 +3,7 @@ package com.carnnjoh.poedatatool.api.requestobjects;
 import com.carnnjoh.poedatatool.model.ItemType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,14 +33,14 @@ public class SubscriptionRequest {
 	public SubscriptionRequest(String name,
 							   Integer[] tabIds,
 							   Double currencyThreshold,
-							   List<ItemType> itemTypes,
+							   ItemType[] itemTypes,
 							   String currencyType,
 							   boolean isActive
 	) {
 		this.name = name;
 		this.tabIds = tabIds;
 		this.currencyThreshold = currencyThreshold;
-		this.itemTypes = itemTypes;
+		this.itemTypes = Arrays.asList(itemTypes);
 		this.currencyType = currencyType;
 		this.isActive = isActive;
 	}
