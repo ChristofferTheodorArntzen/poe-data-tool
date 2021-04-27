@@ -8,6 +8,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import { submitSubscription } from './../../adapters/SubscriptionAdapter';
 import { subscriptionContext } from './../../contexts/SubscriptionContext';
+import { itemTypes } from '../../constants/ItemTypes';
+import { currencies } from '../../constants/Currencies'
+
+import SubscriptionChip from './SubscriptionChip';
 
 const subscriptionData = {
 	pk: '',
@@ -15,7 +19,7 @@ const subscriptionData = {
 	tabIds: '',
 	currencyThreshold: '',
 	currencyType: '',
-	itemTypes: '',
+	itemTypes: [],
 	isActive: false,
 }
 
@@ -25,6 +29,7 @@ const SubscriptionForm = (props) => {
 	const [subscription, setSubscription] = useState(subscriptionData);
 
 	const { setSubscriptions } = useContext(subscriptionContext);
+
 
 	const handleChange = (event) => {
 		const { target: { name, value } } = event;
@@ -40,17 +45,16 @@ const SubscriptionForm = (props) => {
 			setSubscription(() => ({
 				pk: subscriptionAsProp.pk,
 				name: subscriptionAsProp.name,
-				tabIds: subscriptionAsProp.tabIds[0],
+				tabIds: null,
 				currencyThreshold: subscriptionAsProp.currencyThreshold,
 				currencyType: subscriptionAsProp.currencyType,
-				itemTypes: subscriptionAsProp.itemTypes[0],
+				itemTypes: subscriptionAsProp.itemTypes,
 				isActive: false
 			}));
 		}
 	}, [])
 
 	const handleAsyncSubmit = async () => {
-
 		const responseData = await submitSubscription(subscription);
 		return responseData;
 	}
@@ -61,13 +65,13 @@ const SubscriptionForm = (props) => {
 		console.log('new Sub');
 		console.log(newSub);
 
-		setSubscriptions( (prevSubs) => {
+		setSubscriptions((prevSubs) => {
 
 			console.log('prevSub before set subs');
 			console.log(prevSubs);
 
 			let alteredSubs = prevSubs.map((sub) => {
-				if(sub.pk == newSub.pk) {
+				if (sub.pk == newSub.pk) {
 					sub = newSub;
 				}
 			})
@@ -83,16 +87,18 @@ const SubscriptionForm = (props) => {
 		//TODO: last minute fix for this to work before demo. Need to actually call setSubscriptions from context and prevent default
 		//e.preventDefault();
 
-		const response =  await handleAsyncSubmit();
+		const response = await handleAsyncSubmit();
 
 		try {
 			//setContextSubscriptions(response);
 		} catch (err) {
 			console.log(err);
-		} 
+		}
 
 		close();
 	}
+
+	console.log(subscription);
 
 	return (
 		<form onSubmit={handleSubmit}>
@@ -131,28 +137,22 @@ const SubscriptionForm = (props) => {
 				onChange={handleChange}
 			/>
 
-			{/* TODO: needs to be a selectable list - See Material UI Chip for intended use */}
-			<TextField
-				autoFocus
-				margin='dense'
-				id='currencyType'
-				label='Currency Type'
-				type='text'
-				name='currencyType'
-				fullWidth
+			<SubscriptionChip
+				title="Currency Type"
 				value={subscription.currencyType}
-				onChange={handleChange}
+				handleChange={handleChange}
+				inputName='currencyType'
+				selectableItems={currencies}
+
 			/>
 
-			<TextField
-				margin='dense'
-				id='itemTypes'
-				label='Item Types'
-				type='text'
-				name='itemTypes'
-				fullWidth
+			<SubscriptionChip
+				title='Item Types'
 				value={subscription.itemTypes}
-				onChange={handleChange}
+				handleChange={handleChange}
+				inputName='itemTypes'
+				isMultiple={true}
+				selectableItems={itemTypes}
 			/>
 
 			<FormControlLabel
