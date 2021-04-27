@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import SubscriptionFormDialog from './SubscriptionFormDialog';
+import { List, ListItem } from '@material-ui/core';
 
 //TODO: add PropType validation
 
@@ -25,6 +26,12 @@ const useStyles = makeStyles(() => ({
 	},
 	active: {
 		backgroundColor: '#808080',
+	},
+	listItem: {
+		width: '90%',
+		padding: 0,
+		margin: '3px 1rem',
+		backgroundColor: '#5c5c5c'
 	},
 }));
 
@@ -45,9 +52,22 @@ const SubscriptionListItem = ({ subscription, handleSetActive, handleDelete }) =
 				<Typography className={classes.item} variant='subtitle1'>
 					{`Currency Type: ${currencyType ? currencyType : ''}`}
 				</Typography>
+
 				<Typography className={classes.item} variant='subtitle1'>
-					{`Item Types: ${itemTypes ? itemTypes : ''}`}
+					Item Types:
 				</Typography>
+				<List>
+					{itemTypes.map((itemType) => {
+						return (
+							<ListItem key={itemType} className={classes.listItem}>
+								<Typography className={classes.listItem} variant='subtitle1'>
+									{itemType}
+								</Typography>
+							</ListItem>
+						)
+					})}
+				</List>
+
 				<Typography className={classes.item} variant='subtitle1'>
 					{`Tab ids: ${tabIds ? tabIds : ''} `}
 				</Typography>

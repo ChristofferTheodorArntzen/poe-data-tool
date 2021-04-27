@@ -328,7 +328,7 @@ public class InitialDataLoader {
 				new Integer[]{1, 2, 3},
 				1.0,
 				"Exalted",
-				Arrays.asList(UNIQUE, RARE_ACCESSORIES, RARE_WEAPON),
+				Arrays.asList(UNIQUE, RARE_ACCESSORY, RARE_WEAPON),
 				true
 		);
 		subscriptionDAO.save(subscription);
@@ -347,13 +347,13 @@ public class InitialDataLoader {
 						MAP,
 						SCARAB,
 						GEM,
-						ABYSSALJEWEL,
+						ABYSSAL_JEWEL,
 						CARD,
 						FRAGMENT,
 						OIL,
 						PROPHECY,
 						FOSSIL,
-						DELIRIUMORB
+						DELIRIUM_ORB
 						),
 				false);
 		subscriptionDAO.save(subscription1);

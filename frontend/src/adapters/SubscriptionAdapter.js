@@ -33,21 +33,17 @@ export async function deleteSubscription(data) {
 
 export async function submitSubscription(data) {
 
-
-    console.log(data);
-
     let subscription = {
         pk: data.pk,
         name: data.name,
         tabIds: [data.tabIds],
         currencyThreshold: data.currencyThreshold,
         currencyType: data.currencyType,
-        itemTypes: [data.itemTypes],
+        itemTypes: data.itemTypes,
         isActive: false,
     }
 
     try {
-
         let response;
 
         if (subscription.pk == null || subscription.pk.length == 0) {

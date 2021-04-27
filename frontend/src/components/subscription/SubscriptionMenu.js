@@ -70,8 +70,7 @@ const SubscriptionMenu = () => {
 
 		if (subscriptions == null) return [];
 
-		// console.log('constructSubscriptionRows');
-		// console.log(subscriptions);
+		console.log(subscriptions);
 
 		const rows = subscriptions.map((sub) => {
 			return (
