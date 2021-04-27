@@ -37,7 +37,6 @@ public enum ItemType {
 	RARE_ARMOUR("Rare weapon", true),
 	RARE_ACCESSORIES("Rare accessories", true),
 	;
-	//TODO:	want to impl rare wep, rare armour etc. can be a pain to add tho.
 
 	public String text;
 	public Predicate<Item> filter;
@@ -55,34 +54,6 @@ public enum ItemType {
 		this.text = text;
 		this.filter = filter;
 		this.convertMods = convertMods;
-	}
-
-	public List<ItemType> getListOfItemTypes() {
-		return Arrays.asList(
-			ABYSSALJEWEL,
-			SCARAB,
-			PROPHECY,
-			FRAGMENT,
-			OIL,
-			CURRENCY,
-			UNIQUE,
-			CARD,
-			CLUSTERJEWEL,
-			BLIGHTMAP,
-			MAP,
-			DELIRIUMORB,
-			CATALYST,
-			FOSSIL,
-			ESSENCE,
-			RESONATOR,
-			GEM,
-			UNIQUE_ARMOUR,
-			UNIQUE_WEAPON,
-			UNIQUE_ACCESSORY,
-			RARE_WEAPON,
-			RARE_ARMOUR,
-			RARE_ACCESSORIES,
-			UNIQUE_FLASK);
 	}
 
 }
