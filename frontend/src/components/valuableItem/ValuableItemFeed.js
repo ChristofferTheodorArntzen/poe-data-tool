@@ -7,8 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import DeleteIcon from '@material-ui/icons/Delete';
+import ValuableItemRow from './ValuableItemRow';
 import '../../styles/ValuableItemFeed.css';
 
 import { getValuableItem, deleteValuableItem } from '../../adapters/ValuableItemAdapter';
@@ -30,7 +29,6 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
 
     const { isConnected } = useContext(connectionContext);
 
-    // Fetches already created valuableItems
     async function fetchData() {
         try {
             const fetchedItems = await getValuableItem();
@@ -53,7 +51,6 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
         }
     }, [isConnected])
 
-    // adding a useEffect to fetchData when it is mounted.
     useEffect( () => {
         fetchData();
     }, []);
@@ -96,32 +93,14 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
         });
     }
 
-    //TODO: should this be gotten from a context or something similar? this takes 1 - 1.5 sec to retrieve and "make" when there is lots of data. 
-    //maybe serve a 1:1 dto from API to remove the mapping that is done. 
-    //TODO: make this its own functional component way to much code here
     const constructRowComponents = (items) => {
         const rows = items.map((item) => {
             return (
-                <TableRow key={'table-row' + item.id}>
-                    <TableCell scope='row' align='center'>
-                        <img loading='lazy' src={item.svg} className='item-frame' />
-                    </TableCell>
-                    <TableCell align='center'>{item.name}</TableCell>
-                    <TableCell align='center'>{item.type}</TableCell>
-                    <TableCell align='center'>{item.stashId}</TableCell>
-                    <TableCell align='center'>{item.price.median}</TableCell>
-                    <TableCell align='center'>{item.priceType}</TableCell>
-                    <TableCell align='center'>
-                        <Button onClick={() => handleClick(item.id)}
-                            variant='contained'
-                            color='secondary'
-                            size='small'
-                            startIcon={<DeleteIcon />}
-                        >
-                            Delete
-                            </Button>
-                    </TableCell>
-                </TableRow>
+                <ValuableItemRow
+                key={item.id}
+                item={item}
+                handleClick={handleClick}
+                />
             );
         })
 
@@ -145,7 +124,7 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
                         <TableCell align='center'>Type</TableCell>
                         <TableCell align='center'>Stash ID</TableCell>
                         <TableCell align='center'>Price</TableCell>
-                        <TableCell align='center'>PriceType</TableCell>
+                        <TableCell align='center'>Price Type</TableCell>
                         <TableCell align='center'>Remove</TableCell>
                     </TableRow>
                 </TableHead>
