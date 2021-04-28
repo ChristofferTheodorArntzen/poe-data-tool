@@ -7,15 +7,15 @@ import Tooltip from './Tooltip';
 const ValuableItemRow = ({ item, handleClick }) => {
 
     const { id, svg, name, type, stashId, price, priceType } = item;
-    const {max, min, median, mean } = price;
+    const { max, min, median, mean } = price;
 
     return (
         <TableRow key={'table-row' + id}>
             <TableCell scope='row' align='center'>
-                <Tooltip 
-                component= {<img loading='lazy' src={svg} className='item-frame' />}
-                item={item}
-                />                
+                <Tooltip
+                    component={<img loading='lazy' src={svg} className='item-frame' />}
+                    item={item}
+                />
             </TableCell>
             <TableCell align='center'>{name}</TableCell>
             <TableCell align='center'>{type}</TableCell>
