@@ -98,7 +98,7 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
             return (
                 <ValuableItemRow
                 key={item.id}
-                item={item}
+                valuableItem={item}
                 handleClick={handleClick}
                 />
             );
