@@ -15,7 +15,7 @@ const MAGIC_HEX_TEXT_COLOR = '#b3d9ff';
 
 const RARE_COLOR = 'rgba(255, 219, 87, 0.7)';
 const RARE_BACKGROUND_COLOR = 'rgba(255, 219, 87, 0.2)';
-const RARE_HEX_TEXT_COLOR = '#ffeeb3';
+const RARE_HEX_TEXT_COLOR = '#fff9e6';
 
 const UNIQUE_COLOR = 'rgba(255, 160, 38, 0.7)';
 const UNIQUE_BACKGROUND_COLOR = 'rgba(255, 160, 38, 0.2)';

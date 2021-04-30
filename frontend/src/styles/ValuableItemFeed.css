@@ -17,10 +17,6 @@
     top: 0; z-index: 1;
 }
 
-th { 
-    background:rgb(104, 104, 104);
-}
-
 .item-frame {
     width: auto;
     height: auto;

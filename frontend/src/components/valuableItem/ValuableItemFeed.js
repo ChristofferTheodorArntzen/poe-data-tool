@@ -6,8 +6,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import ValuableItemRow from './ValuableItemRow';
+import { makeStyles } from '@material-ui/core';
 import '../../styles/ValuableItemFeed.css';
 
 import { getValuableItem, deleteValuableItem } from '../../adapters/ValuableItemAdapter';
@@ -22,6 +22,17 @@ const errorStyles = {
     padding: '20px'
 }
 
+const useStyles = makeStyles({
+    table: {
+        overflow: 'auto',
+        height: '100%',
+        backgroundColor: 'rgba(30, 30, 30, 0.96)'
+    },
+    tableHead: {
+        backgroundColor: 'rgba(90, 90, 90, 0.5)'
+    }
+})
+
 const ValuableItemFeed = ({ webSocketTopic }) => {
 
     const [valuableItemArray, setValuableItemArray] = useState([]);
@@ -29,29 +40,31 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
 
     const { isConnected } = useContext(connectionContext);
 
+    const classes = useStyles();
+
     async function fetchData() {
         try {
             const fetchedItems = await getValuableItem();
-            if(fetchedItems == null) {
+            if (fetchedItems == null) {
                 setError(true);
             } else {
                 setValuableItemArray(fetchedItems);
             }
-    
+
         } catch (err) {
             console.log(err);
         }
     }
 
-    useEffect( () => {
-        if(!isConnected) {
+    useEffect(() => {
+        if (!isConnected) {
             setError(true);
         } else {
             setError(false);
         }
     }, [isConnected])
 
-    useEffect( () => {
+    useEffect(() => {
         fetchData();
     }, []);
 
@@ -70,10 +83,10 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
                 client.subscribe(webSocketTopic,
                     (msg) => updateStateWithSocketCallBack(msg))
             });
-    
+
             return () => {
-                if(client != null && client.connected) client.disconnect()
-            }   
+                if (client != null && client.connected) client.disconnect()
+            }
         } catch (err) {
             setError(true);
             console.log(err);
@@ -96,11 +109,10 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
             <label>Could not connect to the server. Try to relaunch the application.</label>
         </div>
     )
-    
     const tableComponent = (
-        <TableContainer component={Paper} className='tableFixHead'>
+        <TableContainer className={classes.table} >
             <Table aria-label='simple table'>
-                <TableHead>
+                <TableHead className={classes.tableHead}>
                     <TableRow>
                         <TableCell align='center'>Img</TableCell>
                         <TableCell align='center'>Name</TableCell>
@@ -113,11 +125,11 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
                 </TableHead>
                 <TableBody>
                     {
-                        (valuableItemArray.length != 0)
-                        ? ( valuableItemArray.map( (row) => 
-                            <ValuableItemRow key={row.id}
-                            valuableItem={row}
-                            handleClick={handleClick} />
+                        (valuableItemArray.length != 0) ? (
+                            valuableItemArray.map((row) =>
+                                <ValuableItemRow key={row.id}
+                                    valuableItem={row}
+                                    handleClick={handleClick} />
                             )
                         ) : null
                     }
@@ -125,7 +137,7 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
             </Table>
         </TableContainer>
     )
-    
+
     return (
         <main>
             <div className='table-container'>
