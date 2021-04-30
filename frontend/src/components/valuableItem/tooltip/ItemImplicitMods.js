@@ -36,22 +36,3 @@ ItemImplicitMods.propTypes = {
 }
 
 export default ItemImplicitMods;
-
-
-
-
-
-{/* <>
-<section className={classes.implicitMods} style={{ paddingLeft: '10px', paddingRight: '10px' }}>
-    {
-        (implicitMods) ? implicitMods.map((implicitMod) => (
-            <div key={`requirements-${implicitMod}`}>
-                <span>{implicitMod}</span>
-            </div>
-        )
-        ) : null
-    }
-
-</section>
-<div className={classes.breakText} />
-</> */}
