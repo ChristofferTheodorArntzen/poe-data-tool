@@ -6,12 +6,22 @@ const SingleItemProperty = ({ property, classes, }) => {
 
     return (
         <>
-            <section className='enchantedMod'>
-                {
-                    (property) ? <span>{property}</span> : null
-                }
-            </section>
-            <div className={classes.breakText} />
+            {
+                (property)
+                    ?
+                    (
+                        <>
+                            <section className='enchantedMod'>
+
+                                <span>{property}</span> : null
+
+                            </section>
+                            <div className={classes.breakText} />
+                        </>
+                    )
+                    : null
+            }
+
         </>
     )
 }

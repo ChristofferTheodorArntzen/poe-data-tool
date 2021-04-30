@@ -25,7 +25,9 @@ const ItemProperties = ({ properties, classes }) => {
                                                     </span>
                                                     <span className={classes.attributeValue}>
                                                         {(property.values.length > 0)
-                                                            ? `${parseFloat(property.values[0])}`
+                                                            ? `${(property.values[0][0]) 
+                                                                ? property.values[0][0] 
+                                                                : property.values[0]}`
                                                             : null}
                                                     </span>
                                                 </div>

@@ -12,7 +12,7 @@ const ValuableItemRow = ({ valuableItem, handleClick }) => {
     const { max, min, median, mean } = price;
 
     return (
-        <TableRow key={'table-row' + id}>
+        <TableRow key={`table-row ${id}`}>
             <TableCell scope='row' align='center'>
                 <Tooltip
                     component={<img loading='lazy' src={icon} className='item-frame' />}

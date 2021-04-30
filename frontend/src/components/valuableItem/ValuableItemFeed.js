@@ -60,9 +60,7 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
         let parsedItem = socketCallBack(msg);
         if (parsedItem == null) return;
 
-        setValuableItemArray((value) => {
-            return [parsedItem, ...value]
-        });
+        setValuableItemArray((value) => ([parsedItem, ...value]));
     }
 
     useEffect(() => {
@@ -93,27 +91,12 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
         });
     }
 
-    const constructRowComponents = (items) => {
-        const rows = items.map((item) => {
-            return (
-                <ValuableItemRow
-                key={item.id}
-                valuableItem={item}
-                handleClick={handleClick}
-                />
-            );
-        })
-
-        return rows;
-    }
-
     const errorDisplay = (
         <div style={errorStyles}>
             <label>Could not connect to the server. Try to relaunch the application.</label>
         </div>
     )
-
-    //TODO: add css from Valuable item pertaining to style here, keep positional css in the css file.
+    
     const tableComponent = (
         <TableContainer component={Paper} className='tableFixHead'>
             <Table aria-label='simple table'>
@@ -129,7 +112,15 @@ const ValuableItemFeed = ({ webSocketTopic }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {(valuableItemArray.length == 0) ? null : constructRowComponents(valuableItemArray)}
+                    {
+                        (valuableItemArray.length != 0)
+                        ? ( valuableItemArray.map( (row) => 
+                            <ValuableItemRow key={row.id}
+                            valuableItem={row}
+                            handleClick={handleClick} />
+                            )
+                        ) : null
+                    }
                 </TableBody>
             </Table>
         </TableContainer>

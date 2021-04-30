@@ -1,49 +1,42 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ItemProperties from './ItemProperties';
 import ItemRequirements from './ItemRequirements';
 import SingleItemProperty from './SingleItemProperty';
 import ItemExplicitMods from './ItemExplicitMods';
+import ItemDescriptionText from './ItemDescriptionText';
+import ItemImplicitMods from './ItemImplicitMods';
 
 import { makeStyles } from '@material-ui/core';
 
+//TODO: this needs to be moved somewhere else, this adds a style block to header each time a tooltip is rendered.
 const useStyles = makeStyles({
     itemBox: {
-        fontSize: '10px',
+        fontSize: '12px',
         position: 'absolute',
         display: 'inline-block',
         padding: '2px',
         top: props => props.yPos,
         left: props => props.xPos,
-        backgroundColor: 'rgba( 0, 0, 0, 0.7)',
+        backgroundColor: 'rgba( 0, 0, 0, 0.8)',
         border: `3px solid`,
         borderColor: props => props.primaryColor,
     },
-
-    hidden: {
-        visibility: 'hidden',
-    },
     itemBoxHeader: {
         backgroundColor: props => props.primaryColor,
-    },
-    itemName: {
-
-    },
-    typeLine: {
-
+        color: props => props.secondaryColor,
+        fontWeight: 750,
+        marginBottom: '4px',
     },
     breakText: {
-        backgroundImage: 'linear-gradient(to right,transparent,hsla(var(--item-unique),var(--opacity-50)),transparent)',
-        padding: '0',
-        height: '8px',
+        height: '1px',
+        backgroundImage: props => `linear-gradient(90deg, rgba(0,0,0,0) 0%, ${props.primaryColor} 50%, rgba(0,0,0,0) 100%)`,
+        margin: '4px',
     },
     requirements: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
-    },
-    properties: {
     },
     attributeValue: {
         color: 'white',
@@ -52,20 +45,31 @@ const useStyles = makeStyles({
     attributeName: {
         color: '#9e9e9e',
         paddingLeft: '5px'
+    }, 
+    explicitMods: {
+        color: props => props.explicitModText
+    },
+    descriptionText: {
+        color: props => props.primaryColor
+    },
+    visible: {
+        visibility: 'visible',
+        top: props => props.yPos,
+        left: props => props.xPos,
     }
 
 });
 
 const ToolTipBox = (props) => {
 
-    const { item, primaryColor } = props;
+    const { item, } = props;
     const {
         name,
         typeLine,
         id,
         properties,
         requirements,
-        implicitMod,
+        implicitMods,
         enchantedMod,
         explicitMods,
         flavourText,
@@ -89,28 +93,14 @@ const ToolTipBox = (props) => {
                         </span>
                     </div>
                 </section>
-                <div className={classes.breakText} />
-
-
-
                 <div className='itemDescription'>
                     <ItemProperties properties={properties} classes={classes} />
                     <ItemRequirements requirements={requirements} classes={classes} />
+                    <ItemImplicitMods implicitMods={implicitMods} classes={classes} />
                     {(enchantedMod) ? <SingleItemProperty property={enchantedMod} classes={classes} /> : null}
-                    {(implicitMod) ? <SingleItemProperty property={implicitMod} classes={classes} /> : null}
-                    <ItemExplicitMods  explicitMods={explicitMods} classes={classes} />
-                    <section className='descriptionText'>
-                        {
-                            (flavourText)
-                                ?
-                                flavourText.map((text) => (
-                                    <div key={text}>
-                                        <span>{text}</span>
-                                    </div>
-                                ))
-                                : null
-                        }
-                    </section>
+
+                    <ItemExplicitMods  explicitMods={explicitMods} corrupted={corrupted} classes={classes} />
+                    <ItemDescriptionText flavourText={flavourText} classes={classes} />
                 </div>
             </article>
         </div >
@@ -122,6 +112,8 @@ ToolTipBox.propTypes = {
     yPos: PropTypes.number,
     xPos: PropTypes.number,
     primaryColor: PropTypes.string,
+    secondaryColor: PropTypes.string,
+    isShown: PropTypes.bool,
 }
 
 export default ToolTipBox;

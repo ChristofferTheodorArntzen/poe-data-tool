@@ -1,23 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ItemExplicitMods = ({explicitMods, corrupted, classes}) => {
-
+const ItemExplicitMods = ({ explicitMods, corrupted, classes }) => {
 
     return (
         <>
-            <section className='explicitMods'>
-                {
-                    (explicitMods) ? explicitMods.map((explicitMod) => (
-                        <div key={`requirements-${explicitMod}`}>
-                            <span>{explicitMod}</span>
-                        </div>
-                    )
-                    ) : null
-                }
-                <span>{(corrupted) ? 'Corrupted' : null}</span>
-            </section>
-            <div className={classes.breakText} />
+            {
+                (explicitMods)
+                    ?
+                    <>
+                        <section className={classes.explicitMods} style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+                            {
+                                explicitMods.map((explicitMod) => (
+                                    <div key={`requirements-${explicitMod}`}>
+                                        <span>{explicitMod}</span>
+                                    </div>
+                                ))
+                            }
+
+                            <span style={{ color: 'red' }}>{(corrupted) ? 'Corrupted' : null}</span>
+                        </section>
+                        <div className={classes.breakText} />
+                    </>
+                    : null
+
+            }
+
+
         </>
     )
 

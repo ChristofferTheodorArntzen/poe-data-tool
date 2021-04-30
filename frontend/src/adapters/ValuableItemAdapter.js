@@ -1,10 +1,8 @@
 import { get, deleteRequest } from './BaseAdapter';
 
-//const baseUrl = "";
 const devUrl = 'http://localhost:8080/valuableItem/';
 
 //TODO: only return the last 20 or 50? or impl. lazy loading
-//TODO: figure out if it is possible to just return the data instead of a promise...
 export async function getValuableItem() {
 
     try {
@@ -14,8 +12,6 @@ export async function getValuableItem() {
             return null;
         }
         
-        console.log(response.data[0]);
-
         const valuableItemArray = response.data.map((jsonItem) => {
             let valuableItem = {
                 id: jsonItem.id,
