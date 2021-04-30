@@ -1,10 +1,8 @@
 import { get, deleteRequest } from './BaseAdapter';
 
-//const baseUrl = "";
 const devUrl = 'http://localhost:8080/valuableItem/';
 
 //TODO: only return the last 20 or 50? or impl. lazy loading
-//TODO: figure out if it is possible to just return the data instead of a promise...
 export async function getValuableItem() {
 
     try {
@@ -13,19 +11,16 @@ export async function getValuableItem() {
         if (response.status != 200) {
             return null;
         }
-
-        const valuableItemArray = response.data.map((json) => {
+        
+        const valuableItemArray = response.data.map((jsonItem) => {
             let valuableItem = {
-                id: json.id,
-                name: json.item.name,
-                type: json.item.typeLine,
-                stashId: json.item.inventoryId,
-                svg: json.item.icon,
+                id: jsonItem.id,
+                item: jsonItem.item,
                 price: {
-                    mean: json.mean,
-                    median: json.median,
-                    max: json.max,
-                    min: json.min,
+                    mean: jsonItem.mean,
+                    median: jsonItem.median,
+                    max: jsonItem.max,
+                    min: jsonItem.min,
                 },
                 priceType: 'chaos', // TODO - this data is available on the subscription, not on each item, maybe just add it there too.
             }

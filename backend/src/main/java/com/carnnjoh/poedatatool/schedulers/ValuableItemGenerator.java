@@ -65,6 +65,12 @@ public class ValuableItemGenerator {
 			return;
 		}
 
+//		List<ValuableItem> valuableItems = valuableItemDAO.getAllByDate(false);
+//		if(valuableItems.size() > 6) {
+//			LOGGER.info("Returning early from valuableItem generator because the size is larger than 6");
+//			return;
+//		}
+
 		LOGGER.info("Started fetching stash tabs");
 
 		long startTime = System.currentTimeMillis();
@@ -116,7 +122,7 @@ public class ValuableItemGenerator {
 //			}
 //		}
 
-		itemList = itemList.stream().filter(item -> item.sockets != null).collect(Collectors.toList());
+//		itemList = itemList.stream().filter(item -> item.sockets != null).collect(Collectors.toList());
 		if (itemList.size() > 5) {
 			itemList = itemList.subList(0, 1);
 		}

@@ -24,10 +24,7 @@ export function socketCallBack(msg) {
     
     let valuableItem = {
         id: json.id,
-        name: json.item.name,
-        type: json.item.typeLine,
-        stashId: json.item.inventoryId,
-        svg: json.item.icon,
+        item: json.item,
         price: {
             mean: json.mean,
             median: json.median,

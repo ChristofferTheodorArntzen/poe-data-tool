@@ -1,10 +1,18 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Chip, FormControl, Input, InputLabel, makeStyles, MenuItem, Select } from '@material-ui/core';
+import {
+    Chip,
+    FormControl,
+    Input,
+    InputLabel,
+    makeStyles,
+    MenuItem,
+    Select
+} from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
     formControl: {
-       
+
         minWidth: 120,
     },
     chips: {
@@ -18,15 +26,15 @@ const useStyles = makeStyles(() => ({
 
 const SubscriptionChip = (props) => {
 
-    const { 
-        title, 
-        value, 
-        handleChange, 
-        inputName, 
-        selectableItems, 
+    const {
+        title,
+        value,
+        handleChange,
+        inputName,
+        selectableItems,
         isMultiple
     } = props;
-    
+
     const classes = useStyles();
 
     return (
@@ -45,13 +53,13 @@ const SubscriptionChip = (props) => {
 
                     <div className={classes.chips}>
                         {
-                        (typeof selected == 'string' && selected != null)
+                            (typeof selected == 'string' && selected != null)
 
-                        ? (<Chip key={value} label={value} className={classes.chip} />)
+                                ? (<Chip key={value} label={value} className={classes.chip} />)
 
-                        : (selected.map((value) => (
-                            <Chip key={value} label={value} className={classes.chip} />
-                        )))
+                                : (selected.map((value) => (
+                                    <Chip key={value} label={value} className={classes.chip} />
+                                )))
                         }
                     </div>
                 )}
