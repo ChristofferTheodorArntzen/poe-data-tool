@@ -56,23 +56,12 @@ public class Utils {
 
 		if(keys != null && keys.size() > 0) {
 			return new CreateSuccessResultList(
-				keys.stream()
-					.map(CreateSuccessResult::new)
-					.collect(Collectors.toList())
+					keys.stream()
+							.map(CreateSuccessResult::new)
+							.collect(Collectors.toList())
 			);
 		} else {
 			return new FailedResult();
-		}
-	}
-
-	// Was meant to make it easier or more pretty to make if instanceof for the Result class returned by the DAO's,
-	// but ended ut being more code than just casting the class if a field was needed for one of the sub-classes
-	public <T extends Result, R> R mapResult(Result result, Function<T, R> action) {
-		Class<T> type = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-		if (type.isInstance(result)) {
-			return action.apply((T) result);
-		} else {
-			return null;
 		}
 	}
 }

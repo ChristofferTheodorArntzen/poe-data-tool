@@ -1,18 +1,20 @@
 package com.carnnjoh.poedatatool.db.utils;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class CreateSuccessResultList extends Result {
 
 	private List<CreateSuccessResult> createSuccessResultList;
 
+	public CreateSuccessResultList(List<CreateSuccessResult> createSuccessResultList) {
+		this.createSuccessResultList = createSuccessResultList;
+	}
+
+	public List<CreateSuccessResult> getCreateSuccessResultList() {
+		return createSuccessResultList;
+	}
+
+	public void setCreateSuccessResultList(List<CreateSuccessResult> createSuccessResultList) {
+		this.createSuccessResultList = createSuccessResultList;
+	}
 }
