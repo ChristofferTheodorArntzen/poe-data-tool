@@ -3,6 +3,7 @@ package com.carnnjoh.poedatatool.db.implementation;
 import com.carnnjoh.poedatatool.db.dao.ValuableItemDAO;
 import com.carnnjoh.poedatatool.db.model.ValuableItem;
 import com.carnnjoh.poedatatool.db.utils.*;
+import com.carnnjoh.poedatatool.factories.GeneratedKeyHolderFactory;
 import com.carnnjoh.poedatatool.model.Item;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,12 +17,16 @@ import java.util.List;
 
 public class ValuableItemDAOImpl implements ValuableItemDAO {
 
-	private ObjectMapper mapper;
+	private ObjectMapper mapper = new ObjectMapper();
 	private NamedParameterJdbcTemplate template;
+	private GeneratedKeyHolderFactory keyHolderFactory;
 
-	public ValuableItemDAOImpl(NamedParameterJdbcTemplate template, ObjectMapper mapper) {
+	public ValuableItemDAOImpl() {
+	}
+
+	public ValuableItemDAOImpl(NamedParameterJdbcTemplate template, GeneratedKeyHolderFactory keyHolderFactory) {
 		this.template = template;
-		this.mapper = mapper;
+		this.keyHolderFactory = keyHolderFactory;
 	}
 
 	@Override
@@ -29,7 +34,7 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 		return Utils.tryUpdate(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", pk);
-			template.update("delete from ValuableItem where pk = :pk", params);
+			template.update("DELETE FROM ValuableItem WHERE pk = :pk", params);
 			return new DeleteSuccessResult();
 		});
 	}
@@ -39,7 +44,7 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 		return Utils.tryUpdate(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("id", id);
-			template.update("delete from ValuableItem where id = :id", params);
+			template.update("DELETE FROM ValuableItem WHERE id = :id", params);
 			return new SuccessResult();
 		});
 	}
@@ -56,14 +61,17 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 				.addValue("max", item.getMax())
 				.addValue("min", item.getMin())
 				.addValue("createdDate", Timestamp.valueOf(item.getCreatedDate()));
-			KeyHolder keyHolder = new GeneratedKeyHolder();
 
-			String sqlQuery = "insert into ValuableItem(id, subscriptionFk, item, mean, median, max, min, createdDate) " +
-					"values( :id, :subscriptionFk, :item, :mean, :median, :max, :min, :createdDate)";
+			KeyHolder keyHolder = keyHolderFactory.newKeyHolder();
 
+			String sqlQuery = "INSERT INTO ValuableItem(id, subscriptionFk, item, mean, median, max, min, createdDate) " +
+					"VALUES ( :id, :subscriptionFk, :item, :mean, :median, :max, :min, :createdDate)";
 
-			template.update( sqlQuery, params, keyHolder);
-			return Utils.getCreateResult(keyHolder);
+			template.update(sqlQuery, params, keyHolder);
+
+			return (keyHolder.getKey() != null)
+					? new CreateSuccessResult(keyHolder.getKey().intValue())
+					: new FailedResult();
 		});
 	}
 
@@ -72,18 +80,18 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 		return Utils.tryGet(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", pk);
-			return template.queryForObject("select * from ValuableItem where pk = :pk", params, rowMapper);
+			return template.queryForObject("SELECT * FROM ValuableItem WHERE pk = :pk", params, rowMapper);
 		});
 	}
 
 	@Override
 	public List<ValuableItem> fetchAll() {
-		return Utils.tryGet(() -> template.query("Select * from ValuableItem", rowMapper));
+		return Utils.tryGet(() -> template.query("SELECT * FROM ValuableItem", rowMapper));
 	}
 
 	public List<ValuableItem> getAllByDate(boolean ascending) {
 		return Utils.tryGet( () -> {
-			String sqlQuery = "Select * from ValuableItem order by createdDate";
+			String sqlQuery = "SELECT * FROM ValuableItem ORDER BY createdDate";
 			sqlQuery = (ascending) ? sqlQuery + " asc" : sqlQuery + " desc";
 
 			return template.query(sqlQuery, rowMapper);
@@ -110,7 +118,7 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 				.addValue("createdDate", Timestamp.valueOf(item.getCreatedDate()));
 
 			String updateStatement =
-				"update ValuableItem set id = :id," +
+				"UPDATE ValuableItem SET id = :id," +
 					"subscriptionFk = :subscriptionFk," +
 					"item = :item," +
 					"mean = :mean, " +
@@ -118,7 +126,7 @@ public class ValuableItemDAOImpl implements ValuableItemDAO {
 					"max = :max, " +
 					"min = :min, " +
 					"createdDate = :createdDate" +
-					" where pk = :pk";
+					" WHERE pk = :pk";
 			int rowUpdate = template.update(updateStatement, params);
 			return (rowUpdate != 0)
 				? new UpdateSuccessResult()

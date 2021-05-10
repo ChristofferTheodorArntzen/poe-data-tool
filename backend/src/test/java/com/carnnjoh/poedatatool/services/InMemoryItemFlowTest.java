@@ -6,15 +6,14 @@ import com.carnnjoh.poedatatool.model.InterpretedMod;
 import com.carnnjoh.poedatatool.model.PrivateStashTab;
 import com.carnnjoh.poedatatool.model.tradeAPIModels.QueryRequest.QueryRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.io.File;
 import java.util.*;
 
 /*
@@ -22,7 +21,7 @@ import java.util.*;
      Separate this into smaller test classes, each testing its own service, methods etc.
  */
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 public class InMemoryItemFlowTest {
@@ -38,7 +37,7 @@ public class InMemoryItemFlowTest {
 
     PrivateStashTab privateStashTab;
 
-    @Before
+    @BeforeAll
     public void setUp() {
         privateStashTab = TestUtils.getFileFromResourcesAsObject("/privateStashTab.json", PrivateStashTab.class);
     }

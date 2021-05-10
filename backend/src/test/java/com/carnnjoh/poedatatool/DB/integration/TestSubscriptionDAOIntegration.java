@@ -1,4 +1,4 @@
-package com.carnnjoh.poedatatool.DB.implementation;
+package com.carnnjoh.poedatatool.DB.integration;
 
 import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
 import com.carnnjoh.poedatatool.db.model.Subscription;
@@ -7,31 +7,34 @@ import com.carnnjoh.poedatatool.db.utils.DeleteSuccessResult;
 import com.carnnjoh.poedatatool.db.utils.Result;
 import com.carnnjoh.poedatatool.db.utils.UpdateSuccessResult;
 import com.carnnjoh.poedatatool.model.ItemType;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.assertj.core.data.Offset;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
+import static org.assertj.core.api.AssertionsForClassTypes.*;
+
+@ExtendWith(SpringExtension.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest
 @ActiveProfiles("test")
-public class TestSubscriptionDAO {
+public class TestSubscriptionDAOIntegration {
 
 	@Autowired
 	SubscriptionDAO subscriptionDAO;
 
 	Subscription testSubscription;
 
-	@Before
+	Offset<Double> offset = Offset.offset(0.01);
+
+	@BeforeEach
 	public void setup() {
 		testSubscription = new Subscription(
 			"test-name",
@@ -46,7 +49,7 @@ public class TestSubscriptionDAO {
 		testSubscription.setPk(((CreateSuccessResult) saveResult).getPk());
 	}
 
-	@After
+	@AfterEach
 	public void flush() {
 		List<Subscription> subscriptions = subscriptionDAO.fetchAll();
 
@@ -59,52 +62,55 @@ public class TestSubscriptionDAO {
 	public void testSave() {
 		Result saveResult = subscriptionDAO.save(testSubscription);
 
-		Assert.assertTrue(saveResult instanceof CreateSuccessResult);
+		assertThat(saveResult).isInstanceOf(CreateSuccessResult.class);
 
 		Subscription fetchedSubscription = subscriptionDAO.fetch(testSubscription.getPk());
 
-		Assert.assertEquals(testSubscription.getPk(), fetchedSubscription.getPk());
-		Assert.assertEquals(testSubscription.getCurrencyThreshold(), fetchedSubscription.getCurrencyThreshold(), 0.0001);
-		Assert.assertEquals(testSubscription.getCurrencyType(), fetchedSubscription.getCurrencyType());
-		Assert.assertEquals(testSubscription.getPk(), fetchedSubscription.getPk());
-		Assert.assertEquals(testSubscription.getPk(), fetchedSubscription.getPk());
+		assertThat(fetchedSubscription.getPk()).isEqualTo(testSubscription.getPk());
+		assertThat(fetchedSubscription.getCurrencyThreshold()).isCloseTo(testSubscription.getCurrencyThreshold(), offset);
+		assertThat(fetchedSubscription.getCurrencyType()).isEqualTo(testSubscription.getCurrencyType());
+		assertThat(fetchedSubscription.getName()).isEqualTo(testSubscription.getName());
+		assertThat(fetchedSubscription.getItemTypes()).isEqualTo(testSubscription.getItemTypes());
+		assertThat(fetchedSubscription.getTabIds()).isEqualTo(testSubscription.getTabIds());
+
 	}
 
 	@Test
 	public void testDelete() {
-
 		Subscription fetchedSubscription = subscriptionDAO.fetch(testSubscription.getPk());
+
 		Result deleteResult = subscriptionDAO.deleteByPk(fetchedSubscription.getPk());
-		Assert.assertTrue(deleteResult instanceof DeleteSuccessResult);
+		assertThat(deleteResult).isInstanceOf(DeleteSuccessResult.class);
+
 		fetchedSubscription = subscriptionDAO.fetch(fetchedSubscription.getPk());
-		Assert.assertNull(fetchedSubscription);
+		assertThat(fetchedSubscription).isNull();
 	}
 
 	@Test
 	public void testUpdate() {
-		Subscription initialSubscription = saveInitialSubscription();
+		Subscription initialSubscription = subscriptionDAO.fetch(testSubscription.getPk());
 
 		initialSubscription.setName("xyz");
 		initialSubscription.setCurrencyType("exalted");
 
 		Result updateResult = subscriptionDAO.update(initialSubscription);
 
-		Assert.assertTrue(updateResult instanceof UpdateSuccessResult);
+		assertThat(updateResult).isInstanceOf(UpdateSuccessResult.class);
 
 		Subscription fetchedSubscription = subscriptionDAO.fetch(initialSubscription.getPk());
 
-		Assert.assertNotEquals(fetchedSubscription.getName(), testSubscription.getName());
-		Assert.assertNotEquals(fetchedSubscription.getCurrencyType(), testSubscription.getCurrencyType());
-		Assert.assertEquals(fetchedSubscription.getCurrencyThreshold(), testSubscription.getCurrencyThreshold(), 0.001);
-		Assert.assertArrayEquals(fetchedSubscription.getTabIds(), testSubscription.getTabIds());
-		Assert.assertEquals(fetchedSubscription.getItemTypes(), testSubscription.getItemTypes());
+		assertThat(fetchedSubscription.getName()).isNotEqualTo(testSubscription.getName());
+		assertThat(fetchedSubscription.getCurrencyType()).isNotEqualTo(testSubscription.getCurrencyType());
+		assertThat(fetchedSubscription.getCurrencyThreshold()).isCloseTo(testSubscription.getCurrencyThreshold(), offset);
+		assertThat(fetchedSubscription.getTabIds()).isEqualTo(testSubscription.getTabIds());
+		assertThat(fetchedSubscription.getItemTypes()).isEqualTo(testSubscription.getItemTypes());
 	}
 
 	@Test
 	public void testFetch() {
-		saveInitialSubscription();
 		Subscription fetchedSubscription = subscriptionDAO.fetch(testSubscription.getPk());
-		Assert.assertNotNull(fetchedSubscription);
+		assertThat(fetchedSubscription).isNotNull();
+		assertThat(fetchedSubscription.getPk()).isEqualTo(testSubscription.getPk());
 	}
 
 	@Test
@@ -112,20 +118,18 @@ public class TestSubscriptionDAO {
 		generateSubscriptions();
 
 		List<Subscription> subscriptions = subscriptionDAO.fetchAll();
-
-		Assert.assertFalse(subscriptions.isEmpty());
+		assertThat(subscriptions.size() > 0).isTrue();
 
 		for(Subscription subscription : subscriptions) {
-			Assert.assertNotNull(subscription.getPk());
+			assertThat(subscription.getPk()).isNotNull();
 		}
 	}
 
 	@Test
 	public void testFetchByStatus() {
-		Subscription subscription = subscriptionDAO.fetchByStatus(true);
-
-		Assert.assertNotNull(subscription);
-		Assert.assertTrue(subscription.isActive());
+		Subscription subscription = subscriptionDAO.fetchFirstActive(true);
+		assertThat(subscription).isNotNull();
+		assertThat(subscription.isActive()).isTrue();
 	}
 
 	private void generateSubscriptions() {
@@ -144,12 +148,6 @@ public class TestSubscriptionDAO {
 			));
 			subscriptionDAO.save(subscription);
 		}
-	}
-
-	private Subscription saveInitialSubscription() {
-		Result saveResult = subscriptionDAO.save(testSubscription);
-		Assert.assertTrue(saveResult instanceof CreateSuccessResult);
-		return subscriptionDAO.fetch(((CreateSuccessResult) saveResult).getPk());
 	}
 
 }

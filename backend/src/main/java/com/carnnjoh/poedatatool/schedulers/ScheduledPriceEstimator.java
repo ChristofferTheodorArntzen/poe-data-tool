@@ -78,7 +78,7 @@ public class ScheduledPriceEstimator {
             LOGGER.info("Scheduled task " + ScheduledPriceEstimator.class + " has began");
         }
 
-        Subscription sub = subscriptionDAO.fetchByStatus(true);
+        Subscription sub = subscriptionDAO.fetchFirstActive(true);
 
         if (sub == null) {
             LOGGER.info("There are no active subscriptions. Returning early!");

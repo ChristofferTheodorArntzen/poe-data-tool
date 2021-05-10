@@ -3,20 +3,27 @@ package com.carnnjoh.poedatatool.db.implementation;
 import com.carnnjoh.poedatatool.db.dao.UserDAO;
 import com.carnnjoh.poedatatool.db.model.User;
 import com.carnnjoh.poedatatool.db.utils.*;
+import com.carnnjoh.poedatatool.factories.GeneratedKeyHolderFactory;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 
 	private NamedParameterJdbcTemplate template;
+	private GeneratedKeyHolderFactory keyHolderFactory;
 
-	public UserDAOImpl(NamedParameterJdbcTemplate template) {
+	public UserDAOImpl() {
+	}
+
+	public UserDAOImpl(NamedParameterJdbcTemplate template, GeneratedKeyHolderFactory keyHolderFactory) {
 		this.template = template;
+		this.keyHolderFactory = keyHolderFactory;
 	}
 
 	@Override
@@ -26,7 +33,7 @@ public class UserDAOImpl implements UserDAO {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", pk);
 
-			template.update("delete from User where pk = :pk", params);
+			template.update("DELETE FROM User WHERE pk = :pk", params);
 
 			return new DeleteSuccessResult();
 		});
@@ -42,10 +49,22 @@ public class UserDAOImpl implements UserDAO {
 				.addValue("realm", user.getRealm())
 				.addValue("sessionId", user.getSessionId());
 
-			KeyHolder keyHolder = new GeneratedKeyHolder();
+			KeyHolder keyHolder = keyHolderFactory.newKeyHolder();
 
-			template.update("insert into User(league, accountName, realm, sessionId) values( :league, :accountName, :realm, :sessionId)", params, keyHolder);
-			return Utils.getCreateResult(keyHolder);
+			template.update(
+					"INSERT INTO User (league, accountName, realm, sessionId) " +
+					"VALUES( :league, :accountName, :realm, :sessionId)",
+					params,
+					keyHolder
+			);
+
+			try {
+				return new CreateSuccessResult(keyHolder.getKey().intValue());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return new FailedResult();
 		});
 	}
 
@@ -54,18 +73,27 @@ public class UserDAOImpl implements UserDAO {
 		return Utils.tryGet(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", pk);
-			return template.query("select * from User where pk = :pk", params, rowMapper).stream().findFirst().orElse(null);
+			return template.query("SELECT * FROM User WHERE pk = :pk",
+					params,
+					rowMapper)
+					.stream()
+					.findFirst()
+					.orElse(null);
 		});
 	}
 
 	@Override
 	public List<User> fetchAll() {
-		return Utils.tryGet(() -> template.query("Select * from User", rowMapper));
+		return Utils.tryGet(() -> template.query("SELECT * FROM User", rowMapper));
 	}
 
 	@Override
 	public User getLastCreatedUser() {
-		return Utils.tryGet(() -> template.query("Select * from User order by pk asc", rowMapper).stream().findFirst().orElse(null));
+		return Utils.tryGet(() -> template.query("SELECT * FROM User ORDER BY pk asc",
+				rowMapper)
+				.stream()
+				.findFirst()
+				.orElse(null));
 	}
 
 	@Override
@@ -85,9 +113,9 @@ public class UserDAOImpl implements UserDAO {
 
 			String sqlStatement =
 				"update User set league = :league," +
-					" accountName = :accountName," +
-					" realm = :realm,  sessionId = :sessionId" +
-					" where pk = :pk";
+				" accountName = :accountName," +
+				" realm = :realm,  sessionId = :sessionId" +
+				" where pk = :pk";
 
 			int rowUpdate = template.update(sqlStatement, params);
 			return (rowUpdate != 0)
@@ -96,7 +124,7 @@ public class UserDAOImpl implements UserDAO {
 		});
 	}
 
-	private final RowMapper<User> rowMapper = ((rs, rowNum) ->
+	public static final RowMapper<User> rowMapper = ((rs, rowNum) ->
 		Utils.tryGet(() -> new User(
 			rs.getInt("pk"),
 			rs.getString("league"),
@@ -104,6 +132,4 @@ public class UserDAOImpl implements UserDAO {
 			rs.getString("realm"),
 			rs.getString("sessionId")
 		)));
-
-
 }

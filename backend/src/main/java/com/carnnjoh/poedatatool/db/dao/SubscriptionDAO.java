@@ -5,6 +5,6 @@ import com.carnnjoh.poedatatool.db.model.Subscription;
 
 public interface SubscriptionDAO extends DAO<Subscription> {
 
-	Subscription fetchByStatus(boolean isActive);
+	Subscription fetchFirstActive(boolean isActive);
 
 }

@@ -28,35 +28,6 @@ class TestSubscriptionController {
 		endPointUrl = "http://localhost:" + port + "/subscription";
 
 		String[] tabIds = {"1", "2", "3", "4", "5"};
-
-
-
 	}
-	@Test
-	void testGet() {
-
-	}
-
-	@Test
-	void testGetAll() {
-
-	}
-
-	@Test
-	void testDelete() {
-
-	}
-
-	@Test
-	void testPost(){
-
-	}
-
-	@Test
-	void testPut(){
-
-
-	}
-
 
 }

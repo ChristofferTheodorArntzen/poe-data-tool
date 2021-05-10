@@ -1,12 +1,12 @@
 package com.carnnjoh.poedatatool.factories;
 
+import com.carnnjoh.poedatatool.db.DataSourceConfig;
 import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
 import com.carnnjoh.poedatatool.db.dao.UserDAO;
 import com.carnnjoh.poedatatool.db.dao.ValuableItemDAO;
 import com.carnnjoh.poedatatool.db.implementation.SubscriptionDAOImpl;
 import com.carnnjoh.poedatatool.db.implementation.UserDAOImpl;
 import com.carnnjoh.poedatatool.db.implementation.ValuableItemDAOImpl;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,23 +16,26 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 public class DAOFactory {
 
 	@Autowired
-	private NamedParameterJdbcTemplate template;
+	NamedParameterJdbcTemplate template;
 
 	@Autowired
-	private ObjectMapper objectMapper;
+	GeneratedKeyHolderFactory keyHolderFactory;
+
+	@Autowired
+	private DataSourceConfig dataSourceConfig;
 
 	@Bean
 	public ValuableItemDAO getValuableItemDAO() {
-		return new ValuableItemDAOImpl(template, objectMapper);
+		return new ValuableItemDAOImpl(template, keyHolderFactory);
 	}
 
 	@Bean
 	public SubscriptionDAO getSubscriptionDAO() {
-		return new SubscriptionDAOImpl(template);
+		return new SubscriptionDAOImpl(template, keyHolderFactory);
 	}
 
 	@Bean
 	public UserDAO getUserDAO() {
-		return new UserDAOImpl(template);
+		return new UserDAOImpl(template,keyHolderFactory);
 	}
 }

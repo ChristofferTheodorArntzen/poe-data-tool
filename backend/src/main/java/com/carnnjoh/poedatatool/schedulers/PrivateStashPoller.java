@@ -63,7 +63,7 @@ public class PrivateStashPoller {
 				return;
 			}
 
-			Subscription sub = subscriptionDAO.fetchByStatus(true);
+			Subscription sub = subscriptionDAO.fetchFirstActive(true);
 
 			if (sub == null) {
 				LOGGER.info("No active subscriptions were found. Returning early!");

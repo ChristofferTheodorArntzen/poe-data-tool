@@ -3,13 +3,15 @@ package com.carnnjoh.poedatatool.db.implementation;
 import com.carnnjoh.poedatatool.db.dao.SubscriptionDAO;
 import com.carnnjoh.poedatatool.db.model.Subscription;
 import com.carnnjoh.poedatatool.db.utils.*;
+import com.carnnjoh.poedatatool.factories.GeneratedKeyHolderFactory;
 import com.carnnjoh.poedatatool.model.ItemType;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,9 +19,14 @@ import java.util.List;
 public class SubscriptionDAOImpl implements SubscriptionDAO {
 
 	private NamedParameterJdbcTemplate template;
+	private GeneratedKeyHolderFactory keyHolderFactory;
 
-	public SubscriptionDAOImpl(NamedParameterJdbcTemplate template) {
+	public SubscriptionDAOImpl() {
+	}
+
+	public SubscriptionDAOImpl(NamedParameterJdbcTemplate template, GeneratedKeyHolderFactory keyHolderFactory) {
 		this.template = template;
+		this.keyHolderFactory = keyHolderFactory;
 	}
 
 	@Override
@@ -27,7 +34,7 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 		return Utils.tryUpdate(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", pk);
-			template.update("delete from Subscription where pk = :pk", params);
+			template.update("DELETE FROM Subscription WHERE pk = :pk", params);
 			return new DeleteSuccessResult();
 		});
 	}
@@ -44,14 +51,17 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 				.addValue("itemTypes", subscription.getItemTypes().stream().map(Enum::name).toArray())
 				.addValue("isActive", subscription.isActive());
 
-			KeyHolder keyHolder = new GeneratedKeyHolder();
+			KeyHolder keyHolder = keyHolderFactory.newKeyHolder();
 
-			String sqlQuery =  "Insert into Subscription (name, tabIds, currencyThreshold, currencyType, itemTypes, isActive)" +
-								" values (:name, :tabIds, :currencyThreshold, :currencyType, :itemTypes, :isActive)";
+			String sqlQuery = "INSERT INTO Subscription " +
+					"(name, tabIds, currencyThreshold, currencyType, itemTypes, isActive)" +
+					" VALUES (:name, :tabIds, :currencyThreshold, :currencyType, :itemTypes, :isActive)";
 
 			template.update(sqlQuery, params, keyHolder);
 
-			return Utils.getCreateResult(keyHolder);
+			return (keyHolder.getKey() != null)
+					? new CreateSuccessResult(keyHolder.getKey().intValue())
+					: new FailedResult();
 		});
 	}
 
@@ -61,7 +71,7 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("pk", pk);
 			return template.query(
-				"Select * from Subscription where pk = :pk",
+				"SELECT * FROM Subscription WHERE pk = :pk",
 				params,
 				rowMapper)
 				.stream()
@@ -72,7 +82,7 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 
 	@Override
 	public List<Subscription> fetchAll() {
-		return Utils.tryGet(() -> template.query("Select * from Subscription", rowMapper));
+		return Utils.tryGet(() -> template.query("SELECT * FROM Subscription", rowMapper));
 	}
 
 	@Override
@@ -93,14 +103,14 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 				.addValue("isActive", subscription.isActive());
 
 			String updateStatement =
-					"update Subscription set" +
+					"UPDATE Subscription SET" +
 					" name = :name," +
 					" tabIds = :tabIds," +
 					" currencyThreshold = :currencyThreshold," +
 					" currencyType = :currencyType," +
 					" itemTypes = :itemTypes," +
 					" isActive = :isActive" +
-				" where pk = :pk";
+					" WHERE pk = :pk";
 
 			int rowUpdate = template.update(updateStatement, params);
 			return (rowUpdate != 0)
@@ -110,12 +120,12 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 	}
 
 	@Override
-	public Subscription fetchByStatus(boolean isActive) {
+	public Subscription fetchFirstActive(boolean isActive) {
 		return Utils.tryGet(() -> {
 			MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("isActive", isActive);
 			return template.query(
-				"Select * from Subscription where isActive = :isActive",
+				"SELECT * FROM Subscription WHERE isActive = :isActive",
 				params,
 				rowMapper)
 				.stream()
@@ -124,7 +134,7 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 		});
 	}
 
-	private final RowMapper<Subscription> rowMapper = ((rs, rowNum) ->
+	public static final RowMapper<Subscription> rowMapper = ((rs, rowNum) ->
 		Utils.tryGet(() ->
 			new Subscription(
 				rs.getInt("pk"),
@@ -137,7 +147,7 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 			)
 		));
 	
-	private List<ItemType> convertEnumArrayToList(Object object) {
+	private static List<ItemType> convertEnumArrayToList(Object object) {
 		String[] enumStringArray = Arrays.stream((Object[]) object).toArray(String[]::new);
 		List<ItemType> itemTypes = new ArrayList<>();
 		for (String string : enumStringArray) {
